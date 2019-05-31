@@ -6,7 +6,7 @@ import thunk  from "redux-thunk"
 import { createStore, applyMiddleware, compose } from "redux";
 import logger from 'redux-logger';
 import './index.css';
-import rootReducer from './reducers/index'
+import rootReducer from './reducers'
 import App from './App';
 
 

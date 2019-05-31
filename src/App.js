@@ -2,7 +2,6 @@
 
 
 import React, { Component } from 'react';
-// import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import styled, { css } from 'styled-components';
@@ -41,11 +40,8 @@ const StyledApp = styled.div`
   width:100%;
   height:100%;
 
-  
-  
-  
   font-family: 'Roboto', sans-serif;
-  font-size:1.4rem;
+  font-size: 1.4rem;
 
   input:focus,
   select:focus,
@@ -61,15 +57,15 @@ const StyledApp = styled.div`
 
   .complete-dashboard-container{
     height:100%;
-}
+  }
   .footer{
     width:100%;
     background:lightgray;
     height:20vh;
   }
-}
 
 `
+
 class App extends Component {
   render() {
     return (

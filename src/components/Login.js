@@ -42,7 +42,7 @@ const StyledLogin = styled.div `
     min-height:500px;
     
     border-radius:10px;
-    padding:20px
+    padding:20px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -60,7 +60,7 @@ const StyledLogin = styled.div `
         z-index:5;
         width:100%;
         top:0;
-        border-raduis:5px;
+        border-radius:5px;
        
     }
 
@@ -87,7 +87,6 @@ const StyledLogin = styled.div `
     .fas.fa-database{
         margin-right:4px;
     }
-}
 
     .title-container{
         display:flex;
@@ -96,13 +95,13 @@ const StyledLogin = styled.div `
     }
     .welcome-title{
         
-        // margin: 30px auto;
+        margin: 30px auto;
         font-family: 'Josefin Sans', sans-serif;
         text-shadow: 0 1px 3px rgba(57, 55, 70, 0.4);
         font-size: 24px;
         color: #2800a9;
         letter-spacing: -2px;
-        // letter-spacing: 1px;
+        letter-spacing: 1px;
         font-weight: 400;
         margin-right: 2px;
         
@@ -146,7 +145,7 @@ const StyledLogin = styled.div `
 
         padding: 4px 4px 4px opx;
 
-        // border: 1px solid #a93dff;
+        border: 1px solid #a93dff;
 
        
 
@@ -173,7 +172,7 @@ const StyledLogin = styled.div `
         justify-content: center;
 
         background-image: linear-gradient(134deg,#4f009d70 20%,#1300ff91,#00ffb387);
-        // box-shadow: 0 13px 27px -5px rgba(50, 50, 93, 0.25), 0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.025);
+        box-shadow: 0 13px 27px -5px rgba(50, 50, 93, 0.25), 0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.025);
     }
 
    
@@ -195,16 +194,11 @@ const StyledLogin = styled.div `
         .output-items{
             height:100px;
             width:200px;
-           
-            
-            
             position:absolute;
-            
-            
 
             .output{
                 height:20px;
-                width:20px
+                width:20px;
                 animation:infinite-spinning 3s linear infinite,move-out 4s linear infinite;
                 position:absolute;
                 top:50%;
@@ -294,16 +288,16 @@ const StyledLogin = styled.div `
                     }
                 }
 
-                // @keyframes move-out {
-                //     from {
-                //       transform: rotate(0deg);
+                @keyframes move-out {
+                    from {
+                      transform: rotate(0deg);
                       
-                //     }
-                //     to {
-                //       transform: translateX(100px) translateY(50px);
-                //       opacity:0;
-                //     }
-                // }
+                    }
+                    to {
+                      transform: translateX(100px) translateY(50px);
+                      opacity:0;
+                    }
+                }
                 
             }
         }
@@ -360,9 +354,9 @@ const StyledLogin = styled.div `
             display:flex;
         }
         .input-icon-cont{
-            display:flex;
-            justify-content:center;
-            aligh-items:center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             color:light-gray;
 
             .fas{

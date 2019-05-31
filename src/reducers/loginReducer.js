@@ -11,7 +11,7 @@ const initialState = {
     
 
 }
-const loginR = (state=initialState,action) => {
+const loginreducer = (state=initialState,action) => {
     switch(action.type){
         case LOGIN_START:
         return{
@@ -46,4 +46,4 @@ const loginR = (state=initialState,action) => {
 
 }
 
-export default loginR;
+export default loginreducer;

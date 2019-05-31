@@ -1,6 +1,13 @@
-import { combineReducers } from "redux";
-import loginReducer from './loginReducer';
+import { combineReducers } from 'redux';
+import loginreducer  from './loginreducer';
+// import getData from '../reducers/getdata';
+// import registrationR from '../reducers/registerreducer';
+// import getSentiment from '../reducers/sentimentReducer';
 
 export default combineReducers({
-  login: loginReducer
+  loginreducer
+  // getData,
+  // registrationR,
+  // getSentiment
+
 });

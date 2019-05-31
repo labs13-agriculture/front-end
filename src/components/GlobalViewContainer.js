@@ -12,7 +12,69 @@ export default class GlobalViewContainer extends Component {
   render() {
     return (
       <GVC>
-        <h1>Global View Container</h1>
+        <Cards>
+          <IMG>
+            <i class="fas fa-users" />
+          </IMG>
+          <span>FIRST NAME</span>
+          <span>LAST NAME</span>
+        </Cards>
+        <Cards>
+          <IMG>
+            <i class="fas fa-users" />
+          </IMG>
+          <span>FIRST NAME</span>
+          <span>LAST NAME</span>
+        </Cards>
+        <Cards>
+          <IMG>
+            <i class="fas fa-users" />
+          </IMG>
+          <span>FIRST NAME</span>
+          <span>LAST NAME</span>
+        </Cards>
+        <Cards>
+          <IMG>
+            <i class="fas fa-users" />
+          </IMG>
+          <span>FIRST NAME</span>
+          <span>LAST NAME</span>
+        </Cards>
+        <Cards>
+          <IMG>
+            <i class="fas fa-users" />
+          </IMG>
+          <span>FIRST NAME</span>
+          <span>LAST NAME</span>
+        </Cards>
+        <Cards>
+          <IMG>
+            <i class="fas fa-users" />
+          </IMG>
+          <span>FIRST NAME</span>
+          <span>LAST NAME</span>
+        </Cards>
+        <Cards>
+          <IMG>
+            <i class="fas fa-users" />
+          </IMG>
+          <span>FIRST NAME</span>
+          <span>LAST NAME</span>
+        </Cards>
+        <Cards>
+          <IMG>
+            <i class="fas fa-users" />
+          </IMG>
+          <span>FIRST NAME</span>
+          <span>LAST NAME</span>
+        </Cards>
+        <Cards>
+          <IMG>
+            <i class="fas fa-users" />
+          </IMG>
+          <span>FIRST NAME</span>
+          <span>LAST NAME</span>
+        </Cards>
       </GVC>
     );
   }
@@ -24,8 +86,42 @@ export default class GlobalViewContainer extends Component {
 
 const GVC = styled.div`
   display: flex;
-  width: 80%;
-  margin-bottom: -2000px;
-  padding-bottom: 2000px;
+  width: 100%;
+  height: 1000px;
+  margin-left: 17%;
   justify-content: center;
+  align-content: center;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
+`;
+
+const Cards = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  width: 250px;
+  height: 250px;
+  margin: 10px;
+  border-radius: 7px;
+  background-image: linear-gradient(-60deg, #16a085 0%, #f4d03f 100%);
+`;
+
+const IMG = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+  width: 50px;
+  height: 50px;
+  border: solid 1px white;
+  background-image: linear-gradient(
+    to top,
+    #c4c5c7 0%,
+    #dcdddf 52%,
+    #ebebeb 100%
+  );
 `;

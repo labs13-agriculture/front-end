@@ -15,7 +15,7 @@ export default class GlobalSideNav extends Component {
   render() {
     return (
       <GSN>
-        <StyledH1>Tieme Ndo</StyledH1>
+        <StyledH1 className="title">Tieme Ndo</StyledH1>
         <StyledDiv className="hvr-underline-reveal">
           <Link to="#" style={{ textDecoration: "none" }}>
             <i class="fas fa-home">
@@ -57,12 +57,13 @@ const GSN = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 20%;
+  position: fixed;
+  width: 17%;
+  left: 0;
+  height: 100%;
   border: 1px solid #d3d3d369;
   box-shadow: 0 13px 27px -5px rgba(50, 50, 93, 0.25),
     0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.025);
-  margin-bottom: -1500px;
-  padding-bottom: 1500px;
   background-image: linear-gradient(
     to top,
     #d5d4d0 0%,

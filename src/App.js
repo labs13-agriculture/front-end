@@ -6,6 +6,7 @@ import Login from "./components/Login";
 import PrivateRoute from "./components/PrivateRoute";
 import GlobalViewContainer from "./components/GlobalViewContainer";
 import GlobalSideNav from "./components/GlobalSideNav";
+import GlobalNav from "./components/GlobalNav";
 
 // import ItemList from './components/ItemList';
 // import {DashboardVue} from './components/DashboardView';
@@ -34,6 +35,7 @@ const StyledApp = styled.div`
   }
   justify-content: center;
   display: flex;
+  flex-flow: row wrap;
   width: 100%;
   height: 100%;
 
@@ -71,6 +73,7 @@ class App extends Component {
           <PrivateRoute path="/dashboard" component={GlobalSideNav} />
           <PrivateRoute path="/dashboard" component={GlobalViewContainer} />
           <Route path="/testdashboard" component={GlobalSideNav} />
+          <Route path="/testdashboard" component={GlobalNav} />
           <Route path="/testdashboard" component={GlobalViewContainer} />
         </StyledApp>
       </Router>

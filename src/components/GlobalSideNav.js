@@ -61,12 +61,21 @@ const GSN = styled.div`
   border: 1px solid #d3d3d369;
   box-shadow: 0 13px 27px -5px rgba(50, 50, 93, 0.25),
     0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.025);
-  margin-bottom: -2000px;
-  padding-bottom: 2000px;
+  margin-bottom: -1500px;
+  padding-bottom: 1500px;
+  background-image: linear-gradient(
+    to top,
+    #d5d4d0 0%,
+    #d5d4d0 1%,
+    #eeeeec 31%,
+    #efeeec 75%,
+    #e9e9e7 100%
+  );
 `;
 
 const StyledH1 = styled.h1`
   display: flex;
+
   background: linear-gradient(to left, transparent, #2800a9, transparent);
   background-size: 100% 2px;
   background-repeat: no-repeat;

@@ -69,7 +69,7 @@ const StyledLogin = styled.div `
         margin-top: 14px;
         width: 400px;
 
-        border: 1px solid #d3d3d35e;
+        background-image: linear-gradient(120deg,#4f009d00 0%,#a7a7a7,#00ffb300);
     }
     .fab.fa-pagelines {
         font-size: 26px;
@@ -98,10 +98,10 @@ const StyledLogin = styled.div `
         margin: 30px auto;
         font-family: 'Josefin Sans', sans-serif;
         text-shadow: 0 1px 3px rgba(57, 55, 70, 0.4);
-        font-size: 24px;
+        font-size: 23px;
         color: #2800a9;
         letter-spacing: -2px;
-        letter-spacing: 1px;
+        letter-spacing: -1px;
         font-weight: 400;
         margin-right: 2px;
         
@@ -123,6 +123,10 @@ const StyledLogin = styled.div `
         justify-content: center;
 
         margin-top: -45px;
+    }
+
+    .brandwrapper{
+        
     }
     .welcome-brand{
         text-shadow: 0 1px 3px rgb(0, 53, 255);
@@ -381,7 +385,7 @@ const StyledLogin = styled.div `
             padding-left: 27px;
             font-size:16px;
             font-weight:500;
-            color: gray;
+            color:#00000040;
             z-index:1;
             transition: transform 150ms cubic-bezier(0.4,0,0.2,1),opacity 150ms cubic-bezier(0.4,0,0.2,1);
             background:white;
@@ -570,7 +574,7 @@ class Login extends Component  {
                     <div className="decorative-container">  
                         <div className='welcome-brand'><i className="fas fa-database"></i>CRM</div>
                     </div>
-                   
+                
                     {/* <div className='flock-output-ani'>
                         <div className='output-items'>
                             

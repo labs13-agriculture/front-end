@@ -647,7 +647,7 @@ class Login extends Component {
             >
             <div
               className={`animation-div${
-                !this.state.submitpw != !this.props.loginFailure ? " pulse" : ""
+                this.props.loginStart ? " pulse" : ""
               }`}
             />
 

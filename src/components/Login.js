@@ -770,7 +770,7 @@ class Login extends Component {
                   onSubmit={e => {
                     e.preventDefault();
                     this.submitPw();
-                    setTimeout(() => this.login(e), 2000);
+                    this.login(e);
                   }}
                 >
                   <input

@@ -1,5 +1,6 @@
 import axios from 'axios';
-
+// import {CLIENT_NAME} from '../config';
+// import {CLIENT_SECRET} from '../config';
 
 
 
@@ -9,7 +10,7 @@ export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 
 
 export const initiateLogin = creds => dispatch =>{
-
+    
     dispatch({type:LOGIN_START});
 
     const body = `grant_type=password&username=${creds.username}&password=${
@@ -17,19 +18,23 @@ export const initiateLogin = creds => dispatch =>{
 
     return axios
     // .post('http://localhost:5000/api/login',creds)
-    .post('https://build-week.herokuapp.com/login',body, {
+    .post('https://tieme-ndo-backend.herokuapp.com/oauth/token',body, {
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
-          Authorization: "Basic + token"}})
+          "Authorization": 'Basic ' + `${window.btoa(process.env.REACT_APP_AUTH_CLIENT_ID + ':' + process.env.REACT_APP_AUTH_CLIENT_SECRET)}`}
+        })
     .then(
         resp => {
-            console.log(resp.data);
-            localStorage.setItem('token',resp.data.payload)
-            dispatch({type:LOGIN_SUCCESS,payload:resp.data.payload})}
+            
+            localStorage.setItem('token',resp.data.access_token)
+            dispatch({type:LOGIN_SUCCESS,payload:resp.data})
+        }
         
     )
     .catch(
-        err => {console.log('failuer',err)
-        dispatch({type:LOGIN_FAILURE,payload:err.data.payload})}
+        err => {console.log(err)
+            dispatch({type:LOGIN_FAILURE,payload:err})
+        }
     )
+    
 }

@@ -5,7 +5,7 @@ import loginReducer from '../reducers/loginReducer';
 // import getSentiment from '../reducers/sentimentReducer';
 
 export default combineReducers({
-  // loginReducer
+  login:loginReducer
   // // getData,
   // registrationR,
   // getSentiment

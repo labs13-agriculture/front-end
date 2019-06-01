@@ -65,7 +65,7 @@ const StyledLogin = styled.div`
         margin-top: 14px;
         width: 400px;
 
-        border: 1px solid #d3d3d35e;
+        background-image: linear-gradient(120deg,#4f009d00 0%,#a7a7a7,#00ffb300);
     }
     .fab.fa-pagelines {
         font-size: 26px;
@@ -94,13 +94,19 @@ const StyledLogin = styled.div`
         margin: 30px auto;
         font-family: 'Josefin Sans', sans-serif;
         text-shadow: 0 1px 3px rgba(57, 55, 70, 0.4);
-        font-size: 24px;
+        font-size: 23px;
         color: #2800a9;
         letter-spacing: -2px;
-        letter-spacing: 1px;
+        letter-spacing: -1px;
         font-weight: 400;
         margin-right: 2px;
         
+        .fas.fa-seedling {
+            margin-left: 4px;
+            animation:plant-tilt  20s infinite;
+            font-size: 22px;
+            
+        }
     }
 
     .decorative-container{
@@ -119,6 +125,10 @@ const StyledLogin = styled.div`
         justify-content: center;
 
         margin-top: -45px;
+    }
+
+    .brandwrapper{
+        
     }
     .welcome-brand{
         text-shadow: 0 1px 3px rgb(0, 53, 255);
@@ -237,6 +247,33 @@ const StyledLogin = styled.div`
                     }
                 }
 
+                @keyframes plant-tilt {
+                    0% {
+                      transform: rotate(0deg);
+                      
+                    }
+                    10% {
+                      transform:  rotate(10deg);
+                     
+                    }
+
+                    /* 10%{
+
+                        transform:  rotate(0deg);
+
+
+                    } */
+
+                    100%{
+                       
+
+                        transform:  rotate(0deg);
+
+                    }
+
+                    
+                }
+
                 @keyframes forward-spinning {
                     from {
                         transform: translate(0%, 0%) rotate(5deg) ;
@@ -326,7 +363,7 @@ const StyledLogin = styled.div`
     
     .inputdiv {
 
-        margin: 40px auto;
+        margin: 20px auto 0px;
         font-family: 'Roboto', sans-serif;
         display:flex;
         justify-content:center;
@@ -377,7 +414,7 @@ const StyledLogin = styled.div`
             padding-left: 27px;
             font-size:16px;
             font-weight:500;
-            color: gray;
+            color:#00000040;
             z-index:1;
             transition: transform 150ms cubic-bezier(0.4,0,0.2,1),opacity 150ms cubic-bezier(0.4,0,0.2,1);
             background:white;
@@ -452,12 +489,12 @@ const StyledLogin = styled.div`
 
         20%{
             
-            background-color: #00e4ff;
+            background-color: blue;
             
         }
 
         30%{
-            background-color: #00e4ff;
+            background-color: blue;
             
         }
 
@@ -469,7 +506,40 @@ const StyledLogin = styled.div`
           background-color: white;
           margin-right:-300%;
         }
-      }
+    }
+
+    #bad-credentials{
+        border:2px solid #d02929;
+    }
+
+    #hidden{
+        display:none;
+    }
+
+    #red-font{
+        color:#d02929;
+    }
+
+    .error-handler-div {
+        margin: 5px 5px;
+        color:#d02929;
+        display:flex;
+        align-items:flex-start;
+        font-size:12px;
+
+        .fas.fa-exclamation-triangle {
+            margin-right: 5px;
+            font-size:12px;
+        }
+    
+    }
+
+    .local-container-div{
+        height:100px;
+    }
+
+    
+    
       
      
 `;
@@ -483,13 +553,14 @@ class Login extends Component {
         password: ""
       },
       clicked: false,
-      submitpw: false
+      submitpw: false,
+      enteredUsername: true,
+      enteredPassword: true,
+      passwordFailure: false
     };
   }
 
-  componentDidUpdate() {
-    console.log("props", this.props);
-  }
+  componentDidUpdate() {}
 
   handleChanges = e =>
     this.setState({
@@ -501,7 +572,6 @@ class Login extends Component {
 
   loginAnimate() {
     this.setState({ clicked: true });
-    console.log("animatefire");
   }
 
   focusCursor() {
@@ -516,22 +586,49 @@ class Login extends Component {
     field.focus();
   }
   escapeAnimate() {
-    console.log("escape");
-    this.setState({ clicked: false });
+    if (
+      this.state.credentials.password.length > 0 ||
+      this.state.credentials.username.length > 0
+    ) {
+    } else {
+      this.setState({ clicked: false });
+    }
   }
 
   submitPw() {
-    console.log("submit");
     this.setState({ submitpw: true });
   }
 
   login = e => {
     e.preventDefault();
-    this.props
-      .initiateLogin(this.state.credentials)
+    if (
+      this.state.credentials.password.length > 0 &&
+      this.state.credentials.username.length > 0
+    ) {
+      this.setState({ enteredPassword: true, enteredUsername: true,submitpw:true });
+      this.props
+        .initiateLogin(this.state.credentials)
 
-      .then(() => this.props.history.push("/dashboard"))
-      .catch(err => console.log("failuer", err));
+        .then(() => this.props.history.push("/dashboard"))
+        .catch(err => {
+          console.log(err);
+        });
+    } else if (
+      this.state.credentials.password.length > 0 &&
+      this.state.credentials.username.length < 1
+    ) {
+      this.setState({ enteredPassword: true, enteredUsername: false });
+    } else if (
+      this.state.credentials.password.length < 1 &&
+      this.state.credentials.username.length > 0
+    ) {
+      this.setState({ enteredPassword: false, enteredUsername: true });
+    } else if (
+      this.state.credentials.password.length < 1 &&
+      this.state.credentials.username.length < 1
+    ) {
+      this.setState({ enteredPassword: false, enteredUsername: false });
+    }
   };
 
   testfunction() {
@@ -547,13 +644,18 @@ class Login extends Component {
               e.stopPropagation();
               this.escapeAnimate();
             }}
-          >
+            >
             <div
-              className={`animation-div${this.state.submitpw ? " pulse" : ""}`}
+              className={`animation-div${
+                this.props.loginStart ? " pulse" : ""
+              }`}
             />
 
             <div className="title-container">
-              <h1 className="welcome-title">Tieme Ndo</h1>
+              <h1 className="welcome-title">
+                Tieme Ndo
+                <i class="fas fa-seedling" />
+              </h1>
 
               {/* <div className='welcome-brand'><i class="fas fa-database"></i>CRM</div> */}
             </div>
@@ -562,129 +664,165 @@ class Login extends Component {
             {/* <i class="fab fa-pagelines"></i> */}
             <div className="decorative-container">
               <div className="welcome-brand">
-                <i className="fas fa-database" />CRM
+                <i className="fas fa-database" />
+                CRM
               </div>
             </div>
 
             {/* <div className='flock-output-ani'>
-                        <div className='output-items'>
-                            
-                            <div className='output one'><i className="fas fa-chart-line"></i></div>
-                            <div className='output two'><i className="far fa-paper-plane"></i></div>
-                            <div className='output three'><i className="far fa-grin"></i></div>
-                            <div className='output four'><i className="fab fa-twitter"></i></div>
-                            <div className='output five'><i className="fas fa-hashtag"></i></div>
-                        </div> */}
+                  <div className='output-items'>
+                    
+                    <div className='output one'><i className="fas fa-chart-line"></i></div>
+                    <div className='output two'><i className="far fa-paper-plane"></i></div>
+                    <div className='output three'><i className="far fa-grin"></i></div>
+                    <div className='output four'><i className="fab fa-twitter"></i></div>
+                    <div className='output five'><i className="fas fa-hashtag"></i></div>
+                    </div> */}
             {/* <h2>
-                       
-                        <svg className="login-icon">
-                            <circle fill="#0f0f14" cx="33" cy="33" r="33"></circle>
-                            <path d="M38.4 15l1-3h1l1.2 3c.2.2.5.2.7.3l2.2-2.5 1 .4-.2 3.3c.2 0 .3.2.5.4l3-1.5.7.7-1.4 3 .5.5h3.3l.4.8-2.5 2.2c0 .2 0 .5.2.7l3 1v1l-3 1.2-.3.8 2.5 2-.4 1-3.3-.2-.4.7 1.5 2.8-.7.7-3-1.4c0 .2-.4.4-.6.5l.2 3.3-1 .4-2-2.5c-.3 0-.6 0-1 .2l-1 3h-1l-1-3c-.2-.2-.5-.2-.8-.3l-2 2.5-1-.4.2-3.3-.7-.4-2.8 1.5-.7-.7 1.4-3c-.2 0-.4-.4-.5-.6l-3.3.2-.4-1 2.5-2c0-.3 0-.6-.2-1l-3-1v-1l3-1c.2-.2.2-.4.3-.7l-2.5-2.2.4-1 3.3.2c0-.2.2-.3.4-.5l-1.5-3 .7-.7 3 1.4.5-.5v-3.3l.8-.4 2.2 2.5s.5 0 .7-.2z" fill="#00b6cc" transform="rotate(143.20083851999883 40 25)">
-                            <animateTransform attributeName="transform"
-                          attributeType="XML"
-                          type="rotate"
-                          from="360 40 25"
-                          to="0 40 25"
-                          dur="10s"
-                          repeatCount="indefinite"/></path>
-                            <circle fill="#0f0f14" cx="40" cy="25" r="2"></circle>
-                            <path d="M21.6 26.8L19 25l-1.3 1 1.4 3c0 .2-.3.4-.5.6l-3-.8-1 1.4 2.4 2.3-.4.8-3.2.3-.3 1.6 3 1.4v.8l-3 1.4.4 1.6 3.2.3c0 .3.2.5.3.8l-2.4 2.3.8 1.4 3-.8.7.6-1.3 3 1.3 1 2.6-1.8c.3 0 .5.3.8.4l-.3 3.2 1.6.6 2-2.7c.2 0 .5 0 .7.2l1 3h1.5l1-3c0-.2.4-.2.7-.3l2 2.7 1.4-.6-.4-3.2c.3 0 .5-.3.8-.4L37 49l1.3-1-1.4-3c0-.2.3-.4.5-.6l3 .8 1-1.4-2.4-2.3.4-.8 3.2-.3.3-1.6-3-1.4v-.8l3-1.4-.4-1.6-3.2-.3c0-.3-.2-.5-.3-.8l2.4-2.3-.8-1.4-3 .8-.7-.6 1.3-3-1.3-1-2.6 1.8c-.3 0-.5-.3-.8-.4l.3-3.2-1.6-.6-2 2.7c-.2 0-.5 0-.7-.2l-1-3h-1.5l-1 3c0 .2-.4.2-.7.3l-2-2.7-1.4.6.4 3.2c-.3 0-.5.3-.8.4z" fill="#00e4ff" > 
-                            <animateTransform attributeName="transform"
-                          attributeType="XML"
-                          type="rotate"
-                          from="0 28 37"
-                          to="360 28 37"
-                          dur="10s"
-                          repeatCount="indefinite"/></path>
-                            <circle fill="#0f0f14" cx="28" cy="37" r="3"></circle>
-                        </svg>
-                    </h2>  */}
+                
+                  <svg className="login-icon">
+                    <circle fill="#0f0f14" cx="33" cy="33" r="33"></circle>
+                    <path d="M38.4 15l1-3h1l1.2 3c.2.2.5.2.7.3l2.2-2.5 1 .4-.2 3.3c.2 0 .3.2.5.4l3-1.5.7.7-1.4 3 .5.5h3.3l.4.8-2.5 2.2c0 .2 0 .5.2.7l3 1v1l-3 1.2-.3.8 2.5 2-.4 1-3.3-.2-.4.7 1.5 2.8-.7.7-3-1.4c0 .2-.4.4-.6.5l.2 3.3-1 .4-2-2.5c-.3 0-.6 0-1 .2l-1 3h-1l-1-3c-.2-.2-.5-.2-.8-.3l-2 2.5-1-.4.2-3.3-.7-.4-2.8 1.5-.7-.7 1.4-3c-.2 0-.4-.4-.5-.6l-3.3.2-.4-1 2.5-2c0-.3 0-.6-.2-1l-3-1v-1l3-1c.2-.2.2-.4.3-.7l-2.5-2.2.4-1 3.3.2c0-.2.2-.3.4-.5l-1.5-3 .7-.7 3 1.4.5-.5v-3.3l.8-.4 2.2 2.5s.5 0 .7-.2z" fill="#00b6cc" transform="rotate(143.20083851999883 40 25)">
+                    <animateTransform attributeName="transform"
+                  attributeType="XML"
+                  type="rotate"
+                  from="360 40 25"
+                  to="0 40 25"
+                  dur="10s"
+                  repeatCount="indefinite"/></path>
+                    <circle fill="#0f0f14" cx="40" cy="25" r="2"></circle>
+                    <path d="M21.6 26.8L19 25l-1.3 1 1.4 3c0 .2-.3.4-.5.6l-3-.8-1 1.4 2.4 2.3-.4.8-3.2.3-.3 1.6 3 1.4v.8l-3 1.4.4 1.6 3.2.3c0 .3.2.5.3.8l-2.4 2.3.8 1.4 3-.8.7.6-1.3 3 1.3 1 2.6-1.8c.3 0 .5.3.8.4l-.3 3.2 1.6.6 2-2.7c.2 0 .5 0 .7.2l1 3h1.5l1-3c0-.2.4-.2.7-.3l2 2.7 1.4-.6-.4-3.2c.3 0 .5-.3.8-.4L37 49l1.3-1-1.4-3c0-.2.3-.4.5-.6l3 .8 1-1.4-2.4-2.3.4-.8 3.2-.3.3-1.6-3-1.4v-.8l3-1.4-.4-1.6-3.2-.3c0-.3-.2-.5-.3-.8l2.4-2.3-.8-1.4-3 .8-.7-.6 1.3-3-1.3-1-2.6 1.8c-.3 0-.5-.3-.8-.4l.3-3.2-1.6-.6-2 2.7c-.2 0-.5 0-.7-.2l-1-3h-1.5l-1 3c0 .2-.4.2-.7.3l-2-2.7-1.4.6.4 3.2c-.3 0-.5.3-.8.4z" fill="#00e4ff" > 
+                    <animateTransform attributeName="transform"
+                  attributeType="XML"
+                  type="rotate"
+                  from="0 28 37"
+                  to="360 28 37"
+                  dur="10s"
+                  repeatCount="indefinite"/></path>
+                    <circle fill="#0f0f14" cx="28" cy="37" r="3"></circle>
+                </svg>
+            </h2>  */}
             {/* </div> */}
             {/* <div className='slogan-container'>
-                    <h3 className="slogan">social sentiment analysis</h3>
-                    </div> */}
-
-            <div
-              onClick={e => {
-                e.stopPropagation();
-                this.loginAnimate();
-                this.focusCursor();
-              }}
-              className={`inputdiv password${
-                this.state.clicked ? " transform-inputdiv" : ""
-              }`}
-            >
-              <form className="pw-form">
-                <input
-                  name="username"
-                  value={this.state.credentials.username}
-                  onChange={this.handleChanges}
-                  className="credential-input"
-                />
-                <div
-                  className={`fo-placeholder${
-                    this.state.clicked ? " transform-placeholder" : ""
-                  }`}
-                >
-                  Enter Your Username
-                </div>
-                <div className="input-icon-cont">
-                  <i className="fas fa-user-lock" />
-                </div>
-              </form>
-            </div>
-            <div
-              onClick={e => {
-                e.stopPropagation();
-                this.loginAnimate();
-                this.focusCursorPassword();
-              }}
-              className={`inputdiv${
-                this.state.clicked ? " transform-inputdiv" : ""
-              }`}
-            >
-              <form
-                className="pw-form"
-                onSubmit={e => {
-                  e.preventDefault();
-                  this.submitPw();
-                  setTimeout(() => this.login(e), 2000);
+                            <h3 className="slogan">social sentiment analysis</h3>
+                            </div> */}
+            <div className="local-container-div">
+              <div
+                onClick={e => {
+                  e.stopPropagation();
+                  this.loginAnimate();
+                  this.focusCursor();
                 }}
+                className={`inputdiv password${
+                  this.state.clicked ? " transform-inputdiv" : ""
+                }`}
+                id={this.state.enteredUsername ? "" : "bad-credentials"}
               >
-                <input
-                  type="password"
-                  name="password"
-                  value={this.state.credentials.password}
-                  onChange={this.handleChanges}
-                  className="credential-input"
-                  id="password"
-                />
-                <div
-                  className={`fo-placeholder${
-                    this.state.clicked ? " transform-placeholder" : ""
-                  }`}
+                <form className="pw-form" onSubmit={e => {
+                      e.preventDefault();
+                      this.submitPw();
+                      this.login(e);
+                    }}>
+                  <input
+                    
+                    name="username"
+                    value={this.state.credentials.username}
+                    onChange={this.handleChanges}
+                    className="credential-input"
+                  />
+                  <div
+                    className={`fo-placeholder${
+                      this.state.clicked ? " transform-placeholder" : ""
+                    }`}
+                    id={this.state.enteredUsername ? "" : "red-font"}
+                  >
+                    Enter Your Username
+                  </div>
+                  <div className="input-icon-cont">
+                    <i className="fas fa-user-lock" />
+                  </div>
+                </form>
+              </div>
+              <div
+                className="error-handler-div username"
+                id={this.state.enteredUsername ? "hidden" : ""}
+              >
+                <i className="fas fa-exclamation-triangle" />
+                Please enter username
+              </div>
+              <div
+                className="error-handler-div badcredentials"
+                id={this.props.loginFailure ? "" : "hidden"}
+              >
+                <i className="fas fa-exclamation-triangle" />
+                Incorrect username or password. Please try agian.
+              </div>
+            </div>
+            <div className="local-container-div">
+              <div
+                onClick={e => {
+                  e.stopPropagation();
+                  this.loginAnimate();
+                  this.focusCursorPassword();
+                }}
+                className={`inputdiv${
+                  this.state.clicked ? " transform-inputdiv" : ""
+                }`}
+                id={this.state.enteredPassword ? "" : "bad-credentials"}
+              >
+                <form
+                  className="pw-form"
+                  onSubmit={e => {
+                    e.preventDefault();
+                    this.submitPw();
+                    this.login(e);
+                  }}
                 >
-                  Enter Your Password
-                </div>
-                <div className="input-icon-cont">
-                  <i className="fas fa-key" />
-                </div>
-              </form>
+                  <input
+                    type="password"
+                    name="password"
+                    value={this.state.credentials.password}
+                    onChange={this.handleChanges}
+                    className="credential-input"
+                    id="password"
+                  />
+                  <div
+                    className={`fo-placeholder${
+                      this.state.clicked ? " transform-placeholder" : ""
+                    }`}
+                    id={this.state.enteredPassword ? "" : "red-font"}
+                  >
+                    Enter Your Password
+                  </div>
+                  <div className="input-icon-cont">
+                    <i className="fas fa-key" />
+                  </div>
+                </form>
+              </div>
+              <div
+                className="error-handler-div password"
+                id={this.state.enteredPassword ? "hidden" : ""}
+              >
+                <i className="fas fa-exclamation-triangle" />
+                Please enter password
+              </div>
             </div>
             <div className="login-next-steps-cont">
               <Link to="/testdashboard">
                 <button className="forgot">Click to test Back-end</button>
               </Link>
               <button
+                type="submit"
                 className="next"
                 onClick={e => {
                   e.stopPropagation();
                   this.submitPw();
-                  setTimeout(() => this.login(e), 2000);
+                  this.login(e);
                 }}
               >
                 Next
               </button>
+              {/* setTimeout((()=>this.login(e)),2000)} */}
             </div>
           </StyledLogin>
         </StyledLoginContainer>
@@ -694,10 +832,10 @@ class Login extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log("mapping state to props");
   return {
-    loginStart: state.loginStart,
-    error: state.error
+    loginStart: state.login.loginStart,
+    error: state.login.error,
+    loginFailure: state.login.loginFailure
   };
 };
 

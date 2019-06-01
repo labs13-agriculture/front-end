@@ -809,7 +809,7 @@ class Login extends Component {
               <button
                 type="submit"
                 className="next"
-                onClick={e => {
+                onSubmit={e => {
                   e.stopPropagation();
                   this.submitPw();
                   this.login(e);

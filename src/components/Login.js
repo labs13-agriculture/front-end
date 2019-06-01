@@ -605,7 +605,7 @@ class Login extends Component {
       this.state.credentials.password.length > 0 &&
       this.state.credentials.username.length > 0
     ) {
-      this.setState({ enteredPassword: true, enteredUsername: true });
+      this.setState({ enteredPassword: true, enteredUsername: true,submitpw:true });
       this.props
         .initiateLogin(this.state.credentials)
 
@@ -647,7 +647,7 @@ class Login extends Component {
             >
             <div
               className={`animation-div${
-                this.state.loginStart ? " pulse" : ""
+                !this.state.loginFailure ? " pulse" : ""
               }`}
             />
 

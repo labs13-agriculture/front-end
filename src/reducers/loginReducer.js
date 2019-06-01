@@ -25,7 +25,7 @@ export default (state=initialState,action) => {
             ...state,
             loginSuccess:true,
             loginFailure:false,
-            loginStart:false
+            loginStart:true
             
         }
 

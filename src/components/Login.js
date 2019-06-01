@@ -747,7 +747,7 @@ class Login extends Component {
               </div>
               <div
                 className="error-handler-div badcredentials"
-                id={this.props.loginFailure ? "" : "hidden"}
+                id={this.props.loginStart ? "" : "hidden"}
               >
                 <i className="fas fa-exclamation-triangle" />
                 Incorrect username or password. Please try agian.

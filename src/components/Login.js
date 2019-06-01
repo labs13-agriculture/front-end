@@ -639,12 +639,12 @@ class Login extends Component {
     return (
       <div className="gen-login-container">
         <StyledLoginContainer>
-          <StyledLogin>
+          <StyledLogin
             onClick={e => {
               e.stopPropagation();
               this.escapeAnimate();
             }}
-          
+            >
             <div
               className={`animation-div${
                 this.state.loginStart ? " pulse" : ""
@@ -817,89 +817,6 @@ class Login extends Component {
                 Next
               </button>
               {/* setTimeout((()=>this.login(e)),2000)} */}
-            </div>
-
-            <div
-              onClick={e => {
-                e.stopPropagation();
-                this.loginAnimate();
-                this.focusCursor();
-              }}
-              className={`inputdiv password${
-                this.state.clicked ? " transform-inputdiv" : ""
-              }`}
-            >
-              <form className="pw-form">
-                <input
-                  name="username"
-                  value={this.state.credentials.username}
-                  onChange={this.handleChanges}
-                  className="credential-input"
-                />
-                <div
-                  className={`fo-placeholder${
-                    this.state.clicked ? " transform-placeholder" : ""
-                  }`}
-                >
-                  Enter Your Username
-                </div>
-                <div className="input-icon-cont">
-                  <i className="fas fa-user-lock" />
-                </div>
-              </form>
-            </div>
-            <div
-              onClick={e => {
-                e.stopPropagation();
-                this.loginAnimate();
-                this.focusCursorPassword();
-              }}
-              className={`inputdiv${
-                this.state.clicked ? " transform-inputdiv" : ""
-              }`}
-            >
-              <form
-                className="pw-form"
-                onSubmit={e => {
-                  e.preventDefault();
-                  this.submitPw();
-                  setTimeout(() => this.login(e), 2000);
-                }}
-              >
-                <input
-                  type="password"
-                  name="password"
-                  value={this.state.credentials.password}
-                  onChange={this.handleChanges}
-                  className="credential-input"
-                  id="password"
-                />
-                <div
-                  className={`fo-placeholder${
-                    this.state.clicked ? " transform-placeholder" : ""
-                  }`}
-                >
-                  Enter Your Password
-                </div>
-                <div className="input-icon-cont">
-                  <i className="fas fa-key" />
-                </div>
-              </form>
-            </div>
-            <div className="login-next-steps-cont">
-              <Link to="/testdashboard">
-                <button className="forgot">Click to test Back-end</button>
-              </Link>
-              <button
-                className="next"
-                onClick={e => {
-                  e.stopPropagation();
-                  this.submitPw();
-                  setTimeout(() => this.login(e), 2000);
-                }}
-              >
-                Next
-              </button>
             </div>
           </StyledLogin>
         </StyledLoginContainer>

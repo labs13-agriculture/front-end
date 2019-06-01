@@ -807,6 +807,7 @@ class Login extends Component {
                 <button className="forgot">Click to test Back-end</button>
               </Link>
               <button
+                type="submit"
                 className="next"
                 onClick={e => {
                   e.stopPropagation();

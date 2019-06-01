@@ -489,12 +489,12 @@ const StyledLogin = styled.div`
 
         20%{
             
-            background-color: #00e4ff;
+            background-color: blue;
             
         }
 
         30%{
-            background-color: #00e4ff;
+            background-color: blue;
             
         }
 

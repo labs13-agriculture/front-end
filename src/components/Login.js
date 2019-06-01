@@ -88,6 +88,9 @@ const StyledLogin = styled.div`
         display:flex;
         margin:40px;
         align-items: center;
+        
+
+        flex-direction: column;
     }
     .welcome-title{
         
@@ -245,6 +248,15 @@ const StyledLogin = styled.div`
                       transform: translate(350%, 50%) rotate(300deg) ;
                       opacity:0;
                     }
+                }
+                @keyframes loading{
+                  10% {
+                    background:#44e744;
+                  }
+
+                  100%{
+                    background:white;
+                  }
                 }
 
                 @keyframes plant-tilt {
@@ -509,7 +521,7 @@ const StyledLogin = styled.div`
     }
 
     #bad-credentials{
-        border:2px solid #d02929;
+        border:2px solid #c8591f;
     }
 
     #hidden{
@@ -517,12 +529,12 @@ const StyledLogin = styled.div`
     }
 
     #red-font{
-        color:#d02929;
+        color:#c8591f;
     }
 
     .error-handler-div {
         margin: 5px 5px;
-        color:#d02929;
+        color:#c8591f;
         display:flex;
         align-items:flex-start;
         font-size:12px;
@@ -538,11 +550,46 @@ const StyledLogin = styled.div`
         height:100px;
     }
 
-    
-    
+    .dot-loader{
+      position: absolute;
+      top: 28px;
+    }
+    .dot {
+      height: 10px;
+      width: 10px;
       
-     
-`;
+      border-radius: 50%;
+      display: inline-block;
+      margin:3px;
+
+      &.one{
+        
+      }
+
+      &.two{
+       
+      }
+
+      &.three{
+        
+      }
+      
+      
+
+
+    }
+    #loadinga{
+        animation:loading 1s   .4s infinite;
+      }
+
+      #loadingb{
+        animation:loading 1s   .5s infinite;
+      }
+
+      #loadingc{
+        animation:loading 1s   .6s infinite;
+      }
+}`
 
 class Login extends Component {
   constructor(props) {
@@ -645,13 +692,18 @@ class Login extends Component {
               this.escapeAnimate();
             }}
             >
-            <div
+            {/* <div
               className={`animation-div${
                 this.props.loginStart ? " pulse" : ""
               }`}
-            />
+            /> */}
 
             <div className="title-container">
+              <div className="dot-loader">
+                <span class='dot one' id={`${this.props.loginStart ? 'loadinga':''}` }></span>
+                <span class="dot two" id={`${this.props.loginStart ? 'loadingb':''}`}></span>
+                <span class="dot three" id={`${this.props.loginStart ? 'loadingc':''}`}></span>
+              </div>
               <h1 className="welcome-title">
                 Tieme Ndo
                 <i class="fas fa-seedling" />

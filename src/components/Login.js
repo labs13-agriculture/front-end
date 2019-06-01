@@ -647,7 +647,7 @@ class Login extends Component {
             >
             <div
               className={`animation-div${
-                !this.state.loginFailure ? " pulse" : ""
+                !this.state.loginStart ? " pulse" : ""
               }`}
             />
 
@@ -747,7 +747,7 @@ class Login extends Component {
               </div>
               <div
                 className="error-handler-div badcredentials"
-                id={this.props.loginStart ? "" : "hidden"}
+                id={this.props.loginFailure ? "" : "hidden"}
               >
                 <i className="fas fa-exclamation-triangle" />
                 Incorrect username or password. Please try agian.

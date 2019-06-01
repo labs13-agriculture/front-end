@@ -35,7 +35,7 @@ export default (state=initialState,action) => {
             loginSuccess:false,
             loginFailure:true,
             loginStart:false,
-            error:action.payload.data.error
+            error:action.payload
         }
         default:
 

@@ -105,6 +105,12 @@ const StyledLogin = styled.div `
         font-weight: 400;
         margin-right: 2px;
         
+        .fas.fa-seedling {
+            margin-left: 4px;
+            animation:plant-tilt  20s infinite;
+            font-size: 22px;
+            
+        }
     }
 
     .decorative-container{
@@ -245,6 +251,33 @@ const StyledLogin = styled.div `
                     }
                 }
 
+                @keyframes plant-tilt {
+                    0% {
+                      transform: rotate(0deg);
+                      
+                    }
+                    10% {
+                      transform:  rotate(10deg);
+                     
+                    }
+
+                    /* 10%{
+
+                        transform:  rotate(0deg);
+
+
+                    } */
+
+                    100%{
+                       
+
+                        transform:  rotate(0deg);
+
+                    }
+
+                    
+                }
+
                 @keyframes forward-spinning {
                     from {
                         transform: translate(0%, 0%) rotate(5deg) ;
@@ -334,7 +367,7 @@ const StyledLogin = styled.div `
     
     .inputdiv {
 
-        margin: 40px auto;
+        margin: 20px auto 0px;
         font-family: 'Roboto', sans-serif;
         display:flex;
         justify-content:center;
@@ -477,7 +510,40 @@ const StyledLogin = styled.div `
           background-color: white;
           margin-right:-300%;
         }
-      }
+    }
+
+    #bad-credentials{
+        border:2px solid #d02929;
+    }
+
+    #hidden{
+        display:none;
+    }
+
+    #red-font{
+        color:#d02929;
+    }
+
+    .error-handler-div {
+        margin: 5px 5px;
+        color:#d02929;
+        display:flex;
+        align-items:flex-start;
+        font-size:12px;
+
+        .fas.fa-exclamation-triangle {
+            margin-right: 5px;
+            font-size:12px;
+        }
+    
+    }
+
+    .local-container-div{
+        height:100px;
+    }
+
+    
+    
       
      
 `
@@ -491,13 +557,16 @@ class Login extends Component  {
                 password:''
             },
             clicked:false,
-            submitpw:false
+            submitpw:false,
+            enteredUsername:true,
+            enteredPassword:true,
+            passwordFailure:false
             
         }
     }
 
     componentDidUpdate(){
-        console.log('props',this.props)
+        
     }
 
     handleChanges = e =>
@@ -510,7 +579,7 @@ class Login extends Component  {
     loginAnimate(){
         
         this.setState({clicked:true});
-        console.log('animatefire')
+        
     }
 
     focusCursor(){
@@ -525,21 +594,42 @@ class Login extends Component  {
         field.focus();
     }
     escapeAnimate(){
-        console.log('escape')
-        this.setState({clicked:false})
+        
+        if(this.state.credentials.password.length > 0 || this.state.credentials.username.length >0){
+            
+        }
+        else{
+            this.setState({clicked:false})
+        }
     }
 
     submitPw(){
-        console.log('submit')
+       
         this.setState({submitpw:true})
     }
 
     login = e => {
         e.preventDefault();
-        this.props.initiateLogin(this.state.credentials)
+        if(this.state.credentials.password.length > 0 && this.state.credentials.username.length >0){
+            this.setState({enteredPassword:true,enteredUsername:true});
+            this.props.initiateLogin(this.state.credentials)
 
-        .then(() => this.props.history.push('/dashboard'))
-        .catch(err => console.log('failuer',err))
+            .then(() => this.props.history.push('/dashboard'))
+            .catch(err => {console.log(err);
+                })
+        }
+        else if(this.state.credentials.password.length > 0 && this.state.credentials.username.length < 1){
+            this.setState({enteredPassword:true,enteredUsername:false});
+        }
+
+        else if(this.state.credentials.password.length < 1 && this.state.credentials.username.length > 0){
+            this.setState({enteredPassword:false,enteredUsername:true});
+        }
+
+        else if(this.state.credentials.password.length < 1 && this.state.credentials.username.length < 1){
+            this.setState({enteredPassword:false,enteredUsername:false});
+        }
+        
     }
 
     testfunction(){
@@ -549,6 +639,7 @@ class Login extends Component  {
    
   
     render(){
+        
         return(
             <div className='gen-login-container'>
                 <StyledLoginContainer>
@@ -557,12 +648,12 @@ class Login extends Component  {
                 
 
                 
-                    <div className={`animation-div${this.state.submitpw ?' pulse':''}`}></div>
+                    <div className={`animation-div${this.state.loginStart ?' pulse':''}`}></div>
 
                     
                     <div className="title-container">
                         
-                            <h1 className='welcome-title'>Tieme Ndo</h1>
+                            <h1 className='welcome-title'>Tieme Ndo<i class="fas fa-seedling"></i></h1>
                            
                             {/* <div className='welcome-brand'><i class="fas fa-database"></i>CRM</div> */}
                         </div>
@@ -612,41 +703,47 @@ class Login extends Component  {
                     {/* <div className='slogan-container'>
                     <h3 className="slogan">social sentiment analysis</h3>
                     </div> */}
-                    
-                    <div onClick={(e) => {e.stopPropagation();this.loginAnimate();this.focusCursor()}} className={`inputdiv password${this.state.clicked ?' transform-inputdiv':''}`}>
-                        <form  className='pw-form' >
-                            
-                            <input name='username' value={this.state.credentials.username} onChange={this.handleChanges}
-                            className='credential-input'>
-                    
-                            </input>
-                            <div className={`fo-placeholder${this.state.clicked ?' transform-placeholder':''}`}>Enter Your Username
-                            </div>
-                            <div className='input-icon-cont'>
-                                <i className="fas fa-user-lock"></i>
-                            </div>
-                        </form>
+                    <div className="local-container-div">
+                        <div onClick={(e) => {e.stopPropagation();this.loginAnimate();this.focusCursor()}} className={`inputdiv password${this.state.clicked ?' transform-inputdiv':''}`} id={this.state.enteredUsername ? '':'bad-credentials'}>
+                            <form  className='pw-form'>
+                                
+                                <input name='username' value={this.state.credentials.username} onChange={this.handleChanges}
+                                className='credential-input' >
                         
+                                </input>
+                                <div className={`fo-placeholder${this.state.clicked ?' transform-placeholder':''}`} id={this.state.enteredUsername ? '':'red-font'}>Enter Your Username
+                                </div>
+                                <div className='input-icon-cont'>
+                                    <i className="fas fa-user-lock"></i>
+                                </div>
+                            </form>
+                        </div>
+                        <div className="error-handler-div username" id={this.state.enteredUsername ? 'hidden':''}><i className="fas fa-exclamation-triangle"></i>Please enter username</div>
+                        <div className="error-handler-div badcredentials" id={this.props.loginFailure ? '':'hidden'}><i className="fas fa-exclamation-triangle"></i>Incorrect username or password. Please try agian.</div>
                     </div>
-                    <div onClick={(e) => {e.stopPropagation();this.loginAnimate();this.focusCursorPassword()}} className={`inputdiv${this.state.clicked ?' transform-inputdiv':''}`}>
-                        <form  className='pw-form' onSubmit={ e=>{e.preventDefault();this.submitPw();setTimeout((()=>this.login(e)),2000)}}>
+                    <div className="local-container-div">
+                        <div onClick={(e) => {e.stopPropagation();this.loginAnimate();this.focusCursorPassword()}} className={`inputdiv${this.state.clicked ?' transform-inputdiv':''}`} id={this.state.enteredPassword ? '':'bad-credentials'}>
+                            <form  className='pw-form' onSubmit={ e=>{e.preventDefault();this.submitPw();setTimeout((()=>this.login(e)),2000)}}>
+                            
+                                <input type='password' name='password' value={this.state.credentials.password} onChange={this.handleChanges}
+                                className='credential-input'id="password">
                         
-                            <input type='password' name='password' value={this.state.credentials.password} onChange={this.handleChanges}
-                            className='credential-input'id="password">
-                    
-                            </input>
-                            <div className={`fo-placeholder${this.state.clicked ?' transform-placeholder':''}`}>Enter Your Password
-                            </div>
-                            <div className='input-icon-cont'>
-                                <i className="fas fa-key"></i>
-                            </div>
-                        </form>
-                        
+                                </input>
+                                <div className={`fo-placeholder${this.state.clicked ?' transform-placeholder':''}`} id={this.state.enteredPassword ? '':'red-font'}>Enter Your Password
+                                </div>
+                                <div className='input-icon-cont'>
+                                    <i className="fas fa-key"></i>
+                                </div>
+                            </form>
+                            
+                        </div>
+                        <div className="error-handler-div password" id={this.state.enteredPassword ? 'hidden':''}><i className="fas fa-exclamation-triangle"></i>Please enter password</div>
                     </div>
                     <div className='login-next-steps-cont'>
                             
                             <Link to='/testdashboard'><button className='forgot'>Click to test Back-end</button></Link>
-                            <button className='next' onClick={(e) => {e.stopPropagation();this.submitPw();setTimeout((()=>this.login(e)),2000)}}>Next</button>
+                            <button className='next' onClick={(e) => {e.stopPropagation();this.submitPw();this.login(e)}}>Next</button>
+                            {/* setTimeout((()=>this.login(e)),2000)} */}
                     </div>
                     
 
@@ -663,11 +760,12 @@ class Login extends Component  {
 }
 
 const mapStateToProps = state => {
-    console.log('mapping state to props')
+    
    return{
-       loginStart:state.loginStart,
-        error:state.error
-     }
+       loginStart:state.login.loginStart,
+        error:state.login.error,
+        loginFailure:state.login.loginFailure
+    }
 
 }
 

@@ -718,13 +718,13 @@ class Login extends Component {
                 }`}
                 id={this.state.enteredUsername ? "" : "bad-credentials"}
               >
-                <form className="pw-form">
-                  <input
-                    onSubmit={e => {
+                <form className="pw-form" onSubmit={e => {
                       e.preventDefault();
                       this.submitPw();
                       this.login(e);
-                    }}
+                    }}>
+                  <input
+                    
                     name="username"
                     value={this.state.credentials.username}
                     onChange={this.handleChanges}

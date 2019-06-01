@@ -720,6 +720,11 @@ class Login extends Component {
               >
                 <form className="pw-form">
                   <input
+                    onSubmit={e => {
+                      e.preventDefault();
+                      this.submitPw();
+                      this.login(e);
+                    }}
                     name="username"
                     value={this.state.credentials.username}
                     onChange={this.handleChanges}

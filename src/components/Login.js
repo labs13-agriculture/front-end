@@ -1,41 +1,37 @@
-import styled, { css } from 'styled-components';
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import styled, { css } from "styled-components";
+import React, { Component } from "react";
+import { connect } from "react-redux";
 // import {Graphic} from './Graphic';
 // import twit from '../svg/twitter-brands (1).svg'
-import {initiateLogin} from '../actions';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { initiateLogin } from "../actions";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 const sizes = {
-    desktop: 992,
-    tablet: 768,
-    phone: 576,
-}
+  desktop: 992,
+  tablet: 768,
+  phone: 576
+};
 
-const media = Object.keys(sizes).reduce((acc,label) => {
-    acc[label] = (...args) => 
-    css`@media (max-width:${sizes[label]}px){
+const media = Object.keys(sizes).reduce((acc, label) => {
+  acc[label] = (...args) =>
+    css`
+      @media (max-width: ${sizes[label]}px) {
         ${css(...args)}
+      }
+    `;
 
-    }`
-
-    return acc
-
-    
-},{})
+  return acc;
+}, {});
 
 // ${media.desktop`background:green;`}
 
-const StyledLoginContainer=styled.div`
-    display:flex;
-    justify-content:center;
-    border-radius:10px;
-    font-family: 'Roboto', sans-serif;
-    
-    
-
-`
-const StyledLogin = styled.div `
+const StyledLoginContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  border-radius: 10px;
+  font-family: "Roboto", sans-serif;
+`;
+const StyledLogin = styled.div`
     border: 1px solid #d3d3d369;
     box-shadow: 0 13px 27px -5px rgba(50, 50, 93, 0.25), 0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.025);
     width:460px;
@@ -546,6 +542,7 @@ const StyledLogin = styled.div `
     
       
      
+<<<<<<< HEAD
 `
 
 class Login extends Component  {
@@ -667,6 +664,103 @@ class Login extends Component  {
                     </div>
                 
                     {/* <div className='flock-output-ani'>
+=======
+`;
+
+class Login extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      credentials: {
+        username: "",
+        password: ""
+      },
+      clicked: false,
+      submitpw: false
+    };
+  }
+
+  componentDidUpdate() {
+    console.log("props", this.props);
+  }
+
+  handleChanges = e =>
+    this.setState({
+      credentials: {
+        ...this.state.credentials,
+        [e.target.name]: e.target.value
+      }
+    });
+
+  loginAnimate() {
+    this.setState({ clicked: true });
+    console.log("animatefire");
+  }
+
+  focusCursor() {
+    const field = document.querySelector(".credential-input");
+
+    field.focus();
+  }
+
+  focusCursorPassword() {
+    const field = document.querySelector("#password");
+
+    field.focus();
+  }
+  escapeAnimate() {
+    console.log("escape");
+    this.setState({ clicked: false });
+  }
+
+  submitPw() {
+    console.log("submit");
+    this.setState({ submitpw: true });
+  }
+
+  login = e => {
+    e.preventDefault();
+    this.props
+      .initiateLogin(this.state.credentials)
+
+      .then(() => this.props.history.push("/dashboard"))
+      .catch(err => console.log("failuer", err));
+  };
+
+  testfunction() {
+    this.props.history.push("/testdashboard");
+  }
+
+  render() {
+    return (
+      <div className="gen-login-container">
+        <StyledLoginContainer>
+          <StyledLogin
+            onClick={e => {
+              e.stopPropagation();
+              this.escapeAnimate();
+            }}
+          >
+            <div
+              className={`animation-div${this.state.submitpw ? " pulse" : ""}`}
+            />
+
+            <div className="title-container">
+              <h1 className="welcome-title">Tieme Ndo</h1>
+
+              {/* <div className='welcome-brand'><i class="fas fa-database"></i>CRM</div> */}
+            </div>
+
+            <div className="decorative-div" />
+            {/* <i class="fab fa-pagelines"></i> */}
+            <div className="decorative-container">
+              <div className="welcome-brand">
+                <i className="fas fa-database" />CRM
+              </div>
+            </div>
+
+            {/* <div className='flock-output-ani'>
+>>>>>>> master
                         <div className='output-items'>
                             
                             <div className='output one'><i className="fas fa-chart-line"></i></div>
@@ -675,7 +769,7 @@ class Login extends Component  {
                             <div className='output four'><i className="fab fa-twitter"></i></div>
                             <div className='output five'><i className="fas fa-hashtag"></i></div>
                         </div> */}
-                        {/* <h2>
+            {/* <h2>
                        
                         <svg className="login-icon">
                             <circle fill="#0f0f14" cx="33" cy="33" r="33"></circle>
@@ -699,10 +793,11 @@ class Login extends Component  {
                             <circle fill="#0f0f14" cx="28" cy="37" r="3"></circle>
                         </svg>
                     </h2>  */}
-                    {/* </div> */}
-                    {/* <div className='slogan-container'>
+            {/* </div> */}
+            {/* <div className='slogan-container'>
                     <h3 className="slogan">social sentiment analysis</h3>
                     </div> */}
+<<<<<<< HEAD
                     <div className="local-container-div">
                         <div onClick={(e) => {e.stopPropagation();this.loginAnimate();this.focusCursor()}} className={`inputdiv password${this.state.clicked ?' transform-inputdiv':''}`} id={this.state.enteredUsername ? '':'bad-credentials'}>
                             <form  className='pw-form'>
@@ -748,18 +843,100 @@ class Login extends Component  {
                     
 
 
+=======
+>>>>>>> master
 
-                </StyledLogin> 
-               
-                    
-                </StyledLoginContainer>
+            <div
+              onClick={e => {
+                e.stopPropagation();
+                this.loginAnimate();
+                this.focusCursor();
+              }}
+              className={`inputdiv password${
+                this.state.clicked ? " transform-inputdiv" : ""
+              }`}
+            >
+              <form className="pw-form">
+                <input
+                  name="username"
+                  value={this.state.credentials.username}
+                  onChange={this.handleChanges}
+                  className="credential-input"
+                />
+                <div
+                  className={`fo-placeholder${
+                    this.state.clicked ? " transform-placeholder" : ""
+                  }`}
+                >
+                  Enter Your Username
+                </div>
+                <div className="input-icon-cont">
+                  <i className="fas fa-user-lock" />
+                </div>
+              </form>
             </div>
-        )
-
-    }
+            <div
+              onClick={e => {
+                e.stopPropagation();
+                this.loginAnimate();
+                this.focusCursorPassword();
+              }}
+              className={`inputdiv${
+                this.state.clicked ? " transform-inputdiv" : ""
+              }`}
+            >
+              <form
+                className="pw-form"
+                onSubmit={e => {
+                  e.preventDefault();
+                  this.submitPw();
+                  setTimeout(() => this.login(e), 2000);
+                }}
+              >
+                <input
+                  type="password"
+                  name="password"
+                  value={this.state.credentials.password}
+                  onChange={this.handleChanges}
+                  className="credential-input"
+                  id="password"
+                />
+                <div
+                  className={`fo-placeholder${
+                    this.state.clicked ? " transform-placeholder" : ""
+                  }`}
+                >
+                  Enter Your Password
+                </div>
+                <div className="input-icon-cont">
+                  <i className="fas fa-key" />
+                </div>
+              </form>
+            </div>
+            <div className="login-next-steps-cont">
+              <Link to="/testdashboard">
+                <button className="forgot">Click to test Back-end</button>
+              </Link>
+              <button
+                className="next"
+                onClick={e => {
+                  e.stopPropagation();
+                  this.submitPw();
+                  setTimeout(() => this.login(e), 2000);
+                }}
+              >
+                Next
+              </button>
+            </div>
+          </StyledLogin>
+        </StyledLoginContainer>
+      </div>
+    );
+  }
 }
 
 const mapStateToProps = state => {
+<<<<<<< HEAD
     
    return{
        loginStart:state.login.loginStart,
@@ -769,8 +946,19 @@ const mapStateToProps = state => {
 
 }
 
+=======
+  console.log("mapping state to props");
+  return {
+    loginStart: state.loginStart,
+    error: state.error
+  };
+};
+>>>>>>> master
 
 //Make sure you do not have two copies of react or react-dom between your friends folder directory and outside of your friends folder directory
 //nmp ls react  or npm ls react-dom in each to identify
 //removing duplicate copies from /friends did the tricks
-export default connect(mapStateToProps,{initiateLogin})(Login);
+export default connect(
+  mapStateToProps,
+  { initiateLogin }
+)(Login);

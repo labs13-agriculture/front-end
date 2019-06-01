@@ -86,7 +86,7 @@ const StyledLogin = styled.div`
 
     .title-container{
         display:flex;
-        margin:40px;
+        margin:20px;
         align-items: center;
         
 
@@ -181,6 +181,7 @@ const StyledLogin = styled.div`
         justify-content: center;
 
         background-image: linear-gradient(134deg,#4f009d70 20%,#1300ff91,#00ffb387);
+        height:40px;
         box-shadow: 0 13px 27px -5px rgba(50, 50, 93, 0.25), 0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.025);
     }
 
@@ -411,7 +412,7 @@ const StyledLogin = styled.div`
 
                 color: lightgray;
 
-                font-size: 20px;
+                font-size: 18px;
             }
 
             .fa-ellipsis-h{
@@ -521,7 +522,7 @@ const StyledLogin = styled.div`
     }
 
     #bad-credentials{
-        border:2px solid #c8591f;
+        border:2px solid #ff4868;
     }
 
     #hidden{
@@ -529,19 +530,28 @@ const StyledLogin = styled.div`
     }
 
     #red-font{
-        color:#c8591f;
+        color:#ff4868;
     }
 
     .error-handler-div {
         margin: 5px 5px;
         color:#c8591f;
         display:flex;
-        align-items:flex-start;
-        font-size:12px;
+        align-items: flex-start;
+        color:#ff4868;
+        /* font-family: 'Poppins', sans-serif; */
+
+        p{
+          font-size: 12px;
+          letter-spacing: .5px;
+          font-weight: 550;
+          /* padding:1px; */
+        }
 
         .fas.fa-exclamation-triangle {
             margin-right: 5px;
-            font-size:12px;
+            font-size:11px;
+            
         }
     
     }
@@ -589,6 +599,23 @@ const StyledLogin = styled.div`
       #loadingc{
         animation:loading 1s   .6s infinite;
       }
+      .far.fa-eye-slash{
+        color:lightgray;
+        &:hover{
+          cursor:pointer;
+          color:gray;
+          z-index:3;
+        }
+      }
+
+      .fas.fa-eye{
+        color:lightgray;
+        &:hover{
+          cursor:pointer;
+          color:gray;
+          z-index:3;
+        }
+      }
 }`
 
 class Login extends Component {
@@ -603,7 +630,8 @@ class Login extends Component {
       submitpw: false,
       enteredUsername: true,
       enteredPassword: true,
-      passwordFailure: false
+      passwordFailure: false,
+      passwordVis:true
     };
   }
 
@@ -644,6 +672,16 @@ class Login extends Component {
 
   submitPw() {
     this.setState({ submitpw: true });
+  }
+
+  togglePwVis = () =>{
+    this.setState({passwordVis:!this.state.passwordVis});
+    var x = document.getElementById("password");
+    if (x.type === "password") {
+      x.type = "text";
+    } else {
+      x.type = "password";
+    }
   }
 
   login = e => {
@@ -800,14 +838,14 @@ class Login extends Component {
                 id={this.state.enteredUsername ? "hidden" : ""}
               >
                 <i className="fas fa-exclamation-triangle" />
-                Please enter username
+                <p>Please enter username</p>
               </div>
               <div
                 className="error-handler-div badcredentials"
                 id={this.props.loginFailure ? "" : "hidden"}
               >
                 <i className="fas fa-exclamation-triangle" />
-                Incorrect username or password. Please try agian.
+                <p>Incorrect username or password. Please try agian.</p>
               </div>
             </div>
             <div className="local-container-div">
@@ -847,7 +885,7 @@ class Login extends Component {
                     Enter Your Password
                   </div>
                   <div className="input-icon-cont">
-                    <i className="fas fa-key" />
+                    {this.state.passwordVis ? <i onClick={() =>this.togglePwVis()} className="far fa-eye-slash"></i> :<i className="fas fa-eye" onClick={this.togglePwVis}></i>}
                   </div>
                 </form>
               </div>
@@ -856,7 +894,7 @@ class Login extends Component {
                 id={this.state.enteredPassword ? "hidden" : ""}
               >
                 <i className="fas fa-exclamation-triangle" />
-                Please enter password
+                <p>Please enter password</p>
               </div>
             </div>
             <div className="login-next-steps-cont">

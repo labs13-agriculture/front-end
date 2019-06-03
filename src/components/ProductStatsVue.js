@@ -1,13 +1,14 @@
 import React, { Component }  from "react";
 import styled, { css } from "styled-components";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import ProductStatsMini from './ProductStatsMini';
 
 
 const sizes = {
     desktop: 992,
     tablet: 768,
     phone: 576
-};
+    };
   
   const media = Object.keys(sizes).reduce((acc, label) => {
     acc[label] = (...args) =>
@@ -22,7 +23,7 @@ const sizes = {
 
 const StyledProductStatsVue = styled.div`
     height:600px;
-    width:250px;
+    width:300px;
     display:flex;
     flex-direction:column;
     box-shadow: 0 13px 27px -5px rgba(50, 50, 93, 0.25), 0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.025);
@@ -44,30 +45,81 @@ const StyledProductStatsMiniContainer = styled.div`
 
 `
 
+
 export default class ProductStatsVue extends Component{
     constructor(props){
         super(props);
         this.state = {
+            products:[]
 
         }
     }
 
-    render(){
-        const mockuplist = [
+    componentDidMount(){
+        this.setState({products:[
             {product:"corn",
             avgprice:14.99,
 
             },
-            {
+            {product:"seed",
+            avgprice:14.99,
 
-},
-        ]
+            },
+            {product:"root",
+            avgprice:14.99,
+
+            },
+            {product:"yam",
+            avgprice:14.99,
+
+            },
+            {product:"turnip",
+            avgprice:14.99,
+
+            },
+            {product:"carrot",
+            avgprice:14.99,
+
+            },
+            {product:"raddish",
+            avgprice:14.99,
+
+            },
+            {product:"potato",
+            avgprice:14.99,
+
+            },{product:"cabbage",
+            avgprice:14.99,
+
+            },
+            {product:"random",
+            avgprice:14.99,
+
+            },
+            {product:"random",
+            avgprice:14.99,
+
+            },
+            {product:"ranrom",
+            avgprice:14.99,
+
+            }
+        ]})
+    }
+
+    render(){
+        
         return(
+           
             <StyledProductStatsVue>
                 <StyledMiniNav>
                     <h1>Hello Stats</h1>
                 </StyledMiniNav>
+                <StyledProductStatsMiniContainer>
+                {this.state.products.map(prod => <ProductStatsMini product={prod.product} avgprice={prod.avgprice}/>)}
+                </StyledProductStatsMiniContainer>
             </StyledProductStatsVue>
+            
         )
     }
 }

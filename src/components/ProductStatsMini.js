@@ -1,6 +1,7 @@
 import React, { Component }  from "react";
 import styled, { css } from "styled-components";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import Example from './ProductStatsMiniChart';
 
 
 const sizes = {
@@ -21,11 +22,42 @@ const sizes = {
 }, {});
 
 const StyledProductStatsMini = styled.div`
-    height:40px;
+    height:55px;
     width:100%;
     display:flex;
     justify-content:space-between;
+    padding: 5px 30px 5px;
+    align-items:center;
 
+    &:hover{
+      background:#d3d3d324;
+      cursor: pointer;
+    }
+
+    .recharts-surface{
+      &:hover{
+      
+      cursor: pointer;
+    }
+
+    
+
+    
+
+    .recharts-dot.recharts-line-dot{
+      display:none;
+    }
+    .recharts-surface {
+
+    border-bottom: 1px dotted lightgray;
+    }
+
+    
+
+  } 
+  .recharts-wrapper {
+    border-bottom: 1px dotted lightgray;
+    }
 
 `
 
@@ -41,7 +73,12 @@ export default class ProductStatsMini extends Component{
 
     render(){
         return(
-
+          <StyledProductStatsMini>
+            <h4 className="product-name">{this.props.product}</h4>
+            <Example/>
+           
+            <h4 className="product-price">{this.props.avgprice}</h4>
+          </StyledProductStatsMini>
         )
     }
 }

@@ -22,6 +22,8 @@ export const initiateLogin = creds => dispatch =>{
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
           "Authorization": 'Basic ' + `${window.btoa(process.env.REACT_APP_AUTH_CLIENT_ID + ':' + process.env.REACT_APP_AUTH_CLIENT_SECRET)}`}
+        //   process.env.REACT_APP_AUTH_CLIENT_ID + ':' + process.env.REACT_APP_AUTH_CLIENT_SECRET
+        //   
         })
     .then(
         resp => {

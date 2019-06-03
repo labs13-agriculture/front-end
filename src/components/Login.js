@@ -6,6 +6,11 @@ import { connect } from "react-redux";
 import { initiateLogin } from "../actions";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
+import { Spinner } from 'reactstrap';
+
+
+
+
 const sizes = {
   desktop: 992,
   tablet: 768,
@@ -49,6 +54,7 @@ const StyledLogin = styled.div`
     ${media.desktop`border:none;`}
     ${media.desktop`padding:0px;`}
     ${media.desktop`box-shadow:none;`}
+    ${media.desktop`width:100%;`}
 
     .animation-div{
         height:7px;
@@ -86,8 +92,11 @@ const StyledLogin = styled.div`
 
     .title-container{
         display:flex;
-        margin:40px;
+        margin:20px;
         align-items: center;
+        
+
+        flex-direction: column;
     }
     .welcome-title{
         
@@ -178,6 +187,7 @@ const StyledLogin = styled.div`
         justify-content: center;
 
         background-image: linear-gradient(134deg,#4f009d70 20%,#1300ff91,#00ffb387);
+        height:40px;
         box-shadow: 0 13px 27px -5px rgba(50, 50, 93, 0.25), 0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.025);
     }
 
@@ -245,6 +255,15 @@ const StyledLogin = styled.div`
                       transform: translate(350%, 50%) rotate(300deg) ;
                       opacity:0;
                     }
+                }
+                @keyframes loading{
+                  10% {
+                    background:#44e744;
+                  }
+
+                  100%{
+                    background:white;
+                  }
                 }
 
                 @keyframes plant-tilt {
@@ -399,7 +418,7 @@ const StyledLogin = styled.div`
 
                 color: lightgray;
 
-                font-size: 20px;
+                font-size: 18px;
             }
 
             .fa-ellipsis-h{
@@ -410,7 +429,7 @@ const StyledLogin = styled.div`
             font-family: 'Roboto', sans-serif;
             position:absolute;
             left: 0;
-            top: 20px;
+            top: 17px;
             padding-left: 27px;
             font-size:16px;
             font-weight:500;
@@ -441,6 +460,8 @@ const StyledLogin = styled.div`
         display:flex;
         justify-content:space-between;
         font-family: 'Roboto', sans-serif;
+        ${media.desktop`flex-direction:column-reverse;`}
+        ${media.desktop`padding:0px;`}
     }
 
     button{
@@ -460,6 +481,33 @@ const StyledLogin = styled.div`
         color:white;
         background-image: linear-gradient(134deg,#4f009d 20%,#1300ff91);
         font-family: 'Roboto', sans-serif;
+        display:flex;
+        display: flex;
+        justify-content: center;
+        width: 100px;
+        height: 45px;
+        padding: 0px;
+        align-items: center;
+        position:relative;
+        ${media.desktop`width:100%;`}
+
+        p{
+          margin:0px;
+        }
+}
+    }
+
+    .loadingSpinner{
+      position: absolute;
+      color:#6c757d5e;
+      
+    }
+
+    #processing{
+      pointer-events: none;
+      background:lightgray;
+      opacity:.5;
+      border:1px solid gray;
     }
 
     .forgot{
@@ -509,27 +557,40 @@ const StyledLogin = styled.div`
     }
 
     #bad-credentials{
-        border:2px solid #d02929;
+        border:2px solid #ff4868;
     }
 
     #hidden{
         display:none;
     }
 
+    #invisible{
+      visibility:hidden;
+    }
+
     #red-font{
-        color:#d02929;
+        color:#ff4868;
     }
 
     .error-handler-div {
         margin: 5px 5px;
-        color:#d02929;
+        color:#c8591f;
         display:flex;
-        align-items:flex-start;
-        font-size:12px;
+        align-items: flex-start;
+        color:#ff4868;
+        /* font-family: 'Poppins', sans-serif; */
+
+        p{
+          font-size: 11px;
+          letter-spacing: .5px;
+          font-weight: 550;
+          /* padding:1px; */
+        }
 
         .fas.fa-exclamation-triangle {
             margin-right: 5px;
-            font-size:12px;
+            font-size:11px;
+            
         }
     
     }
@@ -538,11 +599,65 @@ const StyledLogin = styled.div`
         height:100px;
     }
 
-    
-    
+    .dot-loader{
+      position: absolute;
+      top: 28px;
+    }
+    .dot {
+      height: 10px;
+      width: 10px;
       
-     
-`;
+      border-radius: 50%;
+      display: inline-block;
+      margin:3px;
+
+      &.one{
+        animation:loading 1s   .05s infinite;
+      }
+
+      &.two{
+        animation:loading 1s   .06s infinite;
+      }
+
+      &.three{
+        animation:loading 1s   .07s infinite;
+      }
+      
+      
+
+
+    }
+    #loadinga{
+        
+        /* seems that attaching a class upon loginstart that gives an animation will render
+        slower than having the animation already attached but having the element on display none */
+    }
+
+      #loadingb{
+       
+      }
+
+      #loadingc{
+       
+      }
+      .far.fa-eye-slash{
+        color:lightgray;
+        &:hover{
+          cursor:pointer;
+          color:gray;
+          z-index:3;
+        }
+      }
+
+      .fas.fa-eye{
+        color:lightgray;
+        &:hover{
+          cursor:pointer;
+          color:gray;
+          z-index:3;
+        }
+      }
+}`
 
 class Login extends Component {
   constructor(props) {
@@ -556,11 +671,30 @@ class Login extends Component {
       submitpw: false,
       enteredUsername: true,
       enteredPassword: true,
-      passwordFailure: false
+      passwordFailure: false,
+      passwordVis:true
     };
   }
+  componentDidMount(){
+    this.setEnterKeyListener();
+  }
 
-  componentDidUpdate() {}
+  componentDidUnmount(){
+    this.setEnterKeyListener();
+  }
+
+
+
+
+  setEnterKeyListener(){
+    var input = document.querySelector(".styled-login");
+    input.addEventListener("keyup", function(event) {
+    if (event.keyCode === 13) {
+    event.preventDefault();
+    document.querySelector(".next").click();
+    }
+    });
+  }
 
   handleChanges = e =>
     this.setState({
@@ -597,6 +731,16 @@ class Login extends Component {
 
   submitPw() {
     this.setState({ submitpw: true });
+  }
+
+  togglePwVis = () =>{
+    this.setState({passwordVis:!this.state.passwordVis});
+    var x = document.getElementById("password");
+    if (x.type === "password") {
+      x.type = "text";
+    } else {
+      x.type = "password";
+    }
   }
 
   login = e => {
@@ -638,20 +782,25 @@ class Login extends Component {
   render() {
     return (
       <div className="gen-login-container">
-        <StyledLoginContainer>
+        <StyledLoginContainer className="styled-login">
           <StyledLogin
             onClick={e => {
               e.stopPropagation();
               this.escapeAnimate();
             }}
             >
-            <div
+            {/* <div
               className={`animation-div${
                 this.props.loginStart ? " pulse" : ""
               }`}
-            />
+            /> */}
 
             <div className="title-container">
+              {/* <div className="dot-loader">
+                <span class='dot one' id={`${this.props.loginStart ? 'loadinga':''}` }></span>
+                <span class="dot two" id={`${this.props.loginStart ? 'loadingb':''}`}></span>
+                <span class="dot three" id={`${this.props.loginStart ? 'loadingc':''}`}></span>
+              </div> */}
               <h1 className="welcome-title">
                 Tieme Ndo
                 <i class="fas fa-seedling" />
@@ -669,43 +818,7 @@ class Login extends Component {
               </div>
             </div>
 
-            {/* <div className='flock-output-ani'>
-                  <div className='output-items'>
-                    
-                    <div className='output one'><i className="fas fa-chart-line"></i></div>
-                    <div className='output two'><i className="far fa-paper-plane"></i></div>
-                    <div className='output three'><i className="far fa-grin"></i></div>
-                    <div className='output four'><i className="fab fa-twitter"></i></div>
-                    <div className='output five'><i className="fas fa-hashtag"></i></div>
-                    </div> */}
-            {/* <h2>
-                
-                  <svg className="login-icon">
-                    <circle fill="#0f0f14" cx="33" cy="33" r="33"></circle>
-                    <path d="M38.4 15l1-3h1l1.2 3c.2.2.5.2.7.3l2.2-2.5 1 .4-.2 3.3c.2 0 .3.2.5.4l3-1.5.7.7-1.4 3 .5.5h3.3l.4.8-2.5 2.2c0 .2 0 .5.2.7l3 1v1l-3 1.2-.3.8 2.5 2-.4 1-3.3-.2-.4.7 1.5 2.8-.7.7-3-1.4c0 .2-.4.4-.6.5l.2 3.3-1 .4-2-2.5c-.3 0-.6 0-1 .2l-1 3h-1l-1-3c-.2-.2-.5-.2-.8-.3l-2 2.5-1-.4.2-3.3-.7-.4-2.8 1.5-.7-.7 1.4-3c-.2 0-.4-.4-.5-.6l-3.3.2-.4-1 2.5-2c0-.3 0-.6-.2-1l-3-1v-1l3-1c.2-.2.2-.4.3-.7l-2.5-2.2.4-1 3.3.2c0-.2.2-.3.4-.5l-1.5-3 .7-.7 3 1.4.5-.5v-3.3l.8-.4 2.2 2.5s.5 0 .7-.2z" fill="#00b6cc" transform="rotate(143.20083851999883 40 25)">
-                    <animateTransform attributeName="transform"
-                  attributeType="XML"
-                  type="rotate"
-                  from="360 40 25"
-                  to="0 40 25"
-                  dur="10s"
-                  repeatCount="indefinite"/></path>
-                    <circle fill="#0f0f14" cx="40" cy="25" r="2"></circle>
-                    <path d="M21.6 26.8L19 25l-1.3 1 1.4 3c0 .2-.3.4-.5.6l-3-.8-1 1.4 2.4 2.3-.4.8-3.2.3-.3 1.6 3 1.4v.8l-3 1.4.4 1.6 3.2.3c0 .3.2.5.3.8l-2.4 2.3.8 1.4 3-.8.7.6-1.3 3 1.3 1 2.6-1.8c.3 0 .5.3.8.4l-.3 3.2 1.6.6 2-2.7c.2 0 .5 0 .7.2l1 3h1.5l1-3c0-.2.4-.2.7-.3l2 2.7 1.4-.6-.4-3.2c.3 0 .5-.3.8-.4L37 49l1.3-1-1.4-3c0-.2.3-.4.5-.6l3 .8 1-1.4-2.4-2.3.4-.8 3.2-.3.3-1.6-3-1.4v-.8l3-1.4-.4-1.6-3.2-.3c0-.3-.2-.5-.3-.8l2.4-2.3-.8-1.4-3 .8-.7-.6 1.3-3-1.3-1-2.6 1.8c-.3 0-.5-.3-.8-.4l.3-3.2-1.6-.6-2 2.7c-.2 0-.5 0-.7-.2l-1-3h-1.5l-1 3c0 .2-.4.2-.7.3l-2-2.7-1.4.6.4 3.2c-.3 0-.5.3-.8.4z" fill="#00e4ff" > 
-                    <animateTransform attributeName="transform"
-                  attributeType="XML"
-                  type="rotate"
-                  from="0 28 37"
-                  to="360 28 37"
-                  dur="10s"
-                  repeatCount="indefinite"/></path>
-                    <circle fill="#0f0f14" cx="28" cy="37" r="3"></circle>
-                </svg>
-            </h2>  */}
-            {/* </div> */}
-            {/* <div className='slogan-container'>
-                            <h3 className="slogan">social sentiment analysis</h3>
-                            </div> */}
+            
             <div className="local-container-div">
               <div
                 onClick={e => {
@@ -718,14 +831,19 @@ class Login extends Component {
                 }`}
                 id={this.state.enteredUsername ? "" : "bad-credentials"}
               >
-                <form className="pw-form" onSubmit={e => {
+                <div className="pw-form" 
+                //if this was a form the username wouldn't save in browsers
+                onSubmit={e => {
                       e.preventDefault();
                       this.submitPw();
                       this.login(e);
                     }}>
                   <input
-                    
+                    // id="username"
                     name="username"
+                    type="text"
+                    // autocomplete="username"
+                    
                     value={this.state.credentials.username}
                     onChange={this.handleChanges}
                     className="credential-input"
@@ -741,21 +859,21 @@ class Login extends Component {
                   <div className="input-icon-cont">
                     <i className="fas fa-user-lock" />
                   </div>
-                </form>
+                </div>
               </div>
               <div
                 className="error-handler-div username"
                 id={this.state.enteredUsername ? "hidden" : ""}
               >
                 <i className="fas fa-exclamation-triangle" />
-                Please enter username
+                <p>Please enter username</p>
               </div>
               <div
                 className="error-handler-div badcredentials"
                 id={this.props.loginFailure ? "" : "hidden"}
               >
                 <i className="fas fa-exclamation-triangle" />
-                Incorrect username or password. Please try agian.
+                <p>Incorrect username or password. Please try again.</p>
               </div>
             </div>
             <div className="local-container-div">
@@ -770,7 +888,7 @@ class Login extends Component {
                 }`}
                 id={this.state.enteredPassword ? "" : "bad-credentials"}
               >
-                <form
+                <div
                   className="pw-form"
                   onSubmit={e => {
                     e.preventDefault();
@@ -795,16 +913,16 @@ class Login extends Component {
                     Enter Your Password
                   </div>
                   <div className="input-icon-cont">
-                    <i className="fas fa-key" />
+                    {this.state.passwordVis ? <i onClick={() =>this.togglePwVis()} className="far fa-eye-slash"></i> :<i className="fas fa-eye" onClick={this.togglePwVis}></i>}
                   </div>
-                </form>
+                </div>
               </div>
               <div
                 className="error-handler-div password"
                 id={this.state.enteredPassword ? "hidden" : ""}
               >
                 <i className="fas fa-exclamation-triangle" />
-                Please enter password
+                <p>Please enter password</p>
               </div>
             </div>
             <div className="login-next-steps-cont">
@@ -814,14 +932,17 @@ class Login extends Component {
               <button
                 type="submit"
                 className="next"
+                
+                id={this.props.loginStart && 'processing'}
                 onClick={e => {
                   e.stopPropagation();
                   this.submitPw();
                   this.login(e);
                 }}
               >
-                Next
-              </button>
+                <p id={this.props.loginStart ? "hidden":""}>Next</p>
+                  <Spinner  className={"loadingSpinner"} id={this.props.loginStart ? '':'hidden'} style={{ width: '2.5rem', height: '2.5rem' }} />
+              </button >
               {/* setTimeout((()=>this.login(e)),2000)} */}
             </div>
           </StyledLogin>

@@ -71,10 +71,8 @@ class App extends Component {
         <StyledApp>
           <Route exact path="/" component={Login} />
           <PrivateRoute path="/dashboard" component={GlobalSideNav} />
+          <Route path="/dashboard" component={GlobalNav} />
           <PrivateRoute path="/dashboard" component={GlobalViewContainer} />
-          <Route path="/testdashboard" component={GlobalSideNav} />
-          <Route path="/testdashboard" component={GlobalNav} />
-          <Route path="/testdashboard" component={GlobalViewContainer} />
         </StyledApp>
       </Router>
     );

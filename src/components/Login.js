@@ -6,6 +6,11 @@ import { connect } from "react-redux";
 import { initiateLogin } from "../actions";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
+import { Spinner } from 'reactstrap';
+
+
+
+
 const sizes = {
   desktop: 992,
   tablet: 768,
@@ -49,6 +54,7 @@ const StyledLogin = styled.div`
     ${media.desktop`border:none;`}
     ${media.desktop`padding:0px;`}
     ${media.desktop`box-shadow:none;`}
+    ${media.desktop`width:100%;`}
 
     .animation-div{
         height:7px;
@@ -423,7 +429,7 @@ const StyledLogin = styled.div`
             font-family: 'Roboto', sans-serif;
             position:absolute;
             left: 0;
-            top: 20px;
+            top: 17px;
             padding-left: 27px;
             font-size:16px;
             font-weight:500;
@@ -454,6 +460,8 @@ const StyledLogin = styled.div`
         display:flex;
         justify-content:space-between;
         font-family: 'Roboto', sans-serif;
+        ${media.desktop`flex-direction:column-reverse;`}
+        ${media.desktop`padding:0px;`}
     }
 
     button{
@@ -473,6 +481,33 @@ const StyledLogin = styled.div`
         color:white;
         background-image: linear-gradient(134deg,#4f009d 20%,#1300ff91);
         font-family: 'Roboto', sans-serif;
+        display:flex;
+        display: flex;
+        justify-content: center;
+        width: 100px;
+        height: 45px;
+        padding: 0px;
+        align-items: center;
+        position:relative;
+        ${media.desktop`width:100%;`}
+
+        p{
+          margin:0px;
+        }
+}
+    }
+
+    .loadingSpinner{
+      position: absolute;
+      color:#6c757d5e;
+      
+    }
+
+    #processing{
+      pointer-events: none;
+      background:lightgray;
+      opacity:.5;
+      border:1px solid gray;
     }
 
     .forgot{
@@ -529,6 +564,10 @@ const StyledLogin = styled.div`
         display:none;
     }
 
+    #invisible{
+      visibility:hidden;
+    }
+
     #red-font{
         color:#ff4868;
     }
@@ -542,7 +581,7 @@ const StyledLogin = styled.div`
         /* font-family: 'Poppins', sans-serif; */
 
         p{
-          font-size: 12px;
+          font-size: 11px;
           letter-spacing: .5px;
           font-weight: 550;
           /* padding:1px; */
@@ -573,15 +612,15 @@ const StyledLogin = styled.div`
       margin:3px;
 
       &.one{
-        
+        animation:loading 1s   .05s infinite;
       }
 
       &.two{
-       
+        animation:loading 1s   .06s infinite;
       }
 
       &.three{
-        
+        animation:loading 1s   .07s infinite;
       }
       
       
@@ -589,15 +628,17 @@ const StyledLogin = styled.div`
 
     }
     #loadinga{
-        animation:loading 1s   .4s infinite;
-      }
+        
+        /* seems that attaching a class upon loginstart that gives an animation will render
+        slower than having the animation already attached but having the element on display none */
+    }
 
       #loadingb{
-        animation:loading 1s   .5s infinite;
+       
       }
 
       #loadingc{
-        animation:loading 1s   .6s infinite;
+       
       }
       .far.fa-eye-slash{
         color:lightgray;
@@ -650,7 +691,7 @@ class Login extends Component {
     input.addEventListener("keyup", function(event) {
     if (event.keyCode === 13) {
     event.preventDefault();
-    document.getElementById("next").click();
+    document.querySelector(".next").click();
     }
     });
   }
@@ -755,11 +796,11 @@ class Login extends Component {
             /> */}
 
             <div className="title-container">
-              <div className="dot-loader">
+              {/* <div className="dot-loader">
                 <span class='dot one' id={`${this.props.loginStart ? 'loadinga':''}` }></span>
                 <span class="dot two" id={`${this.props.loginStart ? 'loadingb':''}`}></span>
                 <span class="dot three" id={`${this.props.loginStart ? 'loadingc':''}`}></span>
-              </div>
+              </div> */}
               <h1 className="welcome-title">
                 Tieme Ndo
                 <i class="fas fa-seedling" />
@@ -791,7 +832,7 @@ class Login extends Component {
                 id={this.state.enteredUsername ? "" : "bad-credentials"}
               >
                 <div className="pw-form" 
-                //if this was a form the password wouldn't save in browsers
+                //if this was a form the username wouldn't save in browsers
                 onSubmit={e => {
                       e.preventDefault();
                       this.submitPw();
@@ -832,7 +873,7 @@ class Login extends Component {
                 id={this.props.loginFailure ? "" : "hidden"}
               >
                 <i className="fas fa-exclamation-triangle" />
-                <p>Incorrect username or password. Please try agian.</p>
+                <p>Incorrect username or password. Please try again.</p>
               </div>
             </div>
             <div className="local-container-div">
@@ -891,15 +932,17 @@ class Login extends Component {
               <button
                 type="submit"
                 className="next"
-                id="next"
+                
+                id={this.props.loginStart && 'processing'}
                 onClick={e => {
                   e.stopPropagation();
                   this.submitPw();
                   this.login(e);
                 }}
               >
-                Next
-              </button>
+                <p id={this.props.loginStart ? "hidden":""}>Next</p>
+                  <Spinner  className={"loadingSpinner"} id={this.props.loginStart ? '':'hidden'} style={{ width: '2.5rem', height: '2.5rem' }} />
+              </button >
               {/* setTimeout((()=>this.login(e)),2000)} */}
             </div>
           </StyledLogin>

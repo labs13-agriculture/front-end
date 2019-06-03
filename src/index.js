@@ -8,7 +8,7 @@ import logger from 'redux-logger';
 import './index.css';
 import rootReducer from './reducers'
 import App from './App';
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 

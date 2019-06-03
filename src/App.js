@@ -7,6 +7,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import GlobalViewContainer from "./components/GlobalViewContainer";
 import GlobalSideNav from "./components/GlobalSideNav";
 import GlobalNav from "./components/GlobalNav";
+import FarmerView from "./components/FarmerView";
 
 // import ItemList from './components/ItemList';
 // import {DashboardVue} from './components/DashboardView';
@@ -75,6 +76,7 @@ class App extends Component {
           <Route path="/testdashboard" component={GlobalSideNav} />
           <Route path="/testdashboard" component={GlobalNav} />
           <Route path="/testdashboard" component={GlobalViewContainer} />
+          <Route path="/testfarmer" component={FarmerView}/>
         </StyledApp>
       </Router>
     );

@@ -87,8 +87,9 @@ export default class GlobalViewContainer extends Component {
 const GVC = styled.div`
   display: flex;
   width: 100%;
-  height: 1000px;
   margin-left: 17%;
+  margin-bottom: -1500px;
+  padding-bottom: 1500px;
   justify-content: center;
   align-content: center;
   align-items: center;

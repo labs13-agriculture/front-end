@@ -62,8 +62,7 @@ const GSN = styled.div`
   left: 0;
   height: 100%;
   border: 1px solid #d3d3d369;
-  box-shadow: 0 13px 27px -5px rgba(50, 50, 93, 0.25),
-    0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.025);
+  border-right: none;
   background-image: linear-gradient(
     to top,
     #d5d4d0 0%,

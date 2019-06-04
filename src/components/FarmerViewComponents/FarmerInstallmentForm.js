@@ -13,7 +13,8 @@ class FarmerInstallmentForm extends Component{
             day: today.getDate(),
             year: today.getYear() + 1900,
             needsAmount: false,
-            officer: ""
+            officer: "",
+            needsOfficer: false
         }
     }
 
@@ -21,13 +22,14 @@ class FarmerInstallmentForm extends Component{
 
     formSubmit = e => {
         e.preventDefault();
-        //make sure an amount has been entered
+        //make sure an amount and an officer have been entered
         //use regex to see if entry is valid dollar amount
         var regex = /\d*\.{1}\d{2}$/;
 
-        if(this.state.amount != "" && regex.test(this.state.amount)){
+        if(this.state.amount != "" && regex.test(this.state.amount) && this.state.officer != ""){
             this.setState({
-                needsAmount: false
+                needsAmount: false,
+                needsOfficer: false
             })
             //changed key names here to match java object
             const newInstallment = {
@@ -39,9 +41,25 @@ class FarmerInstallmentForm extends Component{
             this.props.addInstallment(newInstallment);
         }
 
-        else{
+        if((this.state.amount == "" || !regex.test(this.state.amount)) && this.state.officer == "")
+        {
             this.setState({
-                needsAmount: true
+                needsAmount: true,
+                needsOfficer: true
+            })
+        }
+        else if(this.state.amount == "" || !regex.test(this.state.amount))
+        {
+            this.setState({
+                needsAmount: true,
+                needsOfficer: false
+            })
+        }
+        else if(this.state.officer == "")
+        {
+            this.setState({
+                needsOfficer: true,
+                needsAmount: false
             })
         }
     }
@@ -64,6 +82,7 @@ class FarmerInstallmentForm extends Component{
 
 
     render(){
+        console.log(this.state);
         const monthArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
         const dayArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];
         const yearArray = [2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025];
@@ -135,6 +154,8 @@ class FarmerInstallmentForm extends Component{
                             name={"officer"}
                             onChange={this.handleChange} />
                     </Labels>
+                    
+                    {this.state.needsOfficer && <ErrorStatement>Please enter the officer's name</ErrorStatement>}
                     <Labels>
                         <input type="submit" />
                     </Labels>

@@ -8,6 +8,7 @@ import GlobalViewContainer from "./components/GlobalViewContainer";
 import GlobalSideNav from "./components/GlobalSideNav";
 import GlobalNav from "./components/GlobalNav";
 import StatisticsVue from "./components/StatisticsVue";
+import FarmerView from "./components/FarmerView";
 
 // import ItemList from './components/ItemList';
 // import {DashboardVue} from './components/DashboardView';
@@ -78,6 +79,10 @@ class App extends Component {
           <Route path="/testdashboard" component={GlobalSideNav} />
           <Route path="/testdashboard" component={GlobalNav} />
           <Route path="/testdashboard" component={GlobalViewContainer} />
+          <PrivateRoute path="/dashboard" component={GlobalSideNav} />
+          <Route path="/dashboard" component={GlobalNav} />
+          <PrivateRoute path="/dashboard" component={GlobalViewContainer} />
+          <Route path="/testfarmer" component={FarmerView}/>
         </StyledApp>
       </Router>
     );

@@ -74,7 +74,7 @@ export default class ProductStatsMini extends Component{
     render(){
         return(
           <StyledProductStatsMini>
-            <h4 className="product-name">{this.props.product}</h4>
+            <h4 className="product-name">{this.props.product.toUpperCase()}</h4>
             <Example/>
            
             <h4 className="product-price">{this.props.avgprice}</h4>

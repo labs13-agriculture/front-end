@@ -94,50 +94,50 @@ export default class ProductDescriptives extends Component{
     componentDidMount(){
         this.setState({products:[
             {product:"corn",
-            avgprice:14.99,
+            avgprice:"+50%",
 
             },
             {product:"seed",
-            avgprice:14.99,
+            avgprice:"+50%",
 
             },
             {product:"root",
-            avgprice:14.99,
+            avgprice:"+50%",
 
             },
             {product:"yam",
-            avgprice:14.99,
+            avgprice:"+50%",
 
             },
             {product:"turnip",
-            avgprice:14.99,
+            avgprice:"+50%",
 
             },
             {product:"carrot",
-            avgprice:14.99,
+            avgprice:"+50%",
 
             },
             {product:"raddish",
-            avgprice:14.99,
+            avgprice:"+50%",
 
             },
             {product:"potato",
-            avgprice:14.99,
+            avgprice:"+50%",
 
             },{product:"cabbage",
-            avgprice:14.99,
+            avgprice:"+50%",
 
             },
             {product:"random",
-            avgprice:14.99,
+            avgprice:"+50%",
 
             },
             {product:"random",
-            avgprice:14.99,
+            avgprice:"+50%",
 
             },
             {product:"ranrom",
-            avgprice:14.99,
+            avgprice:"+50%",
 
             }
         ]})

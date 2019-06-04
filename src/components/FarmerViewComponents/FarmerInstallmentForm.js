@@ -12,7 +12,8 @@ class FarmerInstallmentForm extends Component{
             month: today.getMonth() + 1,
             day: today.getDate(),
             year: today.getYear() + 1900,
-            needsAmount: false
+            needsAmount: false,
+            officer: ""
         }
     }
 
@@ -28,10 +29,12 @@ class FarmerInstallmentForm extends Component{
             this.setState({
                 needsAmount: false
             })
+            //changed key names here to match java object
             const newInstallment = {
-                date: this.state.month + " " + this.state.day + ", " + this.state.year,
-                amount: parseFloat(this.state.amount),
-                method: this.state.payment
+                datePaid: this.state.month + " " + this.state.day + ", " + this.state.year,
+                paid: parseFloat(this.state.amount),
+                mode: this.state.payment,
+                officer: this.state.officer
             }
             this.props.addInstallment(newInstallment);
         }
@@ -61,25 +64,24 @@ class FarmerInstallmentForm extends Component{
 
 
     render(){
-        console.log(this.state);
         const monthArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
         const dayArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];
         const yearArray = [2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025];
         return(
             <Modal>
-                <i onClick={() => this.props.toggleInstallment()} class="fas fa-times"></i>
+                <i onClick={() => this.props.toggleInstallment()} className="fas fa-times"></i>
                 <form onSubmit={e => this.formSubmit(e)}>
                     <Labels>
                         Payment Date:
                         <div>
                             <Dropdown value={this.state.month} name="month" onChange={this.handleChange}>
-                                {monthArray.map(month => <option value={month}>{month}</option>)}
+                                {monthArray.map((month, index) => <option key={index} value={month}>{month}</option>)}
                             </Dropdown>
                             <Dropdown value={this.state.day} name="day" onChange={this.handleChange}>
-                                {dayArray.map(day => <option value={day}>{day}</option>)}
+                                {dayArray.map((day, index) => <option key={index} value={day}>{day}</option>)}
                             </Dropdown>
                             <Dropdown value={this.state.year} name="year" onChange={this.handleChange}>
-                                {yearArray.map(year => <option value={year}>{year}</option>)}
+                                {yearArray.map((year, index) => <option key={index} value={year}>{year}</option>)}
                             </Dropdown>
                         </div>
                     </Labels>
@@ -124,6 +126,14 @@ class FarmerInstallmentForm extends Component{
                             />
                             <label for="Cash">Cash</label>
                         </div>
+                    </Labels>
+                    <Labels>
+                        Officer Entering Payment:
+                        <input 
+                            type="text"
+                            value={this.state.officer}
+                            name={"officer"}
+                            onChange={this.handleChange} />
                     </Labels>
                     <Labels>
                         <input type="submit" />

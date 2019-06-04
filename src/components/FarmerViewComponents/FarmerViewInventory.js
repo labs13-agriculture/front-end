@@ -5,10 +5,15 @@ class FarmerViewInventory extends Component{
         super(props)
     }
 
+    addInventoryItem(){
+        console.log("Trying to add inventory item");
+    }
+
     render(){
         return(
             <div>
                 <h2>Inventory</h2>
+                <i onClick={() => this.addInventoryItem()} class="fas fa-plus"></i>
             </div>
         );
     }

@@ -3,6 +3,7 @@ import styled, { css } from "styled-components";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import ProductStatsMini from './ProductStatsMini';
 import AgeHistogram from './AgeHistogram';
+import GenderPieChart from './GenderPieChart';
 
 const sizes = {
     desktop: 992,
@@ -28,7 +29,7 @@ const StyledProductDescriptives = styled.div`
     flex-direction:column;
     box-shadow: 0 13px 27px -5px rgba(50, 50, 93, 0.25), 0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.025);
     margin:60px 20px 60px 0px;
-    background: #8884d8;
+    background: #615bdb;
     font-family:'Mandali', sans-serif;
     padding:20px;
     color:white;
@@ -41,8 +42,8 @@ const StyledProductDescriptives = styled.div`
     }
 
     .jumbo-statistic{
-        font-size: 50px;
-        margin-top: 15px;
+        font-size: 55px;
+        margin-top: 5px;
 
            
     }
@@ -155,6 +156,10 @@ export default class ProductDescriptives extends Component{
                     <div className="chart-description age">
                         <h3>Farmers By Age</h3>
                         <AgeHistogram/>
+                    </div>
+                    <div className="chart-description gender">
+                        <h3>Farmers By Gender</h3>
+                        <GenderPieChart/>
                     </div>
                
                 

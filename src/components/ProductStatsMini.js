@@ -26,8 +26,9 @@ const StyledProductStatsMini = styled.div`
     width:100%;
     display:flex;
     justify-content:space-between;
-    padding: 5px 30px 5px;
+    padding: 5px 20px 5px;
     align-items:center;
+    background:white;
 
     &:hover{
       background:#d3d3d324;

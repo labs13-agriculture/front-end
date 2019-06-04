@@ -28,6 +28,8 @@ const StyledProductStatsVue = styled.div`
     flex-direction:column;
     box-shadow: 0 13px 27px -5px rgba(50, 50, 93, 0.25), 0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.025);
     margin:60px 60px 60px 0px;
+    border:1px solid #d3d3d37a;
+    
     
     h4{
         font-family:'Mandali', sans-serif;
@@ -36,10 +38,24 @@ const StyledProductStatsVue = styled.div`
         font-size: 14px;
     }
 
+    .mini-nav-title{
+        font-family:'Mandali', sans-serif;
+        font-size:16px;
+        padding:20px 20px 15px 20px;
+        
+        border-bottom:2px solid #d3d3d37a;
+        background:white;
+    }
+
 `
 const StyledMiniNav = styled.div`
-    height:40px;
-    width:100%
+    height:44px;
+    width:100%;
+    margin-bottom:15px;
+    
+    
+   
+}
 
 
 `
@@ -120,7 +136,7 @@ export default class ProductStatsVue extends Component{
            
             <StyledProductStatsVue>
                 <StyledMiniNav>
-                    <h1>Hello Stats</h1>
+                    <h3 className="mini-nav-title">Product Sales</h3>
                 </StyledMiniNav>
                 <StyledProductStatsMiniContainer>
                 {this.state.products.map(prod => <ProductStatsMini product={prod.product} avgprice={prod.avgprice}/>)}

@@ -33,6 +33,7 @@ const StyledProductDescriptives = styled.div`
     font-family:'Mandali', sans-serif;
     padding:20px;
     color:white;
+    border: 1px solid #615bdb;
     
     h3{
         font-family:'Mandali', sans-serif;
@@ -52,7 +53,7 @@ const StyledProductDescriptives = styled.div`
         margin-top:30px;
 
         h3{
-            padding-bottom:10px;
+            padding-bottom:5px;
             border-bottom:1px solid  #ffffff73;
             font-size:15px;
             margin-bottom:15px;

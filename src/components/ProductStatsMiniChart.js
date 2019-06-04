@@ -5,10 +5,10 @@ import {
 
 const data = [
   {
-    name: 'Page A', uv: 4000, pv: 2400, amt: 2400,
+    name: 'Page A', uv: 4000, pv: 4000, amt: 4000,
   },
   {
-    name: 'Page B', uv: 3000, pv: 1398, amt: 2210,
+    name: 'Page B', uv: 0, pv: 0, amt: 0,
   },
   {
     name: 'Page C', uv: 2000, pv: 9800, amt: 2290,

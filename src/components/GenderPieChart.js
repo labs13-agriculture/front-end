@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import {
-  PieChart, Pie, Sector, Cell,
+  PieChart, Pie, Sector, Cell,Tooltip
 } from 'recharts';
 
 const data = [
@@ -16,6 +16,7 @@ export default class GenderPieChart extends PureComponent {
     return (
       <PieChart width={300} height={200}>
         <Pie dataKey="value" startAngle={180} endAngle={0} data={data} cx={140} cy={120} outerRadius={80} fill="#8884d8" label />
+        <Tooltip />
       </PieChart>
     );
   }

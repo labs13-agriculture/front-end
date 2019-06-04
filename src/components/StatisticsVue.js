@@ -3,6 +3,7 @@ import styled, { css } from "styled-components";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import ProductStatsVue from './ProductStatsVue';
 import ProductDescriptives from './ProductDescriptives';
+import ProductMultiVue from './ProductMultiVue';
 
 
 const sizes = {
@@ -44,9 +45,11 @@ export default class StatisticsVue extends Component{
 
     render(){
         return(
+            
             <StyledStatisticsVue>
-            <ProductDescriptives/>
-                <ProductStatsVue/>
+              <ProductMultiVue/>
+              <ProductDescriptives/>
+                  <ProductStatsVue/>
                 
             </StyledStatisticsVue>
         )

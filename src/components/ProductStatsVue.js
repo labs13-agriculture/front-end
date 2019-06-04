@@ -141,6 +141,7 @@ export default class ProductStatsVue extends Component{
                 <StyledProductStatsMiniContainer>
                 {this.state.products.map(prod => <ProductStatsMini product={prod.product} avgprice={prod.avgprice}/>)}
                 </StyledProductStatsMiniContainer>
+                
             </StyledProductStatsVue>
             
         )

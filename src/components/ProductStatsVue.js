@@ -2,7 +2,8 @@ import React, { Component }  from "react";
 import styled, { css } from "styled-components";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import ProductStatsMini from './ProductStatsMini';
-
+import { connect } from "react-redux";
+import {getProductStatData} from '../actions';
 
 const sizes = {
     desktop: 992,
@@ -69,69 +70,119 @@ const StyledProductStatsMiniContainer = styled.div`
 `
 
 
-export default class ProductStatsVue extends Component{
+class ProductStatsVue extends Component{
     constructor(props){
         super(props);
         this.state = {
-            products:[]
+            products:[],
+            another:false
 
         }
     }
 
+    callProductNameData = () => {
+        this.props.getProductStatData().then(() => this.setState({products:this.props.productNameData}))
+
+        
+         
+  
+        
+        
+    
+        
+    }
+
+    // componentWillReceiveProps({ productNameData }) {
+    //     this.setState({products:this.props.ProductNameData});
+    // }
+
+    // componentWillReceiveProps(nextProps) {
+    //     if( nextProps.productNameData ){
+    //       this.setState({
+    //           products: nextProps.productNameData,
+    //       });
+    //     }
+    // }
+
+   
     componentDidMount(){
-        this.setState({products:[
-            {product:"corn",
-            avgprice:14.99,
+        console.log("component mounting")
+        
+        this.callProductNameData()
+            
 
-            },
-            {product:"seed",
-            avgprice:14.99,
+       
+            
+            
+     
 
-            },
-            {product:"root",
-            avgprice:14.99,
+        console.log("check productname data" + this.props.productNameData);
+        console.log("status "+ this.props.prodStatStart)
+        console.log("setting state mounting")
 
-            },
-            {product:"yam",
-            avgprice:14.99,
+       
+        // this.setState({products:this.props.productNameData.data})
+            
+       
+         
+        
+        // this.setState({products:[
+        //     {product:"corn",
+        //     avgprice:14.99,
 
-            },
-            {product:"turnip",
-            avgprice:14.99,
+        //     },
+        //     {product:"seed",
+        //     avgprice:14.99,
 
-            },
-            {product:"carrot",
-            avgprice:14.99,
+        //     },
+        //     {product:"root",
+        //     avgprice:14.99,
 
-            },
-            {product:"raddish",
-            avgprice:14.99,
+        //     },
+        //     {product:"yam",
+        //     avgprice:14.99,
 
-            },
-            {product:"potato",
-            avgprice:14.99,
+        //     },
+        //     {product:"turnip",
+        //     avgprice:14.99,
 
-            },{product:"cabbage",
-            avgprice:14.99,
+        //     },
+        //     {product:"carrot",
+        //     avgprice:14.99,
 
-            },
-            {product:"random",
-            avgprice:14.99,
+        //     },
+        //     {product:"raddish",
+        //     avgprice:14.99,
 
-            },
-            {product:"random",
-            avgprice:14.99,
+        //     },
+        //     {product:"potato",
+        //     avgprice:14.99,
 
-            },
-            {product:"ranrom",
-            avgprice:14.99,
+        //     },{product:"cabbage",
+        //     avgprice:14.99,
 
-            }
-        ]})
+        //     },
+        //     {product:"random",
+        //     avgprice:14.99,
+
+        //     },
+        //     {product:"random",
+        //     avgprice:14.99,
+
+        //     },
+        //     {product:"ranrom",
+        //     avgprice:14.99,
+
+        //     }
+        // ]})
     }
 
     render(){
-        
+        console.log("RENDERINGGGGGG")
+        console.log(this.state.products)
+        console.log("check productname data" + this.props.productNameData);
+        console.log("status "+ this.props.prodStatStart)
+        console.log("setting state mounting")
         return(
            
             <StyledProductStatsVue>
@@ -139,7 +190,8 @@ export default class ProductStatsVue extends Component{
                     <h3 className="mini-nav-title">Product Sales</h3>
                 </StyledMiniNav>
                 <StyledProductStatsMiniContainer>
-                {this.state.products.map(prod => <ProductStatsMini product={prod.product} avgprice={prod.avgprice}/>)}
+                {this.props.prodStatStart && <h1>loading. . .</h1>}
+                {this.props.prodStatSuccess && this.state.products.map(prod => <ProductStatsMini product={prod.username} avgprice={prod.username}/>)}
                 </StyledProductStatsMiniContainer>
                 
             </StyledProductStatsVue>
@@ -147,3 +199,17 @@ export default class ProductStatsVue extends Component{
         )
     }
 }
+const mapStateToProps = state => {
+    return {
+      prodStatStart: state.prodStatData.prodStatStart,
+      error: state.prodStatData.error,
+      prodStatFailure: state.prodStatData.loginFailure,
+      productNameData:state.prodStatData.data,
+      prodStatSuccess:state.prodStatData.prodStatSuccess
+    };
+};
+
+export default connect(
+mapStateToProps,
+{getProductStatData}
+)(ProductStatsVue);

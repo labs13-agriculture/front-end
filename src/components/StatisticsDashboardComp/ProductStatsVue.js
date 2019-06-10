@@ -1,28 +1,29 @@
-import React, { Component }  from "react";
+import React, { Component } from "react";
 import styled, { css } from "styled-components";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import ProductStatsMini from './ProductStatsMini';
+import ProductStatsMini from "./ProductStatsMini";
 import { connect } from "react-redux";
 import {getProductStatData} from '../../actions';
 
 
+  // componentWillReceiveProps(nextProps) {
+  //     if( nextProps.productNameData ){
+  //       this.setState({
+  //           products: nextProps.productNameData,
+  //       });
+  //     }
+  // }
 
-class ProductStatsVue extends Component{
-    constructor(props){
-        super(props);
-        this.state = {
-            products:[],
-            another:false
+  // componentDidMount() {
+  //   console.log("component mounting");
 
-        }
-    }
+  //   this.callProductNameData();
 
-    callProductNameData = () => {
-        this.props.getProductStatData().then(() => this.setState({products:this.props.productNameData}))
+  //   callProductNameData = () => {
+  //       this.props.getProductStatData().then(() => this.setState({products:this.props.productNameData}))
         
-    
         
-    }
+  //   }
 
 
    
@@ -30,12 +31,7 @@ class ProductStatsVue extends Component{
         console.log("component mounting")
         
         this.callProductNameData()
-
-       
-         
-        
-
-    }
+}
 
     render(){
        
@@ -56,14 +52,15 @@ class ProductStatsVue extends Component{
         )
     }
 }
+
 const mapStateToProps = state => {
-    return {
-      prodStatStart: state.prodStatData.prodStatStart,
-      error: state.prodStatData.error,
-      prodStatFailure: state.prodStatData.loginFailure,
-      productNameData:state.prodStatData.data,
-      prodStatSuccess:state.prodStatData.prodStatSuccess
-    };
+  return {
+    prodStatStart: state.prodStatData.prodStatStart,
+    error: state.prodStatData.error,
+    prodStatFailure: state.prodStatData.loginFailure,
+    productNameData: state.prodStatData.data,
+    prodStatSuccess: state.prodStatData.prodStatSuccess
+  };
 };
 
 export default connect(

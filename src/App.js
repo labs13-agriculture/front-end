@@ -2,17 +2,43 @@ import React, { Component } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import styled, { css } from "styled-components";
-import Login from "./components/Login";
+import Login from "./components/LoginComponent/Login";
 import PrivateRoute from "./components/PrivateRoute";
 import GlobalViewContainer from "./components/GlobalViewContainer";
 import GlobalSideNav from "./components/GlobalSideNav";
 import GlobalNav from "./components/GlobalNav";
-import StatisticsVue from "./components/StatisticsVue";
+import StatisticsVue from "./components/StatisticsDashboardComp/StatisticsVue";
 import FarmerView from "./components/FarmerView";
 
 // import ItemList from './components/ItemList';
 // import {DashboardVue} from './components/DashboardView';
 // import Registration from './components/Registration';
+
+
+
+class App extends Component {
+  render() {
+    return (
+      <Router>
+        <StyledApp>
+          <Route exact path="/" component={Login} />
+          <PrivateRoute  path="/dashboard" component={GlobalNav} />
+          <PrivateRoute path="/dashboard/statistics" component={StatisticsVue} />
+          <PrivateRoute exact path="/dashboard" component={GlobalSideNav} />
+          <PrivateRoute exact path="/dashboard" component={GlobalViewContainer} />
+          
+          {/* <Route path="/testdashboard" component={GlobalSideNav} />
+          <Route path="/testdashboard" component={GlobalNav} />
+          <Route path="/testdashboard" component={GlobalViewContainer} /> */}
+          <PrivateRoute path="/dashboard" component={GlobalSideNav} />
+          
+          <PrivateRoute exact path="/dashboard" component={GlobalViewContainer} />
+          <Route path="/testfarmer" component={FarmerView}/>
+        </StyledApp>
+      </Router>
+    );
+  }
+}
 
 const sizes = {
   desktop: 992,
@@ -55,7 +81,10 @@ const StyledApp = styled.div`
     margin-top: 100px;
     ${media.desktop`margin-top:0px;`}
   }
-
+    
+  #login-opacity{
+    opacity:.5;
+  }    
   .complete-dashboard-container {
     height: 100%;
   }
@@ -65,29 +94,5 @@ const StyledApp = styled.div`
     height: 20vh;
   }
 `;
-
-class App extends Component {
-  render() {
-    return (
-      <Router>
-        <StyledApp>
-          <Route exact path="/" component={Login} />
-          <PrivateRoute  path="/dashboard" component={GlobalNav} />
-          <PrivateRoute path="/dashboard/statistics" component={StatisticsVue} />
-          <PrivateRoute exact path="/dashboard" component={GlobalSideNav} />
-          <PrivateRoute exact path="/dashboard" component={GlobalViewContainer} />
-          
-          {/* <Route path="/testdashboard" component={GlobalSideNav} />
-          <Route path="/testdashboard" component={GlobalNav} />
-          <Route path="/testdashboard" component={GlobalViewContainer} /> */}
-          <PrivateRoute path="/dashboard" component={GlobalSideNav} />
-          
-          <PrivateRoute exact path="/dashboard" component={GlobalViewContainer} />
-          <Route path="/testfarmer" component={FarmerView}/>
-        </StyledApp>
-      </Router>
-    );
-  }
-}
 
 export default App;

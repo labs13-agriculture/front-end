@@ -1,13 +1,39 @@
 import React, { Component}  from "react";
 import { NavLink } from 'react-router-dom'
-
-
-
-
 import styled, { css } from "styled-components";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import SalesOverTime from './SalesOverTime';
 import MultiGraphNav from './MultiGraphNav';
+
+
+export default class ProductMultiVue extends Component{
+    constructor(props){
+        super(props);
+        this.state = {
+            
+        }
+    }
+   
+
+   
+
+    render(){
+        return(
+            <StyledProductMultiVue>
+                <div className="multivue-nav">
+                    <NavLink className="navlink"><div className="menu-link"><h4>Recoll-Rate</h4><h3 className="jumbo-stat">40%</h3></div></NavLink>
+                    <NavLink className="navlink"><div className="menu-link"><h4>Crop Yield</h4><h3 className="jumbo-stat">40%</h3></div></NavLink>
+                    <NavLink className="navlink"><div className="menu-link"><h4>Revenue</h4><h3 className="jumbo-stat">4K</h3></div></NavLink>
+                    <NavLink className="navlink"><div className="menu-link"><h4>Credit Sales</h4><h3 className="jumbo-stat">4%</h3></div></NavLink>
+                    <NavLink className="navlink"><div className="menu-link"><h4>Cash Sales</h4><h3 className="jumbo-stat">96%</h3></div></NavLink>
+                    
+                </div>
+                <MultiGraphNav/>
+                <SalesOverTime className="sales-over-time-graph"/>
+            </StyledProductMultiVue>
+        )
+    }
+}
 
 const sizes = {
     desktop: 992,
@@ -27,6 +53,7 @@ const sizes = {
 }, {});
 
 
+//begin stylig 
 
 const StyledProductMultiVue = styled.div`
     height:600px;
@@ -121,32 +148,3 @@ const StyledProductMultiVue = styled.div`
     }
 
 `
-
-export default class ProductMultiVue extends Component{
-    constructor(props){
-        super(props);
-        this.state = {
-            
-        }
-    }
-   
-
-   
-
-    render(){
-        return(
-            <StyledProductMultiVue>
-                <div className="multivue-nav">
-                    <NavLink className="navlink"><div className="menu-link"><h4>Recoll-Rate</h4><h3 className="jumbo-stat">40%</h3></div></NavLink>
-                    <NavLink className="navlink"><div className="menu-link"><h4>Crop Yield</h4><h3 className="jumbo-stat">40%</h3></div></NavLink>
-                    <NavLink className="navlink"><div className="menu-link"><h4>Revenue</h4><h3 className="jumbo-stat">4K</h3></div></NavLink>
-                    <NavLink className="navlink"><div className="menu-link"><h4>Credit Sales</h4><h3 className="jumbo-stat">4%</h3></div></NavLink>
-                    <NavLink className="navlink"><div className="menu-link"><h4>Cash Sales</h4><h3 className="jumbo-stat">96%</h3></div></NavLink>
-                    
-                </div>
-                <MultiGraphNav/>
-                <SalesOverTime className="sales-over-time-graph"/>
-            </StyledProductMultiVue>
-        )
-    }
-}

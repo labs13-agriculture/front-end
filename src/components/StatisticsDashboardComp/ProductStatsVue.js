@@ -46,6 +46,7 @@ class ProductStatsVue extends Component {
     );
   }
 }
+
 const mapStateToProps = state => {
   return {
     prodStatStart: state.prodStatData.prodStatStart,

@@ -31,7 +31,16 @@ import {getProductStatData} from '../../actions';
         console.log("component mounting")
         
         this.callProductNameData()
+<<<<<<< HEAD
 }
+=======
+
+       
+        
+        
+
+    }
+>>>>>>> 5bcf1cec2240993d0ce49f39a4131ce212ee73ca
 
     render(){
        

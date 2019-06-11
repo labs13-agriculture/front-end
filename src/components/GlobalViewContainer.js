@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import styled, { css } from "styled-components";
+import GlobalNav from "./GlobalNav";
+import ClientVueContainer from "./ClientVueContainer";
 
-export default class GlobalViewContainer extends Component {
+export default class GlobalVueContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -12,69 +14,8 @@ export default class GlobalViewContainer extends Component {
   render() {
     return (
       <GVC>
-        <Cards>
-          <IMG>
-            <i class="fas fa-users" />
-          </IMG>
-          <span>FIRST NAME</span>
-          <span>LAST NAME</span>
-        </Cards>
-        <Cards>
-          <IMG>
-            <i class="fas fa-users" />
-          </IMG>
-          <span>FIRST NAME</span>
-          <span>LAST NAME</span>
-        </Cards>
-        <Cards>
-          <IMG>
-            <i class="fas fa-users" />
-          </IMG>
-          <span>FIRST NAME</span>
-          <span>LAST NAME</span>
-        </Cards>
-        <Cards>
-          <IMG>
-            <i class="fas fa-users" />
-          </IMG>
-          <span>FIRST NAME</span>
-          <span>LAST NAME</span>
-        </Cards>
-        <Cards>
-          <IMG>
-            <i class="fas fa-users" />
-          </IMG>
-          <span>FIRST NAME</span>
-          <span>LAST NAME</span>
-        </Cards>
-        <Cards>
-          <IMG>
-            <i class="fas fa-users" />
-          </IMG>
-          <span>FIRST NAME</span>
-          <span>LAST NAME</span>
-        </Cards>
-        <Cards>
-          <IMG>
-            <i class="fas fa-users" />
-          </IMG>
-          <span>FIRST NAME</span>
-          <span>LAST NAME</span>
-        </Cards>
-        <Cards>
-          <IMG>
-            <i class="fas fa-users" />
-          </IMG>
-          <span>FIRST NAME</span>
-          <span>LAST NAME</span>
-        </Cards>
-        <Cards>
-          <IMG>
-            <i class="fas fa-users" />
-          </IMG>
-          <span>FIRST NAME</span>
-          <span>LAST NAME</span>
-        </Cards>
+        <GlobalNav/>
+        <ClientVueContainer/>
       </GVC>
     );
   }
@@ -87,14 +28,10 @@ export default class GlobalViewContainer extends Component {
 const GVC = styled.div`
   display: flex;
   width: 100%;
-  margin-left: 17%;
-  margin-bottom: -1500px;
-  padding-bottom: 1500px;
-  justify-content: center;
-  align-content: center;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  
+  
+  flex-direction:column;
+  
   background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
 `;
 

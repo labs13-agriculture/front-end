@@ -21,7 +21,11 @@ export const initiateLogin = creds => dispatch =>{
     .post('https://tieme-ndo-backend.herokuapp.com/oauth/token',body, {
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
+<<<<<<< HEAD
           "Authorization": 'Basic ' + `${window.btoa('lambda-client:lambda-secret')}`}
+=======
+          "Authorization": 'Basic ' + `${window.btoa('lambda-client'+ ':' + 'lambda-secret')}`}
+>>>>>>> master
         //   process.env.REACT_APP_AUTH_CLIENT_ID + ':' + process.env.REACT_APP_AUTH_CLIENT_SECRET
         //   
         })

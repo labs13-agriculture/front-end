@@ -31,7 +31,6 @@ const GN = styled.div`
   justify-content: space-evenly;
   width: 100%;
   height: 50px;
-  margin-left: 17%;
   align-items: center;
   border: 1px solid #d3d3d369;
   border-left: none;

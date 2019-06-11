@@ -12,7 +12,7 @@ export const FarmerSearchResults = query => dispatch =>{
     console.log(nameSearch + " " + locationSearch);
 
     return axios
-        .post(`https://tieme-ndo-backend.herokuapp.com/farmers/search?name=${nameSearch}&location=${locationSearch}$lead=${query.leads}`, query,{
+        .post(`https://tieme-ndo-backend.herokuapp.com/farmers/search?name=${nameSearch}&location=${locationSearch}$lead=${query.leads}`, {},{
             headers: {
                 'Content-Type' : 'application/json',
                 Authorization: `Bearer ${window.localStorage.getItem('token')}`

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
+import styled, { css } from "styled-components";
 
-class RetailerSearchForm extends Component{
+class SearchForm extends Component{
     constructor(props){
         super(props);
         this.state={
@@ -56,9 +57,9 @@ class RetailerSearchForm extends Component{
 
     render(){
         return(
-        <form onSubmit={e => this.submitForm(e)}>
-            <label>
-                Retailer Name:
+        <StyledForm onSubmit={e => this.submitForm(e)}>
+            <label className="name">
+                Name:
                 <input 
                     onChange={e => this.handleChange(e)}
                     type="text"
@@ -66,8 +67,8 @@ class RetailerSearchForm extends Component{
                     value={this.state.name}
                 />
             </label>
-            <label>
-                Retailer Location:
+            <label className="location">
+                Location:
                 <input 
                     onChange={e => this.handleChange(e)}
                     type="text"
@@ -75,8 +76,8 @@ class RetailerSearchForm extends Component{
                     value={this.state.location}
                 />
             </label>
-            <label>
-                Active Retailers
+            <label className="checkbox">
+                Active
                 <input 
                     onClick={e => this.clickChange(e)} 
                     type="checkbox" 
@@ -85,8 +86,8 @@ class RetailerSearchForm extends Component{
                     checked={this.state.includeActive} 
                 />
             </label>
-            <label>
-                Retailer Leads
+            <label className="checkbox">
+                Leads
                 <input 
                     onClick={e => this.clickChange(e)} 
                     type="checkbox" 
@@ -96,10 +97,73 @@ class RetailerSearchForm extends Component{
                 />
             </label>
             {this.state.needCheckbox && <p>Please select at least one option</p>}
-            <input type="submit" />
-        </form>
+            <input className="submitButton" type="submit" />
+        </StyledForm>
         )
     }
 }
 
-export default RetailerSearchForm;
+export default SearchForm;
+
+//styles here
+
+const sizes = {
+    desktop: 992,
+    tablet: 768,
+    phone: 576
+  };
+  
+  const media = Object.keys(sizes).reduce((acc, label) => {
+    acc[label] = (...args) =>
+      css`
+        @media (max-width: ${sizes[label]}px) {
+          ${css(...args)}
+        }
+      `;
+  
+    return acc;
+  }, {});
+
+const StyledForm = styled.form`
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 95%;
+    margin: 10px auto;
+
+
+    label{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .name{
+        width: 100%;
+
+        input{
+            width: 87.5%;
+        }
+    }
+    .location{
+        width: 50%;
+
+        input{
+            width: 75%;
+            margin: auto;
+        }
+    }
+
+    .checkbox{
+        width: 10%;
+        justify-content: space-around;
+    }
+
+    .submitButton{
+        width: 20%;
+    }
+`;

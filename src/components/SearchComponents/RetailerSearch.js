@@ -1,15 +1,23 @@
 import React, { Component } from "react";
-import RetailerSearchForm from "./RetailerSearchForm";
+import SearchForm from "./SearchForm";
 import { connect } from "react-redux";
+import styled from "styled-components";
+import GlobalCardContainer from '../GlobalCardContainer';
 import { RetailerSearchResults as SearchAction } from "../../actions/RetailerSearch";
 
 class RetailerSearch extends Component{
     constructor(props){
         super(props);
+        this.state = {
+            defaultView: true
+        }
     }
 
     submitSearch = query =>{
         this.props.SearchAction(query);
+        this.setState({
+            defaultView: false
+        })
     }
 
 
@@ -17,8 +25,10 @@ class RetailerSearch extends Component{
         console.log(this.props.retailerData);
         return(
             <div>
-                <RetailerSearchForm submitSearch={this.submitSearch}/>
-                {this.props.searchSuccess && this.props.retailerData.map(r => <div>{r.name}</div>)}
+                <Header>Find a Retailer</Header>
+                <SearchForm submitSearch={this.submitSearch}/>
+                <GlobalCardContainer />
+                {this.props.error && <p>Sorry, we couldn't find any retailers that match your search criteria</p>}
             </div>
         );
     }
@@ -38,3 +48,8 @@ export default connect(
     mapStateToProps,
     { SearchAction }
 )(RetailerSearch);
+
+const Header = styled.h1`
+    text-align: center;
+    color: white;
+`;

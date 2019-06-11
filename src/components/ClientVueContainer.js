@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import styled, { css } from "styled-components";
 import GlobalCardContainer from './GlobalCardContainer';
+import PrivateRoute from './PrivateRoute';
+import RetailerSearch from './SearchComponents/RetailerSearch';
 
 
 export default class ClientVueContainer extends Component{
@@ -15,7 +17,8 @@ export default class ClientVueContainer extends Component{
         return(
             <StyledClientVueContainer>
                 {/* //search component will go here */}
-                <GlobalCardContainer/>
+                <PrivateRoute exact path="/dashboard/retailers" component={RetailerSearch} />
+                {/* <GlobalCardContainer/> */}
 
             </StyledClientVueContainer>
         )

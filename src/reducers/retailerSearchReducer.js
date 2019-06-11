@@ -17,7 +17,8 @@ export default (state=initialState, action) => {
             searchStart: true,
             searchSuccess: false,
             searchFailure: false,
-            error: ''
+            error: '',
+            data: null
         }
         case RETAILER_SEARCH_SUCCESS:
         return{

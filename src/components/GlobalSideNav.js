@@ -57,10 +57,10 @@ const GSN = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: fixed;
+  /* position: fixed; */
   width: 17%;
   left: 0;
-  height: 100%;
+  /* height: 100%; */
   border: 1px solid #d3d3d369;
   border-right: none;
   background-image: linear-gradient(

@@ -9,6 +9,7 @@ import GlobalSideNav from "./components/GlobalSideNav";
 import GlobalNav from "./components/GlobalNav";
 import StatisticsVue from "./components/StatisticsDashboardComp/StatisticsVue";
 import FarmerView from "./components/FarmerView";
+import ClientVueContainer from "./components/ClientVueContainer"
 import RetailerSearch from "./components/RetailerSearchComponents/RetailerSearch"
 
 // import ItemList from './components/ItemList';
@@ -23,18 +24,20 @@ class App extends Component {
       <Router>
         <StyledApp>
           <Route exact path="/" component={Login} />
-          <PrivateRoute  path="/dashboard" component={GlobalNav} />
-          <PrivateRoute path="/dashboard/statistics" component={StatisticsVue} />
-          <PrivateRoute exact path="/dashboard" component={GlobalSideNav} />
-          <PrivateRoute exact path="/dashboard" component={GlobalViewContainer} />
+          
+          {/* <PrivateRoute path="/dashboard/statistics" component={StatisticsVue} /> */}
+          <PrivateRoute path="/dashboard" component={GlobalSideNav} />
+          <PrivateRoute path="/dashboard" component={GlobalViewContainer} />
+          
+
           <PrivateRoute exact path="/retailer/search" component ={RetailerSearch} />
           
           {/* <Route path="/testdashboard" component={GlobalSideNav} />
           <Route path="/testdashboard" component={GlobalNav} />
           <Route path="/testdashboard" component={GlobalViewContainer} /> */}
-          <PrivateRoute path="/dashboard" component={GlobalSideNav} />
           
-          <PrivateRoute exact path="/dashboard" component={GlobalViewContainer} />
+          
+          
           <Route path="/testfarmer" component={FarmerView}/>
         </StyledApp>
       </Router>
@@ -63,9 +66,9 @@ const StyledApp = styled.div`
   * {
     box-sizing: border-box;
   }
-  justify-content: center;
+  
   display: flex;
-  flex-flow: row wrap;
+  /* flex-flow: row wrap; */
   width: 100%;
   height: 100%;
 

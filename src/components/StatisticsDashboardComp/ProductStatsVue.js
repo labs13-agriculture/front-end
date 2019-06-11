@@ -32,7 +32,7 @@ class ProductStatsVue extends Component{
         this.callProductNameData()
 
        
-         
+        
         
 
     }

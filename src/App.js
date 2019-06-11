@@ -10,6 +10,8 @@ import GlobalNav from "./components/GlobalNav";
 import StatisticsVue from "./components/StatisticsDashboardComp/StatisticsVue";
 import FarmerView from "./components/FarmerView";
 import ClientVueContainer from "./components/ClientVueContainer"
+import RetailerSearch from "./components/RetailerSearchComponents/RetailerSearch"
+
 // import ItemList from './components/ItemList';
 // import {DashboardVue} from './components/DashboardView';
 // import Registration from './components/Registration';
@@ -27,6 +29,8 @@ class App extends Component {
           <PrivateRoute path="/dashboard" component={GlobalSideNav} />
           <PrivateRoute path="/dashboard" component={GlobalViewContainer} />
           
+
+          <PrivateRoute exact path="/retailer/search" component ={RetailerSearch} />
           
           {/* <Route path="/testdashboard" component={GlobalSideNav} />
           <Route path="/testdashboard" component={GlobalNav} />

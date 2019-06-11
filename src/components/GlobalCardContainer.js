@@ -15,17 +15,18 @@ class GlobalCardContainer extends Component{
     
     componentDidMount(){
         this.props.getFarmerCardData().then(() => this.setState({farmerCardData:this.props.farmerCardData}));
-      
+        console.log('global card container mounting')
 
     }
 
     render(){
+        console.log('global card container rendering')
         return(
             <StyledGlobalCardContainer>
                 {/* //card components will go here */}
                 {this.props.farmerCardDataStart &&  <h1>Loading ...</h1>}
                 {this.props.farmerCardDataSuccess && this.state.farmerCardData
-                .map(farmer => <GlobalClientCard id={farmer.id} name={farmer.name}/>)}
+                .map(farmer=> <GlobalClientCard key={farmer.id} cardData={farmer}/>)}
 
             </StyledGlobalCardContainer>
         )
@@ -43,6 +44,7 @@ const StyledGlobalCardContainer = styled.div`
 
 `
 const mapStateToProps = state => {
+    console.log('global card container map state to props firing')
     return {
       farmerCardDataStart: state.farmerCardData.farmerCardDataStart,
       error: state.farmerCardData.error,

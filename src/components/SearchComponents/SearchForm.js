@@ -131,6 +131,7 @@ const StyledForm = styled.form`
     align-items: flex-start;
     justify-content: space-between;
     width: 95%;
+    color: white;
     margin: 10px auto;
 
 

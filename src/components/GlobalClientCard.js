@@ -13,9 +13,15 @@ export default class GlobalClientCard extends Component{
 
     render(){
         return(
+            //loop through keys of card data in props
+            //return h3 element with formatted key value pairs 
             <StyledGlobalClientCard>
-                <h1>{this.props.name}</h1>
-                {/* //client preview details will go here */}
+                
+                {Object.keys(this.props.cardData)
+                .map((propKey,index) => 
+                <h3 key={index}>{`${propKey}: ${this.props.cardData[propKey]}`}</h3>
+                )}
+                
               
 
             </StyledGlobalClientCard>
@@ -28,6 +34,13 @@ const StyledGlobalClientCard = styled.div`
     width:150px;
     background:white;
     border:1px dashed purple;
+    display:flex;
+    flex-direction:column;
+    overflow:scroll;
+
+    &:hover{
+        cursor:pointer;
+    }
 
 
 `

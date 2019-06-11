@@ -7,33 +7,17 @@ class SearchForm extends Component{
         this.state={
             name: '',
             location: '',
-            includeActive: true,
-            includeLeads: false,
-            needCheckbox: false
+            includeLeads: false
         }
     }
 
     submitForm = e =>{
         e.preventDefault();
         let includeLeads = "";
-        //first make sure one of the checkboxes is selected
-        if(!this.state.includeActive && !this.state.includeLeads){
-            //trigger error handling and exit function before making axios call
-            this.setState({
-                needCheckbox: true
-            })
-            return;
-        }
-        //clear any error handling that was triggered before
-        this.setState({
-            needCheckbox: false
-        })
-        if(this.state.includeActive && this.state.includeLeads){
-            includeLeads = "both";
-        } else if(this.state.includeActive && !this.state.includeLeads){
-            includeLeads = "false";
-        } else if (!this.state.includeActive && this.state.includeLeads){
+        if(this.state.includeLeads){
             includeLeads = "true";
+        } else{
+            includeLeads = "false";
         }
         const query = {
             name: this.state.name,
@@ -50,9 +34,16 @@ class SearchForm extends Component{
     }
 
     clickChange = e =>{
-        this.setState({
-            [e.target.name]: !this.state[e.target.name]
-        })
+        if(this.state.includeLeads){
+            this.setState({
+                includeLeads: false
+            })
+        }
+        else{
+            this.setState({
+                includeLeads: true
+            })
+        }
     }
 
     render(){
@@ -80,23 +71,22 @@ class SearchForm extends Component{
                 Active
                 <input 
                     onClick={e => this.clickChange(e)} 
-                    type="checkbox" 
+                    type="radio" 
                     name="includeActive" 
                     value="active" 
-                    checked={this.state.includeActive} 
+                    checked={!this.state.includeLeads} 
                 />
             </label>
             <label className="checkbox">
                 Leads
                 <input 
                     onClick={e => this.clickChange(e)} 
-                    type="checkbox" 
+                    type="radio" 
                     name="includeLeads" 
                     value = "leads" 
                     checked={this.state.includeLeads}
                 />
             </label>
-            {this.state.needCheckbox && <p>Please select at least one option</p>}
             <input className="submitButton" type="submit" />
         </StyledForm>
         )

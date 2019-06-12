@@ -1,22 +1,53 @@
 import React, { Component } from "react";
 
-class FarmerViewYield extends Component{
-    constructor(props){
-        super(props);
-    }
+import { getYieldCardData } from "../../actions";
+import { connect } from "react-redux";
 
-    addYieldData(){
-        console.log("Trying to add yield data")
-    }
+class FarmerViewYield extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
 
-    render(){
-        return(
-            <div>
-                <h2>Yield History</h2>
-                <i onClick={() => this.addYieldData()} class="fas fa-plus"></i>
+  componentDidMount() {
+    this.props.getYieldCardData();
+  }
+
+  addYieldData() {
+    console.log("Trying to add yield data");
+  }
+
+  render() {
+    return (
+      <div>
+        <h2>Yield History</h2>
+        {this.props.yieldCardDataStart && <h1>Loading ... </h1>}
+        {this.props.yieldCardDataSuccess &&
+          this.props.yieldCardData.map(yields => (
+            <div key={yields.id}>
+              <span> NUMBER OF BAGS --- {yields.numBags}</span>
+              <br />
+              <span> GOAL --- {yields.goal}</span>
             </div>
-        );
-    }
+          ))}
+        <i onClick={() => this.addYieldData()} class="fas fa-plus" />
+      </div>
+    );
+  }
 }
 
-export default FarmerViewYield;
+const mapStateToProps = state => {
+  console.log("yield map state to props fireing");
+  return {
+    yieldCardData: state.yieldCardData.data,
+    yieldCardDataStart: state.yieldCardData.yieldCardDataStart,
+    yieldCardDataSuccess: state.yieldCardData.yieldCardDataSuccess,
+    yieldCardDataFailure: state.yieldCardData.yieldCardDataFailure,
+    error: state.yieldCardData.error
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { getYieldCardData }
+)(FarmerViewYield);

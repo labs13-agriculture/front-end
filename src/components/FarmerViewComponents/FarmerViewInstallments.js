@@ -9,7 +9,6 @@ class FarmerViewInstallments extends Component {
     super(props);
 
     this.state = {
-      installmentCardData: [],
       addingInstallment: false
     };
   }

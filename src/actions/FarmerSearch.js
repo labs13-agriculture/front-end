@@ -9,10 +9,13 @@ export const FarmerSearchResults = query => dispatch =>{
 
     const nameSearch = encodeURI(query.name);
     const locationSearch = encodeURI(query.location);
-    console.log(nameSearch + " " + locationSearch);
+    //console.log(nameSearch + " " + locationSearch);
+
+    const urlString = `https://tieme-ndo-backend.herokuapp.com/farmers/search?name=${nameSearch}&location=${locationSearch}&lead=${query.leads}`
+    console.log(urlString);
 
     return axios
-        .post(`https://tieme-ndo-backend.herokuapp.com/farmers/search?name=${nameSearch}&location=${locationSearch}$lead=${query.leads}`, {},{
+        .post(urlString, query,{
             headers: {
                 'Content-Type' : 'application/json',
                 Authorization: `Bearer ${window.localStorage.getItem('token')}`

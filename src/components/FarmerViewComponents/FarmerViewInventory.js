@@ -1,22 +1,52 @@
 import React, { Component } from "react";
 
-class FarmerViewInventory extends Component{
-    constructor(props){
-        super(props)
-    }
+import { getInventoryCardData } from "../../actions";
+import { connect } from "react-redux";
 
-    addInventoryItem(){
-        console.log("Trying to add inventory item");
-    }
+class FarmerViewInventory extends Component {
+  constructor(props) {
+    super(props);
+  }
 
-    render(){
-        return(
-            <div>
-                <h2>Inventory</h2>
-                <i onClick={() => this.addInventoryItem()} class="fas fa-plus"></i>
+  componentDidMount() {
+    this.props.getInventoryCardData();
+  }
+
+  addInventoryItem() {
+    console.log("Trying to add inventory item");
+  }
+
+  render() {
+    return (
+      <div>
+        <h2>Inventory</h2>
+        {this.props.inventoryCardDataStart && <h1>Loading ... </h1>}
+        {this.props.inventoryCardDataSuccess &&
+          this.props.inventoryCardData.map(inventory => (
+            <div key={inventory.id}>
+              <span> NUMBER OF BAGS --- {inventory}</span>
+              <br />
+              <span> GOAL --- {inventory}</span>
             </div>
-        );
-    }
+          ))}
+        <i onClick={() => this.addInventoryItem()} class="fas fa-plus" />
+      </div>
+    );
+  }
 }
 
-export default FarmerViewInventory;
+const mapStateToProps = state => {
+  console.log("inventory map state to props fireing");
+  return {
+    inventoryCardData: state.inventoryCardData.data,
+    inventoryCardDataStart: state.inventoryCardData.inventoryCardDataStart,
+    inventoryCardDataSuccess: state.inventoryCardData.inventoryCardDataSuccess,
+    inventoryCardDataFailure: state.inventoryCardData.inventoryCardDataFailure,
+    error: state.inventoryCardData.error
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { getInventoryCardData }
+)(FarmerViewInventory);

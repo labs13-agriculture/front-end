@@ -6,6 +6,7 @@ import retailerSearchReducer from "../reducers/retailerSearchReducer";
 import reducerTransactionCard from "../reducers/reducerTransactionCard";
 import reducerInstallmentCard from "../reducers/reducerInstallmentCard";
 import reducerYieldCard from "../reducers/reducerYieldCard";
+import reducerInventoryCard from "../reducers/reducerInventoryCard";
 // import getData from '../reducers/getdata';
 // import registrationR from '../reducers/registerreducer';
 // import getSentiment from '../reducers/sentimentReducer';
@@ -16,6 +17,7 @@ export default combineReducers({
   farmerCardData: reducerFarmerCardPreviews,
   transactionCardData: reducerTransactionCard,
   installmentCardData: reducerInstallmentCard,
+  inventoryCardData: reducerInventoryCard,
   yieldCardData: reducerYieldCard,
   retailerSearchData: retailerSearchReducer
   // // getData,

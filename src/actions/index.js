@@ -38,3 +38,10 @@ export {
   DATA_YIELD_CARD_FAILURE,
   getYieldCardData
 } from "./dataYieldCard";
+
+export {
+  DATA_INVENTORY_CARD_START,
+  DATA_INVENTORY_CARD_SUCCESS,
+  DATA_INVENTORY_CARD_FAILURE,
+  getInventoryCardData
+} from "./dataInventoryCard";

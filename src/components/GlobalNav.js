@@ -16,10 +16,11 @@ export default class GlobalSideNav extends Component {
   render() {
     return (
       <GN className="navbar">
-        <span>Satistics</span>
-        <span>Retailers</span>
+        <Link to="/dashboard/statistics">Statistics</Link>
+        <Link to="/dashboard/retailers">Retailers</Link>
         <span>Organizations</span>
-        <span>Farmers</span>
+        {/* <span>Farmers</span> */}
+        <Link to="/dashboard/testfarmer">Indi Farmers Test</Link>
         <span>Manage Users</span>
       </GN>
     );

@@ -17,8 +17,8 @@ export default class GlobalSideNav extends Component {
       <GSN>
         <StyledH1 className="title">Tieme Ndo</StyledH1>
         <StyledDiv className="hvr-underline-reveal">
-          <Link to="#" style={{ textDecoration: "none" }}>
-            <i class="fas fa-home">
+          <Link to="/dashboard" style={{ textDecoration: "none" }}>
+            <i className="fas fa-home">
               <span style={{ margin: "0 10px" }}>Home</span>
             </i>
           </Link>

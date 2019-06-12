@@ -15,26 +15,20 @@ import ClientVueContainer from "./components/ClientVueContainer";
 // import {DashboardVue} from './components/DashboardView';
 // import Registration from './components/Registration';
 
-
-
 class App extends Component {
   render() {
     return (
       <Router>
         <StyledApp>
           <Route exact path="/" component={Login} />
-          
-          {/* <PrivateRoute path="/dashboard/statistics" component={StatisticsVue} /> */}
+
           <PrivateRoute path="/dashboard" component={GlobalSideNav} />
           <PrivateRoute path="/dashboard" component={GlobalViewContainer} />
-          
+          {/* <Route path="/dashboard/testfarmer" component={FarmerView} /> */}
+
           {/* <Route path="/testdashboard" component={GlobalSideNav} />
           <Route path="/testdashboard" component={GlobalNav} />
           <Route path="/testdashboard" component={GlobalViewContainer} /> */}
-          
-          
-          
-          <Route path="/testfarmer" component={FarmerView}/>
         </StyledApp>
       </Router>
     );
@@ -62,7 +56,7 @@ const StyledApp = styled.div`
   * {
     box-sizing: border-box;
   }
-  
+
   display: flex;
   /* flex-flow: row wrap; */
   width: 100%;
@@ -82,10 +76,10 @@ const StyledApp = styled.div`
     margin-top: 100px;
     ${media.desktop`margin-top:0px;`}
   }
-    
-  #login-opacity{
-    opacity:.5;
-  }    
+
+  #login-opacity {
+    opacity: 0.5;
+  }
   .complete-dashboard-container {
     height: 100%;
   }

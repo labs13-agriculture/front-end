@@ -96,6 +96,7 @@ class Login extends Component {
 
   login = e => {
     e.preventDefault();
+    window.localStorage.removeItem('token');
     if (
       this.state.credentials.password.length > 0 &&
       this.state.credentials.username.length > 0

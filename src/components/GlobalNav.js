@@ -5,7 +5,7 @@ import Axios from "axios";
 import "./GSN.css";
 import { Nav, NavItem, NavLink } from "reactstrap";
 
-export default class GlobalSideNav extends Component {
+class GlobalSideNav extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -13,19 +13,25 @@ export default class GlobalSideNav extends Component {
     };
   }
 
+  navRedirect = path => {
+    console.log(this.props.history);
+    this.props.history.replace(path);
+  };
+
   render() {
     return (
       <GN className="navbar">
-        <Link to="/dashboard/statistics">Statistics</Link>
+        <Link to="/dashboard/statistics">Satistics</Link>
         <Link to="/dashboard/retailers">Retailers</Link>
-        <span>Organizations</span>
-        {/* <span>Farmers</span> */}
-        <Link to="/dashboard/testfarmer">Indi Farmers Test</Link>
-        <span>Manage Users</span>
+        <Link to="/dashboard/organizations">Organizations</Link>
+        <Link to="/dashboard/farmers">Farmers</Link>
+        <Link to="/dashboard/users">Manage Users</Link>
       </GN>
     );
   }
 }
+
+export default GlobalSideNav;
 
 const GN = styled.div`
   display: flex;

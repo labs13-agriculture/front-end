@@ -11,7 +11,7 @@ export const RetailerSearchResults = (query) => dispatch => {
     const locationSearch = encodeURI(query.location);
     console.log(nameSearch + " " + locationSearch)
     return axios
-        .get(`https://tieme-ndo-backend.herokuapp.com/retailer/search?lead=${query.leads}&location=${locationSearch}&name=${nameSearch}`,{
+        .get(`https://tieme-ndo-backend.herokuapp.com/retailer/search?lead=${query.leads}&location=${locationSearch}&name=${nameSearch}&page=2`,{
             headers: {
                 'Content-Type' : 'application/json',
                 Authorization: `Bearer ${window.localStorage.getItem('token')}`

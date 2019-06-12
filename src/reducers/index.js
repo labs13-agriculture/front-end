@@ -4,6 +4,7 @@ import reducerProductStatsVue from '../reducers/reducerProductStatsVue';
 import reducerFarmerCardPreviews from '../reducers/reducerFarmerCardPreviews';
 import retailerSearchReducer from '../reducers/retailerSearchReducer';
 import farmerSearchReducer from '../reducers/farmerSearchReducer';
+import organizationSearchReducer from '../reducers/organizationSearchReducer';
 
 // import getData from '../reducers/getdata';
 // import registrationR from '../reducers/registerreducer';
@@ -14,7 +15,8 @@ export default combineReducers({
   prodStatData:reducerProductStatsVue,
   farmerCardData:reducerFarmerCardPreviews,
   retailerSearchData: retailerSearchReducer,
-  farmerSearchData: farmerSearchReducer
+  farmerSearchData: farmerSearchReducer,
+  organizationSearchData: organizationSearchReducer
   // // getData,
   // registrationR,
   // getSentiment

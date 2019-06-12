@@ -4,6 +4,7 @@ import GlobalCardContainer from './GlobalCardContainer';
 import PrivateRoute from './PrivateRoute';
 import RetailerSearch from './SearchComponents/RetailerSearch';
 import FarmerSearch from './SearchComponents/FarmerSearch';
+import OrganizationSearch from './SearchComponents/OrganizationSearch';
 
 
 export default class ClientVueContainer extends Component{
@@ -20,6 +21,7 @@ export default class ClientVueContainer extends Component{
                 {/* //search component will go here */}
                 <PrivateRoute exact path="/dashboard/retailers" component={RetailerSearch} />
                 <PrivateRoute exact path="/dashboard/farmers" component={FarmerSearch} />
+                <PrivateRoute exact path="/dashboard/organizations" component={OrganizationSearch} />
                 {/* <GlobalCardContainer/> */}
 
             </StyledClientVueContainer>

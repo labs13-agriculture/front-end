@@ -29,7 +29,9 @@ export {
   DATA_INSTALLMENT_CARD_START,
   DATA_INSTALLMENT_CARD_SUCCESS,
   DATA_INSTALLMENT_CARD_FAILURE,
-  getInstallmentCardData
+  DATA_INSTALLMENT_CARD_ADD,
+  getInstallmentCardData,
+  addInstallmentItem
 } from "./dataInstallmentCard";
 
 export {
@@ -43,5 +45,6 @@ export {
   DATA_INVENTORY_CARD_START,
   DATA_INVENTORY_CARD_SUCCESS,
   DATA_INVENTORY_CARD_FAILURE,
-  getInventoryCardData
+  getInventoryCardData,
+  addInventoryItem
 } from "./dataInventoryCard";

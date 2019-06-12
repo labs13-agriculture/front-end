@@ -2,13 +2,15 @@ import React, { Component } from "react";
 import {
   DATA_INSTALLMENT_CARD_START,
   DATA_INSTALLMENT_CARD_SUCCESS,
-  DATA_INSTALLMENT_CARD_FAILURE
+  DATA_INSTALLMENT_CARD_FAILURE,
+  DATA_INSTALLMENT_CARD_ADD
 } from "../actions";
 
 const initialState = {
   installmentCardDataStart: false,
   installmentCardDataSuccess: false,
   installmentCardDataFailure: false,
+  installmentCardDataAdd: false,
   error: ""
 };
 
@@ -26,6 +28,11 @@ export default (state = initialState, action) => {
         installmentCardDataStart: false,
         installmentCardDataSuccess: true,
         installmentCardDataFailure: false
+      };
+    case DATA_INSTALLMENT_CARD_ADD:
+      return {
+        ...state,
+        installmentCardDataAdd: true
       };
     case DATA_INSTALLMENT_CARD_FAILURE:
       return {

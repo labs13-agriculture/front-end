@@ -95,4 +95,5 @@ const StyledInfoView = styled.div`
   height: 100%;
   border-radius: 5px;
   margin-top: 20px;
+  overflow: scroll;
 `;

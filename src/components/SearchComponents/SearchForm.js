@@ -50,7 +50,7 @@ class SearchForm extends Component{
         return(
         <StyledForm onSubmit={e => this.submitForm(e)}>
             <label className="name">
-                Name:
+                Name
                 <input 
                     onChange={e => this.handleChange(e)}
                     type="text"
@@ -59,7 +59,7 @@ class SearchForm extends Component{
                 />
             </label>
             <label className="location">
-                Location:
+                Location
                 <input 
                     onChange={e => this.handleChange(e)}
                     type="text"
@@ -67,26 +67,28 @@ class SearchForm extends Component{
                     value={this.state.location}
                 />
             </label>
-            <label className="checkbox">
-                Active
-                <input 
-                    onClick={e => this.clickChange(e)} 
-                    type="radio" 
-                    name="includeActive" 
-                    value="active" 
-                    checked={!this.state.includeLeads} 
-                />
-            </label>
-            <label className="checkbox">
-                Leads
-                <input 
-                    onClick={e => this.clickChange(e)} 
-                    type="radio" 
-                    name="includeLeads" 
-                    value = "leads" 
-                    checked={this.state.includeLeads}
-                />
-            </label>
+            <div>
+                <label className="checkbox">
+                    Active
+                    <input 
+                        onClick={e => this.clickChange(e)} 
+                        type="radio" 
+                        name="includeActive" 
+                        value="active" 
+                        checked={!this.state.includeLeads} 
+                    />
+                </label>
+                <label className="checkbox">
+                    Leads
+                    <input 
+                        onClick={e => this.clickChange(e)} 
+                        type="radio" 
+                        name="includeLeads" 
+                        value = "leads" 
+                        checked={this.state.includeLeads}
+                    />
+                </label>
+            </div>
             <input className="submitButton" type="submit" />
         </StyledForm>
         )

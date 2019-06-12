@@ -9,6 +9,8 @@ const initialState = {
 }
 
 export default (state=initialState, action) => {
+    console.log(action);
+    console.log(action.payload);
     switch (action.type){
         case FARMER_SEARCH_START:
         return{
@@ -20,9 +22,10 @@ export default (state=initialState, action) => {
             data: null
         }
         case FARMER_SEARCH_SUCCESS:
+            console.log(action.payload)
         return{
             ...state,
-            data: action.payload,
+            data: {...action.payload},
             searchStart: false,
             searchFailure: false,
             searchSuccess: true,

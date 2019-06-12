@@ -14,7 +14,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(
     rootReducer,
-    composeEnhancers(applyMiddleware(thunk,logger))//root reducer path important for netlify?
+    composeEnhancers(applyMiddleware(thunk))//root reducer path important for netlify?
 )
 
 ReactDOM.render(

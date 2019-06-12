@@ -20,14 +20,11 @@ class GlobalCardContainer extends Component{
     }
 
     render(){
-        console.log('global card container rendering')
+        console.log(this.props)
         return(
             <StyledGlobalCardContainer>
                 {/* //card components will go here */}
-                {this.props.farmerCardDataStart &&  <h1>Loading ...</h1>}
-                {this.props.farmerCardDataSuccess && this.state.farmerCardData
-                .map(farmer=> <GlobalClientCard key={farmer.id} cardData={farmer}/>)}
-
+                {this.props.searchStart &&  <h1>Loading ...</h1>}
             </StyledGlobalCardContainer>
         )
     }
@@ -38,19 +35,15 @@ const StyledGlobalCardContainer = styled.div`
     height:100%;
     width:100%;
   
-    
-
-
-
 `
 const mapStateToProps = state => {
     console.log('global card container map state to props firing')
     return {
-      farmerCardDataStart: state.farmerCardData.farmerCardDataStart,
-      error: state.farmerCardData.error,
-      farmerCardDataFailure: state.farmerCardData.farmerCardDataFailure,
-      farmerCardData:state.farmerCardData.data,
-      farmerCardDataSuccess:state.farmerCardData.farmerCardDataSuccess
+        searchStart: state.farmerSearchData.searchStart,
+        data: state.farmerSearchData.data,
+        searchSuccess: state.farmerSearchData.searchSuccess,
+        searchFailure: state.farmerSearchData.searchFailure,
+        error: state.farmerSearchData.searchFailure
     };
 };
 

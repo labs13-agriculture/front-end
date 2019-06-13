@@ -7,52 +7,6 @@ import {
 } from "../actions";
 
 const initialState = {
-<<<<<<< HEAD
-    prodStatStart:false,
-    prodStatSuccess:false,
-    prodStatFailure:false,
-    error:''
-    
-
-}
-
-export default (state=initialState,action) => {
-    switch(action.type){
-        case PROD_STAT_START:
-        return{
-            ...state,
-            prodStatStart:true
-        }
-
-        case PROD_STAT_SUCCESS:
-        return{
-            ...state,
-            data:action.payload,
-            prodStatSuccess:true,
-            prodStatFailure:false,
-            prodStatStart:false,
-            
-        }
-
-        case PROD_STAT_FAILURE:
-        return{
-            ...state,
-            prodStatSuccess:false,
-            prodStatFailure:true,
-            prodStatStart:false,
-            error:action.payload
-        }
-        default:
-
-            return state;
-        
-        
-    }
-
-
-}
-
-=======
   prodStatStart: false,
   prodStatSuccess: false,
   prodStatFailure: false,
@@ -88,4 +42,3 @@ export default (state = initialState, action) => {
       return state;
   }
 };
->>>>>>> master

@@ -25,7 +25,7 @@ export default (state=initialState, action) => {
             console.log(action.payload)
         return{
             ...state,
-            data: {...action.payload},
+            data: action.payload,
             searchStart: false,
             searchFailure: false,
             searchSuccess: true,

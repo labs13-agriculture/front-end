@@ -11,7 +11,7 @@ class RetailerSearch extends Component{
     constructor(props){
         super(props);
         this.state = {
-            addingRetailer: true
+            addingRetailer: false
         }
     }
 

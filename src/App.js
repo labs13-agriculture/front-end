@@ -26,6 +26,9 @@ class App extends Component {
           <PrivateRoute path="/dashboard" component={GlobalViewContainer} />
           {/* <Route path="/dashboard/testfarmer" component={FarmerView} /> */}
 
+          <PrivateRoute path="/inventory" component={GlobalSideNav} />
+          <PrivateRoute path="/inventory" component={GlobalViewContainer} />
+
           {/* <Route path="/testdashboard" component={GlobalSideNav} />
           <Route path="/testdashboard" component={GlobalNav} />
           <Route path="/testdashboard" component={GlobalViewContainer} /> */}

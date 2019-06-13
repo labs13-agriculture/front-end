@@ -10,7 +10,7 @@ export const addNewSystemUser = (userDetails) => dispatch => {
     const body = JSON.stringify(userDetails);
     console.log("userDetails JSON "+body)
     return axios
-      .post("http://localhost:4040/users/newuser", body,{
+      .post("https://tieme-ndo-backend.herokuapp.com/users/newuser", body,{
         headers: {
           'Content-Type' : 'application/json',
           

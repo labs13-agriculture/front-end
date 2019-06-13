@@ -10,7 +10,7 @@ export const updateSystemUser = (userDetails,id) => dispatch => {
     const body = JSON.stringify(userDetails);
     console.log("userDetails JSON "+body)
     return axios
-      .put(`http://localhost:4040/users/update-user/${id}`, body,{
+      .put(`https://tieme-ndo-backend.herokuapp.com/users/update-user/${id}`, body,{
         headers: {
           'Content-Type' : 'application/json',
           

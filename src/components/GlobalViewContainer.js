@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+
 import styled, { css } from "styled-components";
 import GlobalNav from "./GlobalNav";
 import ClientVueContainer from "./ClientVueContainer";
@@ -15,11 +16,9 @@ export default class GlobalVueContainer extends Component {
   render() {
     return (
       <GVC>
-      
-        <GlobalNav/>
-        
-        <ClientVueContainer/>
-        
+        <GlobalNav />
+
+        <ClientVueContainer />
       </GVC>
     );
   }
@@ -32,11 +31,8 @@ export default class GlobalVueContainer extends Component {
 const GVC = styled.div`
   display: flex;
   width: 100%;
-  
-  
-  flex-direction:column;
-  
-  background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
+  flex-direction: column;
+  background-color: #1f1f1f;
 `;
 
 const Cards = styled.div`

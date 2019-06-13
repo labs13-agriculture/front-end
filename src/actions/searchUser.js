@@ -11,7 +11,7 @@ export const userSearchResults = (searchQuery) => dispatch => {
     console.log('name searched '+nameSearch)
     
     return axios
-        .get(`http://localhost:4040/users/username/${nameSearch}`,{
+        .get(`https://tieme-ndo-backend.herokuapp.com/users/username/${nameSearch}`,{
             headers: {
                 'Content-Type' : 'application/json',
                 Authorization: `Bearer ${window.localStorage.getItem('token')}`

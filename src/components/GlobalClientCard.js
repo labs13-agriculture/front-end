@@ -12,18 +12,13 @@ export default class GlobalClientCard extends Component{
 
 
     render(){
+        console.log(this.props);
         return(
             //loop through keys of card data in props
             //return h3 element with formatted key value pairs 
-            <StyledGlobalClientCard>
-                
-                {Object.keys(this.props.cardData)
-                .map((propKey,index) => 
-                <h3 key={index}>{`${propKey}: ${this.props.cardData[propKey]}`}</h3>
-                )}
-                
-              
-
+            <StyledGlobalClientCard>    
+                <h3>{this.props.name}</h3>
+                {!Array.isArray(this.props.location) ? <p>{this.props.location.address}</p> : this.props.location.length == 1 ? <p>{this.props.location[0].address}</p> : <p>{this.props.location.length} locations</p>}
             </StyledGlobalClientCard>
         )
     }

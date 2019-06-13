@@ -1,37 +1,45 @@
 import React, { Component } from "react";
 import styled, { css } from "styled-components";
-import GlobalCardContainer from './GlobalCardContainer';
 import PrivateRoute from './PrivateRoute';
 import RetailerSearch from './SearchComponents/RetailerSearch';
 import {ManageUsersContainer} from './ManageUsers/ManageUsersContainer';
+import FarmerSearch from "./SearchComponents/FarmerSearch";
+import OrganizationSearch from "./SearchComponents/OrganizationSearch";
 
-export default class ClientVueContainer extends Component{
-    constructor(props){
-        super(props);
-        this.state = {}
+export default class ClientVueContainer extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
 
-    }
-
-
-    render(){
-        return(
-            <StyledClientVueContainer>
-                {/* //search component will go here */}
-                <PrivateRoute exact path="/dashboard/retailers" component={RetailerSearch} />
-                <PrivateRoute path='/dashboard/manage-users' component={ManageUsersContainer}/>
-                {/* <GlobalCardContainer/> */}
-
-            </StyledClientVueContainer>
-        )
-    }
+  render() {
+    return (
+      <StyledClientVueContainer>
+        {/* //search component will go here */}
+        <PrivateRoute
+          exact
+          path="/dashboard/retailers"
+          component={RetailerSearch}
+        />
+        <PrivateRoute
+          exact
+          path="/dashboard/farmers"
+          component={FarmerSearch}
+        />
+        <PrivateRoute
+          exact
+          path="/dashboard/organizations"
+          component={OrganizationSearch}
+        />
+        <PrivateRoute path='/dashboard/manage-users' component={ManageUsersContainer}/>
+        {/* <GlobalCardContainer/> */}
+      </StyledClientVueContainer>
+    );
+  }
 }
 
 const StyledClientVueContainer = styled.div`
-    height:100%;
-    width: 100%;
-    border:2px solid red;
-    padding: 20px;
-
-
-
-`
+  height: 100%;
+  width: 100%;
+  padding: 20px;
+`;

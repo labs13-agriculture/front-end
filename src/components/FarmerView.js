@@ -77,7 +77,7 @@ export default FarmerView;
 
 const StyledContainer = styled.div`
   display: flex;
-  height: 200px;
+  height: 400px;
 
   flex-direction: row;
   flex-wrap: wrap;

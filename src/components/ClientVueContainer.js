@@ -33,6 +33,11 @@ export default class ClientVueContainer extends Component {
           path="/dashboard/organizations"
           component={OrganizationSearch}
         />
+        <PrivateRoute
+          exact
+          path="/dashboard/testfarmer"
+          component={FarmerView}
+        />
         {/* <GlobalCardContainer/> */}
       </StyledClientVueContainer>
     );

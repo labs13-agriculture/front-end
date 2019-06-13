@@ -51,13 +51,10 @@ class FarmerView extends Component {
     let farmerData = [];
     if (this.props.data) {
       farmerData = this.props.data.filter(farmer => {
-        console.log("FARMER ID", farmer.id);
         return farmer.id == this.props.match.params.id;
       });
       console.log("FARMER DATA", farmerData);
-      console.log("FARMER DATA PARAMS ID", this.props.match.params.id);
     }
-
     return (
       <div>
         <StyledContainer>
@@ -96,7 +93,6 @@ class FarmerView extends Component {
                   <FarmerViewInstallments
                     amountPaid={installment.amountPaid || ""}
                     datePaid={installment.datePaid || ""}
-                    toggleInstallment={this.toggleInstallment}
                   />
                 );
               })}

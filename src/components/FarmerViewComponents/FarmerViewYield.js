@@ -33,7 +33,6 @@ class FarmerViewYield extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log("yield map state to props fireing");
   return {
     yieldCardData: state.yieldCardData.data,
     yieldCardDataStart: state.yieldCardData.yieldCardDataStart,

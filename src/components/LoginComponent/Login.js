@@ -3,12 +3,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { initiateLogin } from "../../actions";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import { Spinner } from 'reactstrap';
-
-
-
-
-
+import { Spinner } from "reactstrap";
 
 class Login extends Component {
   constructor(props) {
@@ -23,27 +18,24 @@ class Login extends Component {
       enteredUsername: true,
       enteredPassword: true,
       passwordFailure: false,
-      passwordVis:true
+      passwordVis: true
     };
   }
-  componentDidMount(){
+  componentDidMount() {
     this.setEnterKeyListener();
   }
 
-  componentDidUnmount(){
+  componentDidUnmount() {
     this.setEnterKeyListener();
   }
 
-
-
-
-  setEnterKeyListener(){
+  setEnterKeyListener() {
     var input = document.querySelector(".styled-login");
     input.addEventListener("keyup", function(event) {
-    if (event.keyCode === 13) {
-    event.preventDefault();
-    document.querySelector(".next").click();
-    }
+      if (event.keyCode === 13) {
+        event.preventDefault();
+        document.querySelector(".next").click();
+      }
     });
   }
 
@@ -84,24 +76,28 @@ class Login extends Component {
     this.setState({ submitpw: true });
   }
 
-  togglePwVis = () =>{
-    this.setState({passwordVis:!this.state.passwordVis});
+  togglePwVis = () => {
+    this.setState({ passwordVis: !this.state.passwordVis });
     var x = document.getElementById("password");
     if (x.type === "password") {
       x.type = "text";
     } else {
       x.type = "password";
     }
-  }
+  };
 
   login = e => {
     e.preventDefault();
-    window.localStorage.removeItem('token');
+    window.localStorage.removeItem("token");
     if (
       this.state.credentials.password.length > 0 &&
       this.state.credentials.username.length > 0
     ) {
-      this.setState({ enteredPassword: true, enteredUsername: true,submitpw:true });
+      this.setState({
+        enteredPassword: true,
+        enteredUsername: true,
+        submitpw: true
+      });
       this.props
         .initiateLogin(this.state.credentials)
 
@@ -127,32 +123,28 @@ class Login extends Component {
     }
   };
 
-  
-
   render() {
     return (
       <div className="gen-login-container">
-        <StyledLoginContainer className="styled-login" id={this.props.loginStart ? 'login-opacity':''}>
-          <StyledLogin  
+        <StyledLoginContainer
+          className="styled-login"
+          id={this.props.loginStart ? "login-opacity" : ""}
+        >
+          <StyledLogin
             onClick={e => {
               e.stopPropagation();
               this.escapeAnimate();
-            }} 
-            >
-            
-
+            }}
+          >
             <div className="title-container">
-             
               <h1 className="welcome-title">
                 Tieme Ndo
                 <i class="fas fa-seedling" />
               </h1>
-
-              
             </div>
 
             <div className="decorative-div" />
-           
+
             <div className="decorative-container">
               <div className="welcome-brand">
                 <i className="fas fa-database" />
@@ -160,7 +152,6 @@ class Login extends Component {
               </div>
             </div>
 
-            
             <div className="local-container-div">
               <div
                 onClick={e => {
@@ -173,19 +164,18 @@ class Login extends Component {
                 }`}
                 id={this.state.enteredUsername ? "" : "bad-credentials"}
               >
-                <div className="pw-form" 
-                //if this was a form the username wouldn't save in browsers
-                onSubmit={e => {
-                      e.preventDefault();
-                      this.submitPw();
-                      this.login(e);
-                    }}>
+                <div
+                  className="pw-form"
+                  //if this was a form the username wouldn't save in browsers
+                  onSubmit={e => {
+                    e.preventDefault();
+                    this.submitPw();
+                    this.login(e);
+                  }}
+                >
                   <input
-                    
                     name="username"
                     type="text"
-                    
-                    
                     value={this.state.credentials.username}
                     onChange={this.handleChanges}
                     className="credential-input"
@@ -255,7 +245,14 @@ class Login extends Component {
                     Enter Your Password
                   </div>
                   <div className="input-icon-cont">
-                    {this.state.passwordVis ? <i onClick={() =>this.togglePwVis()} className="far fa-eye-slash"></i> :<i className="fas fa-eye" onClick={this.togglePwVis}></i>}
+                    {this.state.passwordVis ? (
+                      <i
+                        onClick={() => this.togglePwVis()}
+                        className="far fa-eye-slash"
+                      />
+                    ) : (
+                      <i className="fas fa-eye" onClick={this.togglePwVis} />
+                    )}
                   </div>
                 </div>
               </div>
@@ -274,18 +271,20 @@ class Login extends Component {
               <button
                 type="submit"
                 className="next"
-                
-                id={this.props.loginStart && 'processing'}
+                id={this.props.loginStart && "processing"}
                 onClick={e => {
                   e.stopPropagation();
                   this.submitPw();
                   this.login(e);
                 }}
               >
-                <p id={this.props.loginStart ? "hidden":""}>Next</p>
-                  <Spinner  className={"loadingSpinner"} id={this.props.loginStart ? '':'hidden'} style={{ width: '2.5rem', height: '2.5rem' }} />
-              </button >
-             
+                <p id={this.props.loginStart ? "hidden" : ""}>Next</p>
+                <Spinner
+                  className={"loadingSpinner"}
+                  id={this.props.loginStart ? "" : "hidden"}
+                  style={{ width: "2.5rem", height: "2.5rem" }}
+                />
+              </button>
             </div>
           </StyledLogin>
         </StyledLoginContainer>
@@ -302,12 +301,10 @@ const mapStateToProps = state => {
   };
 };
 
-
 export default connect(
   mapStateToProps,
   { initiateLogin }
 )(Login);
-
 
 //begin styling
 
@@ -327,8 +324,6 @@ const media = Object.keys(sizes).reduce((acc, label) => {
 
   return acc;
 }, {});
-
-
 
 const StyledLoginContainer = styled.div`
   display: flex;
@@ -697,16 +692,7 @@ const StyledLogin = styled.div`
     .local-container-div{
         height:100px;
     }
-
-
-
-      
-      
-      
-
-
-
-
+    
       .far.fa-eye-slash{
         color:lightgray;
         &:hover{
@@ -724,10 +710,4 @@ const StyledLogin = styled.div`
           z-index:3;
         }
       }
-    d
-    
-  
-`
-    
-
-    
+`;

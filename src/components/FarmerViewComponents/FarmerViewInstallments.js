@@ -34,7 +34,6 @@ class FarmerViewInstallments extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log("installment map state to props fireing");
   return {
     installmentCardData: state.installmentCardData.data,
     installmentCardDataStart:

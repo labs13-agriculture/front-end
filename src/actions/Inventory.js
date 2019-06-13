@@ -1,5 +1,9 @@
 import axios from 'axios';
 
+// action functions
+// getInventoryList, addItemToInventory, updateItemInInventory, deleteItemFromInventory
+
+
 // GETTING_INVENTORY, GETTING_INVENTORY_SUCCESS, GETTING_INVENTORY_FAILURE
 export const GETTING_INVENTORY = "GETTING_INVENTORY";
 export const GETTING_INVENTORY_SUCCESS = "GETTING_INVENTORY_SUCCESS";

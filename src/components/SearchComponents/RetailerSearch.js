@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import SearchForm from "./SearchForm";
 import { connect } from "react-redux";
 import styled from "styled-components";
-import GlobalCardContainer from '../GlobalCardContainer';
+import RetailerCardContainer from '../RetailerCardContainer';
 import { RetailerSearchResults as SearchAction } from "../../actions/RetailerSearch";
 
 class RetailerSearch extends Component{
@@ -27,8 +27,7 @@ class RetailerSearch extends Component{
             <div>
                 <Header>Find a Retailer</Header>
                 <SearchForm submitSearch={this.submitSearch}/>
-                <GlobalCardContainer />
-                {this.props.error && <p>Sorry, we couldn't find any retailers that match your search criteria</p>}
+                <RetailerCardContainer />
             </div>
         );
     }

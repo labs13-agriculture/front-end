@@ -1,12 +1,11 @@
 import axios from 'axios';
-import { FARMER_SEARCH_START } from './FarmerSearch';
 
 export const ORGANIZATION_SEARCH_START = 'ORGANIZATION_SEARCH_START';
 export const ORGANIZATION_SEARCH_SUCCESS = 'ORGANIZATION_SEARCH_SUCCESS';
 export const ORGANIZATION_SEARCH_FAILURE = 'ORGANIZATION_SEARCH_FAILURE';
 
 export const OrganizationSearchResults = query => dispatch => {
-    dispatch({type: FARMER_SEARCH_START});
+    dispatch({type: ORGANIZATION_SEARCH_START});
 
     const nameSearch = encodeURI(query.name);
     const locationSearch = encodeURI(query.location);

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import SearchForm from "./SearchForm";
 import { connect } from "react-redux";
 import { OrganizationSearchResults as SearchAction } from "../../actions/OrganizationSearch"
-import GlobalCardContainer from '../GlobalCardContainer';
+import OrganizationCardContainer from '../OrganizationCardContainer';
 import styled from 'styled-components';
 
 
@@ -21,7 +21,7 @@ class OrganizationSearch extends Component{
             <div>
                 <Header>Find an Organization</Header>
                 <SearchForm submitSearch={this.submitSearch}/>
-                <GlobalCardContainer />
+                <OrganizationCardContainer />
             </div>
         );
     }

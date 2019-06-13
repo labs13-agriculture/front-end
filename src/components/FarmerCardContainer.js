@@ -14,8 +14,8 @@ class FarmerCardContainer extends Component{
         return(
             <div>
                 {this.props.searchStart && <h2>Loading...</h2>}
-                {this.props.searchFailure ? <p>No Farmers found</p> : null}
-                {this.props.searchSuccess && this.props.data.map(f => <div key={f.id}>{f.name}</div>)}
+                {this.props.searchSuccess && this.props.data.length == 0 ? <p>No Farmers found</p> : null}
+                {this.props.searchSuccess && this.props.data.map(f => <GlobalClientCard key={f.id} name={f.name} location={f.farmerlocation}/>)}
             </div>
         )
     }

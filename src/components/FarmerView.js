@@ -5,6 +5,7 @@ import FarmerViewInventory from "./FarmerViewComponents/FarmerViewInventory";
 import FarmerViewInstallments from "./FarmerViewComponents/FarmerViewInstallments";
 import FarmerViewYield from "./FarmerViewComponents/FarmerViewYield";
 import FarmerInstallmentForm from "./FarmerViewComponents/FarmerInstallmentForm";
+import { connect } from "react-redux";
 import styled from "styled-components";
 
 class FarmerView extends Component {
@@ -17,8 +18,9 @@ class FarmerView extends Component {
 
   componentDidMount() {
     console.log("Mounted");
-    //axios call to retrieve farmer data
+    //get farmer by id?
   }
+  //axios call to retrieve farmer data
 
   toggleInstallment = () => {
     if (this.state.addingInstallment) {
@@ -38,13 +40,30 @@ class FarmerView extends Component {
   };
 
   render() {
+    let farmerData = [];
+    if (this.props.data) {
+      farmerData = this.props.data.filter(farmer => {
+        console.log("FARMER ID", farmer.id);
+        return farmer.id == this.props.match.params.id;
+      });
+      console.log("FARMER DATA", farmerData);
+      console.log("FARMER DATA PARAMS ID", this.props.match.params.id);
+    }
+
     return (
       <div>
         <StyledContainer>
           <StyledDemos>
             <FarmerViewDemographics
-              name={"Farmer Name"}
-              location={"Farmer Location"}
+              name={farmerData[0] ? farmerData[0].name : "farmer not found"}
+              location={
+                farmerData[0]
+                  ? farmerData[0].farmerlocation.community
+                  : "location not found"
+              }
+              amount={
+                farmerData[0] ? farmerData[0].amountOwed : "amount not found"
+              }
             />
           </StyledDemos>
           <StyledInfoView>
@@ -52,6 +71,7 @@ class FarmerView extends Component {
           </StyledInfoView>
           <StyledInfoView>
             <FarmerViewInstallments
+              name={farmerData[0] ? farmerData[0].name : "farmer not found"}
               toggleInstallment={this.toggleInstallment}
             />
           </StyledInfoView>
@@ -73,11 +93,23 @@ class FarmerView extends Component {
   }
 }
 
-export default FarmerView;
+const mapStateToProps = state => {
+  console.log("Updating state");
+  console.log(state);
+  return {
+    data: state.farmerSearchData.data,
+    error: state.farmerSearchData.error,
+    searchStart: state.farmerSearchData.searchStart,
+    searchSuccess: state.farmerSearchData.searchSuccess,
+    searchFailure: state.farmerSearchData.searchFailure
+  };
+};
+
+export default connect(mapStateToProps)(FarmerView);
 
 const StyledContainer = styled.div`
   display: flex;
-  height: 200px;
+  height: 400px;
 
   flex-direction: row;
   flex-wrap: wrap;

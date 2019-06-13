@@ -24,7 +24,11 @@ class GlobalCardContainer extends Component {
         {this.props.farmerCardDataStart && <h1>Loading ...</h1>}
         {this.props.farmerCardDataSuccess &&
           this.state.farmerCardData.map(farmer => (
-            <GlobalClientCard key={farmer.id} cardData={farmer} />
+            <GlobalClientCard
+              key={farmer.id}
+              id={farmer.id}
+              cardData={farmer}
+            />
           ))}
       </StyledGlobalCardContainer>
     );

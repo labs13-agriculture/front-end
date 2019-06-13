@@ -28,12 +28,12 @@ export const getInstallmentCardData = () => dispatch => {
     });
 };
 
-export const addInstallmentItem = () => dispatch => {
+export const addInstallmentItem = clientId => dispatch => {
   dispatch({ type: DATA_INSTALLMENT_CARD_ADD });
 
   return axios
     .post(
-      "https://tieme-ndo-backend.herokuapp.com/new-installment/{clientId}",
+      `https://tieme-ndo-backend.herokuapp.com/new-installment/${clientId}`,
       {
         headers: {
           "Content-Type": "application/json",

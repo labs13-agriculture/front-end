@@ -21,15 +21,7 @@ class FarmerViewInstallments extends Component {
     return (
       <div>
         <h2>Installment History</h2>
-        {this.props.installmentCardDataStart && <h1>Loading ...</h1>}
-        {this.props.installmentCardDataSuccess &&
-          this.props.installmentCardData.map(installment => (
-            <div key={installment.id}>
-              <span>AMOUNT PAID --- {installment.amountPaid}</span>
-              <br />
-              <span>DATE PAID --- {installment.datePaid}</span>
-            </div>
-          ))}
+
         <i onClick={() => this.props.toggleInstallment()} class="fas fa-plus" />
       </div>
     );

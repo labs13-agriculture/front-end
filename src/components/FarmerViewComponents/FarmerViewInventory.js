@@ -23,10 +23,10 @@ class FarmerViewInventory extends Component {
         {this.props.inventoryCardDataStart && <h1>Loading ... </h1>}
         {this.props.inventoryCardDataSuccess &&
           this.props.inventoryCardData.map(inventory => (
-            <div key={inventory.id}>
-              <span> NUMBER OF BAGS --- {inventory}</span>
+            <div key={inventory.invid}>
+              <span> NUMBER OF BAGS --- {inventory.numbag}</span>
               <br />
-              <span> GOAL --- {inventory}</span>
+              <span> GOAL --- {inventory.goal}</span>
             </div>
           ))}
         <i onClick={() => this.addInventoryItem()} class="fas fa-plus" />

@@ -13,10 +13,10 @@ class GlobalSideNav extends Component {
     };
   }
 
-  navRedirect = path =>{
+  navRedirect = path => {
     console.log(this.props.history);
-    this.props.history.replace(path)
-  }
+    this.props.history.replace(path);
+  };
 
   render() {
     return (
@@ -30,7 +30,6 @@ class GlobalSideNav extends Component {
     );
   }
 }
-
 
 export default GlobalSideNav;
 

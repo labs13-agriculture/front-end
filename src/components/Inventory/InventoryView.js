@@ -23,11 +23,14 @@ function InventoryView(props) {
             {/* Banner */}
             <div className="banner">
                 <h2>Inventory</h2>
+                
             </div>
             <div className="content">
                 {/* Inventory card Container */}
+                <InventoryItem header item={{id:"id", name:"name", quantity:"quantity", active:"active"}} />
+
                 {/* Inventory Cards */}
-                {props.inventoryList && props.inventoryList.map(i => {
+                {props.inventoryList && props.inventoryList.map((i, index) => {
                     let {quantity, item, id} = i;
                     let {name, active} = item;
                     let cleanItem = {id, name, quantity, active}
@@ -70,7 +73,7 @@ const ViewContainer = styled.div`
     /* border-top: 5px solid #d3d3d3; */
     
     .banner {
-        border-bottom: 1.5px solid #d3d3d3;
+        /* border-bottom: 1.5px solid #d3d3d3; */
         padding: 10px 10px 0;
 
         h2 {

@@ -11,6 +11,7 @@ class FarmerViewDemographics extends Component {
       <StyledDiv>
         <h1>{this.props.name}</h1>
         <p>{this.props.location}</p>
+        <p> Amount Owed - ${this.props.amountOwed}</p>
       </StyledDiv>
     );
   }

@@ -34,10 +34,18 @@ class FarmerView extends Component {
     }
   };
 
+  addTransaction() {
+    console.log("Trying to add transaction");
+  }
+
   addInstallment = installment => {
     console.log(installment);
     //axios call here
   };
+
+  addYieldData() {
+    console.log("Trying to add yield data");
+  }
 
   render() {
     let farmerData = [];
@@ -61,33 +69,53 @@ class FarmerView extends Component {
                   ? farmerData[0].farmerlocation.community
                   : "location not found"
               }
-              amount={
+              amountOwed={
                 farmerData[0] ? farmerData[0].amountOwed : "amount not found"
               }
             />
           </StyledDemos>
           <StyledInfoView>
-            <FarmerViewTransactions />
+            <h2>Transactions</h2>
+            {farmerData[0] &&
+              farmerData[0].transactions.map(transaction => {
+                return (
+                  <FarmerViewTransactions
+                    type={transaction.type || ""}
+                    date={transaction.date || ""}
+                  />
+                );
+              })}
+            <i onClick={() => this.addTransaction()} class="fas fa-plus" />
           </StyledInfoView>
           <StyledInfoView>
-            <FarmerViewInstallments
-              name={farmerData[0] ? farmerData[0].name : "farmer not found"}
-              toggleInstallment={this.toggleInstallment}
-            />
+            <h2>Installment History</h2>
+
+            {farmerData[0] &&
+              farmerData[0].installments.map(installment => {
+                return (
+                  <FarmerViewInstallments
+                    amountPaid={installment.amountPaid || ""}
+                    datePaid={installment.datePaid || ""}
+                    toggleInstallment={this.toggleInstallment}
+                  />
+                );
+              })}
+            <i onClick={() => this.toggleInstallment()} class="fas fa-plus" />
           </StyledInfoView>
           <StyledInfoView>
-            <FarmerViewYield />
-          </StyledInfoView>
-          <StyledInfoView>
-            <FarmerViewInventory />
+            <h2>Yield History</h2>
+            {farmerData[0] &&
+              farmerData[0].yieldHistory.map(yields => {
+                return (
+                  <FarmerViewYield
+                    numBags={yields.numBags || ""}
+                    goal={yields.goal || ""}
+                  />
+                );
+              })}
+            <i onClick={() => this.addYieldData()} class="fas fa-plus" />
           </StyledInfoView>
         </StyledContainer>
-        {this.state.addingInstallment && (
-          <FarmerInstallmentForm
-            toggleInstallment={this.toggleInstallment}
-            addInstallment={this.addInstallment}
-          />
-        )}
       </div>
     );
   }

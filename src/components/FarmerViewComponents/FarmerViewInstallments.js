@@ -13,16 +13,21 @@ class FarmerViewInstallments extends Component {
     };
   }
 
-  componentDidMount() {
-    this.props.getInstallmentCardData();
-  }
+  componentDidMount() {}
 
   render() {
     return (
       <div>
-        <h2>Installment History</h2>
-
-        <i onClick={() => this.props.toggleInstallment()} class="fas fa-plus" />
+        <StyledTable>
+          <tr>
+            <StyledTd>TYPE</StyledTd>
+            <StyledTd>DATE</StyledTd>
+          </tr>
+          <tr>
+            <StyledTh>{this.props.amountPaid}</StyledTh>
+            <StyledTh>{this.props.datePaid}</StyledTh>
+          </tr>
+        </StyledTable>
       </div>
     );
   }
@@ -45,3 +50,22 @@ export default connect(
   mapStateToProps,
   { getInstallmentCardData }
 )(FarmerViewInstallments);
+
+const StyledTable = styled.table`
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  margin: 5%;
+  width: 90%;
+`;
+
+const StyledTd = styled.td`
+  border: 1px solid black;
+  text-align: left;
+  padding: 8px;
+`;
+
+const StyledTh = styled.th`
+  border: 1px solid black;
+  text-align: left;
+  padding: 8px 0;
+`;

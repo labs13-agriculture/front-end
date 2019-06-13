@@ -16,30 +16,19 @@ class FarmerViewTransactions extends Component {
     this.props.getTransactionCardData();
   }
 
-  addTransaction() {
-    console.log("Trying to add transaction");
-  }
-
   render() {
     return (
       <div>
-        <h2>Transactions</h2>
-        {this.props.transactionCardDataStart && <h1>Loading ... </h1>}
-        {this.props.transactionCardDataSuccess &&
-          this.props.transactionCardData.map(transaction => (
-            <StyledTable>
-              <tr>
-                <StyledTd>TYPE</StyledTd>
-                <StyledTd>DATE</StyledTd>
-              </tr>
-              <tr>
-                <StyledTh>{transaction.type}</StyledTh>
-                <StyledTh>{transaction.date}</StyledTh>
-              </tr>
-            </StyledTable>
-          ))}
-
-        <i onClick={() => this.addTransaction()} class="fas fa-plus" />
+        <StyledTable>
+          <tr>
+            <StyledTd>TYPE</StyledTd>
+            <StyledTd>DATE</StyledTd>
+          </tr>
+          <tr>
+            <StyledTh>{this.props.type}</StyledTh>
+            <StyledTh>{this.props.date}</StyledTh>
+          </tr>
+        </StyledTable>
       </div>
     );
   }

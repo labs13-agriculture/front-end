@@ -22,7 +22,8 @@ export const FarmerSearchResults = query => dispatch =>{
             }
         })
         .then(res =>{
-            console.log(res);
+            console.log("OUTPUTTING RES")
+            console.log(res.data);
             dispatch({type: FARMER_SEARCH_SUCCESS, payload: res.data})
         })
         .catch(err =>{

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import SearchForm from "./SearchForm";
 import { connect } from "react-redux";
 import { FarmerSearchResults as SearchAction } from "../../actions/FarmerSearch"
-import GlobalCardContainer from '../GlobalCardContainer';
+import FarmerCardContainer from '../FarmerCardContainer';
 import styled from 'styled-components';
 
 
@@ -22,7 +22,7 @@ class FarmerSearch extends Component{
             <div>
                 <Header>Find a Farmer</Header>
                 <SearchForm submitSearch={this.submitSearch}/>
-                <GlobalCardContainer />
+                <FarmerCardContainer />
                 {this.props.error && <p>Sorry, we couldn't find any farmers that match your search criteria</p>}
             </div>
         );

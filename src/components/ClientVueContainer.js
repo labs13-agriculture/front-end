@@ -1,12 +1,11 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import FarmerView from "./FarmerView";
 import styled, { css } from "styled-components";
-import GlobalCardContainer from "./GlobalCardContainer";
 import PrivateRoute from "./PrivateRoute";
 import RetailerSearch from "./SearchComponents/RetailerSearch";
+import { ManageUsersContainer } from "./ManageUsers/ManageUsersContainer";
 import FarmerSearch from "./SearchComponents/FarmerSearch";
 import OrganizationSearch from "./SearchComponents/OrganizationSearch";
+import FarmerView from "./FarmerView";
 
 export default class ClientVueContainer extends Component {
   constructor(props) {
@@ -35,8 +34,12 @@ export default class ClientVueContainer extends Component {
         />
         <PrivateRoute
           exact
-          path="/dashboard/testfarmer"
+          path="/dashboard/farmer/:id"
           component={FarmerView}
+        />
+        <PrivateRoute
+          path="/dashboard/manage-users"
+          component={ManageUsersContainer}
         />
         {/* <GlobalCardContainer/> */}
       </StyledClientVueContainer>

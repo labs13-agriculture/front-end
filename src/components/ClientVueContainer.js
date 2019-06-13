@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 import GlobalCardContainer from './GlobalCardContainer';
 import PrivateRoute from './PrivateRoute';
 import RetailerSearch from './SearchComponents/RetailerSearch';
-
+import {ManageUsersContainer} from './ManageUsers/ManageUsersContainer';
 
 export default class ClientVueContainer extends Component{
     constructor(props){
@@ -18,6 +18,7 @@ export default class ClientVueContainer extends Component{
             <StyledClientVueContainer>
                 {/* //search component will go here */}
                 <PrivateRoute exact path="/dashboard/retailers" component={RetailerSearch} />
+                <PrivateRoute path='/dashboard/manage-users' component={ManageUsersContainer}/>
                 {/* <GlobalCardContainer/> */}
 
             </StyledClientVueContainer>

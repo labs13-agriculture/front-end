@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import styled, { css } from "styled-components";
 import GlobalNav from "./GlobalNav";
 import ClientVueContainer from "./ClientVueContainer";
-
+import PrivateRoute from "../components/PrivateRoute";
+import {ManageUsersContainer} from "./ManageUsers/ManageUsersContainer";
 export default class GlobalVueContainer extends Component {
   constructor(props) {
     super(props);
@@ -14,8 +15,11 @@ export default class GlobalVueContainer extends Component {
   render() {
     return (
       <GVC>
+      
         <GlobalNav/>
+        
         <ClientVueContainer/>
+        
       </GVC>
     );
   }

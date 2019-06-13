@@ -25,7 +25,7 @@ class GlobalSideNav extends Component {
         <Link to="/dashboard/retailers">Retailers</Link>
         <Link to="/dashboard/organizations">Organizations</Link>
         <Link to="/dashboard/farmers">Farmers</Link>
-        <Link to="/dashboard/users">Manage Users</Link>
+        <Link to="/dashboard/manage-users">Manage Users</Link>
       </GN>
     );
   }

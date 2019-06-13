@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import styled, { css } from "styled-components";
-import PrivateRoute from './PrivateRoute';
-import RetailerSearch from './SearchComponents/RetailerSearch';
-import {ManageUsersContainer} from './ManageUsers/ManageUsersContainer';
+import PrivateRoute from "./PrivateRoute";
+import RetailerSearch from "./SearchComponents/RetailerSearch";
+import { ManageUsersContainer } from "./ManageUsers/ManageUsersContainer";
 import FarmerSearch from "./SearchComponents/FarmerSearch";
 import OrganizationSearch from "./SearchComponents/OrganizationSearch";
+import FarmerView from "./FarmerView";
 
 export default class ClientVueContainer extends Component {
   constructor(props) {
@@ -31,7 +32,15 @@ export default class ClientVueContainer extends Component {
           path="/dashboard/organizations"
           component={OrganizationSearch}
         />
-        <PrivateRoute path='/dashboard/manage-users' component={ManageUsersContainer}/>
+        <PrivateRoute
+          exact
+          path="/dashboard/farmer/:id"
+          component={FarmerView}
+        />
+        <PrivateRoute
+          path="/dashboard/manage-users"
+          component={ManageUsersContainer}
+        />
         {/* <GlobalCardContainer/> */}
       </StyledClientVueContainer>
     );

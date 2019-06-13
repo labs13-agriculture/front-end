@@ -59,12 +59,10 @@ class FarmerView extends Component {
               location={
                 farmerData[0]
                   ? farmerData[0].farmerlocation.community
-                  : "nig got his shit paid off"
+                  : "location not found"
               }
               amount={
-                farmerData[0]
-                  ? farmerData[0].amountOwed
-                  : "nig got his shit paid off"
+                farmerData[0] ? farmerData[0].amountOwed : "amount not found"
               }
             />
           </StyledDemos>

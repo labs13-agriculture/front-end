@@ -1,10 +1,8 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import FarmerView from "./FarmerView";
 import styled, { css } from "styled-components";
-import GlobalCardContainer from "./GlobalCardContainer";
-import PrivateRoute from "./PrivateRoute";
-import RetailerSearch from "./SearchComponents/RetailerSearch";
+import PrivateRoute from './PrivateRoute';
+import RetailerSearch from './SearchComponents/RetailerSearch';
+import {ManageUsersContainer} from './ManageUsers/ManageUsersContainer';
 import FarmerSearch from "./SearchComponents/FarmerSearch";
 import OrganizationSearch from "./SearchComponents/OrganizationSearch";
 
@@ -33,6 +31,7 @@ export default class ClientVueContainer extends Component {
           path="/dashboard/organizations"
           component={OrganizationSearch}
         />
+        <PrivateRoute path='/dashboard/manage-users' component={ManageUsersContainer}/>
         {/* <GlobalCardContainer/> */}
       </StyledClientVueContainer>
     );

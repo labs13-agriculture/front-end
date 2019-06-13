@@ -81,7 +81,3 @@ const Header = styled.h1`
 const tempi = {
     color: 'white'
 }
-
-const Tempdiv = styled.div`
-    background: white;
-`;

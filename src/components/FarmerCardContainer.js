@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styled, { css } from "styled-components";
 import { connect } from "react-redux";
 import GlobalClientCard from "./GlobalClientCard";
+import CardContainer from '../styles/CardContainerStyles';
 
 class FarmerCardContainer extends Component {
   constructor(props) {
@@ -12,21 +13,13 @@ class FarmerCardContainer extends Component {
     console.log("re-rendering");
     console.log(this.props.data);
     return (
-      <div>
+      <CardContainer>
         {this.props.searchStart && <h2>Loading...</h2>}
         {this.props.searchSuccess && this.props.data.length == 0 ? (
           <p>No Farmers found</p>
         ) : null}
-        {this.props.searchSuccess &&
-          this.props.data.map(f => (
-            <GlobalClientCard
-              key={f.id}
-              id={f.id}
-              name={f.name}
-              location={f.farmerlocation}
-            />
-          ))}
-      </div>
+        {this.props.searchSuccess && this.props.data.map(r => <GlobalClientCard key={r.id} contact={Object.keys(r).find(w=>w=='farmercontact').replace('contact','')} id={r.id} name={r.name} location={r.farmerlocation}/>)}
+      </CardContainer>
     );
   }
 }

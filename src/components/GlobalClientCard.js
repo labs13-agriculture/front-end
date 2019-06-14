@@ -1,11 +1,19 @@
 import React, { Component } from "react";
 import styled, { css } from "styled-components";
-import { Link } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 
 export default class GlobalClientCard extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      redirect: false
+    };
+  }
+
+  redirect = () =>{
+    this.setState({
+      redirect: true
+    })
   }
 
   render() {
@@ -23,6 +31,7 @@ export default class GlobalClientCard extends Component {
           ) : (
             <p>{this.props.location.length} locations</p>
           )}
+          {this.state.redirect && <Redirect to={`/dashboard/farmer/${this.props.id}`} /> }
         </StyledGlobalClientCard>
       </Link>
     );
@@ -32,11 +41,14 @@ export default class GlobalClientCard extends Component {
 const StyledGlobalClientCard = styled.div`
   height: 150px;
   width: 150px;
+  text-decoration: none;
+  overflow: hidden;
   background: white;
   border: 1px dashed purple;
   display: flex;
   flex-direction: column;
-  overflow: scroll;
+  margin: 10px auto;
+
 
   &:hover {
     cursor: pointer;

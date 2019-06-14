@@ -12,7 +12,7 @@ class OrganizationSearch extends Component{
     constructor(props){
         super(props);
         this.state={
-            addingOrganization:true
+            addingOrganization:false
         }
     }
 

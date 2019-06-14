@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { addInstallmentItem } from "../../actions";
+import { addInstallment } from "../../actions";
 import { connect } from "react-redux";
 
 class FarmerInstallmentForm extends Component {
@@ -38,12 +38,16 @@ class FarmerInstallmentForm extends Component {
       //changed key names here to match java object
       const newInstallment = {
         datePaid:
-          this.state.month + " " + this.state.day + ", " + this.state.year,
-        paid: parseFloat(this.state.amount),
+          this.state.year +
+          "-" +
+          (this.state.month > 9 ? this.state.month : "0" + this.state.month) +
+          "-" +
+          (this.state.day > 9 ? this.state.day : "0" + this.state.day),
+        amountPaid: parseFloat(this.state.amount),
         mode: this.state.payment,
         officer: this.state.officer
       };
-      this.props.addInstallmentItem(newInstallment);
+      this.props.submitForm(newInstallment);
     }
 
     if (
@@ -243,7 +247,7 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { addInstallmentItem }
+  { addInstallment }
 )(FarmerInstallmentForm);
 
 const Modal = styled.div`

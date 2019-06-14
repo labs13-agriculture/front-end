@@ -13,7 +13,7 @@ export default class GlobalClientCard extends Component {
     return (
       //loop through keys of card data in props
       //return h3 element with formatted key value pairs
-      <Link to={`/dashboard/farmer/${this.props.id}`}>
+      <Link to={`/dashboard/${this.props.contact}/${this.props.id}`}>
         <StyledGlobalClientCard>
           <h3>{this.props.name}</h3>
           {!Array.isArray(this.props.location) ? (

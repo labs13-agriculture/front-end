@@ -15,7 +15,7 @@ class RetailerCardContainer extends Component{
             <div>
                 {this.props.searchStart && <h2>Loading...</h2>}
                 {this.props.searchFailure ? <p>No Retailers found</p> : null}
-                {this.props.searchSuccess && this.props.data.map(r => <GlobalClientCard key={r.id} name={r.name} location={r.retailerlocation}/>)}
+                {this.props.searchSuccess && this.props.data.map(r => <GlobalClientCard key={r.id} contact={Object.keys(r).find(w=>w=='retailercontact').replace('contact','')} id={r.id} name={r.name} location={r.retailerlocation}/>)}
             </div>
         )
     }

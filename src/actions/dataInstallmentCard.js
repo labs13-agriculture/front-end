@@ -3,8 +3,6 @@ import axios from "axios";
 export const DATA_INSTALLMENT_CARD_START = "DATA_INSTALLMENT_CARD_START";
 export const DATA_INSTALLMENT_CARD_SUCCESS = "DATA_INSTALLMENT_CARD_SUCCESS";
 export const DATA_INSTALLMENT_CARD_FAILURE = "DATA_INSTALLMENT_CARD_FAILURE";
-export const DATA_INSTALLMENT_CARD_ADD = "DATA_INSTALLMENT_CARD_ADD";
-export const DATA_INSTALLMENT_CARD_DELETE = "DATA_INSTALLMENT_CARD_DELETE";
 
 export const getInstallmentCardData = () => dispatch => {
   dispatch({ type: DATA_INSTALLMENT_CARD_START });
@@ -27,6 +25,8 @@ export const getInstallmentCardData = () => dispatch => {
       dispatch({ type: DATA_INSTALLMENT_CARD_FAILURE, payload: err });
     });
 };
+
+export const DATA_INSTALLMENT_CARD_ADD = "DATA_INSTALLMENT_CARD_ADD";
 
 export const addInstallment = (newInstallment, clientId) => dispatch => {
   dispatch({ type: DATA_INSTALLMENT_CARD_ADD });
@@ -53,19 +53,29 @@ export const addInstallment = (newInstallment, clientId) => dispatch => {
     });
 };
 
-export const deleteInstallment = installmentId => dispatch => {
-  dispatch({ type: DATA_INSTALLMENT_CARD_DELETE });
+export const DELETE_INSTALLMENT = "DATA_INSTALLMENT_CARD_DELETE";
+export const DELETE_INSTALLMENT_SUCCESS = "DELETE_INSTALLMENT_SUCCESS";
+export const DELETE_INSTALLMENT_FAILURE = "DELETE_INSTALLMENT_FAILURE";
+
+export const deleteItemFromInstallment = installmentId => dispatch => {
+  dispatch({ type: DELETE_INSTALLMENT });
   return axios
     .delete(
-      `https://tieme-ndo-backend.herokuapp.com/installment/${installmentId}`
+      `https://tieme-ndo-backend.herokuapp.com/installment/${installmentId}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${window.localStorage.getItem("token")}`
+        }
+      }
     )
     .then(res => {
       console.log("installment_card_data_delete", res.data);
-      dispatch({ type: DATA_INSTALLMENT_CARD_SUCCESS, payload: res.data });
+      dispatch({ type: DELETE_INSTALLMENT_SUCCESS, payload: res.data });
     })
 
     .catch(err => {
       console.log(err);
-      dispatch({ type: DATA_INSTALLMENT_CARD_FAILURE, payload: err });
+      dispatch({ type: DELETE_INSTALLMENT_FAILURE, payload: err });
     });
 };

@@ -4,15 +4,18 @@ import {
   DATA_INSTALLMENT_CARD_SUCCESS,
   DATA_INSTALLMENT_CARD_FAILURE,
   DATA_INSTALLMENT_CARD_ADD,
-  DATA_INSTALLMENT_CARD_DELETE
+  DELETE_INSTALLMENT,
+  DELETE_INSTALLMENT_SUCCESS,
+  DELETE_INSTALLMENT_FAILURE
 } from "../actions";
 
 const initialState = {
+  installmentList: [],
   installmentCardDataStart: false,
   installmentCardDataSuccess: false,
   installmentCardDataFailure: false,
   installmentCardDataAdd: false,
-  installmentCardDataDelete: false,
+  deletingInstallment: false,
   error: ""
 };
 
@@ -36,17 +39,24 @@ export default (state = initialState, action) => {
         ...state,
         installmentCardDataAdd: true
       };
-    case DATA_INSTALLMENT_CARD_DELETE:
+    case DELETE_INSTALLMENT:
       return {
         ...state,
-        installmentCardDataDelete: true
+        deletingInstallment: true,
+        error: false
       };
-    case DATA_INSTALLMENT_CARD_FAILURE:
+
+    case DELETE_INSTALLMENT_SUCCESS:
       return {
         ...state,
-        installmentCardDataStart: false,
-        installmentCardDataSuccess: false,
-        installmentCardDataFailure: true,
+        deletingInstallment: false,
+        installmentList: action.payload,
+        error: false
+      };
+    case DELETE_INSTALLMENT_FAILURE:
+      return {
+        ...state,
+        deletingInstallment: false,
         error: action.payload
       };
     default:

@@ -37,7 +37,8 @@ class FarmerEditInstallmentForm extends Component {
         amountPaid: parseFloat(this.state.amount),
         mode: this.state.payment,
         officer: this.state.officer,
-        datePaid: this.state.id
+        datePaid: this.state.datePaid,
+        id: this.state.id
       };
       this.props.sendEdit(newInstallment);
     }
@@ -160,9 +161,7 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps
-)(FarmerEditInstallmentForm);
+export default connect(mapStateToProps)(FarmerEditInstallmentForm);
 
 const Modal = styled.div`
   width: 65%;

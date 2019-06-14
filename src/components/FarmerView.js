@@ -5,12 +5,12 @@ import FarmerViewInventory from "./FarmerViewComponents/FarmerViewInventory";
 import FarmerViewInstallments from "./FarmerViewComponents/FarmerViewInstallments";
 import FarmerViewYield from "./FarmerViewComponents/FarmerViewYield";
 import FarmerInstallmentForm from "./FarmerViewComponents/FarmerInstallmentForm";
-import { addInstallment, deleteItemFromInstallment } from "../actions";
+import { addInstallment, deleteItemFromInstallmentm updateInstallmentItem } from "../actions";
 import { deleteFarmer } from '../actions/deleteFarmer';
 import { connect } from "react-redux";
 import styled from "styled-components";
 import NewYieldForm from "./NewYieldForm";
-import FarmerEditInstallment from './FarmerViewComponents/FarmerEditInstallment';
+import FarmerEditInstallment from "./FarmerViewComponents/FarmerEditInstallment";
 
 class FarmerView extends Component {
   constructor(props) {
@@ -56,6 +56,10 @@ class FarmerView extends Component {
     console.log("INSTALLMENT ID", installmentId);
   };
 
+  updateInstallmentById = installmentId => {
+    this.props.updateInstallmentItem(installmentId);
+  };
+
   addTransaction() {
     console.log("Trying to add transaction");
   }
@@ -64,27 +68,27 @@ class FarmerView extends Component {
     console.log("Trying to add yield data");
   }
 
-  sendInstallmentEdit = installment =>{
+  sendInstallmentEdit = installment => {
     console.log(installment);
-  }
+    this.updateInstallmentById(installment);
+  };
 
-  toggleInstallmentEdit = installment =>{
+  toggleInstallmentEdit = installment => {
     console.log("GOing to edit", installment);
     console.log(this.state);
-    if(this.state.editingInstallment){
+    if (this.state.editingInstallment) {
       console.log("shold set editing to false");
       this.setState({
         editingInstallment: false,
         installmentToEdit: null
-      })
-    }
-    else{
+      });
+    } else {
       this.setState({
         editingInstallment: true,
         installmentToEdit: installment
-      })
+      });
     }
-  }
+  };
 
   render() {
     let farmerData = [];
@@ -140,7 +144,10 @@ class FarmerView extends Component {
                 toggleInstallment={this.toggleInstallment}
               />
             )}
-            <i onClick={() => this.toggleInstallment()} className="fas fa-plus" />
+            <i
+              onClick={() => this.toggleInstallment()}
+              className="fas fa-plus"
+            />
           </StyledInfoView>
           <StyledInfoView>
             <h2>Yield History</h2>
@@ -165,7 +172,13 @@ class FarmerView extends Component {
         {this.state.addingYield && (
           <NewYieldForm id={this.props.match.params.id} />
         )}
-        {this.state.editingInstallment && <FarmerEditInstallment installment={this.state.installmentToEdit} sendEdit={this.sendInstallmentEdit} toggleInstallment={this.toggleInstallmentEdit}/>}
+        {this.state.editingInstallment && (
+          <FarmerEditInstallment
+            installment={this.state.installmentToEdit}
+            sendEdit={this.sendInstallmentEdit}
+            toggleInstallment={this.toggleInstallmentEdit}
+          />
+        )}
       </div>
     );
   }
@@ -189,6 +202,7 @@ export default connect(
     addInstallment,
     deleteItemFromInstallment,
     deleteFarmer
+    updateInstallmentItem
   }
 )(FarmerView);
 

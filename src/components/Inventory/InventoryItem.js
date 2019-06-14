@@ -11,6 +11,7 @@ function InventoryItem(props) {
     const [isEditing, setIsEditing] = useState(false);
     // this feels dirty
     const [isActive, setIsActive] = useState(item.active)
+    const [newQty, setNewQty] = useState(0);
 
     const toggleEditing = event => {
         event.preventDefault();
@@ -21,10 +22,18 @@ function InventoryItem(props) {
         setIsActive(!isActive)
     }
 
+    const handleQty = event => {
+        setNewQty(event.target.value)
+    }
+
     const submitUpdate = event => {
         event.preventDefault()
         console.log("Pretend we updated an item")
-        //props.updateItemInInventory()
+        item.active = isActive
+        item.quantity = newQty > 0 ? newQty : item.quantity;
+        let clean = {invid: item.invid, quantity: item.quantity, item: {name: item.name, active: item.active}}
+        props.updateItemInInventory(clean)
+        setIsEditing(false);
     }
 
     return (
@@ -41,7 +50,11 @@ function InventoryItem(props) {
                     <div className="name">{item.name}</div>
                     {/* if editing its the quantity input otherwise it just displays item quantity */}
                     { isEditing
-                        ? <input className="qty-input" type="text" name="quantity" placeholder={item.quantity}/>
+                        ? <input className="qty-input" type="text" name="quantity" 
+                            placeholder={item.quantity} 
+                            onChange={handleQty}
+                            value={newQty}
+                            />
                         : <div className="quantity">{item.quantity}</div>
                     }
                     { isEditing
@@ -68,7 +81,7 @@ function InventoryItem(props) {
                     <button className='add' onClick={props.doModal}>Add</button>
                 </>)}
                 {isEditing
-                ? <button className='add' onclick={submitUpdate}>Submit</button>
+                ? <button className='add' onClick={submitUpdate}>Submit</button>
                 : <button
                     // this button isn't used in the header but is set to invisible to keep spacing consistent
                     className={`delete${props.header ? " hidden" : ""}`}

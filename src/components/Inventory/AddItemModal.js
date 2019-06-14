@@ -24,6 +24,7 @@ function AddItemModal(props) {
         // the way things need to be formatted is a big yikes
         let cleanedItem = {quantity: newItem.quantity, item: {name: newItem.itemName}}
         props.addItemToInventory(cleanedItem);
+        props.doModal();
     }
 
     return(

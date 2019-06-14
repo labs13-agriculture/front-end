@@ -5,10 +5,10 @@ import FarmerViewInventory from "./FarmerViewComponents/FarmerViewInventory";
 import FarmerViewInstallments from "./FarmerViewComponents/FarmerViewInstallments";
 import FarmerViewYield from "./FarmerViewComponents/FarmerViewYield";
 import FarmerInstallmentForm from "./FarmerViewComponents/FarmerInstallmentForm";
-import { addInstallment, deleteInstallment } from "../actions";
+import { addInstallment, deleteItemFromInstallment } from "../actions";
 import { connect } from "react-redux";
 import styled from "styled-components";
-import NewYieldForm from './NewYieldForm';
+import NewYieldForm from "./NewYieldForm";
 
 class FarmerView extends Component {
   constructor(props) {
@@ -24,7 +24,7 @@ class FarmerView extends Component {
   componentDidMount() {
     console.log("Mounted");
     //get farmer by id?
-    console.log(this.props.match.params.id)
+    console.log(this.props.match.params.id);
   }
   //axios call to retrieve farmer data
 
@@ -46,9 +46,9 @@ class FarmerView extends Component {
     this.props.addInstallment(newInstallment, this.props.match.params.id);
   };
 
-  deleteInstallmentById = (event, installmentId) => {
-    event.preventDefailt();
-    this.props.deleteInstallment(installmentId, this.props.match.params.id);
+  deleteInstallmentById = installmentId => {
+    this.props.deleteItemFromInstallment(installmentId);
+    console.log("INSTALLMENT ID", installmentId);
   };
 
   addTransaction() {
@@ -94,10 +94,13 @@ class FarmerView extends Component {
 
             {farmerData[0] &&
               farmerData[0].installments.map(installment => {
+                console.log("FARMER DATA INSTALLMENT", installment);
                 return (
                   <FarmerViewInstallments
                     amountPaid={installment.amountPaid || ""}
                     datePaid={installment.datePaid || ""}
+                    id={installment.id}
+                    deleteInstallmentById={this.deleteInstallmentById}
                   />
                 );
               })}
@@ -105,7 +108,6 @@ class FarmerView extends Component {
               <FarmerInstallmentForm
                 submitForm={this.submitInstallment}
                 toggleInstallment={this.toggleInstallment}
-                deleteInstallmentById={this.deleteInstallmentById}
               />
             )}
             <i onClick={() => this.toggleInstallment()} class="fas fa-plus" />
@@ -130,7 +132,9 @@ class FarmerView extends Component {
             addInstallment={this.addInstallment}
           />
         )}
-        {this.state.addingYield && <NewYieldForm id={this.props.match.params.id}/>}
+        {this.state.addingYield && (
+          <NewYieldForm id={this.props.match.params.id} />
+        )}
       </div>
     );
   }
@@ -151,7 +155,8 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   {
-    addInstallment
+    addInstallment,
+    deleteItemFromInstallment
   }
 )(FarmerView);
 

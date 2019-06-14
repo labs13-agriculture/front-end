@@ -16,6 +16,7 @@ class FarmerViewInstallments extends Component {
   componentDidMount() {}
 
   render() {
+    console.log("FARMER VIEW INSTALLMENTS PROPS", this.props);
     return (
       <div>
         <StyledTable>
@@ -27,7 +28,7 @@ class FarmerViewInstallments extends Component {
             <StyledTh>{this.props.amountPaid}</StyledTh>
             <StyledTh>{this.props.datePaid}</StyledTh>
             <i
-              onClick={() => this.props.deleteInstallmentById()}
+              onClick={() => this.props.deleteInstallmentById(this.props.id)}
               class="fas fa-trash"
             />
           </tr>

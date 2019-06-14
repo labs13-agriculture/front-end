@@ -12,6 +12,10 @@ export default class GlobalSideNav extends Component {
     };
   }
 
+  logout = () =>{
+    window.localStorage.removeItem('token');
+  }
+
   render() {
     return (
       <GSN>
@@ -41,6 +45,13 @@ export default class GlobalSideNav extends Component {
           <Link to="/inventory" style={{ textDecoration: "none" }}>
             <i className="fas fa-boxes">
               <span style={{ margin: "0 10px" }}>Inventory</span>
+            </i>
+          </Link>
+        </StyledDiv>
+        <StyledDiv className="hvr-underline-reveal">
+          <Link onClick={() => this.logout()} to="#" style={{ textDecoration: "none" }}>
+            <i className="fas fa-sign-out-alt">
+              <span style={{ margin: "0 10px" }}>Log Out</span>
             </i>
           </Link>
         </StyledDiv>

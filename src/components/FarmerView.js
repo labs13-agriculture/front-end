@@ -8,18 +8,23 @@ import FarmerInstallmentForm from "./FarmerViewComponents/FarmerInstallmentForm"
 import { addInstallment, deleteInstallment } from "../actions";
 import { connect } from "react-redux";
 import styled from "styled-components";
+import NewYieldForm from './NewYieldForm';
 
 class FarmerView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      addingInstallment: false
+      addingInstallment: false,
+      addingYield: false,
+      editingYield: false,
+      yieldToEdit: null
     };
   }
 
   componentDidMount() {
     console.log("Mounted");
     //get farmer by id?
+    console.log(this.props.match.params.id)
   }
   //axios call to retrieve farmer data
 
@@ -67,15 +72,7 @@ class FarmerView extends Component {
         <StyledContainer>
           <StyledDemos>
             <FarmerViewDemographics
-              name={farmerData[0] ? farmerData[0].name : "farmer not found"}
-              location={
-                farmerData[0]
-                  ? farmerData[0].farmerlocation.community
-                  : "location not found"
-              }
-              amountOwed={
-                farmerData[0] ? farmerData[0].amountOwed : "amount not found"
-              }
+              farmer={farmerData[0] ? farmerData[0] : "farmer not found"}
             />
           </StyledDemos>
           <StyledInfoView>
@@ -127,6 +124,13 @@ class FarmerView extends Component {
             <i onClick={() => this.addYieldData()} class="fas fa-plus" />
           </StyledInfoView>
         </StyledContainer>
+        {this.state.addingInstallment && (
+          <FarmerInstallmentForm
+            toggleInstallment={this.toggleInstallment}
+            addInstallment={this.addInstallment}
+          />
+        )}
+        {this.state.addingYield && <NewYieldForm id={this.props.match.params.id}/>}
       </div>
     );
   }

@@ -24,7 +24,7 @@ export default function InventoryItem(props) {
                 {!props.header ?(<>
                     <button className={`edit${props.header ? " hidden" : ""}`}>Edit</button>
                 </> ) : ( <>
-                    <button className='add'>Add</button>
+                    <button className='add' onClick={props.doModal}>Add</button>
                 </>)}
                 <button className={`delete${props.header ? " hidden" : ""}`}>Delete</button>
             </div>

@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import InventoryItem from './InventoryItem';
+import AddItemModal from './AddItemModal';
 
 import {
     // Import actions here
@@ -9,6 +10,9 @@ import {
 } from '../../actions'
 
 function InventoryView(props) {
+
+    // These are the stateful values
+    const [useModal, setModal] = useState(false);
   
     useEffect(() => {
       // put in the call to get items here
@@ -27,7 +31,11 @@ function InventoryView(props) {
             </div>
             <div className="content">
                 {/* Inventory card Container */}
-                <InventoryItem header item={{id:"id", name:"name", quantity:"quantity", active:"active"}} />
+                <InventoryItem 
+                    header
+                    item={{id:"id", name:"name", quantity:"quantity", active:"active"}}
+                    doModal={() => {setModal(true)}}
+                />
 
                 {/* Inventory Cards */}
                 {props.inventoryList && props.inventoryList.map((i, index) => {
@@ -41,6 +49,7 @@ function InventoryView(props) {
                 })}
             </div>
             
+            {useModal && <AddItemModal doModal={() => setModal(false)}/>}
         </ViewContainer>
     );
 }
@@ -56,7 +65,10 @@ export default connect(state => ({
 
 }), {
     // connect actions here
-    getInventoryList
+    getInventoryList,
+    addItemToInventory,
+    updateItemInInventory,
+    deleteItemFromInventory
 })(InventoryView)
 
 

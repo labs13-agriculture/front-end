@@ -1,22 +1,19 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { addInstallment } from "../../actions";
 import { connect } from "react-redux";
 
-class FarmerInstallmentForm extends Component {
+class FarmerEditInstallmentForm extends Component {
   constructor(props) {
     super(props);
     //default date form to today
     const today = new Date();
     this.state = {
-      payment: "MTN Mobile Money",
-      amount: "",
-      month: today.getMonth() + 1,
-      day: today.getDate(),
-      year: today.getYear() + 1900,
+      payment: this.props.installment.mode,
+      amount: this.props.installment.amountPaid,
       needsAmount: false,
-      officer: "",
-      needsOfficer: false
+      officer: this.props.installment.officer,
+      needsOfficer: false,
+      id: this.props.installment.id
     };
   }
 
@@ -37,17 +34,11 @@ class FarmerInstallmentForm extends Component {
       });
       //changed key names here to match java object
       const newInstallment = {
-        datePaid:
-          this.state.year +
-          "-" +
-          (this.state.month > 9 ? this.state.month : "0" + this.state.month) +
-          "-" +
-          (this.state.day > 9 ? this.state.day : "0" + this.state.day),
         amountPaid: parseFloat(this.state.amount),
         mode: this.state.payment,
         officer: this.state.officer
       };
-      this.props.submitForm(newInstallment);
+      this.props.sendEdit(newInstallment);
     }
 
     if (
@@ -71,10 +62,6 @@ class FarmerInstallmentForm extends Component {
     }
   };
 
-  changeDate = e => {
-    console.log(document.querySelector('input[type="date"]').value);
-  };
-
   handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value
@@ -89,41 +76,6 @@ class FarmerInstallmentForm extends Component {
 
   render() {
     console.log(this.state);
-    const monthArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-    const dayArray = [
-      1,
-      2,
-      3,
-      4,
-      5,
-      6,
-      7,
-      8,
-      9,
-      10,
-      11,
-      12,
-      13,
-      14,
-      15,
-      16,
-      17,
-      18,
-      19,
-      20,
-      21,
-      22,
-      23,
-      24,
-      25,
-      26,
-      27,
-      28,
-      29,
-      30,
-      31
-    ];
-    const yearArray = [2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025];
     return (
       <Modal>
         <i
@@ -131,44 +83,6 @@ class FarmerInstallmentForm extends Component {
           className="fas fa-times"
         />
         <form onSubmit={e => this.formSubmit(e)}>
-          <Labels>
-            Payment Date:
-            <div>
-              <Dropdown
-                value={this.state.month}
-                name="month"
-                onChange={this.handleChange}
-              >
-                {monthArray.map((month, index) => (
-                  <option key={index} value={month}>
-                    {month}
-                  </option>
-                ))}
-              </Dropdown>
-              <Dropdown
-                value={this.state.day}
-                name="day"
-                onChange={this.handleChange}
-              >
-                {dayArray.map((day, index) => (
-                  <option key={index} value={day}>
-                    {day}
-                  </option>
-                ))}
-              </Dropdown>
-              <Dropdown
-                value={this.state.year}
-                name="year"
-                onChange={this.handleChange}
-              >
-                {yearArray.map((year, index) => (
-                  <option key={index} value={year}>
-                    {year}
-                  </option>
-                ))}
-              </Dropdown>
-            </div>
-          </Labels>
           <Labels>
             Payment Amount:
             <input
@@ -246,9 +160,8 @@ const mapStateToProps = state => {
 };
 
 export default connect(
-  mapStateToProps,
-  { addInstallment }
-)(FarmerInstallmentForm);
+  mapStateToProps
+)(FarmerEditInstallmentForm);
 
 const Modal = styled.div`
   width: 65%;

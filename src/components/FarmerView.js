@@ -5,7 +5,7 @@ import FarmerViewInventory from "./FarmerViewComponents/FarmerViewInventory";
 import FarmerViewInstallments from "./FarmerViewComponents/FarmerViewInstallments";
 import FarmerViewYield from "./FarmerViewComponents/FarmerViewYield";
 import FarmerInstallmentForm from "./FarmerViewComponents/FarmerInstallmentForm";
-import { addInstallment, deleteItemFromInstallmentm updateInstallmentItem } from "../actions";
+import { addInstallment, deleteItemFromInstallment, updateInstallmentItem } from "../actions";
 import { deleteFarmer } from '../actions/deleteFarmer';
 import { connect } from "react-redux";
 import styled from "styled-components";
@@ -201,7 +201,7 @@ export default connect(
   {
     addInstallment,
     deleteItemFromInstallment,
-    deleteFarmer
+    deleteFarmer,
     updateInstallmentItem
   }
 )(FarmerView);

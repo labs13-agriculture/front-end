@@ -7,18 +7,23 @@ import FarmerViewYield from "./FarmerViewComponents/FarmerViewYield";
 import FarmerInstallmentForm from "./FarmerViewComponents/FarmerInstallmentForm";
 import { connect } from "react-redux";
 import styled from "styled-components";
+import NewYieldForm from './NewYieldForm';
 
 class FarmerView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      addingInstallment: false
+      addingInstallment: false,
+      addingYield: false,
+      editingYield: false,
+      yieldToEdit: null
     };
   }
 
   componentDidMount() {
     console.log("Mounted");
     //get farmer by id?
+    console.log(this.props.match.params.id)
   }
   //axios call to retrieve farmer data
 
@@ -33,6 +38,35 @@ class FarmerView extends Component {
       });
     }
   };
+
+  toggleYield = () =>{
+    if(this.state.addingYield){
+      this.setState({
+        addingYield: false
+      })
+    }
+    else{
+      this.setState({
+        addingYield: true
+      })
+    }
+  }
+
+  toggleYieldEdit = editingYield =>{
+    console.log("toggling yield", editingYield)
+    if(this.state.editingYield){
+      this.setState({
+        editingYield: false,
+        yieldToEdit: null
+      })
+    }
+    else{
+      this.setState({
+        editingYield: true,
+        yieldToEdit: editingYield
+      })
+    }
+  }
 
   addInstallment = installment => {
     console.log(installment);
@@ -88,6 +122,7 @@ class FarmerView extends Component {
             addInstallment={this.addInstallment}
           />
         )}
+        {this.state.addingYield && <NewYieldForm id={this.props.match.params.id}/>}
       </div>
     );
   }

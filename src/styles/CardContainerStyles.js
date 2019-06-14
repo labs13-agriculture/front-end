@@ -20,6 +20,19 @@ const CardContainer = styled.div`
     border: 2px solid turquoise;
     height: 100%;
     width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+  h3{
+    text-decoration: none;
+  }
+
+  p{
+    text-decoration: none;
+  }
+
 `;
 
 export default CardContainer

@@ -14,7 +14,7 @@ class FarmerViewYield extends Component {
   }
 
   addYieldData() {
-    console.log("Trying to add yield data");
+    this.props.toggleYield();
   }
 
   render() {

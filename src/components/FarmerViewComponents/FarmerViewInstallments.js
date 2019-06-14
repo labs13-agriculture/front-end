@@ -29,7 +29,11 @@ class FarmerViewInstallments extends Component {
             <StyledTh>{this.props.datePaid}</StyledTh>
             <i
               onClick={() => this.props.deleteInstallmentById(this.props.id)}
-              class="fas fa-trash"
+              className="fas fa-trash"
+            />
+            <i
+              onClick={() => this.props.deleteInstallmentById(this.props.id)}
+              className="fas fa-edit"
             />
           </tr>
         </StyledTable>

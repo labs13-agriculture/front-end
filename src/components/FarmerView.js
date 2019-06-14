@@ -15,9 +15,8 @@ class FarmerView extends Component {
     super(props);
     this.state = {
       addingInstallment: false,
-      addingYield: false,
-      editingYield: false,
-      yieldToEdit: null
+      editingInstallment: false,
+      installmentToEdit: null
     };
   }
 
@@ -110,7 +109,7 @@ class FarmerView extends Component {
                 toggleInstallment={this.toggleInstallment}
               />
             )}
-            <i onClick={() => this.toggleInstallment()} class="fas fa-plus" />
+            <i onClick={() => this.toggleInstallment()} className="fas fa-plus" />
           </StyledInfoView>
           <StyledInfoView>
             <h2>Yield History</h2>
@@ -123,13 +122,13 @@ class FarmerView extends Component {
                   />
                 );
               })}
-            <i onClick={() => this.addYieldData()} class="fas fa-plus" />
+            <i onClick={() => this.addYieldData()} className="fas fa-plus" />
           </StyledInfoView>
         </StyledContainer>
         {this.state.addingInstallment && (
           <FarmerInstallmentForm
             toggleInstallment={this.toggleInstallment}
-            addInstallment={this.addInstallment}
+            submitForm={this.submitInstallment}
           />
         )}
         {this.state.addingYield && (

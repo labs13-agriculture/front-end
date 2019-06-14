@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
 
-export default function InventoryItem(props) {
+import { deleteItemFromInventory } from '../../actions'
+
+function InventoryItem(props) {
     let {item} = props;
 
     return (
@@ -26,11 +28,20 @@ export default function InventoryItem(props) {
                 </> ) : ( <>
                     <button className='add' onClick={props.doModal}>Add</button>
                 </>)}
-                <button className={`delete${props.header ? " hidden" : ""}`}>Delete</button>
+                <button 
+                    className={`delete${props.header ? " hidden" : ""}`}
+                    onClick={() => props.deleteItemFromInventory(item.invid)}
+                >Delete</button>
             </div>
         </Container>
     )
 }
+
+export default connect(state => ({
+
+}), {
+    deleteItemFromInventory
+})(InventoryItem)
 
 const Container = styled.div`
     width: 100%;

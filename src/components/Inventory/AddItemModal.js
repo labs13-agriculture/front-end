@@ -91,5 +91,7 @@ const Modal = styled.div`
         border-radius: 5px;
 
         font-size: 2rem;
+
+        box-shadow: 0px 0px 25px rgba(0,0,0,0.4);
     }
 `

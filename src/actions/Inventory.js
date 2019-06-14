@@ -88,10 +88,10 @@ export const DELETING_INVENTORY = "DELETING_INVENTORY";
 export const DELETING_INVENTORY_SUCCESS = "DELETING_INVENTORY_SUCCESS";
 export const DELETING_INVENTORY_FAILURE = "DELETING_INVENTORY_FAILURE";
 
-export const deleteItemFromInventory = (item) => dispatch => {
+export const deleteItemFromInventory = (itemid) => dispatch => {
     dispatch({type: DELETING_INVENTORY});
 
-    const urlString = `${BASE_URL}/inventory/update/${item.id}`
+    const urlString = `${BASE_URL}/inventory/delete/${itemid}`
 
     return axios
         .delete(urlString, {

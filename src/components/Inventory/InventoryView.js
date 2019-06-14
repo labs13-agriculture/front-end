@@ -39,12 +39,12 @@ function InventoryView(props) {
 
                 {/* Inventory Cards */}
                 {props.inventoryList && props.inventoryList.map((i, index) => {
-                    let {quantity, item, id} = i;
+                    let {quantity, item, invid} = i;
                     let {name, active} = item;
-                    let cleanItem = {id, name, quantity, active}
+                    let cleanItem = {invid, name, quantity, active}
 
                     return (
-                        <InventoryItem key={id} item={cleanItem} />
+                        <InventoryItem key={invid} item={cleanItem} />
                     );
                 })}
             </div>

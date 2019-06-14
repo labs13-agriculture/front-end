@@ -1,4 +1,5 @@
 import axios from "axios";
+import {BASE_URL} from '../config.js'
 // import {CLIENT_NAME} from '../config';
 // import {CLIENT_SECRET} from '../config';
 
@@ -16,7 +17,7 @@ export const initiateLogin = creds => dispatch => {
   return (
     axios
       // .post('http://localhost:5000/api/login',creds)
-      .post("https://tieme-ndo-backend.herokuapp.com/oauth/token", body, {
+      .post(`${BASE_URL}/oauth/token`, body, {
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
           //   "Authorization": 'Basic ' + `${window.btoa(process.env.REACT_APP_AUTH_CLIENT_ID + ':' + process.env.REACT_APP_AUTH_CLIENT_SECRET)}`}

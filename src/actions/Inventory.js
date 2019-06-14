@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {BASE_URL} from '../config.js'
 
 // action functions
 // getInventoryList, addItemToInventory, updateItemInInventory, deleteItemFromInventory
@@ -12,7 +13,7 @@ export const GETTING_INVENTORY_FAILURE = "GETTING_INVENTORY_FAILURE";
 export const getInventoryList = () => dispatch => {
     dispatch({type: GETTING_INVENTORY});
 
-    const urlString = `https://tieme-ndo-backend.herokuapp.com/inventory/all`
+    const urlString = `${BASE_URL}/inventory/all`
 
     return axios
         .get(urlString,{
@@ -38,7 +39,7 @@ export const ADDING_INVENTORY_FAILURE = "ADDING_INVENTORY_FAILURE";
 export const addItemToInventory = (item) => dispatch => {
     dispatch({type: ADDING_INVENTORY});
 
-    const urlString = `https://tieme-ndo-backend.herokuapp.com/inventory/add`
+    const urlString = `${BASE_URL}/inventory/add`
 
     return axios
         .post(urlString, item, {
@@ -64,7 +65,7 @@ export const UPDATING_INVENTORY_FAILURE = "UPDATING_INVENTORY_FAILURE";
 export const updateItemInInventory = (item) => dispatch => {
     dispatch({type: UPDATING_INVENTORY});
 
-    const urlString = `https://tieme-ndo-backend.herokuapp.com/inventory/update/${item.id}`
+    const urlString = `${BASE_URL}/inventory/update/${item.id}`
 
     return axios
         .put(urlString, item, {
@@ -90,7 +91,7 @@ export const DELETING_INVENTORY_FAILURE = "DELETING_INVENTORY_FAILURE";
 export const deleteItemFromInventory = (item) => dispatch => {
     dispatch({type: DELETING_INVENTORY});
 
-    const urlString = `https://tieme-ndo-backend.herokuapp.com/inventory/update/${item.id}`
+    const urlString = `${BASE_URL}/inventory/update/${item.id}`
 
     return axios
         .delete(urlString, {

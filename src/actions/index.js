@@ -89,3 +89,7 @@ export {
   DELETING_INVENTORY, DELETING_INVENTORY_SUCCESS, DELETING_INVENTORY_FAILURE,
   getInventoryList, addItemToInventory, updateItemInInventory, deleteItemFromInventory
 } from './Inventory'
+
+export {
+  GETTING_ITEMTYPES, GETTING_ITEMTYPES_SUCCESS, GETTING_ITEMTYPES_FAILURE, getItemTypes
+} from './ItemType'

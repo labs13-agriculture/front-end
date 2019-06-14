@@ -1,22 +1,53 @@
 import React, {useEffect, useState} from "react";
 import styled from "styled-components";
+import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import { connect } from "react-redux";
+
+import {
+    // For when we get there.
+    addItemToInventory
+} from '../../actions'
 
 function AddItemModal(props) {
 
-    useEffect(() => {
+    const [newItem, setNewItem] = useState({itemName: "", quantity: ""})
 
-    }, [])
-    
+    const handleInputs = event => {
+        setNewItem({
+            ...newItem,
+            [event.target.name]: event.target.value
+        })
+    }
+
+    const submit = e => {
+        e.preventDefault();
+        // the way things need to be formatted is a big yikes
+        let cleanedItem = {quantity: newItem.quantity, item: {name: newItem.itemName}}
+        props.addItemToInventory(cleanedItem);
+    }
+
     return(
         <Modal>
             <div onClick={props.doModal} className="center">
                 <div onClick={event => event.stopPropagation()}className="content">
-                    <h2>Add Item To Inventory</h2>
-                    <select>
-                        <option value="test">test</option>
-                    </select>
-                    <input type="number"/>
+                    <Form>
+                        <FormGroup>
+                            <h1>Add New Item</h1>
+                            <Label for="itemName">New Item Name</Label>
+                            <Input 
+                                type="text" name="itemName" id="itemName" placeholder="New Item Name" 
+                                value={newItem.itemName} onChange={handleInputs}
+                            />
+                        </FormGroup>
+                        <FormGroup>
+                            <Label for="quantity">Quantity In Stock</Label>
+                            <Input type="quantity" name="quantity" id="quantity" placeholder="Quantity"
+                            value={newItem.quantity} onChange={handleInputs}
+                        />
+                        </FormGroup>
+                        
+                        <Button onClick={submit}>Submit</Button>
+                    </Form>
                 </div>
             </div>
         </Modal>
@@ -26,7 +57,7 @@ function AddItemModal(props) {
 export default connect(state => ({
 
 }), {
-
+    addItemToInventory
 })(AddItemModal)
 
 const Modal = styled.div`
@@ -53,12 +84,12 @@ const Modal = styled.div`
 
     .content {
         background: #fefefe;
-        min-width: 500px;
-        min-height: 500px;
+        min-width: 350px;
         width: 50%;
-        height: 50%;
         padding: 10px;
 
         border-radius: 5px;
+
+        font-size: 2rem;
     }
 `

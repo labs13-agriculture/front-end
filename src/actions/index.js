@@ -72,3 +72,11 @@ export {
   getInventoryCardData,
   addInventoryItem
 } from "./dataInventoryCard";
+
+export {
+  ADD_TRANSACTION_START,
+  ADD_TRANSACTION_SUCCESS,
+  ADD_TRANSACTION_FAILURE,
+  addNewTransaction,
+  
+} from "./addNewTransactionRetailer";

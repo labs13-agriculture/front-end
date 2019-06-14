@@ -67,7 +67,7 @@ class RetailerView extends Component {
             />
           </StyledDemos>
           <StyledInfoView>
-            <FarmerViewTransactions transactions={farmerData[0] ? farmerData[0].transactions:"transaction not found"}/>
+            <FarmerViewTransactions match={this.props.match} transactions={farmerData[0] ? farmerData[0].transactions:"transaction not found"}/>
           </StyledInfoView>
           <StyledInfoView>
             <FarmerViewInstallments
@@ -81,7 +81,7 @@ class RetailerView extends Component {
          
         </StyledContainer>
         {this.state.addingInstallment && (
-          <FarmerInstallmentForm
+          <FarmerInstallmentForm 
             toggleInstallment={this.toggleInstallment}
             addInstallment={this.addInstallment}
         

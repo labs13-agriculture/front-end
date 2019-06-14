@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-
+import RetailerModal from "./RetailerModal";
 import { getTransactionCardData } from "../../actions";
 import { connect } from "react-redux";
 
@@ -40,6 +40,7 @@ class FarmerViewTransactions extends Component {
           )):<h1>LOADING . . .</h1>}
 
         <i onClick={() => this.addTransaction()} class="fas fa-plus" />
+        <RetailerModal match={this.props.match}/>
         {this.props.transactions.length ==0 && <h1>No transaction data</h1>}
       </div>
     );

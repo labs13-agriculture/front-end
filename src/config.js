@@ -1,8 +1,9 @@
 export const AUTH_TOKEN = "" // key used to store token in local history
-export const BASE_URL = '' // base url for api requests
+
+// change this to `http://localhost:4040` to work on local
+export const BASE_URL = 'https://tieme-ndo-backend.herokuapp.com' // base url for api requests
 
 export const theme = {
     // can store colors here to use them throughout the application in styled-components
 }
-
 

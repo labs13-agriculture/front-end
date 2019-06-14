@@ -15,6 +15,9 @@ import reducerInventoryCard from "../reducers/reducerInventoryCard";
 import farmerSearchReducer from "../reducers/farmerSearchReducer";
 import organizationSearchReducer from "../reducers/organizationSearchReducer";
 import reducerRetailerTransaction from "../reducers/reducerRetailerTransaction";
+import inventoryReducer from "../reducers/inventoryReducer"
+import itemTypeReducer from "./itemTypeReducer.js"
+
 // import getData from '../reducers/getdata';
 // import registrationR from '../reducers/registerreducer';
 // import getSentiment from '../reducers/sentimentReducer';
@@ -36,6 +39,8 @@ export default combineReducers({
   farmerSearchData: farmerSearchReducer,
   organizationSearchData: organizationSearchReducer,
   addTransactionRetailer:reducerRetailerTransaction
+  inventory: inventoryReducer,
+  itemTypes: itemTypeReducer
   // // getData,
   // registrationR,
   // getSentiment

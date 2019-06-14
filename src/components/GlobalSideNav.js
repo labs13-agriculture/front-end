@@ -25,15 +25,22 @@ export default class GlobalSideNav extends Component {
         </StyledDiv>
         <StyledDiv className="hvr-underline-reveal">
           <Link to="#" style={{ textDecoration: "none" }}>
-            <i class="fas fa-search">
+            <i className="fas fa-search">
               <span style={{ margin: "0 10px" }}>Search</span>
             </i>
           </Link>
         </StyledDiv>
         <StyledDiv className="hvr-underline-reveal">
           <Link to="#" style={{ textDecoration: "none" }}>
-            <i class="fas fa-user">
+            <i className="fas fa-user">
               <span style={{ margin: "0 10px" }}>Search</span>
+            </i>
+          </Link>
+        </StyledDiv>
+        <StyledDiv className="hvr-underline-reveal">
+          <Link to="/inventory" style={{ textDecoration: "none" }}>
+            <i className="fas fa-boxes">
+              <span style={{ margin: "0 10px" }}>Inventory</span>
             </i>
           </Link>
         </StyledDiv>
@@ -41,15 +48,6 @@ export default class GlobalSideNav extends Component {
         {/* {this.state.names.map(user => <h1>{user.username}</h1>)} */}
       </GSN>
     );
-  }
-
-  componentDidMount() {
-    Axios.get("https://tieme-ndo-backend.herokuapp.com/users")
-      .then(resp => {
-        console.log(resp);
-        this.setState({ names: resp.data });
-      })
-      .catch(err => console.log(err));
   }
 }
 

@@ -4,12 +4,27 @@ import { connect } from "react-redux";
 import styled from "styled-components";
 import RetailerCardContainer from '../RetailerCardContainer';
 import { RetailerSearchResults as SearchAction } from "../../actions/RetailerSearch";
+import NewRetailerForm from '../NewRetailerForm';
+import { addRetailer } from '../../actions/retailerPost';
 
 class RetailerSearch extends Component{
     constructor(props){
         super(props);
         this.state = {
-            defaultView: true
+            addingRetailer: false
+        }
+    }
+
+    toggleAddRetailer = () =>{
+        if(this.state.addingRetailer){
+            this.setState({
+                addingRetailer: false
+            })
+        }
+        else{
+            this.setState({
+                addingRetailer: true
+            })
         }
     }
 
@@ -18,6 +33,11 @@ class RetailerSearch extends Component{
         this.setState({
             defaultView: false
         })
+    }
+
+    submitRetailer = newRetailer =>{
+        console.log(newRetailer);
+        this.props.addRetailer(newRetailer);
     }
 
 
@@ -29,6 +49,8 @@ class RetailerSearch extends Component{
                 <SearchForm submitSearch={this.submitSearch}/>
                 <RetailerCardContainer />
                 {this.props.error && <p>Sorry, we couldn't find any farmers that match your search criteria</p>}
+                {this.state.addingRetailer && <NewRetailerForm submitForm={this.submitRetailer} />}
+                <i style={tempi} onClick={() => this.toggleAddRetailer()} class="fas fa-plus"></i>
             </div>
         );
     }
@@ -46,10 +68,14 @@ const mapStateToProps = state =>{
 
 export default connect(
     mapStateToProps,
-    { SearchAction }
+    { SearchAction, addRetailer }
 )(RetailerSearch);
 
 const Header = styled.h1`
     text-align: center;
     color: white;
 `;
+
+const tempi = {
+    color: 'white'
+}

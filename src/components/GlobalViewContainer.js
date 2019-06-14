@@ -5,6 +5,10 @@ import GlobalNav from "./GlobalNav";
 import ClientVueContainer from "./ClientVueContainer";
 import PrivateRoute from "../components/PrivateRoute";
 import {ManageUsersContainer} from "./ManageUsers/ManageUsersContainer";
+
+import InventoryView from './Inventory/InventoryView'
+
+
 export default class GlobalVueContainer extends Component {
   constructor(props) {
     super(props);
@@ -16,9 +20,11 @@ export default class GlobalVueContainer extends Component {
   render() {
     return (
       <GVC>
-        <GlobalNav />
+        {/*  Putting these 2 in a private route to */}
+        <PrivateRoute path='/dashboard' component={GlobalNav}/>
+        <PrivateRoute path='/dashboard' component={ClientVueContainer}/>
 
-        <ClientVueContainer />
+        <PrivateRoute path='/inventory' component={InventoryView} />
       </GVC>
     );
   }

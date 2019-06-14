@@ -30,7 +30,7 @@ class Login extends Component {
     this.setEnterKeyListener();
   }
 
-  componentDidUnmount(){
+  componentWillUnmount(){
     this.setEnterKeyListener();
   }
 
@@ -145,7 +145,7 @@ class Login extends Component {
              
               <h1 className="welcome-title">
                 Tieme Ndo
-                <i class="fas fa-seedling" />
+                <i className="fas fa-seedling" />
               </h1>
 
               
@@ -275,7 +275,7 @@ class Login extends Component {
                 type="submit"
                 className="next"
                 
-                id={this.props.loginStart && 'processing'}
+                id={this.props.loginStart ? 'processing' : null}
                 onClick={e => {
                   e.stopPropagation();
                   this.submitPw();

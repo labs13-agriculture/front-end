@@ -43,8 +43,14 @@ class OrganizationSearch extends Component{
         return(
             <div>
                 <Header>Find an Organization</Header>
+
+                {/* Search Bar */}
                 <SearchForm submitSearch={this.submitSearch}/>
+
+                {/* Displays Cards */}
                 <OrganizationCardContainer />
+
+                {/* Add Organization Form */}
                 {this.state.addingOrganization && <NewOrganizationForm submitForm={this.submitOrganization} />}
                 <i style={tempi} onClick={() => this.toggleAddOrganization()} class="fas fa-plus"></i>
             </div>

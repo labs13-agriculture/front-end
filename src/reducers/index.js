@@ -38,10 +38,14 @@ export default combineReducers({
   retailerSearchData: retailerSearchReducer,
   farmerSearchData: farmerSearchReducer,
   organizationSearchData: organizationSearchReducer,
-  addTransactionRetailer:reducerRetailerTransaction
+  addTransactionRetailer:reducerRetailerTransaction,
   inventory: inventoryReducer,
   itemTypes: itemTypeReducer
   // // getData,
   // registrationR,
   // getSentiment
 });
+
+
+
+

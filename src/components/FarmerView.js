@@ -6,6 +6,7 @@ import FarmerViewInstallments from "./FarmerViewComponents/FarmerViewInstallment
 import FarmerViewYield from "./FarmerViewComponents/FarmerViewYield";
 import FarmerInstallmentForm from "./FarmerViewComponents/FarmerInstallmentForm";
 import { addInstallment, deleteItemFromInstallment } from "../actions";
+import { deleteFarmer } from '../actions/deleteFarmer';
 import { connect } from "react-redux";
 import styled from "styled-components";
 import NewYieldForm from "./NewYieldForm";
@@ -26,7 +27,11 @@ class FarmerView extends Component {
     //get farmer by id?
     console.log(this.props.match.params.id);
   }
-  //axios call to retrieve farmer data
+  
+  deleteFarmer = (id) =>{
+    console.log("DELETING FARMER " + id)
+    this.props.deleteFarmer(id);
+  }
 
   toggleInstallment = () => {
     if (this.state.addingInstallment) {
@@ -95,6 +100,7 @@ class FarmerView extends Component {
           <StyledDemos>
             <FarmerViewDemographics
               farmer={farmerData[0] ? farmerData[0] : "farmer not found"}
+              delete={this.deleteFarmer}
             />
           </StyledDemos>
           <StyledInfoView>
@@ -181,7 +187,8 @@ export default connect(
   mapStateToProps,
   {
     addInstallment,
-    deleteItemFromInstallment
+    deleteItemFromInstallment,
+    deleteFarmer
   }
 )(FarmerView);
 

@@ -20,6 +20,7 @@ class FarmerViewDemographics extends Component {
         <StyledDiv>
           
           <h1>{this.props.farmer.name} - Farming since {this.props.farmer.startyear} - Amount Owed: ${this.props.farmer.amountOwed}</h1>
+          <i className="fas fa-trash" onClick={() => this.props.delete(this.props.farmer.id)}></i>
           <div className="demoWrapper">
             <div className="locationinfo">
               <p>{this.props.farmer.farmercontact.phone}</p>

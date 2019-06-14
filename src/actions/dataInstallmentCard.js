@@ -57,11 +57,14 @@ export const UPDATE_INSTALLMENT = "UPDATE_INSTALLMENT";
 export const UPDATE_INSTALLMENT_SUCCESS = "UPDATE_INSTALLMENT_SUCCESS";
 export const UPDATE_INSTALLMENT_FAILURE = "UPDATE_INSTALLMENT_FAILURE";
 
-export const updateInstallmentItem = installmentId => dispatch => {
+export const updateInstallmentItem = installment => dispatch => {
   dispatch({ type: UPDATE_INSTALLMENT });
   return axios
-    .delete(
-      `https://tieme-ndo-backend.herokuapp.com/update-installment/${installmentId}`,
+    .put(
+      `https://tieme-ndo-backend.herokuapp.com/update-installment/${
+        installment.id
+      }`,
+      installment,
       {
         headers: {
           "Content-Type": "application/json",

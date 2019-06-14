@@ -10,12 +10,18 @@ export default class GlobalClientCard extends Component {
     };
   }
 
+  redirect = () =>{
+    this.setState({
+      redirect: true
+    })
+  }
+
   render() {
     console.log("GLOBAL CLIENT CARD PROPS", this.props);
     return (
       //loop through keys of card data in props
       //return h3 element with formatted key value pairs
-      <div className="outerCardDiv">>
+      <div onClick={() => this.redirect()} className="outerCardDiv">>
         <StyledGlobalClientCard>
           <h3>{this.props.name}</h3>
           {!Array.isArray(this.props.location) ? (

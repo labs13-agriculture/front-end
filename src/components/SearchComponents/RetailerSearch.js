@@ -4,12 +4,27 @@ import { connect } from "react-redux";
 import styled from "styled-components";
 import RetailerCardContainer from '../RetailerCardContainer';
 import { RetailerSearchResults as SearchAction } from "../../actions/RetailerSearch";
+import NewRetailerForm from '../NewRetailerForm';
+import { addRetailer } from '../../actions/retailerPost';
 
 class RetailerSearch extends Component{
     constructor(props){
         super(props);
         this.state = {
-            defaultView: true
+            addingRetailer: false
+        }
+    }
+
+    toggleAddRetailer = () =>{
+        if(this.state.addingRetailer){
+            this.setState({
+                addingRetailer: false
+            })
+        }
+        else{
+            this.setState({
+                addingRetailer: true
+            })
         }
     }
 
@@ -20,6 +35,11 @@ class RetailerSearch extends Component{
         })
     }
 
+    submitRetailer = newRetailer =>{
+        console.log(newRetailer);
+        this.props.addRetailer(newRetailer);
+    }
+
 
     render(){
         console.log(this.props.retailerData);
@@ -28,6 +48,8 @@ class RetailerSearch extends Component{
                 <Header>Find a Retailer</Header>
                 <SearchForm submitSearch={this.submitSearch}/>
                 <RetailerCardContainer />
+                {this.state.addingRetailer && <NewRetailerForm submitForm={this.submitRetailer} />}
+                <i style={tempi} onClick={() => this.toggleAddRetailer()} class="fas fa-plus"></i>
             </div>
         );
     }
@@ -45,10 +67,14 @@ const mapStateToProps = state =>{
 
 export default connect(
     mapStateToProps,
-    { SearchAction }
+    { SearchAction, addRetailer }
 )(RetailerSearch);
 
 const Header = styled.h1`
     text-align: center;
     color: white;
 `;
+
+const tempi = {
+    color: 'white'
+}

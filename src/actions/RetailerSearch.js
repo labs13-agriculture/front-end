@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {BASE_URL} from '../config'
 
 export const RETAILER_SEARCH_START = 'RETAILER_SEARCH_START';
 export const RETAILER_SEARCH_SUCCESS = 'RETAILER_SEARCH_SUCCESS';
@@ -11,7 +12,7 @@ export const RetailerSearchResults = (query) => dispatch => {
     const locationSearch = encodeURI(query.location);
     console.log(nameSearch + " " + locationSearch)
     return axios
-        .get(`https://tieme-ndo-backend.herokuapp.com/retailer/search?lead=${query.leads}&location=${locationSearch}&name=${nameSearch}&page=2`,{
+        .get(`${BASE_URL}/retailer/search?lead=${query.leads}&location=${locationSearch}&name=${nameSearch}&page=2`,{
             headers: {
                 'Content-Type' : 'application/json',
                 Authorization: `Bearer ${window.localStorage.getItem('token')}`

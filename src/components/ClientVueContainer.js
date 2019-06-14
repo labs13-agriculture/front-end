@@ -6,6 +6,8 @@ import { ManageUsersContainer } from "./ManageUsers/ManageUsersContainer";
 import FarmerSearch from "./SearchComponents/FarmerSearch";
 import OrganizationSearch from "./SearchComponents/OrganizationSearch";
 import FarmerView from "./FarmerView";
+import RetailerView from "./RetailerView";
+import OrganizationView from "./OrganizationView/OrganizationView.js"
 
 export default class ClientVueContainer extends Component {
   constructor(props) {
@@ -37,6 +39,19 @@ export default class ClientVueContainer extends Component {
           path="/dashboard/farmer/:id"
           component={FarmerView}
         />
+
+        <PrivateRoute
+          exact
+          path="/dashboard/retailer/:id"
+          component={RetailerView}
+        />
+
+        <PrivateRoute
+          exact
+          path="/dashboard/organization/:id"
+          component={OrganizationView}
+        />
+
         <PrivateRoute
           path="/dashboard/manage-users"
           component={ManageUsersContainer}

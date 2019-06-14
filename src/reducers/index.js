@@ -13,13 +13,14 @@ import reducerYieldCard from "../reducers/reducerYieldCard";
 import reducerInventoryCard from "../reducers/reducerInventoryCard";
 import farmerSearchReducer from "../reducers/farmerSearchReducer";
 import organizationSearchReducer from "../reducers/organizationSearchReducer";
-import inventoryReducer from "../reducers/inventoryReducer";
-import itemTypeReducer from "./itemTypeReducer.js";
+import reducerRetailerTransaction from "../reducers/reducerRetailerTransaction";
+import inventoryReducer from "../reducers/inventoryReducer"
+import itemTypeReducer from "./itemTypeReducer.js"
+import organizationReducer from "./organizationReducer.js"
 
 // import getData from '../reducers/getdata';
 // import registrationR from '../reducers/registerreducer';
 // import getSentiment from '../reducers/sentimentReducer';
-
 export default combineReducers({
   searchUserReducer: searchUserReducer,
   addSystemUserReducer: reducerNewSystemUser,
@@ -35,9 +36,15 @@ export default combineReducers({
   retailerSearchData: retailerSearchReducer,
   farmerSearchData: farmerSearchReducer,
   organizationSearchData: organizationSearchReducer,
+  addTransactionRetailer:reducerRetailerTransaction,
   inventory: inventoryReducer,
-  itemTypes: itemTypeReducer
+  itemTypes: itemTypeReducer,
+  organization: organizationReducer
   // // getData,
   // registrationR,
   // getSentiment
 });
+
+
+
+

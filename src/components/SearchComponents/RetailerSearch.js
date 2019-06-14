@@ -48,6 +48,7 @@ class RetailerSearch extends Component{
                 <Header>Find a Retailer</Header>
                 <SearchForm submitSearch={this.submitSearch}/>
                 <RetailerCardContainer />
+                {this.props.error && <p>Sorry, we couldn't find any farmers that match your search criteria</p>}
                 {this.state.addingRetailer && <NewRetailerForm submitForm={this.submitRetailer} />}
                 <i style={tempi} onClick={() => this.toggleAddRetailer()} class="fas fa-plus"></i>
             </div>

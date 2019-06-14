@@ -35,13 +35,13 @@ function AddItemModal(props) {
                             <h1>Add New Item</h1>
                             <Label for="itemName">New Item Name</Label>
                             <Input 
-                                type="text" name="itemName" id="itemName" placeholder="New Item Name" 
+                                type="text" name="itemName" placeholder="New Item Name" 
                                 value={newItem.itemName} onChange={handleInputs}
                             />
                         </FormGroup>
                         <FormGroup>
                             <Label for="quantity">Quantity In Stock</Label>
-                            <Input type="quantity" name="quantity" id="quantity" placeholder="Quantity"
+                            <Input type="quantity" name="quantity" placeholder="Quantity"
                             value={newItem.quantity} onChange={handleInputs}
                         />
                         </FormGroup>

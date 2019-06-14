@@ -2,36 +2,79 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
 
-import { deleteItemFromInventory } from '../../actions'
+import { deleteItemFromInventory, updateItemInInventory } from '../../actions'
 
 function InventoryItem(props) {
     let {item} = props;
+
+    // these are the state
+    const [isEditing, setIsEditing] = useState(false);
+    // this feels dirty
+    const [isActive, setIsActive] = useState(item.active)
+
+    const toggleEditing = event => {
+        event.preventDefault();
+        setIsEditing(!isEditing);
+    }
+
+    const toggleActive = event => {
+        setIsActive(!isActive)
+    }
+
+    const submitUpdate = event => {
+        event.preventDefault()
+        console.log("Pretend we updated an item")
+        //props.updateItemInInventory()
+    }
 
     return (
         <Container>
             <div className="left">
                 { props.header ?(<>
+                    {/* If header is true lets add in these default headings */}
                     <div className="name">Item Name</div>
                     <div className="quantity">Quantity </div>
                     <div className="active">Active </div>
                     </>
                 ) : (<>
+                    {/* otherwise lets use the item passed to populate some fields */}
                     <div className="name">{item.name}</div>
-                    <div className="quantity">{item.quantity}</div>
-                    <div className="active">{item.active ? "true" : "false"}</div>
+                    {/* if editing its the quantity input otherwise it just displays item quantity */}
+                    { isEditing
+                        ? <input className="qty-input" type="text" name="quantity" placeholder={item.quantity}/>
+                        : <div className="quantity">{item.quantity}</div>
+                    }
+                    { isEditing
+                        ? <input 
+                            className="active-input"
+                            type="checkbox"
+                            name="active"
+                            checked={isActive}
+                            onChange={toggleActive}
+                          />
+                        : <div className="active">{item.active ? "true" : "false"}</div>
+                    }
                     </>
                 )}
             </div>
             <div className="right">
+                {/* This section contains all the buttons */}
                 {!props.header ?(<>
-                    <button className={`edit${props.header ? " hidden" : ""}`}>Edit</button>
+                    <button 
+                        className={`edit${props.header ? " hidden" : ""}`}
+                        onClick={toggleEditing}
+                    >{isEditing ? `Cancel` : `Edit`}</button>
                 </> ) : ( <>
                     <button className='add' onClick={props.doModal}>Add</button>
                 </>)}
-                <button 
+                {isEditing
+                ? <button className='add' onclick={submitUpdate}>Submit</button>
+                : <button
+                    // this button isn't used in the header but is set to invisible to keep spacing consistent
                     className={`delete${props.header ? " hidden" : ""}`}
                     onClick={() => props.deleteItemFromInventory(item.invid)}
                 >Delete</button>
+                }
             </div>
         </Container>
     )
@@ -40,7 +83,8 @@ function InventoryItem(props) {
 export default connect(state => ({
 
 }), {
-    deleteItemFromInventory
+    deleteItemFromInventory,
+    updateItemInInventory
 })(InventoryItem)
 
 const Container = styled.div`
@@ -52,7 +96,16 @@ const Container = styled.div`
     justify-content: space-between;
     align-items: center;
 
-    ${props => props.header ? " " : `border-bottom: 1px solid grey;`}
+    border-bottom: 1px solid grey;
+
+    @media (max-width: 750px) {
+        font-size: 1.5rem;
+    }
+
+    @media (max-width: 550px) {
+        flex-direction: column;
+        justify-content: flex-start;
+    }
 
     .left {
         display: flex;
@@ -62,16 +115,26 @@ const Container = styled.div`
     }
     .right {
         display: flex;
+
+        @media (max-width: 550px) {
+            width: 100%;
+        }
     }
 
     .name {
-        width: 30%;
+        width: 50%;
     }
     .quantity {
-        width: 15%;
+        width: 25%;
+    }
+    .qty-input {
+        width: 100px;
     }
     .active {
-        width: 15%;
+        width: 25%;
+    }
+    .active-input {
+        margin-left: 13%
     }
 
     .hidden {
@@ -85,6 +148,10 @@ const Container = styled.div`
         box-shadow: 2px 1px 1px rgba(0,0,0,0.4);
         transition: .25s;
         padding: 2px 15px;
+
+        @media (max-width: 550px) {
+            width: 100%;
+        }
 
         &:hover {
             box-shadow: 1px 1px 1px rgba(0,0,0,0.4); 

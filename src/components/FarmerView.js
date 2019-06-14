@@ -5,7 +5,11 @@ import FarmerViewInventory from "./FarmerViewComponents/FarmerViewInventory";
 import FarmerViewInstallments from "./FarmerViewComponents/FarmerViewInstallments";
 import FarmerViewYield from "./FarmerViewComponents/FarmerViewYield";
 import FarmerInstallmentForm from "./FarmerViewComponents/FarmerInstallmentForm";
-import { addInstallment, deleteItemFromInstallment } from "../actions";
+import {
+  addInstallment,
+  deleteItemFromInstallment,
+  updateInstallmentItem
+} from "../actions";
 import { connect } from "react-redux";
 import styled from "styled-components";
 import NewYieldForm from "./NewYieldForm";
@@ -48,6 +52,10 @@ class FarmerView extends Component {
   deleteInstallmentById = installmentId => {
     this.props.deleteItemFromInstallment(installmentId);
     console.log("INSTALLMENT ID", installmentId);
+  };
+
+  updateInstallmentById = installmentId => {
+    this.props.updateInstallmentItem(installmentId);
   };
 
   addTransaction() {
@@ -109,7 +117,10 @@ class FarmerView extends Component {
                 toggleInstallment={this.toggleInstallment}
               />
             )}
-            <i onClick={() => this.toggleInstallment()} className="fas fa-plus" />
+            <i
+              onClick={() => this.toggleInstallment()}
+              className="fas fa-plus"
+            />
           </StyledInfoView>
           <StyledInfoView>
             <h2>Yield History</h2>
@@ -155,7 +166,8 @@ export default connect(
   mapStateToProps,
   {
     addInstallment,
-    deleteItemFromInstallment
+    deleteItemFromInstallment,
+    updateInstallmentItem
   }
 )(FarmerView);
 

@@ -4,6 +4,9 @@ import {
   DATA_INSTALLMENT_CARD_SUCCESS,
   DATA_INSTALLMENT_CARD_FAILURE,
   DATA_INSTALLMENT_CARD_ADD,
+  UPDATE_INSTALLMENT,
+  UPDATE_INSTALLMENT_SUCCESS,
+  UPDATE_INSTALLMENT_FAILURE,
   DELETE_INSTALLMENT,
   DELETE_INSTALLMENT_SUCCESS,
   DELETE_INSTALLMENT_FAILURE
@@ -16,6 +19,7 @@ const initialState = {
   installmentCardDataFailure: false,
   installmentCardDataAdd: false,
   deletingInstallment: false,
+  updatingInstallment: false,
   error: ""
 };
 
@@ -39,6 +43,27 @@ export default (state = initialState, action) => {
         ...state,
         installmentCardDataAdd: true
       };
+    case UPDATE_INSTALLMENT:
+      return {
+        ...state,
+        updatingInstallment: true,
+        error: false
+      };
+
+    case UPDATE_INSTALLMENT_SUCCESS:
+      return {
+        ...state,
+        updatingInstallment: false,
+        installmentList: action.payload,
+        error: false
+      };
+    case UPDATE_INSTALLMENT_FAILURE:
+      return {
+        ...state,
+        updatingInstallment: false,
+        error: action.payload
+      };
+
     case DELETE_INSTALLMENT:
       return {
         ...state,

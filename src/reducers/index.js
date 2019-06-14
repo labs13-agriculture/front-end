@@ -1,5 +1,4 @@
-
-import searchUserReducer from '../reducers/searchUserReducer';
+import searchUserReducer from "../reducers/searchUserReducer";
 import reducerNewSystemUser from "../reducers/reducerNewSystemUser";
 import updateSystemUser from "../reducers/reducerUpdateSystemUser";
 import deleteSystemUser from "../reducers/deleteSystemUser";
@@ -14,19 +13,18 @@ import reducerYieldCard from "../reducers/reducerYieldCard";
 import reducerInventoryCard from "../reducers/reducerInventoryCard";
 import farmerSearchReducer from "../reducers/farmerSearchReducer";
 import organizationSearchReducer from "../reducers/organizationSearchReducer";
-import inventoryReducer from "../reducers/inventoryReducer"
-import itemTypeReducer from "./itemTypeReducer.js"
+import inventoryReducer from "../reducers/inventoryReducer";
+import itemTypeReducer from "./itemTypeReducer.js";
 
 // import getData from '../reducers/getdata';
 // import registrationR from '../reducers/registerreducer';
 // import getSentiment from '../reducers/sentimentReducer';
 
 export default combineReducers({
-  
   searchUserReducer: searchUserReducer,
   addSystemUserReducer: reducerNewSystemUser,
-  updateSystemUser:updateSystemUser,
-  deleteSystemUser:deleteSystemUser,
+  updateSystemUser: updateSystemUser,
+  deleteSystemUser: deleteSystemUser,
   login: loginReducer,
   prodStatData: reducerProductStatsVue,
   farmerCardData: reducerFarmerCardPreviews,

@@ -1,11 +1,19 @@
 import React, { Component } from "react";
 import styled, { css } from "styled-components";
-import { Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 export default class GlobalClientCard extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      redirect: false
+    };
+  }
+
+  redirect = () =>{
+    this.setState({
+      redirect: true
+    })
   }
 
   render() {
@@ -13,7 +21,7 @@ export default class GlobalClientCard extends Component {
     return (
       //loop through keys of card data in props
       //return h3 element with formatted key value pairs
-      <Link to={`/dashboard/farmer/${this.props.id}`}>
+      <div onClick={() => this.redirect()} className="outerCardDiv">>
         <StyledGlobalClientCard>
           <h3>{this.props.name}</h3>
           {!Array.isArray(this.props.location) ? (
@@ -23,8 +31,9 @@ export default class GlobalClientCard extends Component {
           ) : (
             <p>{this.props.location.length} locations</p>
           )}
+          {this.state.redirect && <Redirect to={`/dashboard/farmer/${this.props.id}`} /> }
         </StyledGlobalClientCard>
-      </Link>
+      </div>
     );
   }
 }
@@ -32,11 +41,14 @@ export default class GlobalClientCard extends Component {
 const StyledGlobalClientCard = styled.div`
   height: 150px;
   width: 150px;
+  text-decoration: none;
+  overflow: hidden;
   background: white;
   border: 1px dashed purple;
   display: flex;
   flex-direction: column;
-  overflow: scroll;
+  margin: 10px auto;
+
 
   &:hover {
     cursor: pointer;

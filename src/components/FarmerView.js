@@ -72,15 +72,7 @@ class FarmerView extends Component {
         <StyledContainer>
           <StyledDemos>
             <FarmerViewDemographics
-              name={farmerData[0] ? farmerData[0].name : "farmer not found"}
-              location={
-                farmerData[0]
-                  ? farmerData[0].farmerlocation.community
-                  : "location not found"
-              }
-              amountOwed={
-                farmerData[0] ? farmerData[0].amountOwed : "amount not found"
-              }
+              farmer={farmerData[0] ? farmerData[0] : "farmer not found"}
             />
           </StyledDemos>
           <StyledInfoView>
@@ -132,7 +124,6 @@ class FarmerView extends Component {
             <i onClick={() => this.addYieldData()} class="fas fa-plus" />
           </StyledInfoView>
         </StyledContainer>
-<<<<<<< HEAD
         {this.state.addingInstallment && (
           <FarmerInstallmentForm
             toggleInstallment={this.toggleInstallment}
@@ -140,8 +131,6 @@ class FarmerView extends Component {
           />
         )}
         {this.state.addingYield && <NewYieldForm id={this.props.match.params.id}/>}
-=======
->>>>>>> b946922819492bd45e0eac86b385732cf9eb848f
       </div>
     );
   }

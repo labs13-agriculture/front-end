@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import styled from "styled-components";
 
 import { getYieldCardData } from "../../actions";
 import { connect } from "react-redux";
@@ -13,31 +14,25 @@ class FarmerViewYield extends Component {
     this.props.getYieldCardData();
   }
 
-  addYieldData() {
-    this.props.toggleYield();
-  }
-
   render() {
     return (
       <div>
-        <h2>Yield History</h2>
-        {this.props.yieldCardDataStart && <h1>Loading ... </h1>}
-        {this.props.yieldCardDataSuccess &&
-          this.props.yieldCardData.map(yields => (
-            <div key={yields.id}>
-              <span> NUMBER OF BAGS --- {yields.numBags}</span>
-              <br />
-              <span> GOAL --- {yields.goal}</span>
-            </div>
-          ))}
-        <i onClick={() => this.addYieldData()} class="fas fa-plus" />
+        <StyledTable>
+          <tr>
+            <StyledTd>Number of Bags</StyledTd>
+            <StyledTd>Goal</StyledTd>
+          </tr>
+          <tr>
+            <StyledTh>{this.props.numBags}</StyledTh>
+            <StyledTh>{this.props.goal}</StyledTh>
+          </tr>
+        </StyledTable>
       </div>
     );
   }
 }
 
 const mapStateToProps = state => {
-  console.log("yield map state to props fireing");
   return {
     yieldCardData: state.yieldCardData.data,
     yieldCardDataStart: state.yieldCardData.yieldCardDataStart,
@@ -51,3 +46,22 @@ export default connect(
   mapStateToProps,
   { getYieldCardData }
 )(FarmerViewYield);
+
+const StyledTable = styled.table`
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  margin: 5%;
+  width: 90%;
+`;
+
+const StyledTd = styled.td`
+  border: 1px solid black;
+  text-align: left;
+  padding: 8px;
+`;
+
+const StyledTh = styled.th`
+  border: 1px solid black;
+  text-align: left;
+  padding: 8px 0;
+`;

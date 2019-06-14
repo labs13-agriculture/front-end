@@ -26,6 +26,10 @@ class FarmerViewInstallments extends Component {
           <tr>
             <StyledTh>{this.props.amountPaid}</StyledTh>
             <StyledTh>{this.props.datePaid}</StyledTh>
+            <i
+              onClick={() => this.props.deleteInstallmentById()}
+              class="fas fa-trash"
+            />
           </tr>
         </StyledTable>
       </div>

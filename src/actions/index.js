@@ -54,8 +54,10 @@ export {
   DATA_INSTALLMENT_CARD_SUCCESS,
   DATA_INSTALLMENT_CARD_FAILURE,
   DATA_INSTALLMENT_CARD_ADD,
+  DATA_INSTALLMENT_CARD_DELETE,
   getInstallmentCardData,
-  addInstallmentItem
+  addInstallment,
+  deleteInstallment
 } from "./dataInstallmentCard";
 
 export {

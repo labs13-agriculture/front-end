@@ -5,6 +5,7 @@ import FarmerViewInventory from "./FarmerViewComponents/FarmerViewInventory";
 import FarmerViewInstallments from "./FarmerViewComponents/FarmerViewInstallments";
 import FarmerViewYield from "./FarmerViewComponents/FarmerViewYield";
 import FarmerInstallmentForm from "./FarmerViewComponents/FarmerInstallmentForm";
+import { addInstallment, deleteInstallment } from "../actions";
 import { connect } from "react-redux";
 import styled from "styled-components";
 
@@ -34,14 +35,20 @@ class FarmerView extends Component {
     }
   };
 
+  submitInstallment = newInstallment => {
+    console.log(newInstallment);
+    console.log("SUBMIT INSTALLMENT PROPS", this.props);
+    this.props.addInstallment(newInstallment, this.props.match.params.id);
+  };
+
+  deleteInstallmentById = (event, installmentId) => {
+    event.preventDefailt();
+    this.props.deleteInstallment(installmentId, this.props.match.params.id);
+  };
+
   addTransaction() {
     console.log("Trying to add transaction");
   }
-
-  addInstallment = installment => {
-    console.log(installment);
-    //axios call here
-  };
 
   addYieldData() {
     console.log("Trying to add yield data");
@@ -82,6 +89,7 @@ class FarmerView extends Component {
                   />
                 );
               })}
+
             <i onClick={() => this.addTransaction()} class="fas fa-plus" />
           </StyledInfoView>
           <StyledInfoView>
@@ -96,6 +104,13 @@ class FarmerView extends Component {
                   />
                 );
               })}
+            {this.state.addingInstallment && (
+              <FarmerInstallmentForm
+                submitForm={this.submitInstallment}
+                toggleInstallment={this.toggleInstallment}
+                deleteInstallmentById={this.deleteInstallmentById}
+              />
+            )}
             <i onClick={() => this.toggleInstallment()} class="fas fa-plus" />
           </StyledInfoView>
           <StyledInfoView>
@@ -129,7 +144,12 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(FarmerView);
+export default connect(
+  mapStateToProps,
+  {
+    addInstallment
+  }
+)(FarmerView);
 
 const StyledContainer = styled.div`
   display: flex;

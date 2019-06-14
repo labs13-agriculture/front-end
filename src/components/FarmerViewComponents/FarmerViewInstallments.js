@@ -32,7 +32,7 @@ class FarmerViewInstallments extends Component {
               className="fas fa-trash"
             />
             <i
-              onClick={() => this.props.deleteInstallmentById(this.props.id)}
+              onClick={() => this.props.toggleEdit(this.props.installment)}
               className="fas fa-edit"
             />
           </tr>

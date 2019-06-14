@@ -13,6 +13,7 @@ import {
 import { connect } from "react-redux";
 import styled from "styled-components";
 import NewYieldForm from "./NewYieldForm";
+import FarmerEditInstallment from './FarmerViewComponents/FarmerEditInstallment';
 
 class FarmerView extends Component {
   constructor(props) {
@@ -66,6 +67,28 @@ class FarmerView extends Component {
     console.log("Trying to add yield data");
   }
 
+  sendInstallmentEdit = installment =>{
+    console.log(installment);
+  }
+
+  toggleInstallmentEdit = installment =>{
+    console.log("GOing to edit", installment);
+    console.log(this.state);
+    if(this.state.editingInstallment){
+      console.log("shold set editing to false");
+      this.setState({
+        editingInstallment: false,
+        installmentToEdit: null
+      })
+    }
+    else{
+      this.setState({
+        editingInstallment: true,
+        installmentToEdit: installment
+      })
+    }
+  }
+
   render() {
     let farmerData = [];
     if (this.props.data) {
@@ -104,10 +127,12 @@ class FarmerView extends Component {
                 console.log("FARMER DATA INSTALLMENT", installment);
                 return (
                   <FarmerViewInstallments
+                    toggleEdit={this.toggleInstallmentEdit}
                     amountPaid={installment.amountPaid || ""}
                     datePaid={installment.datePaid || ""}
                     id={installment.id}
                     deleteInstallmentById={this.deleteInstallmentById}
+                    installment={installment}
                   />
                 );
               })}
@@ -145,6 +170,7 @@ class FarmerView extends Component {
         {this.state.addingYield && (
           <NewYieldForm id={this.props.match.params.id} />
         )}
+        {this.state.editingInstallment && <FarmerEditInstallment installment={this.state.installmentToEdit} sendEdit={this.sendInstallmentEdit} toggleInstallment={this.toggleInstallmentEdit}/>}
       </div>
     );
   }
@@ -192,4 +218,17 @@ const StyledInfoView = styled.div`
   border-radius: 5px;
   margin-top: 20px;
   overflow: scroll;
+`;
+
+const Modal = styled.div`
+  width: 65%;
+  border: 1px solid red;
+  position: absolute;
+  margin: auto;
+  height: auto;
+  z-index: 1000005;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
 `;

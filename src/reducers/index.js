@@ -17,6 +17,7 @@ import organizationSearchReducer from "../reducers/organizationSearchReducer";
 import reducerRetailerTransaction from "../reducers/reducerRetailerTransaction";
 import inventoryReducer from "../reducers/inventoryReducer"
 import itemTypeReducer from "./itemTypeReducer.js"
+import organizationReducer from "./organizationReducer.js"
 
 // import getData from '../reducers/getdata';
 // import registrationR from '../reducers/registerreducer';
@@ -40,7 +41,8 @@ export default combineReducers({
   organizationSearchData: organizationSearchReducer,
   addTransactionRetailer:reducerRetailerTransaction,
   inventory: inventoryReducer,
-  itemTypes: itemTypeReducer
+  itemTypes: itemTypeReducer,
+  organization: organizationReducer
   // // getData,
   // registrationR,
   // getSentiment

@@ -36,7 +36,8 @@ class FarmerEditInstallmentForm extends Component {
       const newInstallment = {
         amountPaid: parseFloat(this.state.amount),
         mode: this.state.payment,
-        officer: this.state.officer
+        officer: this.state.officer,
+        datePaid: this.state.id
       };
       this.props.sendEdit(newInstallment);
     }

@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
-import styled, { css } from "styled-components";
 import { connect } from 'react-redux';
 import GlobalClientCard from './GlobalClientCard';
 import CardContainer from '../styles/CardContainerStyles';
 
 class OrganizationCardContainer extends Component{
-    constructor(props){
-        super(props);
-    }
 
     render(){
         console.log("re-rendering");
@@ -16,7 +12,7 @@ class OrganizationCardContainer extends Component{
             <CardContainer>
                 {this.props.searchStart && <h2>Loading...</h2>}
                 {this.props.searchFailure ? <p>No Organizations found</p> : null}
-                {this.props.searchSuccess && this.props.data.map(o => <GlobalClientCard key={o.id} contact={Object.keys(o).find(w=>w=='organizationcontacts').replace('contacts','')} id={o.id} name={o.name} location={o.organizationlocations}/>)}
+                {this.props.searchSuccess && this.props.data.map(o => <GlobalClientCard key={o.id} contact={Object.keys(o).find(w=>w==='organizationcontacts').replace('contacts','')} id={o.id} name={o.name} location={o.organizationlocations}/>)}
             </CardContainer>
         )
     }

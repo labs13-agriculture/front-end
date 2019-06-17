@@ -171,11 +171,11 @@ const mapStateToProps = state => {
   console.log("Updating state");
   console.log(state);
   return {
-    data: state.farmerSearchData.data,
-    error: state.farmerSearchData.error,
-    searchStart: state.farmerSearchData.searchStart,
-    searchSuccess: state.farmerSearchData.searchSuccess,
-    searchFailure: state.farmerSearchData.searchFailure
+    data: state.retailerData.listData,
+    error: state.retailerData.error,
+    searchStart: state.retailerData.searchStart,
+    searchSuccess: state.retailerData.searchSuccess,
+    searchFailure: state.retailerData.searchFailure
   };
 };
 

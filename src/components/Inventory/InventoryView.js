@@ -39,12 +39,8 @@ function InventoryView(props) {
 
                 {/* Inventory Cards */}
                 {props.inventoryList && props.inventoryList.map((i, index) => {
-                    let {quantity, item, invid} = i;
-                    let {name, active} = item;
-                    let cleanItem = {invid, name, quantity, active}
-
                     return (
-                        <InventoryItem key={invid} item={cleanItem} />
+                        <InventoryItem key={i.id} item={i} />
                     );
                 })}
             </div>

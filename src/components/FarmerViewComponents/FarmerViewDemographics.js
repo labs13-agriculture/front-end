@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import { connect } from 'react-redux';
+import {getFarmer} from "../../actions";
 
 class FarmerViewDemographics extends Component {
   constructor(props) {
@@ -46,7 +48,19 @@ class FarmerViewDemographics extends Component {
   }
 }
 
-export default FarmerViewDemographics;
+const mapStateToProps = state => {
+  // return 
+  // {
+  //   farmerDemoData:state.farmerData.farmerDemoData
+   
+    
+  // }
+  
+}
+
+export default connect(mapStateToProps,{getFarmer})(FarmerViewDemographics);
+
+
 
 const StyledDiv = styled.div`
   padding: 1%;

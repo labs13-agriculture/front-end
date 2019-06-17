@@ -27,13 +27,13 @@ class FarmerCardContainer extends Component {
 const mapStateToProps = state => {
   console.log("Updating state");
   console.log(state);
-  return {
-    data: state.farmerSearchData.data,
-    error: state.farmerSearchData.error,
-    searchStart: state.farmerSearchData.searchStart,
-    searchSuccess: state.farmerSearchData.searchSuccess,
-    searchFailure: state.farmerSearchData.searchFailure
-  };
+  return{
+    farmerData: state.farmerData.listData,
+    searchStart: state.farmerData.searchStart,
+    searchFailure: state.farmerData.searchFailure,
+    error: state.farmerData.error,
+    searchSuccess: state.farmerData.searchSuccess
+}
 };
 
 export default connect(mapStateToProps)(FarmerCardContainer);

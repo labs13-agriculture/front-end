@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { FARMER_SEARCH_START, FARMER_SEARCH_SUCCESS, FARMER_SEARCH_FAILURE,
         ADD_FARMER_START, ADD_FARMER_SUCCESS, ADD_FARMER_FAILURE,
-        DELETE_FARMER_START, DELETE_FARMER_SUCCESS, DELETE_FARMER_FAILURE 
+        DELETE_FARMER_START, DELETE_FARMER_SUCCESS, DELETE_FARMER_FAILURE,
+        GET_FARMER_START, GET_FARMER_SUCCESS, GET_FARMER_FAILURE 
 } from "../actions";
 
 const initialState = {
@@ -94,6 +95,29 @@ export default (state=initialState, action) => {
                 deleteStart: false,
                 deleteFailure: true,
                 deleteSuccess: false,
+                error: action.payload                
+            }
+        case GET_FARMER_START:
+            return{
+                ...state,
+                getStart: true,
+                getSuccess: false,
+                getFailure: false
+            }
+        case GET_FARMER_SUCCESS:
+            return{
+                ...state,
+                getStart: false,
+                getFailure: false,
+                getSuccess: true,
+                farmerDemoData:action.payload
+            }
+        case GET_FARMER_FAILURE:
+            return{
+                ...state,
+                getStart: false,
+                getFailure: true,
+                getSuccess: false,
                 error: action.payload                
             }
         default:

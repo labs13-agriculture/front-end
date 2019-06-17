@@ -1,5 +1,8 @@
 import axios from 'axios';
 
+    
+
+
 export const FARMER_SEARCH_START = 'FARMER_SEARCH_START';
 export const FARMER_SEARCH_SUCCESS = 'FARMER_SEARCH_SUCCESS';
 export const FARMER_SEARCH_FAILURE = 'FARMER_SEARCH_FAILURE';
@@ -89,4 +92,36 @@ export const addFarmer = newFarmer => dispatch =>{
               err => {console.log(err)
                   dispatch({type:ADD_FARMER_FAILURE,payload:err})
               }       
-          );}
+          );
+        }
+export const GET_FARMER_START = 'GET_FARMER_START';
+export const GET_FARMER_SUCCESS = 'GET_FARMER_SUCCESS';
+export const GET_FARMER_FAILURE = 'GET_FARMER_FAILURE';
+
+export const getFarmer = farmerId => dispatch =>{
+  dispatch({ type: GET_FARMER_START })
+  
+
+  return axios
+      .post(`https://tieme-ndo-backend.herokuapp.com/farmers/farmer/${farmerId}`, {
+          headers: {
+              'Content-Type' : 'application/json',
+              
+              
+              Authorization: `Bearer ${window.localStorage.getItem('token')}`
+            }
+          })
+          .then(res => {
+            console.log("get farmer demographics", res.data);
+            
+            dispatch({ type: GET_FARMER_SUCCESS, payload: res.data });
+            
+          
+          }).catch(
+            err => {console.log('get demographics failure',err)
+                dispatch({type:GET_FARMER_FAILURE,payload:err})
+            }       
+        );
+      }
+          
+

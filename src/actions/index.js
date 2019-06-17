@@ -97,6 +97,10 @@ export {
   DELETE_FARMER_START,
   DELETE_FARMER_SUCCESS,
   DELETE_FARMER_FAILURE,
+  GET_FARMER_START,
+  GET_FARMER_SUCCESS,
+  GET_FARMER_FAILURE,
+  getFarmer,
   addFarmer,
   deleteFarmer,
   searchFarmers

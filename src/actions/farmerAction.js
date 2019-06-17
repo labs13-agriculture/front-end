@@ -19,7 +19,7 @@ export const searchFarmers = query => dispatch =>{
     console.log(urlString);
 
     return axios
-        .get(urlString,{
+        .get(urlString, {
             headers: {
                 'Content-Type' : 'application/json',
                 Authorization: `Bearer ${window.localStorage.getItem('token')}`

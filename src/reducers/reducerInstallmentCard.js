@@ -1,4 +1,3 @@
-import React, { Component } from "react";
 import {
   DATA_INSTALLMENT_CARD_START,
   DATA_INSTALLMENT_CARD_SUCCESS,

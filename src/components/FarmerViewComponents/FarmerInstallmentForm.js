@@ -27,9 +27,9 @@ class FarmerInstallmentForm extends Component {
     var regex = /\d*\.{1}\d{2}$/;
 
     if (
-      this.state.amount != "" &&
+      this.state.amount !== "" &&
       regex.test(this.state.amount) &&
-      this.state.officer != ""
+      this.state.officer !== ""
     ) {
       this.setState({
         needsAmount: false,
@@ -51,19 +51,19 @@ class FarmerInstallmentForm extends Component {
     }
 
     if (
-      (this.state.amount == "" || !regex.test(this.state.amount)) &&
-      this.state.officer == ""
+      (this.state.amount === "" || !regex.test(this.state.amount)) &&
+      this.state.officer === ""
     ) {
       this.setState({
         needsAmount: true,
         needsOfficer: true
       });
-    } else if (this.state.amount == "" || !regex.test(this.state.amount)) {
+    } else if (this.state.amount === "" || !regex.test(this.state.amount)) {
       this.setState({
         needsAmount: true,
         needsOfficer: false
       });
-    } else if (this.state.officer == "") {
+    } else if (this.state.officer === "") {
       this.setState({
         needsOfficer: true,
         needsAmount: false

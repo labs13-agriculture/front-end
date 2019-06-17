@@ -1,4 +1,3 @@
-import React, { Component } from "react";
 import {
   ADD_TRANSACTION_START,
   ADD_TRANSACTION_SUCCESS,

@@ -25,7 +25,7 @@ class Login extends Component {
     this.setEnterKeyListener();
   }
 
-  componentDidUnmount() {
+  componentWillUnmount() {
     this.setEnterKeyListener();
   }
 
@@ -271,7 +271,7 @@ class Login extends Component {
               <button
                 type="submit"
                 className="next"
-                id={this.props.loginStart && "processing"}
+                id={this.props.loginStart ? "processing" : null}
                 onClick={e => {
                   e.stopPropagation();
                   this.submitPw();

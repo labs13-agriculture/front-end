@@ -65,7 +65,7 @@ export const UPDATING_INVENTORY_FAILURE = "UPDATING_INVENTORY_FAILURE";
 export const updateItemInInventory = (item) => dispatch => {
     dispatch({type: UPDATING_INVENTORY});
 
-    const urlString = `${BASE_URL}/itemtype/update/${item.invid}`
+    const urlString = `${BASE_URL}/itemtype/update/${item.id}`
 
     return axios
         .put(urlString, item, {

@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 
-import { getTransactionCardData } from "../../actions";
+
 import { connect } from "react-redux";
+import {getClientTransaction} from "../../actions";
 
 class FarmerViewTransactions extends Component {
   constructor(props) {
@@ -13,7 +14,7 @@ class FarmerViewTransactions extends Component {
   }
 
   componentDidMount() {
-    this.props.getTransactionCardData();
+    this.props.getClientTransaction(this.props.id)
   }
 
   render() {
@@ -21,13 +22,22 @@ class FarmerViewTransactions extends Component {
       <div>
         <StyledTable>
           <tr>
-            <StyledTd>TYPE</StyledTd>
+            <StyledTd>TOTAL</StyledTd>
             <StyledTd>DATE</StyledTd>
+            <StyledTd>TYPE</StyledTd>
+            <StyledTd>OFFICER</StyledTd>
           </tr>
-          <tr>
-            <StyledTh>{this.props.type}</StyledTh>
-            <StyledTh>{this.props.date}</StyledTh>
-          </tr>
+          
+          {this.props.transactionDataSuccess && this.props.transactionData.map(t => {
+            return(<tr>
+          <StyledTh>{t.total}</StyledTh>
+          <StyledTh>{t.date}</StyledTh>
+          <StyledTh>{t.type}</StyledTh>
+          <StyledTh>{t.personnel}</StyledTh>
+          
+          </tr>)})}
+          
+          
         </StyledTable>
       </div>
     );
@@ -37,20 +47,20 @@ class FarmerViewTransactions extends Component {
 const mapStateToProps = state => {
   console.log("transaction map state to props fireing");
   return {
-    transactionCardData: state.transactionCardData.transactionData,
-    transactionCardDataStart:
-      state.transactionCardData.transactionCardDataStart,
-    transactionCardDataSuccess:
-      state.transactionCardData.transactionCardDataSuccess,
-    transactionCardDataFailure:
-      state.transactionCardData.transactionCardDataFailure,
-    error: state.transactionCardData.error
+    transactionData: state.clientTransactions.transactionData,
+    transactionDataStart:
+      state.clientTransactions.getTransactionStart,
+    transactionDataSuccess:
+      state.clientTransactions.getTransactionSuccess,
+    transactionDataFailure:
+      state.clientTransactions.getTransactionFailure,
+    error: state.clientTransactions.error
   };
 };
 
 export default connect(
   mapStateToProps,
-  { getTransactionCardData }
+  { getClientTransaction }
 )(FarmerViewTransactions);
 
 const StyledTable = styled.table`

@@ -58,11 +58,11 @@ class FarmerSearch extends Component{
 
 const mapStateToProps = state =>{
     return{
-        farmerData: state.retailerData.listData,
-        searchStart: state.retailerData.searchStart,
-        searchFailure: state.retailerData.searchFailure,
-        error: state.retailerData.error,
-        searchSuccess: state.retailerData.searchSuccess
+        farmerData: state.farmerData.listData,
+        searchStart: state.farmerData.searchStart,
+        searchFailure: state.farmerData.searchFailure,
+        error: state.farmerData.error,
+        searchSuccess: state.farmerData.searchSuccess
     }
 }
 

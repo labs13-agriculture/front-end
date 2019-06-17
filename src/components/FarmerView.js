@@ -23,8 +23,7 @@ class FarmerView extends Component {
   }
 
   componentDidMount() {
-    console.log("Mounted");
-    //get farmer by id?
+    //calling reducer to get specific farmer here
     console.log(this.props.match.params.id);
   }
   

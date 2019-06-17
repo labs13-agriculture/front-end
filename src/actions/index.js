@@ -110,11 +110,14 @@ export {
 export {
   ADD_FARMER_START,
   ADD_FARMER_SUCCESS,
-  ADD_FARMER_FAILURE
-} from "./farmerPost";
-
-export {
+  ADD_FARMER_FAILURE,
+  FARMER_SEARCH_START,
+  FARMER_SEARCH_SUCCESS,
+  FARMER_SEARCH_FAILURE,
   DELETE_FARMER_START,
   DELETE_FARMER_SUCCESS,
-  DELETE_FARMER_FAILURE
-} from "./deleteFarmer";
+  DELETE_FARMER_FAILURE,
+  addFarmer,
+  deleteFarmer,
+  searchFarmers
+} from "./farmerAction";

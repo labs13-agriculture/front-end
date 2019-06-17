@@ -14,7 +14,7 @@ class FarmerCardContainer extends Component {
         {this.props.searchSuccess && this.props.data.length === 0 ? (
           <p>No Farmers found</p>
         ) : null}
-        {this.props.searchSuccess && this.props.data.map(r => <GlobalClientCard key={r.id} contact={Object.keys(r).find(w=>w==='farmercontact').replace('contact','')} id={r.id} name={r.name} location={r.farmerlocation}/>)}
+        {this.props.searchSuccess && this.props.data.map(client => <GlobalClientCard key={client.id} client={client}/>)}
       </CardContainer>
     );
   }
@@ -24,11 +24,11 @@ const mapStateToProps = state => {
   console.log("Updating state");
   console.log(state);
   return {
-    data: state.farmerSearchData.data,
-    error: state.farmerSearchData.error,
-    searchStart: state.farmerSearchData.searchStart,
-    searchSuccess: state.farmerSearchData.searchSuccess,
-    searchFailure: state.farmerSearchData.searchFailure
+    data: state.farmerData.listData,
+    error: state.farmerData.error,
+    searchStart: state.farmerData.searchStart,
+    searchSuccess: state.farmerData.searchSuccess,
+    searchFailure: state.farmerData.searchFailure
   };
 };
 

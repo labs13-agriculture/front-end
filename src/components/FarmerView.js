@@ -160,19 +160,11 @@ const mapStateToProps = state => {
   console.log("Updating state");
   console.log(state);
   return {
-<<<<<<< HEAD
     data: state.farmerData.farmerDemoData,
     error: state.farmerData.error,
     searchStart: state.farmerData.getStart,
     searchSuccess: state.farmerData.getSuccess,
     searchFailure: state.farmerData.getFailure
-=======
-    data: state.retailerData.listData,
-    error: state.retailerData.error,
-    searchStart: state.retailerData.searchStart,
-    searchSuccess: state.retailerData.searchSuccess,
-    searchFailure: state.retailerData.searchFailure
->>>>>>> f4cfa9c4d99b8d4d9af7f565ed2a5dfe250e673a
   };
 };
 

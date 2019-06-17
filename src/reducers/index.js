@@ -21,11 +21,9 @@ export default combineReducers({
   retailerData: retailerReducer,
   farmerData: farmerReducer,
   organizationData: organizationReducer,
-  
   addTransactionRetailer:reducerRetailerTransaction,
   inventory: inventoryReducer,
   itemTypes: itemTypeReducer,
-  organization: organizationReducer
   // // getData,
   // registrationR,
   // getSentiment

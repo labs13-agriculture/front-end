@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import RetailerModal from "./RetailerModal";
-import { getTransactionCardData } from "../../actions";
+
 import { connect } from "react-redux";
 
 class FarmerViewTransactions extends Component {
@@ -13,7 +13,7 @@ class FarmerViewTransactions extends Component {
   }
 
   componentDidMount() {
-    this.props.getTransactionCardData();
+ 
   }
 
   addTransaction() {
@@ -63,7 +63,7 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { getTransactionCardData }
+  {  }
 )(FarmerViewTransactions);
 
 const StyledTable = styled.table`

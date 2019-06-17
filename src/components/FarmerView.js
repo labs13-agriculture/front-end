@@ -87,40 +87,29 @@ class FarmerView extends Component {
   };
 
   render() {
-    let farmerData = [];
-    if (this.props.data) {
-      farmerData = this.props.data.filter(farmer => {
-        return farmer.id == this.props.match.params.id;
-      });
-      console.log("FARMER DATA", farmerData);
-    }
+    
     return (
       <div>
         <StyledContainer>
           <StyledDemos>
             <FarmerViewDemographics
-              farmer={farmerData[0] ? farmerData[0] : "farmer not found"}
-              delete={this.deleteFarmer}
+            id={this.props.match.params.id}
+            delete={this.deleteFarmer}
             />
           </StyledDemos>
           <StyledInfoView>
+          <FarmerViewTransactions id={this.props.match.params.id}>
             <h2>Transactions</h2>
-            {farmerData[0] &&
-              farmerData[0].transactions.map(transaction => {
-                return (
-                  <FarmerViewTransactions
-                    type={transaction.type || ""}
-                    date={transaction.date || ""}
-                  />
-                );
-              })}
+            
+          </FarmerViewTransactions>
+          
 
             <i onClick={() => this.addTransaction()} class="fas fa-plus" />
           </StyledInfoView>
           <StyledInfoView>
             <h2>Installment History</h2>
 
-            {farmerData[0] &&
+            {/* {farmerData[0] &&
               farmerData[0].installments.map(installment => {
                 console.log("FARMER DATA INSTALLMENT", installment);
                 return (
@@ -143,7 +132,7 @@ class FarmerView extends Component {
             <i
               onClick={() => this.toggleInstallment()}
               className="fas fa-plus"
-            />
+            /> */}
           </StyledInfoView>
         </StyledContainer>
         {this.state.addingInstallment && (
@@ -171,11 +160,11 @@ const mapStateToProps = state => {
   console.log("Updating state");
   console.log(state);
   return {
-    data: state.farmerSearchData.data,
-    error: state.farmerSearchData.error,
-    searchStart: state.farmerSearchData.searchStart,
-    searchSuccess: state.farmerSearchData.searchSuccess,
-    searchFailure: state.farmerSearchData.searchFailure
+    data: state.farmerData.farmerDemoData,
+    error: state.farmerData.error,
+    searchStart: state.farmerData.getStart,
+    searchSuccess: state.farmerData.getSuccess,
+    searchFailure: state.farmerData.getFailure
   };
 };
 

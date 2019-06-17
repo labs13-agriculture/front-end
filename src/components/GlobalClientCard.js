@@ -31,7 +31,7 @@ export default class GlobalClientCard extends Component {
           ) : (
             <p>{this.props.location.length} locations</p>
           )}
-          {this.state.redirect && <Redirect to={`/dashboard/farmer/${this.props.id}`} /> }
+          {this.state.redirect && <Redirect to={`/dashboard/${this.props.type}/${this.props.id}`} /> }
         </StyledGlobalClientCard>
       </Link>
     );

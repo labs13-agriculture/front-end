@@ -15,10 +15,10 @@ class FarmerCardContainer extends Component {
     return (
       <CardContainer>
         {this.props.searchStart && <h2>Loading...</h2>}
-        {this.props.searchSuccess && this.props.data.length == 0 ? (
+        {this.props.searchSuccess && this.props.farmerData.length == 0 ? (
           <p>No Farmers found</p>
         ) : null}
-        {this.props.searchSuccess && this.props.data.map(r => <GlobalClientCard key={r.id} contact={Object.keys(r).find(w=>w=='farmercontact').replace('contact','')} id={r.id} name={r.name} location={r.farmerlocation}/>)}
+        {this.props.searchSuccess && this.props.farmerData.map(f => <GlobalClientCard key={f.id} type={f.type} id={f.id} name={f.name} location={f.farmerlocation}/>)}
       </CardContainer>
     );
   }

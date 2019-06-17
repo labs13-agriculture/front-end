@@ -19,7 +19,7 @@ export const searchFarmers = query => dispatch =>{
     console.log(urlString);
 
     return axios
-        .post(urlString, query,{
+        .get(urlString,{
             headers: {
                 'Content-Type' : 'application/json',
                 Authorization: `Bearer ${window.localStorage.getItem('token')}`
@@ -100,10 +100,10 @@ export const GET_FARMER_FAILURE = 'GET_FARMER_FAILURE';
 
 export const getFarmer = farmerId => dispatch =>{
   dispatch({ type: GET_FARMER_START })
-  
+  console.log("starting get farmer action")
 
   return axios
-      .post(`https://tieme-ndo-backend.herokuapp.com/farmers/farmer/${farmerId}`, {
+      .get(`https://tieme-ndo-backend.herokuapp.com/farmers/farmer/${farmerId}`, {
           headers: {
               'Content-Type' : 'application/json',
               

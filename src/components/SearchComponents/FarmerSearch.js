@@ -1,12 +1,10 @@
 import React, { Component } from "react";
 import SearchForm from "./SearchForm";
 import { connect } from "react-redux";
-import { FarmerSearchResults as SearchAction } from "../../actions/FarmerSearch"
+import { searchFarmers, addFarmer } from "../../actions/farmerAction"
 import FarmerCardContainer from '../FarmerCardContainer';
 import styled from 'styled-components';
 import NewFarmerForm from '../NewFarmerForm';
-import { addFarmer } from '../../actions/farmerPost';
-
 
 class FarmerSearch extends Component{
     constructor(props){
@@ -30,7 +28,7 @@ class FarmerSearch extends Component{
     }
 
     submitSearch = query =>{
-        this.props.SearchAction(query);
+        this.props.searchFarmers(query);
         this.setState({
             defaultView: false
         })
@@ -70,7 +68,7 @@ const mapStateToProps = state =>{
 
 export default connect(
     mapStateToProps,
-    { SearchAction, addFarmer }
+    { searchFarmers, addFarmer }
 )(FarmerSearch);
 
 const Header = styled.h1`

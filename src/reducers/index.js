@@ -8,6 +8,7 @@ import farmerReducer from "../reducers/farmerReducer";
 import organizationReducer from "../reducers/organizationReducer";
 import inventoryReducer from "../reducers/inventoryReducer";
 import itemTypeReducer from "./itemTypeReducer.js";
+import reducerRetailerTransaction from './reducerRetailerTransaction';
 
 // import getData from '../reducers/getdata';
 // import registrationR from '../reducers/registerreducer';

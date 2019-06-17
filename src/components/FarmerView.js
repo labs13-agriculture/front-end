@@ -1,12 +1,9 @@
 import React, { Component } from "react";
 import FarmerViewDemographics from "./FarmerViewComponents/FarmerViewDemographics";
 import FarmerViewTransactions from "./FarmerViewComponents/FarmerViewTransactions";
-import FarmerViewInventory from "./FarmerViewComponents/FarmerViewInventory";
 import FarmerViewInstallments from "./FarmerViewComponents/FarmerViewInstallments";
-import FarmerViewYield from "./FarmerViewComponents/FarmerViewYield";
 import FarmerInstallmentForm from "./FarmerViewComponents/FarmerInstallmentForm";
-import { addInstallment, deleteItemFromInstallment, updateInstallmentItem } from "../actions";
-import { deleteFarmer } from '../actions/deleteFarmer';
+import { addInstallment, deleteItemFromInstallment, updateInstallmentItem, deleteFarmer } from "../actions";
 import { connect } from "react-redux";
 import styled from "styled-components";
 import NewYieldForm from "./NewYieldForm";
@@ -147,19 +144,6 @@ class FarmerView extends Component {
               onClick={() => this.toggleInstallment()}
               className="fas fa-plus"
             />
-          </StyledInfoView>
-          <StyledInfoView>
-            <h2>Yield History</h2>
-            {farmerData[0] &&
-              farmerData[0].yieldHistory.map(yields => {
-                return (
-                  <FarmerViewYield
-                    numBags={yields.numBags || ""}
-                    goal={yields.goal || ""}
-                  />
-                );
-              })}
-            <i onClick={() => this.addYieldData()} className="fas fa-plus" />
           </StyledInfoView>
         </StyledContainer>
         {this.state.addingInstallment && (

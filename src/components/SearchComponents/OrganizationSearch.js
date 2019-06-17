@@ -1,12 +1,10 @@
 import React, { Component } from "react";
 import SearchForm from "./SearchForm";
 import { connect } from "react-redux";
-import { OrganizationSearchResults as SearchAction } from "../../actions/OrganizationSearch"
+import { searchOrganizations, addOrganization } from "../../actions/organizationActions"
 import OrganizationCardContainer from '../OrganizationCardContainer';
 import styled from 'styled-components';
 import NewOrganizationForm from '../NewOrganizationForm';
-import { addOrganization } from '../../actions/organizationPost';
-
 
 class OrganizationSearch extends Component{
     constructor(props){
@@ -17,7 +15,7 @@ class OrganizationSearch extends Component{
     }
 
     submitSearch = query =>{
-        this.props.SearchAction(query);
+        this.props.searchOrganizations(query);
     }
 
     toggleAddOrganization = () =>{
@@ -71,7 +69,7 @@ const mapStateToProps = state =>{
 
 export default connect(
     mapStateToProps,
-    { SearchAction, addOrganization }
+    { searchOrganizations, addOrganization }
 )(OrganizationSearch);
 
 const Header = styled.h1`

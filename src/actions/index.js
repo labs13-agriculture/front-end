@@ -11,12 +11,6 @@ export {
   getProductStatData
 } from "./dataProductStatsVue";
 export {
-  DATA_FARMER_CARD_START,
-  DATA_FARMER_CARD_SUCCESS,
-  DATA_FARMER_CARD_FAILURE,
-  getFarmerCardData
-} from "./dataFarmerCardPreviews";
-export {
   USER_SEARCH_START,
   USER_SEARCH_SUCCESS,
   USER_SEARCH_FAILURE,
@@ -58,21 +52,6 @@ export {
   updateInstallmentItem,
   deleteItemFromInstallment
 } from "./dataInstallmentCard";
-
-export {
-  DATA_YIELD_CARD_START,
-  DATA_YIELD_CARD_SUCCESS,
-  DATA_YIELD_CARD_FAILURE,
-  getYieldCardData
-} from "./dataYieldCard";
-
-export {
-  DATA_INVENTORY_CARD_START,
-  DATA_INVENTORY_CARD_SUCCESS,
-  DATA_INVENTORY_CARD_FAILURE,
-  getInventoryCardData,
-  addInventoryItem
-} from "./dataInventoryCard";
 
 export {
   ADD_TRANSACTION_START,

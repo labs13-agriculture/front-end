@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled, { css } from "styled-components";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 
 export default class GlobalClientCard extends Component {
   constructor(props) {
@@ -21,7 +21,7 @@ export default class GlobalClientCard extends Component {
     return (
       //loop through keys of card data in props
       //return h3 element with formatted key value pairs
-      <div onClick={() => this.redirect()} className="outerCardDiv">>
+      <Link to={`/dashboard/${this.props.contact}/${this.props.id}`}>
         <StyledGlobalClientCard>
           <h3>{this.props.name}</h3>
           {!Array.isArray(this.props.location) ? (
@@ -33,7 +33,7 @@ export default class GlobalClientCard extends Component {
           )}
           {this.state.redirect && <Redirect to={`/dashboard/farmer/${this.props.id}`} /> }
         </StyledGlobalClientCard>
-      </div>
+      </Link>
     );
   }
 }

@@ -18,15 +18,7 @@ class FarmerCardContainer extends Component {
         {this.props.searchSuccess && this.props.data.length == 0 ? (
           <p>No Farmers found</p>
         ) : null}
-        {this.props.searchSuccess &&
-          this.props.data.map(f => (
-            <GlobalClientCard
-              key={f.id}
-              id={f.id}
-              name={f.name}
-              location={f.farmerlocation}
-            />
-          ))}
+        {this.props.searchSuccess && this.props.data.map(r => <GlobalClientCard key={r.id} contact={Object.keys(r).find(w=>w=='farmercontact').replace('contact','')} id={r.id} name={r.name} location={r.farmerlocation}/>)}
       </CardContainer>
     );
   }

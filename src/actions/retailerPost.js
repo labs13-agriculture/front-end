@@ -27,7 +27,4 @@ export const addRetailer = newRetailer => dispatch =>{
               err => {console.log(err)
                   dispatch({type:ADD_RETAILER_FAILURE,payload:err})
               }
-      
-          
-              
           );}

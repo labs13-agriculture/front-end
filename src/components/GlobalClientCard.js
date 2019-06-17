@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { Redirect, Link } from "react-router-dom";
 
 export default class GlobalClientCard extends Component {
@@ -26,7 +26,7 @@ export default class GlobalClientCard extends Component {
           <h3>{this.props.name}</h3>
           {!Array.isArray(this.props.location) ? (
             <p>{this.props.location.address}</p>
-          ) : this.props.location.length == 1 ? (
+          ) : this.props.location.length === 1 ? (
             <p>{this.props.location[0].address}</p>
           ) : (
             <p>{this.props.location.length} locations</p>

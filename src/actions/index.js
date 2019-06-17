@@ -74,18 +74,15 @@ export {
   DELETING_INVENTORY,
   DELETING_INVENTORY_SUCCESS,
   DELETING_INVENTORY_FAILURE,
-  getInventoryList,
-  addItemToInventory,
-  updateItemInInventory,
-  deleteItemFromInventory
-} from "./Inventory";
-
-export {
   GETTING_ITEMTYPES,
   GETTING_ITEMTYPES_SUCCESS,
   GETTING_ITEMTYPES_FAILURE,
+  getInventoryList,
+  addItemToInventory,
+  updateItemInInventory,
+  deleteItemFromInventory,
   getItemTypes
-} from "./ItemType";
+} from "./Inventory";
 
 export {
   ADD_FARMER_START,

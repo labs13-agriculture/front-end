@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
 
@@ -31,8 +31,7 @@ function InventoryItem(props) {
         console.log("Pretend we updated an item")
         item.active = isActive
         item.quantity = newQty > 0 ? newQty : item.quantity;
-        let clean = {invid: item.invid, quantity: item.quantity, item: {name: item.name, active: item.active}}
-        props.updateItemInInventory(clean)
+        props.updateItemInInventory(item)
         setIsEditing(false);
     }
 
@@ -85,7 +84,7 @@ function InventoryItem(props) {
                 : <button
                     // this button isn't used in the header but is set to invisible to keep spacing consistent
                     className={`delete${props.header ? " hidden" : ""}`}
-                    onClick={() => props.deleteItemFromInventory(item.invid)}
+                    onClick={() => props.deleteItemFromInventory(item.id)}
                 >Delete</button>
                 }
             </div>

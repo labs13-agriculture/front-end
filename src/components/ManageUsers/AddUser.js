@@ -1,6 +1,6 @@
 import React, {Component} from "react";
-import styled, {css} from "styled-components";
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import styled from "styled-components";
+import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { connect } from "react-redux";
 import {addNewSystemUser} from "../../actions";
 

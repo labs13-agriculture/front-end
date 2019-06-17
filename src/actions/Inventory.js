@@ -2,7 +2,7 @@ import axios from 'axios';
 import {BASE_URL} from '../config.js'
 
 // action functions
-// getInventoryList, addItemToInventory, updateItemInInventory, deleteItemFromInventory
+// getInventoryList, addItemToInventory, updateItemInInventory, deleteItemFromInventory, getItemTypes
 
 
 // GETTING_INVENTORY, GETTING_INVENTORY_SUCCESS, GETTING_INVENTORY_FAILURE
@@ -13,7 +13,7 @@ export const GETTING_INVENTORY_FAILURE = "GETTING_INVENTORY_FAILURE";
 export const getInventoryList = () => dispatch => {
     dispatch({type: GETTING_INVENTORY});
 
-    const urlString = `${BASE_URL}/inventory/all`
+    const urlString = `${BASE_URL}/itemtype/all`
 
     return axios
         .get(urlString,{
@@ -39,7 +39,7 @@ export const ADDING_INVENTORY_FAILURE = "ADDING_INVENTORY_FAILURE";
 export const addItemToInventory = (item) => dispatch => {
     dispatch({type: ADDING_INVENTORY});
 
-    const urlString = `${BASE_URL}/inventory/add`
+    const urlString = `${BASE_URL}/itemtype/add`
 
     return axios
         .post(urlString, item, {
@@ -65,7 +65,7 @@ export const UPDATING_INVENTORY_FAILURE = "UPDATING_INVENTORY_FAILURE";
 export const updateItemInInventory = (item) => dispatch => {
     dispatch({type: UPDATING_INVENTORY});
 
-    const urlString = `${BASE_URL}/inventory/update/${item.invid}`
+    const urlString = `${BASE_URL}/itemtype/update/${item.invid}`
 
     return axios
         .put(urlString, item, {
@@ -91,7 +91,7 @@ export const DELETING_INVENTORY_FAILURE = "DELETING_INVENTORY_FAILURE";
 export const deleteItemFromInventory = (itemid) => dispatch => {
     dispatch({type: DELETING_INVENTORY});
 
-    const urlString = `${BASE_URL}/inventory/delete/${itemid}`
+    const urlString = `${BASE_URL}/itemtype/delete/${itemid}`
 
     return axios
         .delete(urlString, {
@@ -106,5 +106,32 @@ export const deleteItemFromInventory = (itemid) => dispatch => {
         .catch(err =>{
             console.log(err);
             dispatch({type: DELETING_INVENTORY_FAILURE, payload: err})
+        })
+}
+
+
+// GETTING_ITEMTYPES, GETTING_ITEMTYPES_SUCCESS, GETTING_ITEMTYPES_FAILURE
+export const GETTING_ITEMTYPES = "GETTING_ITEMTYPES";
+export const GETTING_ITEMTYPES_SUCCESS = "GETTING_ITEMTYPES_SUCCESS";
+export const GETTING_ITEMTYPES_FAILURE = "GETTING_ITEMTYPES_FAILURE";
+
+export const getItemTypes = () => dispatch => {
+    dispatch({type: GETTING_ITEMTYPES});
+
+    const urlString = `${BASE_URL}/itemtype/all`
+
+    return axios
+        .get(urlString,{
+            headers: {
+                'Content-Type' : 'application/json',
+                Authorization: `Bearer ${window.localStorage.getItem('token')}`
+            }
+        })
+        .then(res =>{
+            dispatch({type: GETTING_ITEMTYPES_SUCCESS, payload: res.data})
+        })
+        .catch(err =>{
+            console.log(err);
+            dispatch({type: GETTING_ITEMTYPES_FAILURE, payload: err})
         })
 }

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import PrivateRoute from "./PrivateRoute";
 import RetailerSearch from "./SearchComponents/RetailerSearch";
 import { ManageUsersContainer } from "./ManageUsers/ManageUsersContainer";

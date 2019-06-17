@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import {UserResultsList} from "../ManageUsers/UserResultsList";
 import { connect } from "react-redux";
 import {userSearchResults} from '../../actions';
 import PrivateRoute from '../PrivateRoute';
 
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import AddUser from './AddUser';
 import UserDetails from './UserDetails';
 

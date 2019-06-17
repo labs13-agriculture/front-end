@@ -106,3 +106,15 @@ export {
   GETTING_ITEMTYPES_FAILURE,
   getItemTypes
 } from "./ItemType";
+
+export {
+  ADD_FARMER_START,
+  ADD_FARMER_SUCCESS,
+  ADD_FARMER_FAILURE
+} from "./farmerPost";
+
+export {
+  DELETE_FARMER_START,
+  DELETE_FARMER_SUCCESS,
+  DELETE_FARMER_FAILURE
+} from "./deleteFarmer";

@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import FarmerViewDemographics from "./RetailerViewComponents/FarmerViewDemographics";
 import FarmerViewTransactions from "./RetailerViewComponents/FarmerViewTransactions";
-import FarmerViewInventory from "./RetailerViewComponents/FarmerViewInventory";
 import FarmerViewInstallments from "./RetailerViewComponents/FarmerViewInstallments";
-import FarmerViewYield from "./RetailerViewComponents/FarmerViewYield";
 import FarmerInstallmentForm from "./RetailerViewComponents/FarmerInstallmentForm";
 import { connect } from "react-redux";
 import styled from "styled-components";
@@ -74,9 +72,6 @@ class RetailerView extends Component {
               installments={farmerData[0] ? farmerData[0].installments: "installment not found"}
               toggleInstallment={this.toggleInstallment}
             />
-          </StyledInfoView>
-          <StyledInfoView>
-            <FarmerViewYield goals={farmerData[0] ? farmerData[0].goals: "goals not found"}/>
           </StyledInfoView>
          
         </StyledContainer>

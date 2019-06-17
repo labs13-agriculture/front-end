@@ -3,9 +3,8 @@ import SearchForm from "./SearchForm";
 import { connect } from "react-redux";
 import styled from "styled-components";
 import RetailerCardContainer from '../RetailerCardContainer';
-import { RetailerSearchResults as SearchAction } from "../../actions/RetailerSearch";
+import { searchRetailers, addRetailer } from "../../actions/retailerActions";
 import NewRetailerForm from '../NewRetailerForm';
-import { addRetailer } from '../../actions/retailerPost';
 
 class RetailerSearch extends Component{
     constructor(props){
@@ -29,7 +28,7 @@ class RetailerSearch extends Component{
     }
 
     submitSearch = query =>{
-        this.props.SearchAction(query);
+        this.props.searchRetailers(query);
         this.setState({
             defaultView: false
         })
@@ -68,7 +67,7 @@ const mapStateToProps = state =>{
 
 export default connect(
     mapStateToProps,
-    { SearchAction, addRetailer }
+    { searchRetailers, addRetailer }
 )(RetailerSearch);
 
 const Header = styled.h1`

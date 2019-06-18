@@ -18,7 +18,7 @@ export default combineReducers({
   userReducer: userReducer,
   login: loginReducer,
 
-  installmentCardData: reducerInstallmentCard,
+  installments: reducerInstallmentCard,
   retailerData: retailerReducer,
   farmerData: farmerReducer,
   organizationData: organizationReducer,

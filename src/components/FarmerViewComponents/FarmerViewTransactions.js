@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-
+import {FarmerTransactionItem} from "./FarmerTransactionItem";
 
 import { connect } from "react-redux";
 import {getClientTransaction} from "../../actions";
@@ -13,6 +13,10 @@ class FarmerViewTransactions extends Component {
     };
   }
 
+  //write function for submitting form information for update
+
+
+
   componentDidMount() {
     this.props.getClientTransaction(this.props.id)
   }
@@ -22,25 +26,13 @@ class FarmerViewTransactions extends Component {
       <div>
         <h2>Transaction History</h2>
         <i onClick={() => this.props.modalToggle()} className="fas fa-plus" />
-        <StyledTable>
-          <tr>
-            <StyledTd>TOTAL</StyledTd>
-            <StyledTd>DATE</StyledTd>
-            <StyledTd>TYPE</StyledTd>
-            <StyledTd>OFFICER</StyledTd>
-          </tr>
-          
-          {this.props.transactionDataSuccess && this.props.transactionData.map(t => {
-            return(<tr>
-          <StyledTh>{t.total}</StyledTh>
-          <StyledTh>{t.date}</StyledTh>
-          <StyledTh>{t.type}</StyledTh>
-          <StyledTh>{t.personnel}</StyledTh>
-          
-          </tr>)})}
-          
-          
-        </StyledTable>
+        <StyledTransactionNav>
+          <h3 className="t-nav-header">DATE</h3>
+          <h3 className="t-nav-header">TOTAL</h3>
+          <h3 className="t-nav-header">TYPE</h3>
+          <h3 className="t-nav-header">OFFICER</h3>
+        </StyledTransactionNav>
+        {this.props.transactionData && this.props.transactionData.map(t => <FarmerTransactionItem item={t}/>)}
       </div>
     );
   }
@@ -87,3 +79,14 @@ const StyledTh = styled.th`
 // tr:nth-child(even) {
 //   background-color: #dddddd;
 // }
+
+const StyledTransactionNav = styled.div`
+  width:100%;
+  height:60px;
+  display:flex;
+  justify-content:space-between;
+
+
+
+
+`

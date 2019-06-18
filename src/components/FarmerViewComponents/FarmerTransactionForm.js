@@ -13,10 +13,8 @@ class FarmerTransactionForm extends Component{
             day: today.getDate(),
             year: today.getYear() + 1900,
             officer:'',
-            quantity: '',
-            itemName: '',
+            items: [{itemName: '', unitPrice: '', quantity: ''}],
             clientId: props.id,
-            unitPrice: ''
         }
     }
 
@@ -24,10 +22,32 @@ class FarmerTransactionForm extends Component{
         this.props.getInventoryList()
     }
 
-    formChange = e =>{
+    addItem = () =>{
+        this.setState((prevState) => ({
+            items: [...prevState.items, {itemName: '', unitPrice: '', quantity: ''}]
+        }))
+    }
+    
+    removeItem = () =>{
+        let newItems = this.state.items;
+        newItems.pop();
         this.setState({
-            [e.target.name]: e.target.value
+            items: newItems
         })
+    }
+
+    formChange = e =>{
+        if(["itemName", "unitPrice", "quantity"].includes(e.target.className)){
+            console.log(e.target.dataset.id, e.target.className, e.target.value)
+            let items = [...this.state.items];
+            items[e.target.dataset.id][e.target.className] = e.target.value;
+            this.setState({items}, () => console.log(this.state.items))
+        }
+        else{
+            this.setState({
+                [e.target.name]: e.target.value
+            })
+        }
     }
 
     radioChange = e => {
@@ -38,7 +58,7 @@ class FarmerTransactionForm extends Component{
 
     submitForm = e =>{
         e.preventDefault();
-        console.log(this.state);
+        console.log("submitting", this.state);
     }
 
     
@@ -134,21 +154,28 @@ class FarmerTransactionForm extends Component{
                     <label for="Cash">Cash</label>
                     </div>
                 </label>
-                <label>
-                    Item:
-                    <Dropdown value={this.state.itemName} name="itemName" onChange={e=> this.formChange}>
-                        <option value="">Please select an item</option>
-                        {this.props.inventory.map((item, index) => (<option key={index}>{item.name}</option>))}
-                    </Dropdown>
-                </label>
-                <label>
-                    Quantity:
-                    <input type="text" name="quantity" value={this.state.quantity} onChange={e => this.formChange(e)} />
-                </label>
-                <label>
-                    Price:
-                    <input type="text" name="unitPrice" value={this.state.unitPrice} onChange={e => this.formChange(e)} />
-                </label>
+                {this.state.items.map((item, index) =>(
+                    <div key={index}>
+                        <label>
+                            Item {index + 1}:
+                            <Dropdown className="itemName" data-item={index} name={`item-${index}`} onChange={e=> this.formChange} data-id={index}>
+                                <option data-item="">Please select an item</option>
+                                {this.props.inventory.map((item, idx) => (<option key={idx}>{item.name}</option>))}
+                            </Dropdown>
+                        </label>
+                        <label>
+                            Quantity:
+                            <input data-id={index} className="quantity" type="text" name="quantity" data-qty={index} onChange={e => this.formChange(e)} />
+                        </label>
+                        <label>
+                            Price:
+                            <input data-id={index} className="unitPrice" type="text" name="unitPrice" data-price={index} onChange={e => this.formChange(e)} />
+                        </label>
+                    </div>
+                ))}
+                
+                <button type="button" onClick={this.addItem}>Add another item</button>
+                <button type="button" onClick={this.removeItem}>Remove item</button>
                 <input type="submit" />
             </form>
         )

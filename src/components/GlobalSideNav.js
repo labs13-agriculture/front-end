@@ -19,35 +19,35 @@ export default class GlobalSideNav extends Component {
   render() {
     return (
       <GSN>
-        <StyledH1 className="title"><i class="fas fa-database"></i>TIEME NDO</StyledH1>
+        <StyledH1 className="title"><i className="fas fa-seedling" />TIEME NDO</StyledH1>
         <StyledDiv className="hvr-underline-reveal">
           <NavLink to="/dashboard" style={{ textDecoration: "none" }}>
             <i class="fas fa-th"></i>
-            <span>Dashboard</span>
+            <span>DASHBOARD</span>
           </NavLink>
         </StyledDiv>
         <StyledDiv className="hvr-underline-reveal">
           <NavLink to="/search/farmers" style={{ textDecoration: "none" }}>
             <i className="fas fa-search"></i>
-            <span>Search</span>
+            <span>SEARCH</span>
           </NavLink>
         </StyledDiv>
         <StyledDiv className="hvr-underline-reveal">
           <NavLink to="/users" style={{ textDecoration: "none" }}>
             <i className="fas fa-user"></i>
-            <span>Users</span>
+            <span>USERS</span>
           </NavLink>
         </StyledDiv>
         <StyledDiv className="hvr-underline-reveal">
           <NavLink to="/inventory" style={{ textDecoration: "none" }}>
             <i className="fas fa-boxes"></i>
-            <span>Inventory</span>
+            <span>INVENTORY</span>
           </NavLink>
         </StyledDiv>
         <StyledDiv className="hvr-underline-reveal">
           <NavLink onClick={() => this.logout()} to="#" style={{ textDecoration: "none" }}>
             <i className="fas fa-sign-out-alt"></i>
-            <span>Log Out</span>
+            <span>LOG OUT</span>
           </NavLink>
         </StyledDiv>
 
@@ -70,6 +70,7 @@ const GSN = styled.div`
     #efeeec 75%,
     #e9e9e7 100%
   ); */}
+  
   background:rgb(60,57,75);
   box-shadow:  0 13px 27px -5px rgba(50,50,93,0.25),0 8px 16px -8px rgba(0, 0, 0, 0.44),0 10px 16px 1px rgba(0, 0, 0, 0.53);
   z-index:2;
@@ -94,8 +95,9 @@ const StyledH1 = styled.h1`
   margin-bottom:20px;
   
 
-  .fas.fa-database{
+  .fas.fa-seedling{
     margin-right:4px;
+    font-size:13px;
   }
 `;
 
@@ -112,7 +114,7 @@ const StyledDiv = styled.div`
   letter-spacing: -2px;
   letter-spacing: 1px;
   font-weight: 400;
-  height: 60px;
+  height: 50px;
   display:flex;
   justify-content:center;
   align-items:center;
@@ -134,7 +136,7 @@ const StyledDiv = styled.div`
     border-right: 4px solid transparent;
     justify-content: center;
 
-    font-size: 1.5rem;
+    font-size: 1.3rem;
 
     letter-spacing: 0px;
     

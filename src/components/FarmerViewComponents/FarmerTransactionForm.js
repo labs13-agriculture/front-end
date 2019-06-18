@@ -37,13 +37,15 @@ class FarmerTransactionForm extends Component{
     }
 
     formChange = e =>{
-        if(["itemName", "unitPrice", "quantity"].includes(e.target.className)){
+        console.log(e.target.dataset.class)
+        if(["itemName", "unitPrice", "quantity"].includes(e.target.dataset.class)){
             console.log(e.target.dataset.id, e.target.className, e.target.value)
             let items = [...this.state.items];
-            items[e.target.dataset.id][e.target.className] = e.target.value;
+            items[e.target.dataset.id][e.target.dataset.class] = e.target.value;
             this.setState({items}, () => console.log(this.state.items))
         }
         else{
+            console.log("just changing a value")
             this.setState({
                 [e.target.name]: e.target.value
             })
@@ -158,18 +160,18 @@ class FarmerTransactionForm extends Component{
                     <div key={index}>
                         <label>
                             Item {index + 1}:
-                            <Dropdown className="itemName" data-item={index} name={`item-${index}`} onChange={e=> this.formChange} data-id={index}>
-                                <option data-item="">Please select an item</option>
-                                {this.props.inventory.map((item, idx) => (<option key={idx}>{item.name}</option>))}
+                            <Dropdown data-class="itemName" data-item={index} name={`item-${index}`} onChange={e=> this.formChange(e)} data-id={index}>
+                                <option data-class="itemName" data-item="">Please select an item</option>
+                                {this.props.inventory.map((item, idx) => (<option className="itemName" key={idx} data-item={item.name}>{item.name}</option>))}
                             </Dropdown>
                         </label>
                         <label>
                             Quantity:
-                            <input data-id={index} className="quantity" type="text" name="quantity" data-qty={index} onChange={e => this.formChange(e)} />
+                            <input data-id={index} data-class="quantity" type="text" name="quantity" data-qty={index} onChange={e => this.formChange(e)} />
                         </label>
                         <label>
                             Price:
-                            <input data-id={index} className="unitPrice" type="text" name="unitPrice" data-price={index} onChange={e => this.formChange(e)} />
+                            <input data-id={index} data-class="unitPrice" type="text" name="unitPrice" data-price={index} onChange={e => this.formChange(e)} />
                         </label>
                     </div>
                 ))}

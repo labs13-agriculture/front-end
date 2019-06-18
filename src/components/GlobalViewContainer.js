@@ -21,8 +21,12 @@ export default class GlobalVueContainer extends Component {
     return (
       <GVC>
         {/*  Putting these 2 in a private route to */}
-        <PrivateRoute path='/dashboard' component={GlobalNav}/>
         <PrivateRoute path='/dashboard' component={ClientVueContainer}/>
+
+        <PrivateRoute path='/search' component={GlobalNav}/>
+        <PrivateRoute path='/search' component={ClientVueContainer}/>
+
+        <PrivateRoute path='/users' components={ManageUsersContainer} />
 
         <PrivateRoute path='/inventory' component={InventoryView} />
       </GVC>

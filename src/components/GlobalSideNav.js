@@ -22,37 +22,32 @@ export default class GlobalSideNav extends Component {
         <StyledH1 className="title">Tieme Ndo</StyledH1>
         <StyledDiv className="hvr-underline-reveal">
           <Link to="/dashboard" style={{ textDecoration: "none" }}>
-            <i className="fas fa-home">
-              <span style={{ margin: "0 10px" }}>Home</span>
-            </i>
+            <i className="fas fa-home"></i>
+            <span>Dashboard</span>
           </Link>
         </StyledDiv>
         <StyledDiv className="hvr-underline-reveal">
-          <Link to="#" style={{ textDecoration: "none" }}>
-            <i className="fas fa-search">
-              <span style={{ margin: "0 10px" }}>Search</span>
-            </i>
+          <Link to="/search" style={{ textDecoration: "none" }}>
+            <i className="fas fa-search"></i>
+            <span>CRM Search</span>
           </Link>
         </StyledDiv>
         <StyledDiv className="hvr-underline-reveal">
-          <Link to="#" style={{ textDecoration: "none" }}>
-            <i className="fas fa-user">
-              <span style={{ margin: "0 10px" }}>Search</span>
-            </i>
+          <Link to="/users" style={{ textDecoration: "none" }}>
+            <i className="fas fa-user"></i>
+            <span>Users</span>
           </Link>
         </StyledDiv>
         <StyledDiv className="hvr-underline-reveal">
           <Link to="/inventory" style={{ textDecoration: "none" }}>
-            <i className="fas fa-boxes">
-              <span style={{ margin: "0 10px" }}>Inventory</span>
-            </i>
+            <i className="fas fa-boxes"></i>
+            <span>Inventory</span>
           </Link>
         </StyledDiv>
         <StyledDiv className="hvr-underline-reveal">
           <Link onClick={() => this.logout()} to="#" style={{ textDecoration: "none" }}>
-            <i className="fas fa-sign-out-alt">
-              <span style={{ margin: "0 10px" }}>Log Out</span>
-            </i>
+            <i className="fas fa-sign-out-alt"></i>
+            <span>Log Out</span>
           </Link>
         </StyledDiv>
 
@@ -63,15 +58,9 @@ export default class GlobalSideNav extends Component {
 }
 
 const GSN = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  /* position: fixed; */
+
+  align-items: left;
   width: 17%;
-  left: 0;
-  /* height: 100%; */
-  border: 1px solid #d3d3d369;
-  border-right: none;
   background-image: linear-gradient(
     to top,
     #d5d4d0 0%,
@@ -92,7 +81,6 @@ const StyledH1 = styled.h1`
   justify-content: center;
   width: 100%;
   padding: 20px 0;
-  font-family: "Josefin Sans", sans-serif;
   text-shadow: 0 1px 3px rgba(57, 55, 70, 0.4);
   font-size: 24px;
   color: #2800a9;
@@ -104,15 +92,23 @@ const StyledH1 = styled.h1`
 
 const StyledDiv = styled.div`
   display: flex;
-  justify-content: center;
   width: 100%;
-  padding: 20px 5px;
+  padding: 10px 5px;
   margin: 5px 5px;
-  font-family: "Josefin Sans", sans-serif;
-  text-shadow: 0 1px 3px rgba(57, 55, 70, 0.4);
-  font-size: 24px;
+  /* font-family: "Josefin Sans", sans-serif; */
+  /* text-shadow: 0 1px 3px rgba(57, 55, 70, 0.4); */
+  font-size: 1.7rem;
   color: #2800a9;
   letter-spacing: -2px;
   letter-spacing: 1px;
   font-weight: 400;
+
+  a {
+    color: inherit;
+
+    span {
+      font-family: "Josefin Sans", sans-serif;
+      padding-left: 1rem;
+    }
+  }
 `;

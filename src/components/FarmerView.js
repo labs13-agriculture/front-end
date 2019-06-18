@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
+import { theme } from "../config";
 
 // components
 import FarmerViewDemographics from "./FarmerViewComponents/FarmerViewDemographics";
 import FarmerViewTransactions from "./FarmerViewComponents/FarmerViewTransactions";
-import Installments from './Installment/InstallmentComponent'
+import Installments from "./Installment/InstallmentComponent";
 
 // actions
 import { deleteFarmer } from "../actions";
@@ -19,34 +20,33 @@ class FarmerView extends Component {
     //calling reducer to get specific farmer here
     console.log(this.props.match.params.id);
   }
-  
-  deleteFarmer = (id) =>{
-    console.log("DELETING FARMER " + id)
+
+  deleteFarmer = id => {
+    console.log("DELETING FARMER " + id);
     this.props.deleteFarmer(id);
-  }
+  };
 
   addTransaction() {
     console.log("Trying to add transaction");
   }
 
   render() {
-    
     return (
       <div>
         <StyledContainer>
           {/* Demographics Container */}
           <StyledDemos>
             <FarmerViewDemographics
-            id={this.props.match.params.id}
-            delete={this.deleteFarmer}
+              id={this.props.match.params.id}
+              delete={this.deleteFarmer}
             />
           </StyledDemos>
 
           {/*  Transaction Container*/}
           <StyledInfoView>
-          <FarmerViewTransactions id={this.props.match.params.id}>
-            <h2>Transactions</h2>
-          </FarmerViewTransactions>
+            <FarmerViewTransactions id={this.props.match.params.id}>
+              <h2>Transactions</h2>
+            </FarmerViewTransactions>
             <i onClick={() => this.addTransaction()} class="fas fa-plus" />
           </StyledInfoView>
 
@@ -54,7 +54,6 @@ class FarmerView extends Component {
           <StyledInfoView>
             <Installments />
           </StyledInfoView>
-
         </StyledContainer>
       </div>
     );
@@ -76,7 +75,7 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   {
-    deleteFarmer,
+    deleteFarmer
   }
 )(FarmerView);
 
@@ -96,9 +95,8 @@ const StyledDemos = styled.div`
 
 const StyledInfoView = styled.div`
   width: 45%;
-  background-image: linear-gradient(to top, #feada6 0%, #f5efef 100%);
+  background-color: white;
   height: 100%;
-  border-radius: 5px;
   margin-top: 20px;
   overflow-y: scroll;
 `;

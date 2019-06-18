@@ -27,7 +27,7 @@ export default class GlobalSideNav extends Component {
           </NavLink>
         </StyledDiv>
         <StyledDiv className="hvr-underline-reveal">
-          <NavLink to="/search/farmers" style={{ textDecoration: "none" }}>
+          <NavLink to="/search" style={{ textDecoration: "none" }}>
             <i className="fas fa-search"></i>
             <span>SEARCH</span>
           </NavLink>

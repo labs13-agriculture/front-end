@@ -59,11 +59,11 @@ class OrganizationSearch extends Component{
 
 const mapStateToProps = state =>{
     return{
-        organizationData: state.organizationSearchData.data,
-        searchStart: state.organizationSearchData.searchStart,
-        searchFailure: state.organizationSearchData.searchFailure,
-        error: state.organizationSearchData.error,
-        searchSuccess: state.organizationSearchData.searchSuccess
+        organizationData: state.organizationData.data,
+        searchStart: state.organizationData.searchStart,
+        searchFailure: state.organizationData.searchFailure,
+        error: state.organizationData.error,
+        searchSuccess: state.organizationData.searchSuccess
     }
 }
 

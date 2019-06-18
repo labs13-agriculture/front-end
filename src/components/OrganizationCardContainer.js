@@ -22,11 +22,11 @@ const mapStateToProps = state =>{
     console.log("Updating state")
     console.log(state);
     return{
-        data: state.organizationSearchData.data,
-        error: state.organizationSearchData.error,
-        searchStart: state.organizationSearchData.searchStart,
-        searchSuccess: state.organizationSearchData.searchSuccess,
-        searchFailure: state.organizationSearchData.searchFailure
+        data: state.organizationData.data,
+        error: state.organizationData.error,
+        searchStart: state.organizationData.searchStart,
+        searchSuccess: state.organizationData.searchSuccess,
+        searchFailure: state.organizationData.searchFailure
     }
 }
 

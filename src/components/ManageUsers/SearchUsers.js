@@ -71,7 +71,6 @@ import UserDetails from './UserDetails';
 }
 
 const StyledSearchUsers = styled.div`
-    border:1px solid red;
     height:100%;
     display:flex;
     flex-direction:column;
@@ -82,7 +81,6 @@ const StyledSearchUsers = styled.div`
 const StyledSearchBar = styled.div`
 
     width:100%;
-    border:1px solid purple;
     display: flex;
     justify-content: space-between;
 

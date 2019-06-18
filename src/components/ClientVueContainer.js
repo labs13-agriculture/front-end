@@ -7,7 +7,9 @@ import FarmerSearch from "./SearchComponents/FarmerSearch";
 import OrganizationSearch from "./SearchComponents/OrganizationSearch";
 import FarmerView from "./FarmerView";
 import RetailerView from "./RetailerView";
-import OrganizationView from "./OrganizationView/OrganizationView.js"
+import OrganizationView from "./OrganizationView/OrganizationView.js";
+import ProductStatsVue from "./StatisticsDashboardComp/StatisticsVue";
+import StatisticsVue from "./StatisticsDashboardComp/StatisticsVue";
 
 export default class ClientVueContainer extends Component {
   constructor(props) {
@@ -19,6 +21,12 @@ export default class ClientVueContainer extends Component {
     return (
       <StyledClientVueContainer>
         {/* //search component will go here */}
+        {/* <PrivateRoute
+          exact
+          path="/dashboard/statistics"
+          component={StatisticsVue}
+        /> */}
+        
         <PrivateRoute
           exact
           path="/search/retailers"

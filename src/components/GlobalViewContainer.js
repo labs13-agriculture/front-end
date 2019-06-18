@@ -42,7 +42,8 @@ const GVC = styled.div`
   display: flex;
   width: 100%;
   flex-direction: column;
-  background-color: #1f1f1f;
+  ${'' /* background-color: #1f1f1f; */}
+  background:rgb(35, 33, 43);;
 `;
 
 const Cards = styled.div`

@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import {UserResultsList} from "../ManageUsers/UserResultsList";
 import { connect } from "react-redux";
 import {userSearchResults} from '../../actions';
 import PrivateRoute from '../PrivateRoute';
 
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import AddUser from './AddUser';
 import UserDetails from './UserDetails';
 
@@ -71,7 +71,6 @@ import UserDetails from './UserDetails';
 }
 
 const StyledSearchUsers = styled.div`
-    border:1px solid red;
     height:100%;
     display:flex;
     flex-direction:column;
@@ -82,7 +81,6 @@ const StyledSearchUsers = styled.div`
 const StyledSearchBar = styled.div`
 
     width:100%;
-    border:1px solid purple;
     display: flex;
     justify-content: space-between;
 
@@ -91,10 +89,10 @@ const StyledSearchBar = styled.div`
 
 const mapStateToProps = state => {
    return{
-    returnedUserData:state.searchUserReducer.data,
-    userSearchSuccess:state.searchUserReducer.userSearchSuccess,
-    userSearchFailure:state.searchUserReducer.userSearchFailure,
-    userSearchStart:state.searchUserReducer.userSearchStart
+    returnedUserData:state.userReducer.data,
+    userSearchSuccess:state.userReducer.userSearchSuccess,
+    userSearchFailure:state.userReducer.userSearchFailure,
+    userSearchStart:state.userReducer.userSearchStart
 
    }
     

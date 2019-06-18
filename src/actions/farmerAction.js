@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+import { BASE_URL } from '../config';
     
 
 
@@ -15,11 +15,11 @@ export const searchFarmers = query => dispatch =>{
     dispatch({type: FARMER_SEARCH_START, payload: {name: nameSearch, location: locationSearch}});
     //console.log(nameSearch + " " + locationSearch);
 
-    const urlString = `https://tieme-ndo-backend.herokuapp.com/farmers/search?name=${nameSearch}&location=${locationSearch}&lead=${query.leads}`
+    const urlString = `${BASE_URL}/farmers/search?name=${nameSearch}&location=${locationSearch}&lead=${query.leads}`
     console.log(urlString);
 
     return axios
-        .post(urlString, query,{
+        .get(urlString, {
             headers: {
                 'Content-Type' : 'application/json',
                 Authorization: `Bearer ${window.localStorage.getItem('token')}`
@@ -45,7 +45,7 @@ export const deleteFarmer = (id) => dispatch => {
    
     
     return axios
-      .delete(`https://tieme-ndo-backend.herokuapp.com/farmers/farmer/${id}`,{
+      .delete(`${BASE_URL}/farmers/farmer/${id}`,{
         headers: {
           'Content-Type' : 'application/json',
           
@@ -74,7 +74,7 @@ export const addFarmer = newFarmer => dispatch =>{
     console.log("attempting to add", newFarmer);
 
     return axios
-        .post('https://tieme-ndo-backend.herokuapp.com/farmers/add', newFarmer, {
+        .post(`${BASE_URL}/farmers/add`, newFarmer, {
             headers: {
                 'Content-Type' : 'application/json',
                 
@@ -100,10 +100,10 @@ export const GET_FARMER_FAILURE = 'GET_FARMER_FAILURE';
 
 export const getFarmer = farmerId => dispatch =>{
   dispatch({ type: GET_FARMER_START })
-  
+  console.log("starting get farmer action")
 
   return axios
-      .post(`https://tieme-ndo-backend.herokuapp.com/farmers/farmer/${farmerId}`, {
+      .get(`${BASE_URL}/farmers/farmer/${farmerId}`, {
           headers: {
               'Content-Type' : 'application/json',
               

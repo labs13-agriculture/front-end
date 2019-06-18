@@ -1,4 +1,3 @@
-import React, { Component } from "react";
 import {
   GET_TRANSACTION_START,
   GET_TRANSACTION_SUCCESS,

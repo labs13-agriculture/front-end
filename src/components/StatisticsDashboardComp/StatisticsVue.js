@@ -52,7 +52,7 @@ const media = Object.keys(sizes).reduce((acc, label) => {
 
 const StyledStatisticsVue = styled.div`
   height:100%;
-  width:100%;
+  width:75%;
   display:flex;
   justify-content:flex-end;
   align-items:center;

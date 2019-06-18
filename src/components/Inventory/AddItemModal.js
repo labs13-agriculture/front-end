@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input} from 'reactstrap';
 import { connect } from "react-redux";
 
 import {
@@ -21,9 +21,8 @@ function AddItemModal(props) {
 
     const submit = e => {
         e.preventDefault();
-        // the way things need to be formatted is a big yikes
-        let cleanedItem = {quantity: newItem.quantity, item: {name: newItem.itemName}}
-        props.addItemToInventory(cleanedItem);
+        let clean = {name: newItem.itemName, quantity: newItem.quantity};
+        props.addItemToInventory(clean);
         props.doModal();
     }
 

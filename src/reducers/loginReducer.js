@@ -1,5 +1,3 @@
-import React, { Component } from "react";
-
 import { LOGIN_START, LOGIN_SUCCESS, LOGIN_FAILURE } from "../actions";
 
 const initialState = {

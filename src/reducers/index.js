@@ -2,7 +2,7 @@ import userReducer from "../reducers/UserReducer";
 import { combineReducers } from "redux";
 import loginReducer from "../reducers/loginReducer";
 import retailerReducer from "../reducers/retailerReducer";
-import reducerTransactionCard from "../reducers/reducerTransactionCard";
+import clientTransactions from "../reducers/clientTransactions";
 import reducerInstallmentCard from "../reducers/reducerInstallmentCard";
 import farmerReducer from "../reducers/farmerReducer";
 import organizationReducer from "../reducers/organizationReducer";
@@ -17,7 +17,7 @@ import reducerRetailerTransaction from './reducerRetailerTransaction';
 export default combineReducers({
   userReducer: userReducer,
   login: loginReducer,
-  transactionCardData: reducerTransactionCard,
+
   installmentCardData: reducerInstallmentCard,
   retailerData: retailerReducer,
   farmerData: farmerReducer,
@@ -25,6 +25,7 @@ export default combineReducers({
   addTransactionRetailer:reducerRetailerTransaction,
   inventory: inventoryReducer,
   itemTypes: itemTypeReducer,
+  clientTransactions:clientTransactions
   // // getData,
   // registrationR,
   // getSentiment

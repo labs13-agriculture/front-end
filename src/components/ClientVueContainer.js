@@ -1,13 +1,12 @@
 import React, { Component } from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import PrivateRoute from "./PrivateRoute";
 import RetailerSearch from "./SearchComponents/RetailerSearch";
 import { ManageUsersContainer } from "./ManageUsers/ManageUsersContainer";
 import FarmerSearch from "./SearchComponents/FarmerSearch";
 import OrganizationSearch from "./SearchComponents/OrganizationSearch";
 import FarmerView from "./FarmerView";
-import RetailerView from "./RetailerView";
-import OrganizationView from "./OrganizationView/OrganizationView.js"
+import OrganizationView from "./OrganizationView/OrganizationView.js";
 
 export default class ClientVueContainer extends Component {
   constructor(props) {
@@ -19,19 +18,25 @@ export default class ClientVueContainer extends Component {
     return (
       <StyledClientVueContainer>
         {/* //search component will go here */}
+        {/* <PrivateRoute
+          exact
+          path="/dashboard/statistics"
+          component={StatisticsVue}
+        /> */}
+        
         <PrivateRoute
           exact
-          path="/dashboard/retailers"
-          component={RetailerSearch}
-        />
-        <PrivateRoute
-          exact
-          path="/dashboard/farmers"
+          path="/search/retailers"
           component={FarmerSearch}
         />
         <PrivateRoute
           exact
-          path="/dashboard/organizations"
+          path="/search/farmers"
+          component={FarmerSearch}
+        />
+        <PrivateRoute
+          exact
+          path="/search/organizations"
           component={OrganizationSearch}
         />
         <PrivateRoute
@@ -43,7 +48,7 @@ export default class ClientVueContainer extends Component {
         <PrivateRoute
           exact
           path="/dashboard/retailer/:id"
-          component={RetailerView}
+          component={FarmerView}
         />
 
         <PrivateRoute
@@ -63,7 +68,7 @@ export default class ClientVueContainer extends Component {
 }
 
 const StyledClientVueContainer = styled.div`
-  height: 100%;
+  height: 100vh;
   width: 100%;
   padding: 20px;
 `;

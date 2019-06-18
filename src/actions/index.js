@@ -29,12 +29,14 @@ export {
   deleteSystemUser
 } from "./userActions";
 
+
+
 export {
-  DATA_TRANSACTION_CARD_START,
-  DATA_TRANSACTION_CARD_SUCCESS,
-  DATA_TRANSACTION_CARD_FAILURE,
-  getTransactionCardData
-} from "./dataTransactionCard";
+  GET_TRANSACTION_START,
+  GET_TRANSACTION_SUCCESS,
+  GET_TRANSACTION_FAILURE,
+  getClientTransaction
+} from "./clientTransactions";
 
 export {
   DATA_INSTALLMENT_CARD_START,
@@ -59,7 +61,7 @@ export {
   ADD_TRANSACTION_FAILURE,
   addNewTransaction,
   
-} from "./addNewTransactionRetailer";
+} from "./clientTransactions";
 
 export {
   GETTING_INVENTORY,
@@ -74,18 +76,15 @@ export {
   DELETING_INVENTORY,
   DELETING_INVENTORY_SUCCESS,
   DELETING_INVENTORY_FAILURE,
-  getInventoryList,
-  addItemToInventory,
-  updateItemInInventory,
-  deleteItemFromInventory
-} from "./Inventory";
-
-export {
   GETTING_ITEMTYPES,
   GETTING_ITEMTYPES_SUCCESS,
   GETTING_ITEMTYPES_FAILURE,
+  getInventoryList,
+  addItemToInventory,
+  updateItemInInventory,
+  deleteItemFromInventory,
   getItemTypes
-} from "./ItemType";
+} from "./Inventory";
 
 export {
   ADD_FARMER_START,

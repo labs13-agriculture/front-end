@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+//import styled from 'styled-components';
 import {connect} from 'react-redux';
 
 import OrgComponent from './OrgDemoComponent.js'
@@ -23,8 +23,3 @@ export default connect(state => ({
 }), {
     // mapping actions here
 })(OrganizationView)
-
-
-const StyledOrg = styled.div`
-
-`;

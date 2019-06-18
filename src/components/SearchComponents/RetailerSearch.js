@@ -2,9 +2,7 @@ import React, { Component } from "react";
 import SearchForm from "./SearchForm";
 import { connect } from "react-redux";
 import styled from "styled-components";
-import RetailerCardContainer from '../RetailerCardContainer';
 import { searchRetailers, addRetailer } from "../../actions/retailerActions";
-import NewRetailerForm from '../NewRetailerForm';
 
 class RetailerSearch extends Component{
     constructor(props){
@@ -46,9 +44,7 @@ class RetailerSearch extends Component{
             <div>
                 <Header>Find a Retailer</Header>
                 <SearchForm submitSearch={this.submitSearch}/>
-                <RetailerCardContainer />
                 {this.props.error && <p>Sorry, we couldn't find any farmers that match your search criteria</p>}
-                {this.state.addingRetailer && <NewRetailerForm submitForm={this.submitRetailer} />}
                 <i style={tempi} onClick={() => this.toggleAddRetailer()} class="fas fa-plus"></i>
             </div>
         );

@@ -61,7 +61,6 @@ const GN = styled.div`
     }
 
     &.active:after {
-      /* I didnt not steal this from spotify */
       content: "";
       height: 2px;
       background-color: #40E0D0;

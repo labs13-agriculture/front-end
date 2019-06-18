@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {BASE_URL} from '../config'
 
 export const ADD_SYSTEM_USER_START = 'ADD_SYSTEM_USER_START';
 export const ADD_SYSTEM_USER_SUCCESS = 'ADD_SYSTEM_USER_SUCCESS';
@@ -10,7 +11,7 @@ export const addNewSystemUser = (userDetails) => dispatch => {
     const body = JSON.stringify(userDetails);
     console.log("userDetails JSON "+body)
     return axios
-      .post("https://tieme-ndo-backend.herokuapp.com/users/newuser", body,{
+      .post(`${BASE_URL}/users/newuser`, body,{
         headers: {
           'Content-Type' : 'application/json',
           
@@ -40,7 +41,7 @@ export const updateSystemUser = (userDetails,id) => dispatch => {
     const body = JSON.stringify(userDetails);
     console.log("userDetails JSON "+body)
     return axios
-      .put(`https://tieme-ndo-backend.herokuapp.com/users/update-user/${id}`, body,{
+      .put(`${BASE_URL}/users/update-user/${id}`, body,{
         headers: {
           'Content-Type' : 'application/json',
           
@@ -100,7 +101,7 @@ export const userSearchResults = (searchQuery) => dispatch => {
     console.log('name searched '+nameSearch)
     
     return axios
-        .get(`https://tieme-ndo-backend.herokuapp.com/users/username/${nameSearch}`,{
+        .get(`${BASE_URL}/users/username/${nameSearch}`,{
             headers: {
                 'Content-Type' : 'application/json',
                 Authorization: `Bearer ${window.localStorage.getItem('token')}`

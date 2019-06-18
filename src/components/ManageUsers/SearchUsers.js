@@ -91,10 +91,10 @@ const StyledSearchBar = styled.div`
 
 const mapStateToProps = state => {
    return{
-    returnedUserData:state.searchUserReducer.data,
-    userSearchSuccess:state.searchUserReducer.userSearchSuccess,
-    userSearchFailure:state.searchUserReducer.userSearchFailure,
-    userSearchStart:state.searchUserReducer.userSearchStart
+    returnedUserData:state.userReducer.data,
+    userSearchSuccess:state.userReducer.userSearchSuccess,
+    userSearchFailure:state.userReducer.userSearchFailure,
+    userSearchStart:state.userReducer.userSearchStart
 
    }
     

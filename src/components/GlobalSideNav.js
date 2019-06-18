@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import { Link,NavLink } from "react-router-dom";
-import styled, { css } from "styled-components";
-import Axios from "axios";
+import { NavLink } from "react-router-dom";
+import styled from "styled-components";
 import "./GSN.css";
 
 export default class GlobalSideNav extends Component {
@@ -11,6 +10,7 @@ export default class GlobalSideNav extends Component {
       names: []
     };
   }
+  
 
   logout = () =>{
     window.localStorage.removeItem('token');

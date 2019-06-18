@@ -1,17 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
-import { Button } from "reactstrap";
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import AddInstallmentForm from "./AddInstallmentForm";
 import { theme } from "../../config";
 import { StyledTd } from "../../styles/InstallmentStyles";
 
 function InstallmentHeader(props) {
+  const [modal, setModal] = useState(false);
+
+  const toggleModal = e => {
+    e.preventDefault();
+    setModal(!modal);
+  };
+
   return (
     <HeaderContainer>
       <div className="header">
         <h2>Installments</h2>
 
-        <Button>New</Button>
+        <Button onClick={toggleModal}>New</Button>
       </div>
       <table>
         <tr>
@@ -21,6 +29,10 @@ function InstallmentHeader(props) {
           <StyledTd className="officer">Officer</StyledTd>
         </tr>
       </table>
+
+      <Modal isOpen={modal} toggle={toggleModal}>
+        <AddInstallmentForm toggleModal={toggleModal} />
+      </Modal>
     </HeaderContainer>
   );
 }

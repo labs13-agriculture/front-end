@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 
-class FarmerEditInstallmentForm extends Component {
+class EditInstallment extends Component {
   constructor(props) {
     super(props);
     //default date form to today
@@ -161,7 +161,7 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(FarmerEditInstallmentForm);
+export default connect(mapStateToProps)(EditInstallment);
 
 const Modal = styled.div`
   width: 65%;

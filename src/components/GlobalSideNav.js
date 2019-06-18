@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import { Link,NavLink } from "react-router-dom";
-import styled, { css } from "styled-components";
-import Axios from "axios";
+import { NavLink } from "react-router-dom";
+import styled from "styled-components";
 import "./GSN.css";
 
 export default class GlobalSideNav extends Component {
@@ -11,6 +10,7 @@ export default class GlobalSideNav extends Component {
       names: []
     };
   }
+  
 
   logout = () =>{
     window.localStorage.removeItem('token');
@@ -27,7 +27,7 @@ export default class GlobalSideNav extends Component {
           </NavLink>
         </StyledDiv>
         <StyledDiv className="hvr-underline-reveal">
-          <NavLink to="/search/farmers" style={{ textDecoration: "none" }}>
+          <NavLink to="/search" style={{ textDecoration: "none" }}>
             <i className="fas fa-search"></i>
             <span>SEARCH</span>
           </NavLink>

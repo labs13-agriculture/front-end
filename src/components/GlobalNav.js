@@ -42,7 +42,6 @@ const GN = styled.div`
     margin-left: 30px;
     color: ${theme.background_light};
     font-size: 1.4rem;
-    font-weight:600;
     letter-spacing:1px;
 
     transition: all .15s ease;
@@ -62,7 +61,6 @@ const GN = styled.div`
     }
 
     &.active:after {
-      /* I didnt not steal this from spotify */
       content: "";
       height: 2px;
       background-color: #40E0D0;

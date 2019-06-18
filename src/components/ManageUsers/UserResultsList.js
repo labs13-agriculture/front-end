@@ -120,7 +120,7 @@ const StyledMiniNav = styled.div`
 const StyledResultsList = styled.div`
   height: 100%;
   width: 100%;
-  overflow: scroll;
+  overflow-y: scroll;
   display:flex;
   flex-direction:column;
   

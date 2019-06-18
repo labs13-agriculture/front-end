@@ -73,9 +73,9 @@ function OrgDemoComponent(props) {
 
 export default withRouter(connect(state => ({
     // state mapping here
-    organization: state.organization.organization,
-    error: state.organization.error,
-    gettingOrg: state.organization.gettingOrganization
+    organization: state.organizationData.organization,
+    error: state.organizationData.error,
+    gettingOrg: state.organizationData.gettingOrganization
 }), {
     // mapping actions here
     getOrganizationById

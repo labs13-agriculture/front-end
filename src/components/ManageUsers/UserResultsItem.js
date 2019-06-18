@@ -85,7 +85,7 @@ const StyledProductStatsMini = styled.div`
   .product-name{
     width:200px;
     height:20px;
-    overflow:scroll;
+    text-overflow: ellipse;
   }
 
   

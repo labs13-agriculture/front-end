@@ -17,12 +17,12 @@ const media = Object.keys(sizes).reduce((acc, label) => {
 }, {});
 
 const CardContainer = styled.div`
-    height: 100%;
+    height: 425px;
     width: 100%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-evenly;
     overflow-y: scroll;
 
 

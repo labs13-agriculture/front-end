@@ -20,6 +20,8 @@ class FarmerViewTransactions extends Component {
   render() {
     return (
       <div>
+        <h2>Transaction History</h2>
+        <i onClick={() => this.props.modalToggle()} className="fas fa-plus" />
         <StyledTable>
           <tr>
             <StyledTd>TOTAL</StyledTd>

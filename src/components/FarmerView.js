@@ -5,9 +5,11 @@ import FarmerViewInstallments from "./FarmerViewComponents/FarmerViewInstallment
 import FarmerInstallmentForm from "./FarmerViewComponents/FarmerInstallmentForm";
 import { addInstallment, deleteItemFromInstallment, updateInstallmentItem, deleteFarmer } from "../actions";
 import { connect } from "react-redux";
+import { Modal } from 'reactstrap';
 import styled from "styled-components";
 import NewYieldForm from "./NewYieldForm";
 import FarmerEditInstallment from "./FarmerViewComponents/FarmerEditInstallment";
+import FarmerTransactionForm from './FarmerViewComponents/FarmerTransactionForm';
 
 class FarmerView extends Component {
   constructor(props) {
@@ -15,7 +17,8 @@ class FarmerView extends Component {
     this.state = {
       addingInstallment: false,
       editingInstallment: false,
-      installmentToEdit: null
+      installmentToEdit: null,
+      addingTransaction: false
     };
   }
 
@@ -60,6 +63,20 @@ class FarmerView extends Component {
     console.log("Trying to add transaction");
   }
 
+  toggleTransaction = () => {
+    if(this.state.addingTransaction){
+      this.setState({
+        addingTransaction: false
+      })
+    }
+    else{
+      this.setState({
+        addingTransaction: true
+      })
+      
+    }
+  }
+
   sendInstallmentEdit = installment => {
     console.log(installment);
     this.updateInstallmentById(installment);
@@ -94,13 +111,7 @@ class FarmerView extends Component {
             />
           </StyledDemos>
           <StyledInfoView>
-          <FarmerViewTransactions id={this.props.match.params.id}>
-            <h2>Transactions</h2>
-            
-          </FarmerViewTransactions>
-          
-
-            <i onClick={() => this.addTransaction()} class="fas fa-plus" />
+          <FarmerViewTransactions id={this.props.match.params.id} modalToggle={this.toggleTransaction} />
           </StyledInfoView>
           <StyledInfoView>
             <h2>Installment History</h2>
@@ -147,6 +158,7 @@ class FarmerView extends Component {
             toggleInstallment={this.toggleInstallmentEdit}
           />
         )}
+        <Modal isOpen={this.state.addingTransaction}><button color="secondary" onClick={this.toggleTransaction}>Cancel</button><FarmerTransactionForm id={this.props.match.params.id} /></Modal>
       </div>
     );
   }
@@ -197,7 +209,7 @@ const StyledInfoView = styled.div`
   overflow: scroll;
 `;
 
-const Modal = styled.div`
+const HandmadeModal = styled.div`
   width: 65%;
   border: 1px solid red;
   position: absolute;

@@ -21,17 +21,17 @@ export default class ClientVueContainer extends Component {
         {/* //search component will go here */}
         <PrivateRoute
           exact
-          path="/dashboard/retailers"
+          path="/search/retailers"
           component={RetailerSearch}
         />
         <PrivateRoute
           exact
-          path="/dashboard/farmers"
+          path="/search/farmers"
           component={FarmerSearch}
         />
         <PrivateRoute
           exact
-          path="/dashboard/organizations"
+          path="/search/organizations"
           component={OrganizationSearch}
         />
         <PrivateRoute
@@ -63,7 +63,7 @@ export default class ClientVueContainer extends Component {
 }
 
 const StyledClientVueContainer = styled.div`
-  height: 100%;
+  height: 100vh;
   width: 100%;
   padding: 20px;
 `;

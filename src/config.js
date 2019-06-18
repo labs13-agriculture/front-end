@@ -5,5 +5,7 @@ export const BASE_URL = 'https://tieme-ndo-backend.herokuapp.com' // base url fo
 
 export const theme = {
     // can store colors here to use them throughout the application in styled-components
+    background_light: `#E9E9E7`,
+    background_dark: `1F1F1F`,
 }
 

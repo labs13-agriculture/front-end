@@ -22,15 +22,15 @@ class FarmerViewInstallments extends Component {
       <div>
         <h2>Installment History</h2>
         {this.props.installments ?
-          this.props.installments.map(yields => (
-            <div key={yields.id}> id={yields.id}
-            <span> DATE PAID --- {yields.datePaid}</span>
+          this.props.installments.map(installment => (
+            <div key={installment.id}> id={installment.id}
+            <span> DATE PAID --- {installment.datePaid}</span>
             <br/>
-              <span> AMOUNT PAID --- {yields.amountPaid}</span>
+              <span> AMOUNT PAID --- {installment.amountPaid}</span>
               <br />
-              <span> MODE --- {yields.mode}</span>
+              <span> MODE --- {installment.mode}</span>
               <br />
-              <span> OFFICER --- {yields.officer}</span>
+              <span> OFFICER --- {installment.officer}</span>
               
               
               

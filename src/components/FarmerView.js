@@ -60,10 +60,6 @@ class FarmerView extends Component {
     console.log("Trying to add transaction");
   }
 
-  addYieldData() {
-    console.log("Trying to add yield data");
-  }
-
   sendInstallmentEdit = installment => {
     console.log(installment);
     this.updateInstallmentById(installment);

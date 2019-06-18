@@ -7,10 +7,11 @@ export const ADD_TRANSACTION_FAILURE = 'ADD_TRANSACTION_FAILURE';
 export const addNewTransaction = (transactionDetails,id) => dispatch => {
     dispatch({ type: ADD_TRANSACTION_START });
    
-    const body = JSON.stringify(transactionDetails);
-    console.log("userDetails JSON "+body)
+    // const body = JSON.stringify(transactionDetails);
+    const body = transactionDetails;
+    console.log("userDetails JSON ", body)
     return axios
-      .post(`https://tieme-ndo-backend.herokuapp.com/add/${id}`, body,{
+      .post(`https://tieme-ndo-backend.herokuapp.com/transaction/add/${id}`, body,{
         headers: {
           'Content-Type' : 'application/json',
           

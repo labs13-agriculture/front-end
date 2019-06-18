@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { getInventoryList } from "../../actions";
+import { getInventoryList, addNewTransaction } from "../../actions";
 
 class FarmerTransactionForm extends Component{
     constructor(props){
@@ -37,15 +37,12 @@ class FarmerTransactionForm extends Component{
     }
 
     formChange = e =>{
-        console.log(e.target.dataset.class)
         if(["itemName", "unitPrice", "quantity"].includes(e.target.dataset.class)){
-            console.log(e.target.dataset.id, e.target.className, e.target.value)
             let items = [...this.state.items];
             items[e.target.dataset.id][e.target.dataset.class] = e.target.value;
             this.setState({items}, () => console.log(this.state.items))
         }
         else{
-            console.log("just changing a value")
             this.setState({
                 [e.target.name]: e.target.value
             })
@@ -60,7 +57,27 @@ class FarmerTransactionForm extends Component{
 
     submitForm = e =>{
         e.preventDefault();
-        console.log("submitting", this.state);
+        let finalItems = [];
+        this.state.items.map(item =>{
+            let itemObject = this.props.inventory.filter(inventoryItem => inventoryItem.name === item.itemName)
+            finalItems.push({
+                quantity: item.quantity,
+                unitPrice: item.unitPrice,
+                item: itemObject[0]
+            })
+        })
+        
+        const transaction = {
+            type: this.state.payment,
+            personnel: this.state.officer,
+            date: this.state.year +
+            "-" +
+            (this.state.month > 9 ? this.state.month : "0" + this.state.month) +
+            "-" +
+            (this.state.day > 9 ? this.state.day : "0" + this.state.day),
+            inputs: finalItems
+        }
+        this.props.addNewTransaction(transaction, this.state.clientId);
     }
 
     
@@ -162,7 +179,7 @@ class FarmerTransactionForm extends Component{
                             Item {index + 1}:
                             <Dropdown data-class="itemName" data-item={index} name={`item-${index}`} onChange={e=> this.formChange(e)} data-id={index}>
                                 <option data-class="itemName" data-item="">Please select an item</option>
-                                {this.props.inventory.map((item, idx) => (<option className="itemName" key={idx} data-item={item.name}>{item.name}</option>))}
+                                {this.props.inventory.map((item, idx) => (<option className="itemName" key={idx} data-item={item}>{item.name}</option>))}
                             </Dropdown>
                         </label>
                         <label>
@@ -190,7 +207,7 @@ const mapStateToProps = state =>{
     };
 }
 
-export default connect(mapStateToProps, { getInventoryList })(FarmerTransactionForm);
+export default connect(mapStateToProps, { getInventoryList, addNewTransaction })(FarmerTransactionForm);
 
 const Dropdown = styled.select`
   width: auto;

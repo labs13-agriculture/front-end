@@ -60,7 +60,16 @@ class FarmerView extends Component {
   };
 
   addTransaction() {
-    console.log("Trying to add transaction");
+    if(this.state.addingTransaction){
+      this.setState({
+        addingTransaction: false
+      })
+    }
+    else{
+      this.setState({
+        addingTransaction: true
+      })
+    }
   }
 
   toggleTransaction = () => {

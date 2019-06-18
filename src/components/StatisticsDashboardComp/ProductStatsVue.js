@@ -23,7 +23,7 @@ class ProductStatsVue extends Component {
   componentDidMount() {
     console.log("component mounting");
 
-    this.callProductNameData();
+    // this.callProductNameData();
   }
 
   render() {
@@ -49,11 +49,11 @@ class ProductStatsVue extends Component {
 
 const mapStateToProps = state => {
   return {
-    prodStatStart: state.prodStatData.prodStatStart,
-    error: state.prodStatData.error,
-    prodStatFailure: state.prodStatData.loginFailure,
-    productNameData: state.prodStatData.data,
-    prodStatSuccess: state.prodStatData.prodStatSuccess
+    // prodStatStart: state.prodStatData.prodStatStart,
+    // error: state.prodStatData.error,
+    // prodStatFailure: state.prodStatData.loginFailure,
+    // productNameData: state.prodStatData.data,
+    // prodStatSuccess: state.prodStatData.prodStatSuccess
   };
 };
 

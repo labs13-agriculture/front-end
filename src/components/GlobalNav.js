@@ -20,9 +20,9 @@ class GlobalSideNav extends Component {
   render() {
     return (
       <GN>
-        <NavLink to="/search/farmers">Farmers</NavLink>
-        <NavLink to="/search/retailers">Retailers</NavLink>
-        <NavLink to="/search/organizations">Organizations</NavLink>
+        <NavLink to="/search/farmers">FARMERS</NavLink>
+        <NavLink to="/search/retailers">RETAILERS</NavLink>
+        <NavLink to="/search/organizations">ORGANIZATIONS</NavLink>
       </GN>
     );
   }
@@ -38,9 +38,12 @@ const GN = styled.div`
   align-items: center;
 
   a {
+    font-family: "Josefin Sans", sans-serif;
     margin-left: 30px;
     color: ${theme.background_light};
-    font-size: 2rem;
+    font-size: 1.4rem;
+    font-weight:600;
+    letter-spacing:1px;
 
     transition: all .15s ease;
 

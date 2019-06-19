@@ -41,7 +41,6 @@ class OrganizationCardContainer extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log("Updating state");
   console.log(state);
   return {
     data: state.organizationData.listData,

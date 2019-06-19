@@ -1,25 +1,67 @@
-import React from 'react';
-//import styled from 'styled-components';
-import {connect} from 'react-redux';
+import React, { Component } from "react";
+import styled from "styled-components";
+import { connect } from "react-redux";
 
-import OrgComponent from './OrgDemoComponent.js'
+import OrgComponent from "./OrgDemoComponent.js";
+import OrganizationViewDemographics from "./OrganizationViewDemographics.js";
 
-function OrganizationView(props) {
+class OrganizationView extends Component {
+  constructor(props) {
+    super(props);
+  }
 
+  componentDidMount() {
+    //calling reducer to get specific farmer here
+    console.log("PARAM ID", this.props.match.params.id);
+  }
+
+  render() {
     return (
-    <> 
+      <StyledContainer>
+        <StyledDemos>
+          <OrganizationViewDemographics id={this.props.match.params.id} />
+        </StyledDemos>
         {/* Organization View */}
-        <OrgComponent />
 
         {/* Installment Component */}
 
         {/* Transaction Component */}
-    </>
-    )
+      </StyledContainer>
+    );
+  }
 }
 
-export default connect(state => ({
+export default connect(
+  state => ({
     // state mapping here
-}), {
+  }),
+  {
     // mapping actions here
-})(OrganizationView)
+  }
+)(OrganizationView);
+
+const StyledContainer = styled.div`
+  display: flex;
+  height: 400px;
+
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+`;
+
+const StyledDemos = styled.div`
+  width: 100%;
+  height: auto;
+`;
+
+const StyledInfoView = styled.div`
+  width: 45%;
+  background-color: white;
+  height: 100%;
+  margin-top: 20px;
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`;

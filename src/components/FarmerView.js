@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Modal } from 'reactstrap';
 import styled from "styled-components";
+
+
+import FarmerTransactionForm from './FarmerViewComponents/FarmerTransactionForm';
 import { theme } from "../config";
 
 // components
@@ -27,7 +31,30 @@ class FarmerView extends Component {
   };
 
   addTransaction() {
-    console.log("Trying to add transaction");
+    if(this.state.addingTransaction){
+      this.setState({
+        addingTransaction: false
+      })
+    }
+    else{
+      this.setState({
+        addingTransaction: true
+      })
+    }
+  }
+
+  toggleTransaction = () => {
+    if(this.state.addingTransaction){
+      this.setState({
+        addingTransaction: false
+      })
+    }
+    else{
+      this.setState({
+        addingTransaction: true
+      })
+      
+    }
   }
 
   render() {
@@ -41,13 +68,8 @@ class FarmerView extends Component {
               delete={this.deleteFarmer}
             />
           </StyledDemos>
-
-          {/*  Transaction Container*/}
           <StyledInfoView>
-            <FarmerViewTransactions id={this.props.match.params.id}>
-              <h2>Transactions</h2>
-            </FarmerViewTransactions>
-            <i onClick={() => this.addTransaction()} class="fas fa-plus" />
+          <FarmerViewTransactions id={this.props.match.params.id} modalToggle={this.toggleTransaction} />
           </StyledInfoView>
 
           {/* Installments Container */}
@@ -105,7 +127,7 @@ const StyledInfoView = styled.div`
   }
 `;
 
-const Modal = styled.div`
+const HandmadeModal = styled.div`
   width: 65%;
   border: 1px solid red;
   position: absolute;

@@ -73,6 +73,10 @@ const StyledApp = styled.div`
   font-family: "Roboto", sans-serif;
   font-size: 1.4rem;
 
+  @media (max-width: 500px) {
+    display: block;
+  }
+
   input:focus,
   select:focus,
   textarea:focus,

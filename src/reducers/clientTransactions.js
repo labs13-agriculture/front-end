@@ -4,7 +4,11 @@ import {
   GET_TRANSACTION_FAILURE,
   DELETE_TRANSACTION_START,
   DELETE_TRANSACTION_SUCCESS,
-  DELETE_TRANSACTION_FAILURE
+  DELETE_TRANSACTION_FAILURE,
+  UPDATE_TRANSACTION_START,
+  UPDATE_TRANSACTION_SUCCESS,
+  UPDATE_TRANSACTION_FAILURE,
+  
 
 } from "../actions";
 
@@ -16,7 +20,10 @@ const initialState = {
   error: "",
   deleteTransactionStart:false,
   deleteTransactionSuccess:false,
-  deleteTransactionFailure:false
+  deleteTransactionFailure:false,
+  updateTransactionStart:false,
+  updateTransactionSuccess:false,
+  updateTransactionFailure:false
 };
 
 export default (state = initialState, action) => {
@@ -61,7 +68,8 @@ export default (state = initialState, action) => {
         ...state,
         deleteTransactionStart: false,
         deleteTransactionSuccess:true,
-        deleteTransactionFailure:false
+        deleteTransactionFailure:false,
+        newTransactionList:action.payload
 
       };
 
@@ -71,6 +79,35 @@ export default (state = initialState, action) => {
         deleteTransactionStart: false,
         deleteTransactionSuccess:false,
         deleteTransactionFailure:true,
+        error:action.payload
+
+      };
+
+      case UPDATE_TRANSACTION_START:
+      return {
+        ...state,
+        updateTransactionStart: true,
+        updateTransactionSuccess:false,
+        updateTransactionFailure:false
+
+      };
+
+      case UPDATE_TRANSACTION_SUCCESS:
+      return {
+        ...state,
+        updateTransactionStart: false,
+        updateTransactionSuccess:true,
+        updateTransactionFailure:false,
+        updatedTransactionData:action.payload
+
+      };
+
+      case UPDATE_TRANSACTION_FAILURE:
+      return {
+        ...state,
+        updateTransactionStart: false,
+        updateTransactionSuccess:false,
+        updateTransactionFailure:true,
         error:action.payload
 
       };

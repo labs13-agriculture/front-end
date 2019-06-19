@@ -14,11 +14,12 @@ class FarmerViewTransactions extends Component {
   }
 
   //write function for submitting form information for update
-
+  
 
 
   componentDidMount() {
-    this.props.getClientTransaction(this.props.id)
+    this.props.getClientTransaction(this.props.id);
+    
   }
 
   render() {
@@ -32,7 +33,16 @@ class FarmerViewTransactions extends Component {
           <h3 className="t-nav-header">TYPE</h3>
           <h3 className="t-nav-header">OFFICER</h3>
         </StyledTransactionNav>
-        {this.props.transactionData && this.props.transactionData.map(t => <FarmerTransactionItem deleteClientTransaction={this.props.deleteClientTransaction} item={t}/>)}
+        {
+          this.props.transactionDataSuccess && this.props.transactionData
+        .map(t => <FarmerTransactionItem 
+
+        deleteClientTransaction={this.props.deleteClientTransaction}
+        getClientTransaction={this.props.getClientTransaction} 
+        clientId={this.props.id} item={t}
+
+         />)
+         }
       </div>
     );
   }
@@ -48,7 +58,8 @@ const mapStateToProps = state => {
       state.clientTransactions.getTransactionSuccess,
     transactionDataFailure:
       state.clientTransactions.getTransactionFailure,
-    error: state.clientTransactions.error
+    error: state.clientTransactions.error,
+    updatedTransactionData:state.clientTransactions.updatedTransactionData
   };
 };
 

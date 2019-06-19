@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { Modal } from 'reactstrap';
+import FormUpdateClientTransaction from './FormUpdateClientTransaction';
 
 export class FarmerTransactionItem extends Component{
     constructor(props){
@@ -21,8 +22,11 @@ export class FarmerTransactionItem extends Component{
                 <h3>{this.props.item.type}</h3>
                 <h3>{this.props.item.personnel}</h3>
                 <button onClick={this.toggleUpdateModal} isOpen={this.state.toggleUpdateModal} color="secondary">Update</button>
-                <button onClick={()=>{this.props.deleteClientTransaction(this.props.item.id)}}>DELETE</button>
-                <Modal isOpen={this.state.toggleUpdateModal}><button onClick={this.toggleUpdateModal}  color="secondary">Cancel</button></Modal>
+                <button onClick={()=>{this.props.deleteClientTransaction(this.props.item.id).then(this.props.getClientTransaction(this.props.clientId))}}>DELETE</button>
+                <Modal isOpen={this.state.toggleUpdateModal}>
+                    <FormUpdateClientTransaction clientId={this.props.clientId} transactionId={this.props.item.id}/>
+                    <button onClick={this.toggleUpdateModal}  color="secondary">Cancel</button>
+                </Modal>
             </StyledTransactionContainer>
         )
     }

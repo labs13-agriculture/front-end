@@ -39,7 +39,11 @@ export {
   DELETE_TRANSACTION_START,
   DELETE_TRANSACTION_SUCCESS,
   DELETE_TRANSACTION_FAILURE,
-  deleteClientTransaction
+  deleteClientTransaction,
+  UPDATE_TRANSACTION_START,
+  UPDATE_TRANSACTION_SUCCESS,
+  UPDATE_TRANSACTION_FAILURE,
+  updateClientTransaction
 } from "./clientTransactions";
 
 export {

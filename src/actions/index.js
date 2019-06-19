@@ -49,10 +49,10 @@ export {
   DELETE_INSTALLMENT,
   DELETE_INSTALLMENT_SUCCESS,
   DELETE_INSTALLMENT_FAILURE,
-  getInstallmentCardData,
+  getInstallmentData,
   addInstallment,
   updateInstallmentItem,
-  deleteItemFromInstallment
+  deleteInstallment
 } from "./dataInstallmentCard";
 
 export {

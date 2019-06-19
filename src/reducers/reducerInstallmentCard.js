@@ -12,7 +12,7 @@ import {
 } from "../actions";
 
 const initialState = {
-  installmentList: [],
+  data: [],
   installmentCardDataStart: false,
   installmentCardDataSuccess: false,
   installmentCardDataFailure: false,
@@ -53,7 +53,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         updatingInstallment: false,
-        installmentList: action.payload,
+        data: action.payload,
         error: false
       };
     case UPDATE_INSTALLMENT_FAILURE:
@@ -74,7 +74,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         deletingInstallment: false,
-        installmentList: action.payload,
+        data: action.payload,
         error: false
       };
     case DELETE_INSTALLMENT_FAILURE:

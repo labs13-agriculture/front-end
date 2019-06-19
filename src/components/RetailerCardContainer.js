@@ -3,15 +3,13 @@ import { connect } from "react-redux";
 import GlobalClientCard from "./GlobalClientCard";
 import CardContainer from "../styles/CardContainerStyles";
 
-class FarmerCardContainer extends Component {
+class RetailerCardContainer extends Component {
   render() {
-    console.log("re-rendering");
-    console.log(this.props.data);
     return (
       <CardContainer>
-        {this.props.searchStart && <h2>Loading...</h2>}
+        {this.props.searchStart && <h2>Loading ...</h2>}
         {this.props.searchSuccess && this.props.data.length === 0 ? (
-          <p>No Farmers found</p>
+          <p>No Retailers Found</p>
         ) : null}
         {this.props.searchSuccess &&
           this.props.data.map(client => (
@@ -23,15 +21,13 @@ class FarmerCardContainer extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log("Updating state");
-  console.log(state);
   return {
-    data: state.farmerData.listData,
-    error: state.farmerData.error,
-    searchStart: state.farmerData.searchStart,
-    searchSuccess: state.farmerData.searchSuccess,
-    searchFailure: state.farmerData.searchFailure
+    data: state.retailerData.listData,
+    error: state.retailerData.error,
+    searchStart: state.retailerData.searchStart,
+    searchSuccess: state.retailerData.searchSuccess,
+    searchFailure: state.retailerData.searchFailure
   };
 };
 
-export default connect(mapStateToProps)(FarmerCardContainer);
+export default connect(mapStateToProps)(RetailerCardContainer);

@@ -75,7 +75,6 @@ const HeaderContainer = styled.div`
   }
 
   table {
-    /* 100% was leaving a super small sliver for some reason */
     width: 100%;
     background-color: rgb(60, 57, 75);
     color: ${theme.background_light};

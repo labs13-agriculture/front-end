@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import {Route, Redirect} from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 
 import GlobalNav from "./GlobalNav";
 import ClientVueContainer from "./ClientVueContainer";
 import PrivateRoute from "../components/PrivateRoute";
-import {ManageUsersContainer} from "./ManageUsers/ManageUsersContainer";
+import { ManageUsersContainer } from "./ManageUsers/ManageUsersContainer";
 
-import InventoryView from './Inventory/InventoryView'
-
+import InventoryView from "./Inventory/InventoryView";
+import OrganizationCardContainer from "./OrganizationCardContainer";
+import OrganizationCard from "./OrganizationCard";
 
 export default class GlobalVueContainer extends Component {
   constructor(props) {
@@ -21,15 +22,23 @@ export default class GlobalVueContainer extends Component {
   render() {
     return (
       <GVC>
-        <PrivateRoute path='/dashboard' component={ClientVueContainer}/>
+        <PrivateRoute path="/dashboard" component={ClientVueContainer} />
 
-        <PrivateRoute path='/search' component={GlobalNav}/>
-        <PrivateRoute path='/search' component={ClientVueContainer}/>
-        <Route exact path='/search' render={props => <Redirect to="/search/farmers" {...props}/>} />
+        <PrivateRoute path="/search" component={GlobalNav} />
+        <PrivateRoute path="/search" component={ClientVueContainer} />
+        <Route
+          exact
+          path="/search"
+          render={props => <Redirect to="/search/farmers" {...props} />}
+        />
+        <Route
+          exact
+          path="/organizations/all-organizations"
+          component={OrganizationCard}
+        />
+        <PrivateRoute path="/users" component={ManageUsersContainer} />
 
-        <PrivateRoute path='/users' component={ManageUsersContainer} />
-
-        <PrivateRoute path='/inventory' component={InventoryView} />
+        <PrivateRoute path="/inventory" component={InventoryView} />
       </GVC>
     );
   }
@@ -43,6 +52,6 @@ const GVC = styled.div`
   display: flex;
   width: 100%;
   flex-direction: column;
-  ${'' /* background-color: #1f1f1f; */}
-  background:rgb(35, 33, 43);;
+  ${"" /* background-color: #1f1f1f; */}
+  background:rgb(35, 33, 43);
 `;

@@ -5,14 +5,8 @@ import { connect } from "react-redux";
 import { Label, Dropdown, Form, FormGroup, Input, Button } from "reactstrap";
 
 function AddInstallmentForm(props) {
-  const initialState = {
-    amountPaid: 0.00,
-    datePaid: "",
-    mode: "MTN",
-    officer: ""
-  };
 
-  const [installment, setInstallment] = useState(initialState);
+  const [installment, setInstallment] = useState(props.installment);
 
   const handleInput = e => {
     setInstallment({

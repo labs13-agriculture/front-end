@@ -80,7 +80,7 @@ export const DELETE_INSTALLMENT = "DATA_INSTALLMENT_CARD_DELETE";
 export const DELETE_INSTALLMENT_SUCCESS = "DELETE_INSTALLMENT_SUCCESS";
 export const DELETE_INSTALLMENT_FAILURE = "DELETE_INSTALLMENT_FAILURE";
 
-export const deleteItemFromInstallment = installmentId => dispatch => {
+export const deleteInstallment = installmentId => dispatch => {
   dispatch({ type: DELETE_INSTALLMENT });
   return axios
     .delete(`${BASE_URL}/installments/installment/${installmentId}`, {
@@ -93,7 +93,6 @@ export const deleteItemFromInstallment = installmentId => dispatch => {
       console.log("installment_card_data_delete", res.data);
       dispatch({ type: DELETE_INSTALLMENT_SUCCESS, payload: res.data });
     })
-
     .catch(err => {
       console.log(err);
       dispatch({ type: DELETE_INSTALLMENT_FAILURE, payload: err });

@@ -52,7 +52,7 @@ export {
   getInstallmentData,
   addInstallment,
   updateInstallmentItem,
-  deleteItemFromInstallment
+  deleteInstallment
 } from "./dataInstallmentCard";
 
 export {

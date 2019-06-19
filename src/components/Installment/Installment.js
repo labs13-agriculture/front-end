@@ -1,48 +1,70 @@
-import React, { Component } from "react";
+import React from "react";
+import styled from "styled-components";
 import { connect } from "react-redux";
+import { withRouter } from 'react-router-dom';
+
+import { theme } from '../../config';
+
 import { StyledTd } from "../../styles/InstallmentStyles";
 
-class Installment extends Component {
-  constructor(props) {
-    super(props);
+import {
+  deleteInstallment
+} from "../../actions"
+
+function Installment(props) {
+  const { installment } = props;
+
+  const handleDelete = event => {
+    event.preventDefault();
+    props.deleteInstallment(installment.id);
   }
 
-  render() {
-    console.log("FARMER VIEW INSTALLMENTS PROPS", this.props);
-
-    const { installment } = this.props;
-
-    return (
-      <tr>
-        <StyledTd className="amountPaid">{installment.amountPaid}</StyledTd>
-        <StyledTd className="mode">{installment.mode}</StyledTd>
-        <StyledTd className="datePaid">
-          {installment.datePaid.split("T")[0]}
-        </StyledTd>
-        <StyledTd className="officer">{installment.officer}</StyledTd>
-        {/* <i
-              onClick={() => installment.deleteInstallmentById(installment.id)}
-              className="fas fa-trash"
-            /> */}
-        {/* <i
-              onClick={() => installment.toggleEdit(installment.installment)}
-              className="fas fa-edit"
-            /> */}
-      </tr>
-    );
-  }
+  return (
+    <Row>
+      <StyledTd className="amountPaid">{installment.amountPaid}</StyledTd>
+      <StyledTd className="mode">{installment.mode}</StyledTd>
+      <StyledTd className="datePaid">
+        {installment.datePaid.split("T")[0]}
+      </StyledTd>
+      <StyledTd className="officer">{installment.officer}</StyledTd>
+      <StyledTd className="actions">
+        <i
+            onClick={() => installment.toggleEdit(installment.installment)}
+            className="fas fa-edit edit"
+          />
+      </StyledTd>
+      <StyledTd className="actions">
+        <i
+            onClick={handleDelete}
+            className="fas fa-trash delete"
+          />
+      </StyledTd>
+    </Row>
+  );
 }
 
 const mapStateToProps = state => {
-  return {
-    // installmentCardData: state.installmentCardData.data,
-    // installmentCardDataStart:
-    //   state.installmentCardData.installmentCardDataStart,
-    // installmentCardDataSuccess:
-    //   state.installmentCardData.installmentCardDataSuccess,
-    // installmentCardDataFailure:
-    //   state.installmentCardData.installmentCardDataFailure
-  };
+  return null;
 };
 
-export default connect(mapStateToProps)(Installment);
+const connected = connect(
+  mapStateToProps,
+{
+  deleteInstallment
+})(Installment);
+
+export default withRouter(connected);
+
+const Row = styled.tr`
+  i {
+    transition: all .15s ease;
+  }
+
+  i.delete:hover {
+    color: ${theme.warning}
+  }
+
+  i.edit:hover {
+    color: ${theme.accent}
+  }
+`;

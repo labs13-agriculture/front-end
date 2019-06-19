@@ -19,7 +19,7 @@ function InstallmentHeader(props) {
       <div className="header">
         <h2>Installments</h2>
 
-        <Button onClick={toggleModal}>New</Button>
+        <Button className="add-installment" onClick={toggleModal}>New</Button>
       </div>
       <table>
         <tr>
@@ -27,6 +27,9 @@ function InstallmentHeader(props) {
           <StyledTd className="mode">Mode</StyledTd>
           <StyledTd className="datePaid">Date Paid</StyledTd>
           <StyledTd className="officer">Officer</StyledTd>
+          <StyledTd className="actions-head">
+            Actions
+          </StyledTd>
         </tr>
       </table>
 
@@ -60,6 +63,13 @@ const HeaderContainer = styled.div`
 
     h2 {
       margin: 0;
+    }
+
+    .add-installment {
+
+      &:hover {
+        background: ${theme.accent}
+      }
     }
   }
 

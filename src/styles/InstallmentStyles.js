@@ -4,22 +4,31 @@ export const StyledTd = styled.td`
   padding: 10px 0;
 
   &.amountPaid {
-    width: 17%;
+    width: 25%;
     padding: 10px 10px;
   }
 
   &.datePaid {
-    width: 13%;
+    width: 20%;
     padding: 10px 10px;
   }
 
   &.mode {
-    width: 7%;
+    width: 10%;
     padding: 10px 10px;
   }
 
   &.officer {
-    width: 63%;
+    width: 35%;
     padding: 10px 10px;
   }
+
+  &.actions {
+    width: 5%;
+  }
+  
+  &.actions-head {
+    width: 10%
+  }
+
 `;

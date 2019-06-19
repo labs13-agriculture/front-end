@@ -6,7 +6,7 @@ import { Label, Dropdown, Form, FormGroup, Input, Button } from "reactstrap";
 
 function AddInstallmentForm(props) {
   const initialState = {
-    amountPaid: 0,
+    amountPaid: 0.00,
     datePaid: "",
     mode: "MTN",
     officer: ""
@@ -77,7 +77,7 @@ function AddInstallmentForm(props) {
         />
       </FormGroup>
       <Button onClick={submitHandler}>Add</Button>
-      <Button color="danger" onClick={props.toggleModal}>
+      <Button color="warning" onClick={props.toggleModal}>
         Cancel
       </Button>
     </Form>

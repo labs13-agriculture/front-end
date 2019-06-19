@@ -103,10 +103,9 @@ const StyledDiv = styled.div`
   background: white;
   display: flex;
   flex-direction: column;
-  width: 78%
+  width: 100%
 
   ${media.tablet`font-size: 1.2rem;`}
-  ${media.tablet`width: 78%;`}
 
   h1{
     ${media.tablet`font-size:1.6rem;`}

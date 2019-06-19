@@ -44,5 +44,8 @@ const GVC = styled.div`
   width: 100%;
   flex-direction: column;
   ${'' /* background-color: #1f1f1f; */}
-  background:rgb(35, 33, 43);;
+  background:rgb(35, 33, 43);
+  background-size: cover;
+  overflow-y: scroll;
+  padding-bottom: -20px;
 `;

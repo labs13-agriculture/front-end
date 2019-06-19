@@ -107,10 +107,18 @@ export {
   GET_FARMER_START,
   GET_FARMER_SUCCESS,
   GET_FARMER_FAILURE,
+  UPDATE_FARMER,
+  UPDATE_FARMER_SUCCESS,
+  UPDATE_FARMER_FAILURE,
+  CLEAR_DELETED,
+  CLEAR_ADDED,
   getFarmer,
   addFarmer,
   deleteFarmer,
-  searchFarmers
+  searchFarmers,
+  updateFarmer,
+  clearDeleted,
+  clearAdded
 } from "./farmerAction";
 
 export {

@@ -1,20 +1,23 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 import { Modal } from 'reactstrap';
 
+import EditClientForm from './EditClientForm';
 import {theme} from '../../config';
 
-import { getFarmer } from "../../actions";
+import { getFarmer, deleteFarmer, clearDeleted } from "../../actions";
 
 function ClientDemographics(props) {
   const { client } = props;
+
   useEffect(() => {
     props.getFarmer(props.match.params.id)
   }, []);
 
   const [modal, setModal] = useState(false);
+
   const toggleModal = (e) => {
     if (e) {
       e.preventDefault();
@@ -22,8 +25,20 @@ function ClientDemographics(props) {
     setModal(!modal);
   }
 
+  const deleteFarmer = () => {
+    let confirm = window.confirm("Are you sure you want to\n\nPERMANENTLY DELETE\n\nthis farmer and all associated data?")
+    if (confirm) {
+      props.deleteFarmer(client.id);
+    }
+  }
+
   if (!client) {
     return(<StyledDiv><h1>Client not Found</h1></StyledDiv>)
+  }
+
+  if (props.farmerDeleted) {
+    props.clearDeleted();
+    return <Redirect to="/search" />
   }
 
   return (
@@ -37,7 +52,7 @@ function ClientDemographics(props) {
         </h1>
         <div className="actions">
           <i class="fas fa-edit edit" onClick={toggleModal}></i>
-          <i className="fas fa-trash delete"></i>
+          <i className="fas fa-trash delete" onClick={deleteFarmer}></i>
         </div>
       </div>
 
@@ -81,6 +96,7 @@ function ClientDemographics(props) {
       {/* Modal with Edit Client Form */}
       <Modal isOpen={modal} toggle={toggleModal}>
         {/* This is all good to go just need to add in the Edit Form */}
+        <EditClientForm client={client} closeModal={toggleModal} />
       </Modal>
     </StyledDiv>
   );
@@ -88,14 +104,22 @@ function ClientDemographics(props) {
 
 const mapStateToProps = state => {
   return{
-    client:state.farmerData.farmerDemoData,
+    client:state.farmerData.farmer,
     farmerDemoError:state.farmerData.error,
-    farmerDemoDataStart:state.farmerData.getStart
+    farmerDemoDataStart:state.farmerData.getStart,
+    farmerDeleted: state.farmerData.farmerDeleted
   }
   
 }
 
-export default withRouter(connect(mapStateToProps,{getFarmer})(ClientDemographics));
+export default withRouter(connect(
+  mapStateToProps,
+  {
+    getFarmer,
+    deleteFarmer,
+    clearDeleted
+  }
+)(ClientDemographics));
 
 
 

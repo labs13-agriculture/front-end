@@ -9,7 +9,7 @@ import SearchForm from "./SearchForm";
 import NewFarmerForm from '../NewFarmerForm';
 
 // Actions
-import { searchFarmers, addFarmer } from "../../actions/farmerAction"
+import { searchFarmers, addFarmer, clearAdded } from "../../actions/farmerAction"
 
 class FarmerSearch extends Component{
     constructor(props){
@@ -38,7 +38,11 @@ class FarmerSearch extends Component{
     
 
     render(){
-        //console.log(this.props.farmerData);
+        if (this.props.farmerAdded) {
+            this.props.clearAdded();
+            this.props.history.push(`/dashboard/farmer/${this.props.farmer.id}`)
+        }
+
         return(
             <div>
                 <Header>Find a Farmer</Header>
@@ -46,7 +50,7 @@ class FarmerSearch extends Component{
                 <SearchForm submitSearch={this.submitSearch}/>
                 <FarmerCardContainer />
                 <Modal isOpen={this.state.modal} toggle={this.toggleModal}>
-                    <NewFarmerForm submitForm={this.submitFarmer}/>
+                    <NewFarmerForm submitForm={this.submitFarmer} toggleModal={this.toggleModal}/>
                 </Modal>
             </div>
         );
@@ -60,13 +64,16 @@ const mapStateToProps = state =>{
         searchStart: state.farmerData.searchStart,
         searchFailure: state.farmerData.searchFailure,
         error: state.farmerData.error,
-        searchSuccess: state.farmerData.searchSuccess
+        searchSuccess: state.farmerData.searchSuccess,
+        farmerAdded: state.farmerData.farmerAdded,
+        farmerDeleted: state.farmerData.farmerDeleted,
+        farmer: state.farmerData.farmer
     }
 }
 
 export default connect(
     mapStateToProps,
-    { searchFarmers, addFarmer }
+    { searchFarmers, addFarmer, clearAdded }
 )(FarmerSearch);
 
 const Header = styled.h1`

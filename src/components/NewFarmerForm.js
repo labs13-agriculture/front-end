@@ -80,7 +80,7 @@ class NewFarmerForm extends Component{
             secondName: this.state.secondName,
             lead: this.state.lead,
             startyear: parseInt(this.state.startyear),
-            dateofbirth: `${this.state.month} ${this.state.day}, ${this.state.year}`,
+            dateofbirth: `${this.state.year}-${this.state.month > 9 ? this.state.month : "0" + this.state.month}-${this.state.month > 9 ? this.state.month : "0" + this.state.month}`,
             educationlevel: this.state.education,
             email: this.state.email,
             gender: this.state.gender,
@@ -96,6 +96,8 @@ class NewFarmerForm extends Component{
             region: this.state.region
         }
         this.props.submitForm(newFarmer);
+        this.props.toggleModal();
+        
     }
 
     render(){
@@ -111,7 +113,7 @@ class NewFarmerForm extends Component{
 
                     <div className="form-section">
                         <Label className='half'>First Name:<Input onChange={e => this.handleChanges(e)} type="text" name="firstName" value={this.state.firstName} /></Label>
-                        <Label className='hlaf'>Second Name:<Input onChange={e => this.handleChanges(e)} type="text" name="secondName" value={this.state.secondName} /></Label>
+                        <Label className='half'>Second Name:<Input onChange={e => this.handleChanges(e)} type="text" name="secondName" value={this.state.secondName} /></Label>
                         <Label className='most'>Phone:<Input onChange={e => this.handleChanges(e)} type="text" name="phone" value={this.state.phone} /></Label>
                         <Label>Farmer Since:<Input onChange={e => this.handleChanges(e)} type="text" name="startyear" value={this.state.startyear} /></Label>
                         

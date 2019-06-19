@@ -8,7 +8,7 @@ class FarmerTransactionForm extends Component{
         super(props);
         const today=new Date();
         this.state={
-            payment: "MTN Mobile Money",
+            payment: "Cash",
             month: today.getMonth() + 1,
             day: today.getDate(),
             year: today.getYear() + 1900,
@@ -146,21 +146,11 @@ class FarmerTransactionForm extends Component{
                     <input
                         type="radio"
                         name="payment"
-                        value="MTN Mobile Money"
-                        checked={this.state.payment === "MTN Mobile Money"}
+                        value="Credit"
+                        checked={this.state.payment === "Credit"}
                         onChange={this.radioChange}
                     />
-                    <label for="MTN Mobile Money">MTN Mobile Money</label>
-                    </div>
-                    <div>
-                    <input
-                        type="radio"
-                        name="payment"
-                        value="Bank"
-                        checked={this.state.payment === "Bank"}
-                        onChange={this.radioChange}
-                    />
-                    <label for="Bank">Bank</label>
+                    <label for="Credit">Credit</label>
                     </div>
                     <div>
                     <input

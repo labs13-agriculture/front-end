@@ -17,14 +17,14 @@ export class FarmerTransactionItem extends Component{
         return(
             <StyledTransactionContainer>
                 
-                <h3>{Math.floor(this.props.item.total*100)/100}</h3>
+                <h3>{Math.round(this.props.item.total*100)/100}</h3>
                 <h3>{this.props.item.date}</h3>
                 <h3>{this.props.item.type}</h3>
                 <h3>{this.props.item.personnel}</h3>
                 <button onClick={this.toggleUpdateModal} isOpen={this.state.toggleUpdateModal} color="secondary">Update</button>
                 <button onClick={()=>{this.props.deleteClientTransaction(this.props.item.id)}}>DELETE</button>
                 <Modal isOpen={this.state.toggleUpdateModal}>
-                    <FormUpdateClientTransaction clientId={this.props.clientId} transactionId={this.props.item.id}/>
+                    <FormUpdateClientTransaction transaction={this.props.item}/>
                     <button onClick={this.toggleUpdateModal}  color="secondary">Cancel</button>
                 </Modal>
             </StyledTransactionContainer>

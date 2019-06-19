@@ -2,9 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Modal } from 'reactstrap';
 import styled from "styled-components";
-
-
-import FarmerTransactionForm from './FarmerViewComponents/FarmerTransactionForm';
 import { theme } from "../config";
 
 // components

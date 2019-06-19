@@ -68,8 +68,6 @@ class FarmerView extends Component {
           <StyledInfoView>
           <FarmerViewTransactions id={this.props.match.params.id} modalToggle={this.toggleTransaction} />
           </StyledInfoView>
-
-          {/* Installments Container */}
           <StyledInfoView>
             <Installments />
           </StyledInfoView>

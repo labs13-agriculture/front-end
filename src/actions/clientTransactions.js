@@ -66,4 +66,36 @@ export const getClientTransaction = clientId => dispatch => {
   
       
   );}
+
+  export const DELETE_TRANSACTION_START = 'DELETE_TRANSACTION_START';
+export const DELETE_TRANSACTION_SUCCESS = 'DELETE_TRANSACTION_SUCCESS';
+export const DELETE_TRANSACTION_FAILURE = 'DELETE_TRANSACTION_FAILURE';
+
+export const deleteClientTransaction = transactionId => dispatch => {
+  dispatch({ type: DELETE_TRANSACTION_START });
+  
+  
+  return axios
+    .delete(`https://tieme-ndo-backend.herokuapp.com/transaction/delete/${transactionId}`,{
+      headers: {
+        'Content-Type' : 'application/json',
+        
+        
+        Authorization: `Bearer ${window.localStorage.getItem('token')}`
+      }
+    })
+    .then(res => {
+      console.log("delete_transactions_success", res.data);
+      
+      dispatch({ type: DELETE_TRANSACTION_SUCCESS, payload: res.data });
+      
+    
+    }).catch(
+      err => {console.log(err)
+          dispatch({type:DELETE_TRANSACTION_FAILURE,payload:err})
+      }
+
+  
+      
+  );}
       

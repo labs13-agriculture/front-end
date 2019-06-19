@@ -35,7 +35,11 @@ export {
   GET_TRANSACTION_START,
   GET_TRANSACTION_SUCCESS,
   GET_TRANSACTION_FAILURE,
-  getClientTransaction
+  getClientTransaction,
+  DELETE_TRANSACTION_START,
+  DELETE_TRANSACTION_SUCCESS,
+  DELETE_TRANSACTION_FAILURE,
+  deleteClientTransaction
 } from "./clientTransactions";
 
 export {

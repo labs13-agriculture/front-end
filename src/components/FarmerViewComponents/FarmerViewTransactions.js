@@ -3,7 +3,7 @@ import styled from "styled-components";
 import {FarmerTransactionItem} from "./FarmerTransactionItem";
 
 import { connect } from "react-redux";
-import {getClientTransaction} from "../../actions";
+import {getClientTransaction,deleteClientTransaction} from "../../actions";
 
 class FarmerViewTransactions extends Component {
   constructor(props) {
@@ -32,7 +32,7 @@ class FarmerViewTransactions extends Component {
           <h3 className="t-nav-header">TYPE</h3>
           <h3 className="t-nav-header">OFFICER</h3>
         </StyledTransactionNav>
-        {this.props.transactionData && this.props.transactionData.map(t => <FarmerTransactionItem item={t}/>)}
+        {this.props.transactionData && this.props.transactionData.map(t => <FarmerTransactionItem deleteClientTransaction={this.props.deleteClientTransaction} item={t}/>)}
       </div>
     );
   }
@@ -54,7 +54,7 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { getClientTransaction }
+  { getClientTransaction,deleteClientTransaction}
 )(FarmerViewTransactions);
 
 const StyledTable = styled.table`

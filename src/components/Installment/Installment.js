@@ -28,9 +28,10 @@ function Installment(props) {
 
   const handleDelete = event => {
     event.preventDefault();
-    let d = alert("Are you sure you want to PERMANENTLY DELETE this istallment?");
-    console.log(d);
-    //props.deleteInstallment(installment.id);
+    let d = window.confirm("Are you sure you want to PERMANENTLY DELETE this istallment?");
+    if (d) {
+      props.deleteInstallment(installment.id);
+    }
   }
 
   return (

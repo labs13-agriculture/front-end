@@ -25,6 +25,10 @@ const CardContainer = styled.div`
     justify-content: space-evenly;
     overflow-y: scroll;
 
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
 
   h3{
     text-decoration: none;

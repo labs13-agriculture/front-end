@@ -24,11 +24,13 @@ function InstallmentComponent(props) {
       <Header />
       {/* Installments Container */}
       <StyledTable className="installmentitem-container">
+        <tbody>
         {/* Installment items */}
         {props.installments &&
           props.installments.map(i => {
-            return <Installment installment={i} />;
+            return <Installment key={i.id} installment={i} />;
           })}
+        </tbody>
       </StyledTable>
     </InstallmentContainer>
   );

@@ -1,11 +1,13 @@
-import React from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { withRouter } from 'react-router-dom';
+import { Modal } from "reactstrap";
+
 
 import { theme } from '../../config';
-
 import { StyledTd } from "../../styles/InstallmentStyles";
+import EditInstallmentForm from './EditInstallmentForm.js'
 
 import {
   deleteInstallment
@@ -14,9 +16,21 @@ import {
 function Installment(props) {
   const { installment } = props;
 
+  const [modal, setModal] = useState(false);
+
+  const toggleModal = event => {
+    if (event) {
+      event.preventDefault();
+    }
+
+    setModal(!modal);
+  }
+
   const handleDelete = event => {
     event.preventDefault();
-    props.deleteInstallment(installment.id);
+    let d = alert("Are you sure you want to PERMANENTLY DELETE this istallment?");
+    console.log(d);
+    //props.deleteInstallment(installment.id);
   }
 
   return (
@@ -28,23 +42,20 @@ function Installment(props) {
       </StyledTd>
       <StyledTd className="officer">{installment.officer}</StyledTd>
       <StyledTd className="actions">
-        <i
-            onClick={() => installment.toggleEdit(installment.installment)}
-            className="fas fa-edit edit"
-          />
+        <i onClick={toggleModal} className="fas fa-edit edit" />
       </StyledTd>
       <StyledTd className="actions">
-        <i
-            onClick={handleDelete}
-            className="fas fa-trash delete"
-          />
+        <i onClick={handleDelete} className="fas fa-trash delete" />
       </StyledTd>
+      <Modal isOpen={modal} toggle={toggleModal}>
+        <EditInstallmentForm toggleModal={toggleModal} installment={installment}/>
+      </Modal>
     </Row>
   );
 }
 
 const mapStateToProps = state => {
-  return null;
+  return {};
 };
 
 const connected = connect(

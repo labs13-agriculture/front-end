@@ -19,7 +19,16 @@ export const StyledTd = styled.td`
   }
 
   &.officer {
-    width: 30%;
+    width: 35%;
     padding: 10px 10px;
   }
+
+  &.actions {
+    width: 5%;
+  }
+  
+  &.actions-head {
+    width: 10%
+  }
+
 `;

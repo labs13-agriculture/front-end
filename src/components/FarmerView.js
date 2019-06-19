@@ -99,6 +99,10 @@ const StyledInfoView = styled.div`
   height: 100%;
   margin-top: 20px;
   overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const Modal = styled.div`

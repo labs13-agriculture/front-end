@@ -22,15 +22,17 @@ function InstallmentHeader(props) {
         <Button className="add-installment" onClick={toggleModal}>New</Button>
       </div>
       <table>
-        <tr>
-          <StyledTd className="amountPaid">Amount Paid</StyledTd>
-          <StyledTd className="mode">Mode</StyledTd>
-          <StyledTd className="datePaid">Date Paid</StyledTd>
-          <StyledTd className="officer">Officer</StyledTd>
-          <StyledTd className="actions-head">
-            Actions
-          </StyledTd>
-        </tr>
+        <thead>
+          <tr>
+            <StyledTd className="amountPaid">Amount Paid</StyledTd>
+            <StyledTd className="mode">Mode</StyledTd>
+            <StyledTd className="datePaid">Date Paid</StyledTd>
+            <StyledTd className="officer">Officer</StyledTd>
+            <StyledTd className="actions-head">
+              Actions
+            </StyledTd>
+          </tr>
+        </thead>
       </table>
 
       <Modal isOpen={modal} toggle={toggleModal}>
@@ -74,7 +76,8 @@ const HeaderContainer = styled.div`
   }
 
   table {
-    width: 100%;
+    /* 100% was leaving a super small sliver for some reason */
+    width: 100.1%;
     background-color: rgb(60, 57, 75);
     color: ${theme.background_light};
   }

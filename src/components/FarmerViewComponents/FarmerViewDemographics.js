@@ -46,7 +46,7 @@ function ClientDemographics(props) {
       
       <div className="header">
         <h1>
-        {client.firstName} {client.secondName}, {client.type.toLowerCase()} since {client.startyear} - Amount Owed: ${client.amountOwed}
+        {client.firstName} {client.secondName}, {client.type.toLowerCase()} since {client.startyear} <span className="toggleSpan">-</span> <br className="toggleBreak" /> Amount Owed: ${client.amountOwed}
         <br />
         Lead: {client.lead ? "True" : "False"}
         </h1>
@@ -152,18 +152,21 @@ const StyledDiv = styled.div`
   ${media.tablet`font-size: 1.2rem;`}
 
   h1{
-    ${media.tablet`font-size:1.6rem;`}
 
-    i{
-      font-size: 1.8rem;
-      margin-left: 3%;
+    ${media.phone`font-size:1.7rem;`}
+
+    .toggleSpan{
+      @media(max-width: 950px){
+        display: none;
+      }
     }
-  }
 
-  h3{
-    font-weight: 600;
-    margin-bottom: 10px;
-    ${media.tablet`font-size:1.6rem;`}
+    .toggleBreak{
+      display: none;
+      @media(max-width: 950px){
+        display: block;
+      }
+    }
   }
 
   h3 {
@@ -177,6 +180,7 @@ const StyledDiv = styled.div`
     color: ${theme.background_light};
 
     padding: 10px 20px;
+    ${media.tablet`padding: 10px 10px;`}
 
     display: flex;
     justify-content: space-between;
@@ -204,49 +208,17 @@ const StyledDiv = styled.div`
       display: flex;
       justify-content: space-between;
       padding: 5px 20px;
+
+      ${media.phone`flex-direction:column;`}
+
+      .contact-box{
+        ${media.tablet`width: 30%;`}
+        ${media.phone`width: 100%;`}
+      }
     }
 
     ${media.tablet`flex-direction: column;`}
     ${media.tablet`align-items: center;`}
-
-    .demoinfo{
-      width: 30%;
-      ${media.tablet`width:80%;`}
-      ${media.tablet`margin: auto;`}
-
-      ${media.phone`width: 70%;`}
-
-      h3{
-        ${media.tablet`text-align: center;`}
-
-        ${media.phone`text-align: left;`}
-      }
-    }
-
-    .wideInfo{
-      ${media.tablet`display: flex;`}
-      ${media.tablet`justify-content: space-around;`}
-      
-      ${media.phone`flex-direction:column;`}
-      ${media.phone`width: 85%;`}
-    }
-
-    .narrowInfo{
-      ${media.tablet`display: flex;`}
-      ${media.tablet`flex-direction: row;`}
-      ${media.tablet`width: 95%;`}
-      ${media.tablet`justify-content: space-around;`}
-
-      ${media.phone`flex-direction: column;`}
-      ${media.phone`width: 70%;`}
-      ${media.phone`margin: auto;`}
-      ${media.phone`font-size: 1.2rem;`}
-
-      div{
-        ${media.tablet`width:40%;`}
-        ${media.phone`width: 100%;`}
-      }
-    }
 
     p{
       line-height: 1;

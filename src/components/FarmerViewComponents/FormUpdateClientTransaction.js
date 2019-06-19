@@ -78,9 +78,8 @@ class FormUpdateClientTransaction extends Component{
             inputs: finalItems
         }
         console.log("******MYTRANSACTION*******",JSON.stringify(transaction));
-        this.props.updateClientTransaction(transaction, this.state.transactionId).then(
-            () => this.props.getClientTransaction(this.props.clientId)
-        )
+        this.props.updateClientTransaction(transaction, this.state.transactionId)
+        
         
     }
 

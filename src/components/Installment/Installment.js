@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { StyledTd } from "../../styles/InstallmentStyles";
+import { deleteInstallmentById } from "../../actions";
 
 class Installment extends Component {
   constructor(props) {
@@ -20,10 +21,11 @@ class Installment extends Component {
           {installment.datePaid.split("T")[0]}
         </StyledTd>
         <StyledTd className="officer">{installment.officer}</StyledTd>
+
         {/* <i
-              onClick={() => installment.deleteInstallmentById(installment.id)}
-              className="fas fa-trash"
-            /> */}
+          onClick={() => installment.deleteInstallmentById(installment.id)}
+          className="fas fa-trash"
+        /> */}
         {/* <i
               onClick={() => installment.toggleEdit(installment.installment)}
               className="fas fa-edit"

@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-
+import {FarmerTransactionItem} from "./FarmerTransactionItem";
 
 import { connect } from "react-redux";
-import {getClientTransaction} from "../../actions";
+import {getClientTransaction,deleteClientTransaction} from "../../actions";
 
 class FarmerViewTransactions extends Component {
   constructor(props) {
@@ -13,32 +13,36 @@ class FarmerViewTransactions extends Component {
     };
   }
 
+  //write function for submitting form information for update
+  
+
+
   componentDidMount() {
-    this.props.getClientTransaction(this.props.id)
+    this.props.getClientTransaction(this.props.id);
+    
   }
 
   render() {
     return (
       <div>
-        <StyledTable>
-          <tr>
-            <StyledTd>TOTAL</StyledTd>
-            <StyledTd>DATE</StyledTd>
-            <StyledTd>TYPE</StyledTd>
-            <StyledTd>OFFICER</StyledTd>
-          </tr>
-          
-          {this.props.transactionDataSuccess && this.props.transactionData.map(t => {
-            return(<tr>
-          <StyledTh>{t.total}</StyledTh>
-          <StyledTh>{t.date}</StyledTh>
-          <StyledTh>{t.type}</StyledTh>
-          <StyledTh>{t.personnel}</StyledTh>
-          
-          </tr>)})}
-          
-          
-        </StyledTable>
+        <h2>Transaction History</h2>
+        <i onClick={() => this.props.modalToggle()} className="fas fa-plus" />
+        <StyledTransactionNav>
+          <h3 className="t-nav-header">DATE</h3>
+          <h3 className="t-nav-header">TOTAL</h3>
+          <h3 className="t-nav-header">TYPE</h3>
+          <h3 className="t-nav-header">OFFICER</h3>
+        </StyledTransactionNav>
+        {
+          this.props.transactionDataSuccess && this.props.transactionData
+        .map(t => <FarmerTransactionItem 
+
+        deleteClientTransaction={this.props.deleteClientTransaction}
+        getClientTransaction={this.props.getClientTransaction} 
+        clientId={this.props.id} item={t}
+
+         />)
+         }
       </div>
     );
   }
@@ -54,13 +58,14 @@ const mapStateToProps = state => {
       state.clientTransactions.getTransactionSuccess,
     transactionDataFailure:
       state.clientTransactions.getTransactionFailure,
-    error: state.clientTransactions.error
+    error: state.clientTransactions.error,
+    updatedTransactionData:state.clientTransactions.updatedTransactionData
   };
 };
 
 export default connect(
   mapStateToProps,
-  { getClientTransaction }
+  { getClientTransaction,deleteClientTransaction}
 )(FarmerViewTransactions);
 
 const StyledTable = styled.table`
@@ -85,3 +90,14 @@ const StyledTh = styled.th`
 // tr:nth-child(even) {
 //   background-color: #dddddd;
 // }
+
+const StyledTransactionNav = styled.div`
+  width:100%;
+  height:60px;
+  display:flex;
+  justify-content:space-between;
+
+
+
+
+`

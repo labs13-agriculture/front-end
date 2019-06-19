@@ -76,16 +76,3 @@ const StyledInfoView = styled.div`
     display: none;
   }
 `;
-
-const HandmadeModal = styled.div`
-  width: 65%;
-  border: 1px solid red;
-  position: absolute;
-  margin: auto;
-  height: auto;
-  z-index: 1000005;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: white;
-`;

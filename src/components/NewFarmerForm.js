@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import {Input, Label, Form} from 'reactstrap';
+
+import {theme} from "../config"
 
 class NewFarmerForm extends Component{
     constructor(props){
         super(props);
         this.state={
-            name: '',
+            firstName: '',
+            secondName: '',
             month: 1,
             day: 1,
             year: 1900,
@@ -43,15 +47,18 @@ class NewFarmerForm extends Component{
             })
             return;
         }
+
         let emptyFields = false;
+
         console.log("empty fields before map:", emptyFields);
         Object.keys(this.state).map(k => {
             //false booleans were evaluating to '', making it impossible to submit form
-            if(this.state[k] == '' && k != "lead" &&  k!= "blankField" && k!= "validYear"){
+            if(this.state[k] === '' && k !== "lead" &&  k!== "blankField" && k!== "validYear"){
                 console.log(k, this.state[k]);
                 emptyFields = true;
             }
         })
+
         console.log("empty fields after map:", emptyFields);
         if(emptyFields)
         {
@@ -69,28 +76,24 @@ class NewFarmerForm extends Component{
 
         //Setting up Farmer as object backend can expect
         const newFarmer = {
-            name: this.state.name,
+            firstName: this.state.firstName,
+            secondName: this.state.secondName,
             lead: this.state.lead,
             startyear: parseInt(this.state.startyear),
-            farmercontact:{
-                dateofbirth: `${this.state.month} ${this.state.day}, ${this.state.year}`,
-                educationlevel: this.state.education,
-                email: this.state.email,
-                gender: this.state.gender,
-                name: this.state.name,
-                nationality: this.state.nationality,
-                phone: this.state.phone,
-                position: this.state.position,
-                title: this.state.title
-            },
-            farmerlocation:{
-                address: this.state.address,
-                community: this.state.community,
-                district: this.state.district,
-                landmark: this.state.landmark,
-                region: this.state.region
-            }
-
+            dateofbirth: `${this.state.month} ${this.state.day}, ${this.state.year}`,
+            educationlevel: this.state.education,
+            email: this.state.email,
+            gender: this.state.gender,
+            name: this.state.name,
+            nationality: this.state.nationality,
+            phone: this.state.phone,
+            position: this.state.position,
+            title: this.state.title,
+            address: this.state.address,
+            community: this.state.community,
+            district: this.state.district,
+            landmark: this.state.landmark,
+            region: this.state.region
         }
         this.props.submitForm(newFarmer);
     }
@@ -104,41 +107,55 @@ class NewFarmerForm extends Component{
         return(
             <ModalDiv>
                 <h2>Add a Farmer</h2>
-                <form onSubmit={e => this.formSubmit(e)}>
-                    <label>Name:<input onChange={e => this.handleChanges(e)} type="text" name="name" value={this.state.name} /></label>
-                    <label>Date of Birth:
-                        <select onChange={e => this.handleChanges(e)} name="month">{months.map((m, index) => <option value={index + 1}>{m}</option>)}</select>
-                        <select onChange={e => this.handleChanges(e)} name="day">{days.map((m) => <option value={m}>{m}</option>)}</select>
-                        <select onChange={e => this.handleChanges(e)} name="year">{years.map((m) => <option value={m}>{m}</option>)}</select>
-                    </label>
-                    <label>Email:<input onChange={e => this.handleChanges(e)} type="text" name="email" value={this.state.email} /></label>
-                    <label> Gender:
-                        <select name="gender" onChange={e => this.handleChanges(e)} >
-                            <option value="M">Male</option>
-                            <option value="F">Female</option>    
-                        </select>    
-                    </label>
-                    <label>Nationality:<input onChange={e => this.handleChanges(e)} type="text" name="nationality" value={this.state.nationality} /></label>
-                    <label>Phone:<input onChange={e => this.handleChanges(e)} type="text" name="phone" value={this.state.phone} /></label>
-                    <label>Position:<input onChange={e => this.handleChanges(e)} type="text" name="position" value={this.state.position} /></label>
-                    <label>Education level:<input onChange={e => this.handleChanges(e)} type="text" name="education" value={this.state.education} /></label>
-                    <label>Title:<input onChange={e => this.handleChanges(e)} type="text" name="title" value={this.state.title} /></label>
-                    <label>Address:<input onChange={e => this.handleChanges(e)} type="text" name="address" value={this.state.address} /></label>
-                    <label>Community:<input onChange={e => this.handleChanges(e)} type="text" name="community" value={this.state.community} /></label>
-                    <label>District:<input onChange={e => this.handleChanges(e)} type="text" name="district" value={this.state.district} /></label>
-                    <label>Landmark:<input onChange={e => this.handleChanges(e)} type="text" name="landmark" value={this.state.landmark} /></label>
-                    <label>Region:<input onChange={e => this.handleChanges(e)} type="text" name="region" value={this.state.region} /></label>
-                    <label>
-                        Status:
-                        <select onChange={e => this.handleChanges(e)} name="lead">
-                            <option value={false}>Active</option>
-                            <option value={true}>Lead</option>
-                        </select>
-                    </label>
-                    <label>Farmer Since:<input onChange={e => this.handleChanges(e)} type="text" name="startyear" value={this.state.startyear} /></label>
+                <Form onSubmit={e => this.formSubmit(e)}>
+
+                    <div className="form-section">
+                        <Label className='half'>First Name:<Input onChange={e => this.handleChanges(e)} type="text" name="firstName" value={this.state.firstName} /></Label>
+                        <Label className='hlaf'>Second Name:<Input onChange={e => this.handleChanges(e)} type="text" name="secondName" value={this.state.secondName} /></Label>
+                        <Label className='most'>Phone:<Input onChange={e => this.handleChanges(e)} type="text" name="phone" value={this.state.phone} /></Label>
+                        <Label>Farmer Since:<Input onChange={e => this.handleChanges(e)} type="text" name="startyear" value={this.state.startyear} /></Label>
+                        
+                        <Label className='most'>Email:<Input onChange={e => this.handleChanges(e)} type="text" name="email" value={this.state.email} /></Label>
+                        <Label>
+                            Lead:
+                            <Input type="select" onChange={e => this.handleChanges(e)} name="lead">
+                                <option value={false}>False</option>
+                                <option value={true}>True</option>
+                            </Input>
+                        </Label>
+                    </div>
+
+                    <div className="form-section">
+                        <Label className='half'>Title:<Input onChange={e => this.handleChanges(e)} type="text" name="title" value={this.state.title} /></Label>
+                        <Label className='half'>Position:<Input onChange={e => this.handleChanges(e)} type="text" name="position" value={this.state.position} /></Label>
+                    </div>
+
+                    <div className="form-section">
+                        <Label className='full'>Address:<Input onChange={e => this.handleChanges(e)} type="text" name="address" value={this.state.address} /></Label>
+                        <Label className='half'>Community:<Input onChange={e => this.handleChanges(e)} type="text" name="community" value={this.state.community} /></Label>
+                        <Label className='half'>District:<Input onChange={e => this.handleChanges(e)} type="text" name="district" value={this.state.district} /></Label>
+                        <Label className='half'>Landmark:<Input onChange={e => this.handleChanges(e)} type="text" name="landmark" value={this.state.landmark} /></Label>
+                        <Label className='half'>Region:<Input onChange={e => this.handleChanges(e)} type="text" name="region" value={this.state.region} /></Label>
+                    </div>
+
+                    <div className="form-section">
+                        <Label> Gender:
+                            <Input type="select" name="gender" onChange={e => this.handleChanges(e)} >
+                                <option value="M">Male</option>
+                                <option value="F">Female</option>    
+                            </Input>    
+                        </Label>
+                        <Label>Date of Birth:
+                            <Input type="select" onChange={e => this.handleChanges(e)} name="month">{months.map((m, index) => <option value={index + 1}>{m}</option>)}</Input>
+                            <Input type="select" onChange={e => this.handleChanges(e)} name="day">{days.map((m) => <option value={m}>{m}</option>)}</Input>
+                            <Input type="select" onChange={e => this.handleChanges(e)} name="year">{years.map((m) => <option value={m}>{m}</option>)}</Input>
+                        </Label>
+                        <Label>Nationality:<Input onChange={e => this.handleChanges(e)} type="text" name="nationality" value={this.state.nationality} /></Label>
+                        <Label>Education level:<Input onChange={e => this.handleChanges(e)} type="text" name="education" value={this.state.education} /></Label>
+                    </div>
                     {!this.state.validYear && <p>Please enter a 4 digit year</p>}
-                    <input type="submit" />
-                </form>
+                    <Input className="submit" type="submit" />
+                </Form>
                 {this.state.blankField && <p>All fields are required</p>}
             </ModalDiv>
         )
@@ -150,10 +167,38 @@ export default NewFarmerForm;
 
 const ModalDiv = styled.div`
     background: white;
-    position: absolute;
-    z-index: 1000005;
-    top: 56%;
-    left: 58%;
-    transform: translate(-50%, -50%);
-    width: 70%;
+    padding: 20px;
+    border-radius: 4px;
+
+    label {
+        margin: 2px;
+    }
+
+    h2 {
+        margin-bottom: 20px;
+    }
+
+    .form-section {
+        margin-bottom: 20px;
+    }
+
+    .full {
+        width: 100%;
+    }
+
+    .most {
+        width: 60%;
+    }
+
+    .half {
+        width: 47%;
+    }
+    
+    .submit {
+        font-size: 1.8rem;
+    }
+    .submit:hover{
+        background: ${theme.accent};
+        border: 1px solid ${theme.accent};
+    }
 `;

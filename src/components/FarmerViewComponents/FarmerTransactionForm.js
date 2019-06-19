@@ -8,7 +8,7 @@ class FarmerTransactionForm extends Component{
         super(props);
         const today=new Date();
         this.state={
-            payment: "Cash",
+            payment: "CASH",
             month: today.getMonth() + 1,
             day: today.getDate(),
             year: today.getYear() + 1900,

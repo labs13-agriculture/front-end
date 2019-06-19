@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
+import { theme } from "../config";
 
 // components
 import FarmerViewDemographics from "./FarmerViewComponents/FarmerViewDemographics";

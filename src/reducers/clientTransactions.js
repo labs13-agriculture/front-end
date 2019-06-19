@@ -69,7 +69,7 @@ export default (state = initialState, action) => {
         deleteTransactionStart: false,
         deleteTransactionSuccess:true,
         deleteTransactionFailure:false,
-        newTransactionList:action.payload
+        transactionData:action.payload
 
       };
 
@@ -98,7 +98,7 @@ export default (state = initialState, action) => {
         updateTransactionStart: false,
         updateTransactionSuccess:true,
         updateTransactionFailure:false,
-        updatedTransactionData:action.payload
+        transactionData:action.payload
 
       };
 

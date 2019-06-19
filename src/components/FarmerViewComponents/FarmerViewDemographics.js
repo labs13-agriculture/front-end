@@ -59,6 +59,7 @@ function ClientDemographics(props) {
       <div className="demoWrapper">
         <h3>Contact</h3>
         <div className="info-section contact-info">
+          
           <div className="contact-box">
             <p>Phone: {client.phone || "Not In System"}</p>
             <p>Email: {client.email || "Not In System"}</p>

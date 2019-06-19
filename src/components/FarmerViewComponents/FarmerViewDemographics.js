@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
@@ -14,6 +14,14 @@ function ClientDemographics(props) {
     props.getFarmer(props.match.params.id)
   }, []);
 
+  const [modal, setModal] = useState(false);
+  const toggleModal = (e) => {
+    if (e) {
+      e.preventDefault();
+    }
+    setModal(!modal);
+  }
+
   if (!client) {
     return(<StyledDiv><h1>Client not Found</h1></StyledDiv>)
   }
@@ -22,9 +30,13 @@ function ClientDemographics(props) {
     <StyledDiv>
       
       <div className="header">
-        <h1>{client.firstName} {client.secondName}, {client.type.toLowerCase()} since {client.startyear} - Amount Owed: ${client.amountOwed}</h1>
+        <h1>
+        {client.firstName} {client.secondName}, {client.type.toLowerCase()} since {client.startyear} - Amount Owed: ${client.amountOwed}
+        <br />
+        Lead: {client.lead ? "True" : "False"}
+        </h1>
         <div className="actions">
-          <i class="fas fa-edit edit"></i>
+          <i class="fas fa-edit edit" onClick={toggleModal}></i>
           <i className="fas fa-trash delete"></i>
         </div>
       </div>
@@ -65,7 +77,11 @@ function ClientDemographics(props) {
           </div>
         </div>
       </div>
-      
+
+      {/* Modal with Edit Client Form */}
+      <Modal isOpen={modal} toggle={toggleModal}>
+        {/* This is all good to go just need to add in the Edit Form */}
+      </Modal>
     </StyledDiv>
   );
 }

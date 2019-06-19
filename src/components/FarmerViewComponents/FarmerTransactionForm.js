@@ -146,21 +146,21 @@ class FarmerTransactionForm extends Component{
                     <input
                         type="radio"
                         name="payment"
-                        value="Credit"
-                        checked={this.state.payment === "Credit"}
+                        value="CREDIT"
+                        checked={this.state.payment === "CREDIT"}
                         onChange={this.radioChange}
                     />
-                    <label for="Credit">Credit</label>
+                    <label for="CREDIT">Credit</label>
                     </div>
                     <div>
                     <input
                         type="radio"
                         name="payment"
-                        value="Cash"
-                        checked={this.state.payment === "Cash"}
+                        value="CASH"
+                        checked={this.state.payment === "CASH"}
                         onChange={this.radioChange}
                     />
-                    <label for="Cash">Cash</label>
+                    <label for="CASH">Cash</label>
                     </div>
                 </label>
                 {this.state.items.map((item, index) =>(

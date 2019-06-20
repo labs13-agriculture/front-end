@@ -132,8 +132,10 @@ const StyledSearchBar = styled.div`
 
     .new-user-tools-cont{
             height:100%;
+            padding:20px;
             ${media.phone`display:flex;`}
             ${media.phone`justify-content:flex-end;`}
+
         }
 
     .search-button{

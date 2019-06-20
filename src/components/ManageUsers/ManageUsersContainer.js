@@ -17,7 +17,7 @@ export const ManageUsersContainer = () =>{
 const StyledManageUsersContainer = styled.div`
 
     height:100%;
-    padding:20px;
+   
     position:relative;
 
 `

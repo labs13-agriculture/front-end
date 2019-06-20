@@ -31,7 +31,7 @@ export default(state=initialState, action) =>{
         case GET_BRANCHES_START:
             return{
                 ...state,
-                getBranchStart: true
+                getBranchStart: true,
                 error: ""
             }
         case GET_BRANCHES_SUCCESS:
@@ -71,8 +71,8 @@ export default(state=initialState, action) =>{
         case UPDATE_BRANCH_START:
             return{
                 ...state,
-                updateBranchStart: true;
-                error: "",
+                updateBranchStart: true,
+                error: ""
             }
         case UPDATE_BRANCH_SUCCESS:
             return{

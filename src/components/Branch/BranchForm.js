@@ -4,7 +4,7 @@ import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import styled from 'styled-components';
 import { addBranch, updateBranch } from "../../actions";
 
-class NewBranchForm extends Component{
+class BranchForm extends Component{
     constructor(props){
         super(props);
         if(props.updating){
@@ -140,7 +140,7 @@ class NewBranchForm extends Component{
     }
 }
 
-export default connect(null, { addBranch, updateBranch })(NewBranchForm);
+export default connect(null, { addBranch, updateBranch })(BranchForm);
 
 const InnerContainer = styled.div`
     display: flex;

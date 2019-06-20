@@ -1,28 +1,60 @@
-import React from "react"; // { useState }
-// import styled from "styled-components";
+import React, { Component } from "react"; // { useState }
+import styled from "styled-components";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 // import { Modal } from "reactstrap";
-
+import BranchHeader from '../Branch/BranchHeader';
+import { getBranches } from '../../actions';
 // import { theme } from "../../config";
 // import { StyledTd } from "../../styles/InstallmentStyles";
 
-function OrganizationBranch(props) {
-  const { organizationBranch } = props;
-  return (
-    <div>
-      <h1>YO FOOL</h1>
-    </div>
-  );
+class OrganizationBranch extends Component{
+  constructor(props){
+    super(props);
+  }
+
+  componentDidMount(){
+    this.props.getBranches(this.props.id);
+  }
+
+  render(){
+    return (
+      <BranchContainer>
+        <BranchHeader />
+        <StyledTable>
+          <tbody>
+            {this.props.data.length > 0 && this.props.data.map(branch => {
+              return(<p>{branch.name}</p>);
+            })}
+          </tbody>
+        </StyledTable>
+      </BranchContainer>
+    );
+  }
 }
 
 const mapStateToProps = state => {
-  return {};
+  return {
+    data:state.branchData.branchData
+  };
 };
 
 const connected = connect(
   mapStateToProps,
-  {}
+  { getBranches }
 )(OrganizationBranch);
 
 export default withRouter(connected);
+
+
+const StyledTable = styled.table`
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  margin: 5%;
+  width: 90%;
+`;
+
+const BranchContainer = styled.div`
+  width: 100%;
+  border-radius: 3px;
+`;

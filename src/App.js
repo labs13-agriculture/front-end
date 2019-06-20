@@ -6,8 +6,6 @@ import Login from "./components/LoginComponent/Login";
 import PrivateRoute from "./components/PrivateRoute";
 import GlobalViewContainer from "./components/GlobalViewContainer";
 import GlobalSideNav from "./components/GlobalSideNav";
-//Temporary import because im lazy
-import NewBranchForm from './components/Branch/NewBranchForm';
 
 
 // import ItemList from './components/ItemList';
@@ -32,7 +30,6 @@ class App extends Component {
             <PrivateRoute path="/search" component={GlobalViewContainer} />
             <PrivateRoute path="/users" component={GlobalViewContainer} />
             <PrivateRoute path="/inventory" component={GlobalViewContainer} />
-            <Route path="/branch" component={NewBranchForm} />
           </div>
 
             {/* <Route path="/testdashboard" component={GlobalSideNav} />

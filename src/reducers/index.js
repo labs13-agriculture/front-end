@@ -9,6 +9,7 @@ import organizationReducer from "../reducers/organizationReducer";
 import inventoryReducer from "../reducers/inventoryReducer";
 import itemTypeReducer from "./itemTypeReducer.js";
 import reducerRetailerTransaction from "./reducerRetailerTransaction";
+import branchReducer from './branchReducer';
 
 // import getData from '../reducers/getdata';
 // import registrationR from '../reducers/registerreducer';
@@ -24,7 +25,8 @@ export default combineReducers({
   addTransactionRetailer: reducerRetailerTransaction,
   inventory: inventoryReducer,
   itemTypes: itemTypeReducer,
-  clientTransactions: clientTransactions
+  clientTransactions: clientTransactions,
+  branchData: branchReducer
   // // getData,
   // registrationR,
   // getSentiment

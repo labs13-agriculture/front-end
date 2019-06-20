@@ -19,35 +19,35 @@ export default class GlobalSideNav extends Component {
   render() {
     return (
       <GSN>
-        <StyledH1 className="title"><i className="fas fa-seedling" />TIEME NDO</StyledH1>
+        <StyledH1 className="title"><span className="navspan">TIEME NDO</span><i className="fas fa-seedling" /></StyledH1>
         <StyledDiv className="hvr-underline-reveal">
           <NavLink to="/dashboard" style={{ textDecoration: "none" }}>
-            <i class="fas fa-th"></i>
-            <span>DASHBOARD</span>
+            <i className="fas fa-th"></i>
+            <span className="navspan">DASHBOARD</span>
           </NavLink>
         </StyledDiv>
         <StyledDiv className="hvr-underline-reveal">
           <NavLink to="/search" style={{ textDecoration: "none" }}>
             <i className="fas fa-search"></i>
-            <span>SEARCH</span>
+            <span className="navspan">SEARCH</span>
           </NavLink>
         </StyledDiv>
         <StyledDiv className="hvr-underline-reveal">
           <NavLink to="/users" style={{ textDecoration: "none" }}>
             <i className="fas fa-user"></i>
-            <span>USERS</span>
+            <span className="navspan">USERS</span>
           </NavLink>
         </StyledDiv>
         <StyledDiv className="hvr-underline-reveal">
           <NavLink to="/inventory" style={{ textDecoration: "none" }}>
             <i className="fas fa-boxes"></i>
-            <span>INVENTORY</span>
+            <span className="navspan">INVENTORY</span>
           </NavLink>
         </StyledDiv>
         <StyledDiv className="hvr-underline-reveal">
           <NavLink onClick={() => this.logout()} to="#" style={{ textDecoration: "none" }}>
             <i className="fas fa-sign-out-alt"></i>
-            <span>LOG OUT</span>
+            <span className="navspan">LOG OUT</span>
           </NavLink>
         </StyledDiv>
 
@@ -74,6 +74,17 @@ const GSN = styled.div`
   background:rgb(60,57,75);
   box-shadow:  0 13px 27px -5px rgba(50,50,93,0.25),0 8px 16px -8px rgba(0, 0, 0, 0.44),0 10px 16px 1px rgba(0, 0, 0, 0.53);
   z-index:2;
+
+  @media (max-width: 800px) {
+    width: auto;
+  }
+
+  @media (max-width: 500px) {
+    display: flex;
+    position: fixed;
+    width: 100%;
+    box-shadow: 0px 2px 3px rgba(0,0,0,0.4);
+  }
 `;
 
 const StyledH1 = styled.h1`
@@ -92,8 +103,17 @@ const StyledH1 = styled.h1`
   color: white;
   letter-spacing: -3px;
   letter-spacing: 1px;
-  margin-bottom:20px;
-  
+  margin-bottom: 20px;
+
+  @media (max-width: 800px) {
+    span.navspan {
+      display: none;
+    }
+  }
+
+  @media (max-width: 500px) {
+    display: none;
+  }
 
   .fas.fa-seedling{
     margin-right:4px;
@@ -123,13 +143,11 @@ const StyledDiv = styled.div`
   &:hover{
     color:white;
   }
-  
-}
 
   a {
     color: inherit;
     width: 100%;
-    height:60px;
+    height: 60px;
     display:flex;
     align-items:center;
     
@@ -139,7 +157,22 @@ const StyledDiv = styled.div`
     font-size: 1.3rem;
 
     letter-spacing: 0px;
-    
+
+    padding: 10px;
+
+    @media (max-width: 800px) {
+        padding: 15px;
+        height: 50px;
+
+        span.navspan {
+          display: none;
+        }
+    }
+
+    @media (max-width: 500px) {
+      border-right: none;
+      border-bottom: 3px solid transparent;
+    }
 
     &:hover{
       color:inherit;
@@ -159,7 +192,11 @@ const StyledDiv = styled.div`
       
       color:#40E0D0;
       border-right: 4px solid #40E0D0;
-      
+
+      @media (max-width: 500px) {
+        border-right: none;
+        border-bottom: 3px solid #40E0D0;
+      }
       
     }
   }

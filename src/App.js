@@ -23,20 +23,21 @@ class App extends Component {
           <Route exact path="/" component={Login} />
 
           <PrivateRoute path="/dashboard" component={GlobalSideNav} />
-          <PrivateRoute path="/dashboard" component={GlobalViewContainer} />
-          {/* <Route path="/dashboard/testfarmer" component={FarmerView} /> */}
           <PrivateRoute path="/search" component={GlobalSideNav} />
-          <PrivateRoute path="/search" component={GlobalViewContainer} />
-
           <PrivateRoute path="/users" component={GlobalSideNav} />
-          <PrivateRoute path="/users" component={GlobalViewContainer} />
-
           <PrivateRoute path="/inventory" component={GlobalSideNav} />
-          <PrivateRoute path="/inventory" component={GlobalViewContainer} />
 
-          {/* <Route path="/testdashboard" component={GlobalSideNav} />
-          <Route path="/testdashboard" component={GlobalNav} />
-          <Route path="/testdashboard" component={GlobalViewContainer} /> */}
+          <div className="mobilenavbuffer">
+            <PrivateRoute path="/dashboard" component={GlobalViewContainer} />
+            {/* <Route path="/dashboard/testfarmer" component={FarmerView} /> */}
+            <PrivateRoute path="/search" component={GlobalViewContainer} />
+            <PrivateRoute path="/users" component={GlobalViewContainer} />
+            <PrivateRoute path="/inventory" component={GlobalViewContainer} />
+          </div>
+
+            {/* <Route path="/testdashboard" component={GlobalSideNav} />
+            <Route path="/testdashboard" component={GlobalNav} />
+            <Route path="/testdashboard" component={GlobalViewContainer} /> */}
         </StyledApp>
       </Router>
     );
@@ -72,6 +73,20 @@ const StyledApp = styled.div`
 
   font-family: "Roboto", sans-serif;
   font-size: 1.4rem;
+
+  .mobilenavbuffer {
+    display: flex;
+    width: 100%;
+    height: 100%;
+  }
+
+  @media (max-width: 500px) {
+    display: block;
+
+    .mobilenavbuffer {
+      padding-top: 50px;
+    }
+  }
 
   input:focus,
   select:focus,

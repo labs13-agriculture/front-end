@@ -8,5 +8,6 @@ export const theme = {
   background_light: `#E9E9E7`,
   background_dark: `#1F1F1F`,
   warning: `#EE8E2D`,
-  accent: `#46D1A3`
+  accent: `#46D1A3`,
+  navgrey: `#3C394B`
 };

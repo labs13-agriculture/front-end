@@ -22,7 +22,7 @@ const CardContainer = styled.div`
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: flex-start;
     overflow-y: scroll;
 
     &::-webkit-scrollbar {

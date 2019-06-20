@@ -126,8 +126,6 @@ export const getClient = (clientId, type) => dispatch => {
       }
     })
     .then(res => {
-      console.log("get client demographics", res.data);
-
       dispatch({ type: GET_CLIENT_SUCCESS, payload: res.data });
     })
     .catch(err => {

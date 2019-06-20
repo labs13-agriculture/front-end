@@ -12,8 +12,16 @@ import { getClient, deleteClient, clearDeleted } from "../../actions";
 function ClientDemographics(props) {
   const { client } = props;
 
+  const getType = () => {
+    let type = props.match.path.split("/")[2];
+    if (type !== "farmer" && type !== "retailer") {
+      throw new Error("WE ARE NOT GRABBING A VALID TYPE FROM URL");
+    }
+    return type;
+  };
+
   useEffect(() => {
-    props.getClient(props.match.params.id);
+    props.getClient(props.match.params.id, getType());
   }, []);
 
   const [modal, setModal] = useState(false);
@@ -30,7 +38,7 @@ function ClientDemographics(props) {
       "Are you sure you want to\n\nPERMANENTLY DELETE\n\nthis client and all associated data?"
     );
     if (confirm) {
-      props.deleteClient(client.id);
+      props.deleteClient(client.id, getType());
     }
   };
 

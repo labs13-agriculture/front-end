@@ -29,6 +29,7 @@ class NewClientForm extends Component {
       region: client.region,
       lead: client.lead,
       startyear: client.startyear,
+      type: client.type,
       blankField: false,
       validYear: true
     };
@@ -96,10 +97,11 @@ class NewClientForm extends Component {
       community: this.state.community,
       district: this.state.district,
       landmark: this.state.landmark,
-      region: this.state.region
+      region: this.state.region,
+      type: this.state.type
     };
 
-    this.props.updateClient(updatedClient);
+    this.props.updateClient(updatedClient, this.props.type);
     this.props.closeModal();
   };
 

@@ -32,8 +32,6 @@ const initialState = {
 };
 
 export default (state = initialState, action) => {
-  console.log(action);
-  console.log(action.payload);
   switch (action.type) {
     case CLEAR_DELETED:
       return {
@@ -54,7 +52,6 @@ export default (state = initialState, action) => {
         previousSearch: action.payload
       };
     case CLIENT_SEARCH_SUCCESS:
-      console.log(action.payload);
       return {
         ...state,
         listData: action.payload,

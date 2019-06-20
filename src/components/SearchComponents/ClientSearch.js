@@ -26,8 +26,7 @@ class ClientSearch extends Component {
   getType() {
     let type = this.props.match.path.split("/")[2];
     if (type !== "farmer" && type !== "retailer") {
-      // Keep this console.log in for future debugging
-      console.log("WE ARE NOT GRABBING TYPE FROM URL!");
+      throw new Error("WE ARE NOT GRABBING A VALID TYPE FROM URL");
     }
     return type;
   }
@@ -40,15 +39,15 @@ class ClientSearch extends Component {
   };
 
   submitClient = newClient => {
-    console.log(newClient);
-    console.log("about to add the client!");
-    this.props.addClient(newClient);
+    this.props.addClient(newClient, this.getType());
   };
 
   render() {
     if (this.props.clientAdded) {
       this.props.clearAdded();
-      this.props.history.push(`/dashboard/client/${this.props.client.id}`);
+      this.props.history.push(
+        `/dashboard/${this.getType()}/${this.props.client.id}`
+      );
     }
 
     return (
@@ -61,6 +60,7 @@ class ClientSearch extends Component {
           <NewClientForm
             submitForm={this.submitClient}
             toggleModal={this.toggleModal}
+            type={this.getType()}
           />
         </Modal>
       </div>

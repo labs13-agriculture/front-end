@@ -50,7 +50,6 @@ class NewClientForm extends Component {
 
     let emptyFields = false;
 
-    console.log("empty fields before map:", emptyFields);
     Object.keys(this.state).forEach(k => {
       //false booleans were evaluating to '', making it impossible to submit form
       if (
@@ -59,12 +58,10 @@ class NewClientForm extends Component {
         k !== "blankField" &&
         k !== "validYear"
       ) {
-        console.log(k, this.state[k]);
         emptyFields = true;
       }
     });
 
-    console.log("empty fields after map:", emptyFields);
     if (emptyFields) {
       this.setState({
         blankField: true
@@ -77,8 +74,8 @@ class NewClientForm extends Component {
       blankField: false
     });
 
-    //Setting up Farmer as object backend can expect
-    const newFarmer = {
+    //Setting up Client as object backend can expect
+    const newClient = {
       firstName: this.state.firstName,
       secondName: this.state.secondName,
       lead: this.state.lead,
@@ -100,7 +97,7 @@ class NewClientForm extends Component {
       landmark: this.state.landmark,
       region: this.state.region
     };
-    this.props.submitForm(newFarmer);
+    this.props.submitForm(newClient);
     this.props.toggleModal();
   };
 
@@ -129,7 +126,7 @@ class NewClientForm extends Component {
     }
     return (
       <ModalDiv>
-        <h2>Add a Farmer</h2>
+        <h2>Add a {this.props.type}</h2>
         <Form onSubmit={e => this.formSubmit(e)}>
           <div className="form-section">
             <Label className="half">
@@ -160,7 +157,7 @@ class NewClientForm extends Component {
               />
             </Label>
             <Label>
-              Farmer Since:
+              Client Since:
               <Input
                 onChange={e => this.handleChanges(e)}
                 type="text"

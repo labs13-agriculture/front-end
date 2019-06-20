@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import {Input, Label, Form} from 'reactstrap';
 
-import {theme} from "../config"
+import {theme} from "../../config"
 
-class NewFarmerForm extends Component{
+class NewClientForm extends Component{
     constructor(props){
         super(props);
         this.state={
@@ -164,7 +164,7 @@ class NewFarmerForm extends Component{
     }
 }
 
-export default NewFarmerForm;
+export default NewClientForm;
 
 
 const ModalDiv = styled.div`

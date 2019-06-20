@@ -6,9 +6,9 @@ import {
   addOrganization,
   getAllOrganizations
 } from "../../actions/organizationActions";
-import OrganizationCardContainer from "../OrganizationCardContainer";
+import OrganizationCardContainer from "../Organization/OrganizationCardContainer";
 import styled from "styled-components";
-import NewOrganizationForm from "../NewOrganizationForm";
+import NewOrganizationForm from "../Organization/NewOrganizationForm";
 
 class OrganizationSearch extends Component {
   constructor(props) {

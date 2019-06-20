@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { Modal } from 'reactstrap';
-import FormUpdateClientTransaction from './FormUpdateClientTransaction';
+import UpdateTransactionForm from './UpdateTransactionForm';
 import { StyledTd } from "../../styles/InstallmentStyles";
 import { theme } from '../../config'
 
@@ -30,7 +30,7 @@ export class FarmerTransactionItem extends Component{
                     <i onClick={this.props.deleteClientTransaction} className="fas fa-trash delete" />
                 </StyledTd>
                 <Modal isOpen={this.state.toggleUpdateModal}>
-                    <FormUpdateClientTransaction transaction={this.props.item}/>
+                    <UpdateTransactionForm transaction={this.props.item}/>
                     <button onClick={this.toggleUpdateModal}  color="secondary">Cancel</button>
                 </Modal>
             </Row>

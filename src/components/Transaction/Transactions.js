@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import {FarmerTransactionItem} from "./FarmerTransactionItem";
+import {FarmerTransactionItem} from "./TransactionItem";
 import { connect } from "react-redux";
 import {getClientTransaction,deleteClientTransaction} from "../../actions";
 import TransactionHeader from './TransactionHeader';
@@ -71,30 +71,6 @@ const StyledTable = styled.table`
   margin: 5%;
   width: 90%;
 `;
-
-const StyledTd = styled.td`
-  border: 1px solid black;
-  text-align: left;
-  padding: 8px;
-`;
-
-const StyledTh = styled.th`
-  border: 1px solid black;
-  text-align: left;
-  padding: 8px 0;
-`;
-
-// tr:nth-child(even) {
-//   background-color: #dddddd;
-// }
-
-const StyledTransactionNav = styled.div`
-  width:100%;
-  height:60px;
-  display:flex;
-  justify-content:space-between;
-
-`
 
 const TransactionContainer = styled.div`
   width: 100%;

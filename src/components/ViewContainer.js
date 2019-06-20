@@ -1,15 +1,14 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import PrivateRoute from "./PrivateRoute";
-import RetailerSearch from "./SearchComponents/RetailerSearch";
 
-import FarmerSearch from "./SearchComponents/FarmerSearch";
+import ClientSearch from "./SearchComponents/ClientSearch";
 import OrganizationSearch from "./SearchComponents/OrganizationSearch";
-import FarmerView from "./FarmerView.js";
-import OrganizationView from "./OrganizationView/OrganizationView.js";
+import ClientView from "./ClientView/ClientView";
+import OrganizationView from "./Organization/OrganizationView.js";
 
 
-export default class ClientVueContainer extends Component {
+export default class ViewContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -17,7 +16,7 @@ export default class ClientVueContainer extends Component {
 
   render() {
     return (
-      <StyledClientVueContainer>
+      <StyledViewContainer>
         {/* //search component will go here */}
         {/* <PrivateRoute
           exact
@@ -28,9 +27,9 @@ export default class ClientVueContainer extends Component {
         <PrivateRoute
           exact
           path="/search/retailers"
-          component={RetailerSearch}
+          component={ClientSearch}
         />
-        <PrivateRoute exact path="/search/farmers" component={FarmerSearch} />
+        <PrivateRoute exact path="/search/farmers" component={ClientSearch} />
         <PrivateRoute
           exact
           path="/search/organizations"
@@ -39,13 +38,13 @@ export default class ClientVueContainer extends Component {
         <PrivateRoute
           exact
           path="/dashboard/farmer/:id"
-          component={FarmerView}
+          component={ClientView}
         />
 
         <PrivateRoute
           exact
           path="/dashboard/retailer/:id"
-          component={FarmerView}
+          component={ClientView}
         />
 
         <PrivateRoute
@@ -56,12 +55,12 @@ export default class ClientVueContainer extends Component {
 
        
         
-      </StyledClientVueContainer>
+      </StyledViewContainer>
     );
   }
 }
 
-const StyledClientVueContainer = styled.div`
+const StyledViewContainer = styled.div`
   height: 100vh;
   width: 100%;
   padding: 20px;

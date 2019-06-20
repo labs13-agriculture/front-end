@@ -53,8 +53,9 @@ export class UserResultsList extends Component {
 
 const StyledUserResultsVue = styled.div`
    
-   background:none;
-   overflow-y: scroll;
+  background:none;
+  overflow-y: scroll;
+
   display: flex;
   flex-direction: row;
   flex-wrap:wrap;

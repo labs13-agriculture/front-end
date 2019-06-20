@@ -73,13 +73,14 @@ class FormUpdateClientTransaction extends Component{
     submitForm = e =>{
         e.preventDefault();
         let finalItems = [];
-        this.state.items.map(item =>{
+        this.state.items.map(item => {
             let itemObject = this.props.inventory.filter(inventoryItem => inventoryItem.name === item.itemName)
             finalItems.push({
                 quantity: item.quantity,
                 unitPrice: item.unitPrice,
                 item: itemObject[0]
             })
+            return itemObject;
         })
         
         const transaction = {

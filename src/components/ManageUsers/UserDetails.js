@@ -10,7 +10,10 @@ class UserDetails extends Component{
         super(props);
 
         this.state = {
-            
+            username:JSON.stringify(null),
+            password:JSON.stringify(null),
+            userRoles:[]
+
         }
     }
 
@@ -32,17 +35,17 @@ class UserDetails extends Component{
     render(){
         return(
             <StyledUserDetails>
-                <i className="far fa-window-close" onClick={()=>window.history.back()}></i>
-                <StyledRegisterDetailsContainer>
+                {/* <i className="far fa-window-close" onClick={()=>window.history.back()}></i> */}
+                {/* <StyledRegisterDetailsContainer> */}
                 <Form>
                     <FormGroup>
                     <h1>Update User Details</h1>
                     <Label for="username">Username</Label>
-                    <Input type="username" name="username" id="text" placeholder="Username" onChange={this.handleInputChange}/>
+                    <Input type="username" name="username" id="text" placeholder={this.props.username} onChange={this.handleInputChange}/>
                     </FormGroup>
                     <FormGroup>
                     <Label for="examplePassword">Password</Label>
-                    <Input type="password" name="password" id="examplePassword" placeholder="password" onChange={this.handleInputChange} />
+                    <Input type="password" name="password" id="examplePassword" placeholder="ENTER NEW PASSWORD" onChange={this.handleInputChange} />
                     </FormGroup>
                   
                     <FormGroup>
@@ -55,11 +58,11 @@ class UserDetails extends Component{
                     </Input>
                     </FormGroup>
                     
-                    <Button onClick={() =>this.props.updateSystemUser(this.state,this.props.match.params.id)}>UPDATE</Button>
-                    <Button onClick={() =>this.props.deleteSystemUser(this.props.match.params.id)}>DELETE</Button>
+                    <Button onClick={() =>this.props.updateSystemUser(this.state,this.props.userid)}>UPDATE</Button>
+                    <Button onClick={() =>this.props.deleteSystemUser(this.props.userid)}>DELETE</Button>
                 </Form>
 
-                </StyledRegisterDetailsContainer>
+                {/* </StyledRegisterDetailsContainer> */}
             </StyledUserDetails>
             
         )
@@ -68,11 +71,11 @@ class UserDetails extends Component{
 
 const mapStateToProps = state => {
     return {
-        updateSystemUserStart:state.updateSystemUser.updateSystemUserStart,
-        updateSystemUserFailure:state.updateSystemUser.updateSystemUserFailure,
-        updateSystemUserSuccess:state.updateSystemUser.updateSystemUserSuccess,
-        updateSystemUserData:state.updateSystemUser.data,
-        updateSystemUserError:state.updateSystemUser.error,
+        updateSystemUserStart:state.userReducer.updateSystemUserStart,
+        updateSystemUserFailure:state.userReducer.updateSystemUserFailure,
+        updateSystemUserSuccess:state.userReducer.updateSystemUserSuccess,
+        updateSystemUserData:state.userReducer.data,
+        updateSystemUserError:state.userReducer.error,
 
 
     }
@@ -82,13 +85,13 @@ export default connect(mapStateToProps,{updateSystemUser,deleteSystemUser})(User
 
 
 const StyledUserDetails = styled.div`
-    position:absolute;
+    ${'' /* position:absolute;
     height:100%;
     width:100%;
-    background: #00000054;
+    background: #00000054;  
     display:flex;
     justify-content:center;
-    align-items:center;
+    align-items:center; */}
 
     .far.fa-window-close{
         color:white;

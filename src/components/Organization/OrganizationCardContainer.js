@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import GlobalClientCard from "./GlobalClientCard";
-import CardContainer from "../styles/CardContainerStyles";
+import CardContainer from "../../styles/CardContainerStyles";
 import OrganizationCard from "./OrganizationCard";
 
 class OrganizationCardContainer extends Component {

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import { Button, Modal } from "reactstrap";
 import { theme } from "../../config";
-import FarmerTransactionForm from "./FarmerTransactionForm"
+import TransactionForm from "./TransactionForm";
 import { StyledTd } from "../../styles/InstallmentStyles";
 
 function TransactionHeader(props){
@@ -36,7 +36,7 @@ function TransactionHeader(props){
       </table>
 
       <Modal isOpen={modal} toggle={toggleModal}>
-        <FarmerTransactionForm id={props.id} toggleModal={toggleModal} />
+        <TransactionForm id={props.id} toggleModal={toggleModal} />
       </Modal>
     </HeaderContainer>
   );

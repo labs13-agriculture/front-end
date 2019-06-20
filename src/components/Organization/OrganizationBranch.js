@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import styled from "styled-components";
+import React from "react"; // { useState }
+// import styled from "styled-components";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { Modal } from "reactstrap";
+// import { Modal } from "reactstrap";
 
-import { theme } from "../../config";
-import { StyledTd } from "../../styles/InstallmentStyles";
+// import { theme } from "../../config";
+// import { StyledTd } from "../../styles/InstallmentStyles";
 
 function OrganizationBranch(props) {
   const { organizationBranch } = props;

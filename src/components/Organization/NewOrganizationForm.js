@@ -59,7 +59,7 @@ class NewOrganizationForm extends Component{
         console.log("empty fields before map:", emptyFields);
         Object.keys(this.state).map(k => {
             //false booleans were evaluating to '', making it impossible to submit form
-            if(this.state[k] == '' && k != "lead" &&  k!= "blankField" && k!= "validYear" && k!= "validBeneficiaries"){
+            if(this.state[k] === '' && k !== "lead" &&  k!== "blankField" && k!== "validYear" && k!== "validBeneficiaries"){
                 console.log(k, this.state[k]);
                 emptyFields = true;
             }

@@ -2,14 +2,14 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { Route, Redirect } from "react-router-dom";
 
-import GlobalNav from "./GlobalNav";
-import ClientVueContainer from "./ClientVueContainer";
+import SearchNav from "./SearchNav";
+import ViewContainer from "./ViewContainer";
 import PrivateRoute from "../components/PrivateRoute";
 import { ManageUsersContainer } from "./ManageUsers/ManageUsersContainer";
 
 import InventoryView from "./Inventory/InventoryView";
-import OrganizationCardContainer from "./OrganizationCardContainer";
-import OrganizationCard from "./OrganizationCard";
+//import OrganizationCardContainer from "./OrganizationCardContainer";
+import OrganizationCard from "./Organization/OrganizationCard";
 
 export default class GlobalVueContainer extends Component {
   constructor(props) {
@@ -22,10 +22,10 @@ export default class GlobalVueContainer extends Component {
   render() {
     return (
       <GVC>
-        <PrivateRoute path="/dashboard" component={ClientVueContainer} />
+        <PrivateRoute path="/dashboard" component={ViewContainer} />
 
-        <PrivateRoute path="/search" component={GlobalNav} />
-        <PrivateRoute path="/search" component={ClientVueContainer} />
+        <PrivateRoute path="/search" component={SearchNav} />
+        <PrivateRoute path="/search" component={ViewContainer} />
         <Route
           exact
           path="/search"

@@ -154,7 +154,7 @@ const StyledDiv = styled.div`
   background: white;
   display: flex;
   flex-direction: column;
-  width: 100%
+  width: 100%;
 
   ${media.tablet`font-size: 1.2rem;`}
 

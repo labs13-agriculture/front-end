@@ -4,9 +4,9 @@ import { connect } from "react-redux";
 import { getOrganizationById } from "../../actions";
 
 class OrganizationViewDemographics extends Component {
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
 
   componentDidMount() {
     this.props.getOrganizationById(this.props.id);

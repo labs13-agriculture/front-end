@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import OrganizationViewDemographics from "./OrganizationViewDemographics.js";
+import OrganizationBranch from "./OrganizationBranch.js";
 
 class OrganizationView extends Component {
   constructor(props) {
@@ -21,14 +22,8 @@ class OrganizationView extends Component {
           <OrganizationViewDemographics id={this.props.match.params.id} />
         </StyledDemos>
         <StyledInfoView>
-          <h1>INFO HERE</h1>
-
-          {/* <OrganizationViewTransactions /> */}
+          <OrganizationBranch />
         </StyledInfoView>
-
-        {/* Installment Component */}
-
-        {/* Transaction Component */}
       </StyledContainer>
     );
   }

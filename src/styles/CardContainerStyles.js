@@ -5,7 +5,7 @@ const sizes = {
   phone: 576
 };
 
-const media = Object.keys(sizes).reduce((acc, label) => {
+export const media = Object.keys(sizes).reduce((acc, label) => {
   acc[label] = (...args) =>
     css`
       @media (max-width: ${sizes[label]}px) {
@@ -22,7 +22,7 @@ const CardContainer = styled.div`
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: flex-start;
     overflow-y: scroll;
 
     &::-webkit-scrollbar {
@@ -30,14 +30,13 @@ const CardContainer = styled.div`
     }
 
 
-  h3{
+  h3 {
     text-decoration: none;
   }
 
-  p{
+  p {
     text-decoration: none;
   }
-
 `;
 
-export default CardContainer
+export default CardContainer;

@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import {FarmerTransactionItem} from "./TransactionItem";
+import { TransactionItem } from "./TransactionItem";
 import { connect } from "react-redux";
-import {getClientTransaction,deleteClientTransaction} from "../../actions";
-import TransactionHeader from './TransactionHeader';
+import { getClientTransaction, deleteClientTransaction } from "../../actions";
+import TransactionHeader from "./TransactionHeader";
 
-class FarmerViewTransactions extends Component {
+class ViewTransactions extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,12 +14,9 @@ class FarmerViewTransactions extends Component {
   }
 
   //write function for submitting form information for update
-  
-
 
   componentDidMount() {
     this.props.getClientTransaction(this.props.id);
-    
   }
 
   render() {
@@ -28,16 +25,15 @@ class FarmerViewTransactions extends Component {
         <TransactionHeader id={this.props.id} />
         <StyledTable>
           <tbody>
-            {
-              this.props.transactionDataSuccess && this.props.transactionData
-            .map(t => <FarmerTransactionItem 
-
-            deleteClientTransaction={this.props.deleteClientTransaction}
-            getClientTransaction={this.props.getClientTransaction} 
-            clientId={this.props.id} item={t}
-
-            />)
-            }
+            {this.props.transactionDataSuccess &&
+              this.props.transactionData.map(t => (
+                <TransactionItem
+                  deleteClientTransaction={this.props.deleteClientTransaction}
+                  getClientTransaction={this.props.getClientTransaction}
+                  clientId={this.props.id}
+                  item={t}
+                />
+              ))}
           </tbody>
         </StyledTable>
       </TransactionContainer>
@@ -49,21 +45,18 @@ const mapStateToProps = state => {
   console.log("transaction map state to props fireing");
   return {
     transactionData: state.clientTransactions.transactionData,
-    transactionDataStart:
-      state.clientTransactions.getTransactionStart,
-    transactionDataSuccess:
-      state.clientTransactions.getTransactionSuccess,
-    transactionDataFailure:
-      state.clientTransactions.getTransactionFailure,
+    transactionDataStart: state.clientTransactions.getTransactionStart,
+    transactionDataSuccess: state.clientTransactions.getTransactionSuccess,
+    transactionDataFailure: state.clientTransactions.getTransactionFailure,
     error: state.clientTransactions.error,
-    updatedTransactionData:state.clientTransactions.updatedTransactionData
+    updatedTransactionData: state.clientTransactions.updatedTransactionData
   };
 };
 
 export default connect(
   mapStateToProps,
-  { getClientTransaction,deleteClientTransaction}
-)(FarmerViewTransactions);
+  { getClientTransaction, deleteClientTransaction }
+)(ViewTransactions);
 
 const StyledTable = styled.table`
   font-family: arial, sans-serif;

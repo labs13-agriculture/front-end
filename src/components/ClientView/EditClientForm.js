@@ -4,9 +4,9 @@ import { Input, Label, Form } from "reactstrap";
 import { connect } from "react-redux";
 
 import { theme } from "../../config";
-import { updateFarmer } from "../../actions";
+import { updateClient } from "../../actions";
 
-class NewFarmerForm extends Component {
+class NewClientForm extends Component {
   constructor(props) {
     super(props);
 
@@ -29,6 +29,7 @@ class NewFarmerForm extends Component {
       region: client.region,
       lead: client.lead,
       startyear: client.startyear,
+      type: client.type,
       blankField: false,
       validYear: true
     };
@@ -42,7 +43,7 @@ class NewFarmerForm extends Component {
 
   formSubmit = e => {
     e.preventDefault();
-    //make sure farmer since is a nubmer
+    //make sure client since is a nubmer
     if (isNaN(parseInt(this.state.startyear))) {
       this.setState({
         validYear: false
@@ -52,7 +53,7 @@ class NewFarmerForm extends Component {
 
     let emptyFields = false;
 
-    Object.keys(this.state).map(k => {
+    Object.keys(this.state).forEach(k => {
       //false booleans were evaluating to '', making it impossible to submit form
       if (
         this.state[k] === "" &&
@@ -76,8 +77,8 @@ class NewFarmerForm extends Component {
       blankField: false
     });
 
-    //Setting up Farmer as object backend can expect
-    const updatedFarmer = {
+    //Setting up Client as object backend can expect
+    const updatedClient = {
       id: this.props.client.id,
       firstName: this.state.firstName,
       secondName: this.state.secondName,
@@ -96,17 +97,18 @@ class NewFarmerForm extends Component {
       community: this.state.community,
       district: this.state.district,
       landmark: this.state.landmark,
-      region: this.state.region
+      region: this.state.region,
+      type: this.state.type
     };
 
-    this.props.updateFarmer(updatedFarmer);
+    this.props.updateClient(updatedClient, this.props.type);
     this.props.closeModal();
   };
 
   render() {
     return (
       <ModalDiv>
-        <h2>Add a Farmer</h2>
+        <h2>Add a Client</h2>
         <Form onSubmit={this.formSubmit}>
           <div className="form-section">
             <Label className="half">
@@ -137,7 +139,7 @@ class NewFarmerForm extends Component {
               />
             </Label>
             <Label>
-              Farmer Since:
+              Client Since:
               <Input
                 onChange={this.handleChanges}
                 type="text"
@@ -287,9 +289,9 @@ class NewFarmerForm extends Component {
 export default connect(
   () => {},
   {
-    updateFarmer
+    updateClient
   }
-)(NewFarmerForm);
+)(NewClientForm);
 
 const ModalDiv = styled.div`
   background: white;

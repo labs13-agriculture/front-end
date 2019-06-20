@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
 import { addInstallment } from "../../actions";
 import { connect } from "react-redux";
-import { Label, Dropdown, Form, FormGroup, Input, Button } from "reactstrap";
+import { Label, Form, FormGroup, Input, Button } from "reactstrap";
 
 function AddInstallmentForm(props) {
   const initialState = {
-    amountPaid: 0.00,
+    amountPaid: 0.0,
     datePaid: "",
     mode: "MTN",
     officer: ""

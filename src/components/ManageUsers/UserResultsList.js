@@ -60,6 +60,9 @@ const StyledUserResultsVue = styled.div`
   flex-direction: row;
   flex-wrap:wrap;
   padding:20px;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   h3 {
     font-family: "Mandali", sans-serif;
@@ -108,6 +111,9 @@ const StyledResultsList = styled.div`
   overflow-y: scroll;
   display:flex;
   flex-direction:column;
+  &::-webkit-scrollbar {
+        display: none;
+  }
   
   .search-placeholder{
     display:flex;

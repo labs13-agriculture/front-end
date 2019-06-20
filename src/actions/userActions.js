@@ -40,6 +40,7 @@ export const updateSystemUser = (userDetails,id) => dispatch => {
    
     const body = JSON.stringify(userDetails);
     console.log("userDetails JSON "+body)
+    console.log("MYID  "+id)
     return axios
       .put(`${BASE_URL}/users/update-user/${id}`, body,{
         headers: {
@@ -70,7 +71,7 @@ export const deleteSystemUser = (id) => dispatch => {
    
     
     return axios
-      .delete(`http://localhost:4040/users/user/${id}`,{
+      .delete(`${BASE_URL}/users/user/${id}`,{
         headers: {
           'Content-Type' : 'application/json',
           
@@ -79,7 +80,7 @@ export const deleteSystemUser = (id) => dispatch => {
         }
       })
       .then(res => {
-        console.log("DELETE_new_sys_user_data", res.data);
+        console.log("DELETE_new_sys_user_data", id);
         
         dispatch({ type: DELETE_SYSTEM_USER_SUCCESS, payload: res.data });
         

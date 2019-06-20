@@ -27,7 +27,9 @@ export default class GlobalVueContainer extends Component {
         <PrivateRoute path='/search' component={ClientVueContainer}/>
         <Route exact path='/search' render={props => <Redirect to="/search/farmers" {...props}/>} />
 
-        <PrivateRoute path='/users' component={ManageUsersContainer} />
+        <PrivateRoute path='/users/' component={ManageUsersContainer} />
+
+        
 
         <PrivateRoute path='/inventory' component={InventoryView} />
       </GVC>

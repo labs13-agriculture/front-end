@@ -7,6 +7,7 @@ import FarmerSearch from "./SearchComponents/FarmerSearch";
 import OrganizationSearch from "./SearchComponents/OrganizationSearch";
 import FarmerView from "./FarmerView";
 import OrganizationView from "./OrganizationView/OrganizationView.js";
+import UserDetails from "../components/ManageUsers/UserDetails";
 
 export default class ClientVueContainer extends Component {
   constructor(props) {
@@ -57,10 +58,7 @@ export default class ClientVueContainer extends Component {
           component={OrganizationView}
         />
 
-        <PrivateRoute
-          path="/dashboard/manage-users"
-          component={ManageUsersContainer}
-        />
+       
         {/* <GlobalCardContainer/> */}
       </StyledClientVueContainer>
     );

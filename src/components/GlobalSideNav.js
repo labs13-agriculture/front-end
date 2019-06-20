@@ -81,6 +81,9 @@ const GSN = styled.div`
 
   @media (max-width: 500px) {
     display: flex;
+    position: fixed;
+    width: 100%;
+    box-shadow: 0px 2px 3px rgba(0,0,0,0.4);
   }
 `;
 
@@ -140,8 +143,6 @@ const StyledDiv = styled.div`
   &:hover{
     color:white;
   }
-  
-}
 
   a {
     color: inherit;
@@ -162,6 +163,7 @@ const StyledDiv = styled.div`
     @media (max-width: 800px) {
         padding: 15px;
         height: 50px;
+
         span.navspan {
           display: none;
         }

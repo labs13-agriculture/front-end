@@ -15,6 +15,7 @@ export const searchClients = (query, type) => dispatch => {
 
   // this maps out to something like
   // https://backendurl.com/farmer/search?name=john&location=town&lead=false
+  // or the equivalent for retailer
   const urlString = `${BASE_URL}/${type}${
     type === "farmer" ? "s" : ""
   }/search?name=${nameSearch}&location=${locationSearch}&lead=${query.leads}`;
@@ -40,20 +41,27 @@ export const DELETE_CLIENT_START = "DELETE_CLIENT_START";
 export const DELETE_CLIENT_SUCCESS = "DELETE_CLIENT_SUCCESS";
 export const DELETE_CLIENT_FAILURE = "DELETE_CLIENT_FAILURE";
 
-export const deleteClient = id => dispatch => {
+export const deleteClient = (id, type) => dispatch => {
   dispatch({ type: DELETE_CLIENT_START });
 
+  let urlString = "";
+
+  if (type === "farmer") {
+    urlString = `${BASE_URL}/farmers/farmer/${id}`;
+  } else if (type === "retailer") {
+    urlString = `${BASE_URL}/retailer/delete/${id}`;
+  } else {
+    throw new TypeError(`Could not find a URL for client type: ${type}`);
+  }
+
   return axios
-    .delete(`${BASE_URL}/farmers/farmer/${id}`, {
+    .delete(urlString, {
       headers: {
         "Content-Type": "application/json",
-
         Authorization: `Bearer ${window.localStorage.getItem("token")}`
       }
     })
     .then(res => {
-      console.log("DELETE_CLIENT_data", res.data);
-
       dispatch({ type: DELETE_CLIENT_SUCCESS, payload: res.data });
     })
     .catch(err => {
@@ -66,21 +74,26 @@ export const ADD_CLIENT_START = "ADD_CLIENT_START";
 export const ADD_CLIENT_SUCCESS = "ADD_CLIENT_SUCCESS";
 export const ADD_CLIENT_FAILURE = "ADD_CLIENT_FAILURE";
 
-export const addClient = newClient => dispatch => {
+export const addClient = (newClient, type) => dispatch => {
   dispatch({ type: ADD_CLIENT_START });
-  console.log("attempting to add", newClient);
+
+  let urlString = "";
+  if (type === "farmer") {
+    urlString = `${BASE_URL}/farmers/add`;
+  } else if (type === "retailer") {
+    urlString = `${BASE_URL}/retailer/new`;
+  } else {
+    throw new TypeError(`Could not find a URL for client type: ${type}`);
+  }
 
   return axios
-    .post(`${BASE_URL}/farmers/add`, newClient, {
+    .post(urlString, newClient, {
       headers: {
         "Content-Type": "application/json",
-
         Authorization: `Bearer ${window.localStorage.getItem("token")}`
       }
     })
     .then(res => {
-      console.log("added new client", res.data);
-
       dispatch({ type: ADD_CLIENT_SUCCESS, payload: res.data });
     })
     .catch(err => {
@@ -93,15 +106,22 @@ export const GET_CLIENT_START = "GET_CLIENT_START";
 export const GET_CLIENT_SUCCESS = "GET_CLIENT_SUCCESS";
 export const GET_CLIENT_FAILURE = "GET_CLIENT_FAILURE";
 
-export const getClient = clientId => dispatch => {
+export const getClient = (clientId, type) => dispatch => {
   dispatch({ type: GET_CLIENT_START });
-  console.log("starting get client action");
+
+  let urlString = "";
+  if (type === "farmer") {
+    urlString = `${BASE_URL}/farmers/farmer/${clientId}`;
+  } else if (type === "retailer") {
+    urlString = `${BASE_URL}/retailer/${clientId}`;
+  } else {
+    throw new TypeError(`Could not find a URL for client type: ${type}`);
+  }
 
   return axios
-    .get(`${BASE_URL}/farmers/farmer/${clientId}`, {
+    .get(urlString, {
       headers: {
         "Content-Type": "application/json",
-
         Authorization: `Bearer ${window.localStorage.getItem("token")}`
       }
     })
@@ -122,9 +142,18 @@ export const UPDATE_CLIENT_FAILURE = "UPDATE_CLIENT_FAILURE";
 
 export const updateClient = client => dispatch => {
   dispatch({ type: UPDATE_CLIENT });
-  console.log("attempting to update", client);
+
+  let urlString = "";
+  if (client.type.toLowerCase() === "farmer") {
+    urlString = `${BASE_URL}/farmers/farmer/${client.id}`;
+  } else if (client.type.toLowerCase() === "retailer") {
+    urlString = `${BASE_URL}/retailer/update/${client.id}`;
+  } else {
+    throw new TypeError(`Could not find a URL for client type: ${client.type}`);
+  }
+
   return axios
-    .put(`${BASE_URL}/farmers/farmer/${client.id}`, client, {
+    .put(urlString, client, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${window.localStorage.getItem("token")}`

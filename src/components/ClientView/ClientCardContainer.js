@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import GlobalClientCard from "./GlobalClientCard";
-import CardContainer from "../styles/CardContainerStyles";
+import ClientCard from "./ClientCard";
+import CardContainer from "../../styles/CardContainerStyles";
 
-class FarmerCardContainer extends Component {
+class ClientCardContainer extends Component {
   render() {
     console.log("re-rendering");
     console.log(this.props.data);
@@ -15,7 +15,7 @@ class FarmerCardContainer extends Component {
         ) : null}
         {this.props.data &&
           this.props.data.map(client => (
-            <GlobalClientCard key={client.id} client={client} />
+            <ClientCard key={client.id} client={client} />
           ))}
       </CardContainer>
     );
@@ -34,4 +34,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(FarmerCardContainer);
+export default connect(mapStateToProps)(ClientCardContainer);

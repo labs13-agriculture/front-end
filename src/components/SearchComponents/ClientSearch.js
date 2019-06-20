@@ -4,9 +4,9 @@ import styled from "styled-components";
 import { Modal } from "reactstrap";
 
 // Custom Components
-import FarmerCardContainer from "../FarmerCardContainer";
+import ClientCardContainer from "../ClientView/ClientCardContainer";
 import SearchForm from "./SearchForm";
-import NewFarmerForm from "../NewFarmerForm";
+import NewFarmerForm from "../ClientView/NewClientForm";
 
 // Actions
 import {
@@ -15,7 +15,7 @@ import {
   clearAdded
 } from "../../actions/farmerAction";
 
-class FarmerSearch extends Component {
+class ClientSearch extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -51,7 +51,7 @@ class FarmerSearch extends Component {
         <Header>Find a Farmer</Header>
         <i style={tempi} onClick={this.toggleModal} class="fas fa-plus" />
         <SearchForm submitSearch={this.submitSearch} />
-        <FarmerCardContainer />
+        <ClientCardContainer />
         <Modal isOpen={this.state.modal} toggle={this.toggleModal}>
           <NewFarmerForm
             submitForm={this.submitFarmer}
@@ -79,7 +79,7 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   { searchFarmers, addFarmer, clearAdded }
-)(FarmerSearch);
+)(ClientSearch);
 
 const Header = styled.h1`
   text-align: center;

@@ -3,11 +3,11 @@ import { connect } from "react-redux";
 import styled, { css } from "styled-components";
 
 // components
-import FarmerViewDemographics from "./FarmerViewComponents/FarmerViewDemographics";
-import FarmerViewTransactions from "./FarmerViewComponents/FarmerViewTransactions";
-import Installments from "./Installment/InstallmentComponent";
+import Demographics from "./Demographics";
+import Transactions from "../Transaction/Transactions";
+import Installments from "../Installment/InstallmentComponent";
 
-class FarmerView extends Component {
+class ClientView extends Component {
 
   toggleTransaction = () => {
       this.setState({
@@ -21,10 +21,10 @@ class FarmerView extends Component {
         <StyledContainer>
           {/* Demographics Container */}
           <StyledDemos>
-            <FarmerViewDemographics />
+            <Demographics />
           </StyledDemos>
           <StyledInfoView>
-          <FarmerViewTransactions id={this.props.match.params.id} modalToggle={this.toggleTransaction} />
+          <Transactions id={this.props.match.params.id} modalToggle={this.toggleTransaction} />
           </StyledInfoView>
 
           {/* Installments Container */}
@@ -51,7 +51,7 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps, null
-)(FarmerView);
+)(ClientView);
 
 const sizes = {
   desktop: 992,

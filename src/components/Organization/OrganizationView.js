@@ -5,9 +5,9 @@ import OrganizationViewDemographics from "./OrganizationViewDemographics.js";
 import OrganizationBranch from "./OrganizationBranch.js";
 
 class OrganizationView extends Component {
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
 
   componentDidMount() {
     console.log("PROPSPPSPSPSP", this.props);

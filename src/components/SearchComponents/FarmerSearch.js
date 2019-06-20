@@ -1,29 +1,30 @@
 import React, { Component } from "react";
-import SearchForm from "./SearchForm";
 import { connect } from "react-redux";
-import { searchFarmers, addFarmer } from "../../actions/farmerAction";
-import FarmerCardContainer from "../FarmerCardContainer";
 import styled from "styled-components";
+import { Modal } from "reactstrap";
+
+// Custom Components
+import FarmerCardContainer from "../FarmerCardContainer";
+import SearchForm from "./SearchForm";
 import NewFarmerForm from "../NewFarmerForm";
+
+// Actions
+import {
+  searchFarmers,
+  addFarmer,
+  clearAdded
+} from "../../actions/farmerAction";
 
 class FarmerSearch extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      addingFarmer: false
+      modal: false
     };
   }
 
-  toggleAddFarmer = () => {
-    if (this.state.addingFarmer) {
-      this.setState({
-        addingFarmer: false
-      });
-    } else {
-      this.setState({
-        addingFarmer: true
-      });
-    }
+  toggleModal = () => {
+    this.setState({ modal: !this.state.modal });
   };
 
   submitSearch = query => {
@@ -40,20 +41,23 @@ class FarmerSearch extends Component {
   };
 
   render() {
-    // console.log(this.props.farmerData);
+    if (this.props.farmerAdded) {
+      this.props.clearAdded();
+      this.props.history.push(`/dashboard/farmer/${this.props.farmer.id}`);
+    }
+
     return (
       <div>
         <Header>Find a Farmer</Header>
+        <i style={tempi} onClick={this.toggleModal} class="fas fa-plus" />
         <SearchForm submitSearch={this.submitSearch} />
         <FarmerCardContainer />
-        {this.state.addingFarmer && (
-          <NewFarmerForm submitForm={this.submitFarmer} />
-        )}
-        <i
-          style={tempi}
-          onClick={() => this.toggleAddFarmer()}
-          class="fas fa-plus"
-        />
+        <Modal isOpen={this.state.modal} toggle={this.toggleModal}>
+          <NewFarmerForm
+            submitForm={this.submitFarmer}
+            toggleModal={this.toggleModal}
+          />
+        </Modal>
       </div>
     );
   }
@@ -65,13 +69,16 @@ const mapStateToProps = state => {
     searchStart: state.farmerData.searchStart,
     searchFailure: state.farmerData.searchFailure,
     error: state.farmerData.error,
-    searchSuccess: state.farmerData.searchSuccess
+    searchSuccess: state.farmerData.searchSuccess,
+    farmerAdded: state.farmerData.farmerAdded,
+    farmerDeleted: state.farmerData.farmerDeleted,
+    farmer: state.farmerData.farmer
   };
 };
 
 export default connect(
   mapStateToProps,
-  { searchFarmers, addFarmer }
+  { searchFarmers, addFarmer, clearAdded }
 )(FarmerSearch);
 
 const Header = styled.h1`

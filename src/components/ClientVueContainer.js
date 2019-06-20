@@ -5,7 +5,7 @@ import RetailerSearch from "./SearchComponents/RetailerSearch";
 import { ManageUsersContainer } from "./ManageUsers/ManageUsersContainer";
 import FarmerSearch from "./SearchComponents/FarmerSearch";
 import OrganizationSearch from "./SearchComponents/OrganizationSearch";
-import FarmerView from "./FarmerView";
+import FarmerView from "./FarmerView.js";
 import OrganizationView from "./OrganizationView/OrganizationView.js";
 
 export default class ClientVueContainer extends Component {

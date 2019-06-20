@@ -8,7 +8,7 @@ class FarmerTransactionForm extends Component{
         super(props);
         const today=new Date();
         this.state={
-            payment: "MTN Mobile Money",
+            payment: "CASH",
             month: today.getMonth() + 1,
             day: today.getDate(),
             year: today.getYear() + 1900,
@@ -146,31 +146,21 @@ class FarmerTransactionForm extends Component{
                     <input
                         type="radio"
                         name="payment"
-                        value="MTN Mobile Money"
-                        checked={this.state.payment === "MTN Mobile Money"}
+                        value="CREDIT"
+                        checked={this.state.payment === "CREDIT"}
                         onChange={this.radioChange}
                     />
-                    <label for="MTN Mobile Money">MTN Mobile Money</label>
+                    <label for="CREDIT">Credit</label>
                     </div>
                     <div>
                     <input
                         type="radio"
                         name="payment"
-                        value="Bank"
-                        checked={this.state.payment === "Bank"}
+                        value="CASH"
+                        checked={this.state.payment === "CASH"}
                         onChange={this.radioChange}
                     />
-                    <label for="Bank">Bank</label>
-                    </div>
-                    <div>
-                    <input
-                        type="radio"
-                        name="payment"
-                        value="Cash"
-                        checked={this.state.payment === "Cash"}
-                        onChange={this.radioChange}
-                    />
-                    <label for="Cash">Cash</label>
+                    <label for="CASH">Cash</label>
                     </div>
                 </label>
                 {this.state.items.map((item, index) =>(

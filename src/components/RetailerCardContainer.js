@@ -8,7 +8,7 @@ class RetailerCardContainer extends Component {
     return (
       <CardContainer>
         {this.props.searchStart && <h2>Loading ...</h2>}
-        {this.props.searchSuccess && this.props.data.length === 0 ? (
+        {this.props.data && this.props.data.length === 0 ? (
           <p>No Retailers Found</p>
         ) : null}
         {this.props.searchSuccess &&

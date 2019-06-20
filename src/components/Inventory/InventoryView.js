@@ -27,8 +27,8 @@ function InventoryView(props) {
             {/* Banner */}
             <div className="banner">
                 <h2>Inventory</h2>
-                
             </div>
+            
             <div className="content">
                 {/* Inventory card Container */}
                 <InventoryItem 

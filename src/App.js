@@ -74,6 +74,12 @@ const StyledApp = styled.div`
   font-family: "Roboto", sans-serif;
   font-size: 1.4rem;
 
+  .mobilenavbuffer {
+    display: flex;
+    width: 100%;
+    height: 100%;
+  }
+
   @media (max-width: 500px) {
     display: block;
 

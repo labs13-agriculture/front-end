@@ -2,28 +2,46 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import styled from 'styled-components';
-import { addBranch } from "../../actions";
+import { addBranch, updateBranch } from "../../actions";
 
 class NewBranchForm extends Component{
     constructor(props){
         super(props);
-
-        this.state={
-            name: "",
-            phone: "",
-            email: "",
-            position: "",
-            address: "",
-            district: "",
-            region: "",
-            landmark: ""
+        if(props.updating){
+            this.state={
+                name: props.branch.name,
+                phone: props.branch.phone,
+                email: props.branch.email,
+                position: props.branch.position,
+                address: props.branch.address,
+                district: props.branch.district,
+                region: props.branch.region,
+                landmark: props.branch.landmark 
+            }
+        }
+        else{
+            this.state={
+                name: "",
+                phone: "",
+                email: "",
+                position: "",
+                address: "",
+                district: "",
+                region: "",
+                landmark: ""
+            }
         }
     }
 
     submitForm = e =>{
         e.preventDefault();
         console.log(this.state);
-        this.props.addBranch(55, this.state);
+        if(this.props.updating){
+            this.props.updateBranch(this.props.branch.branch_id, this.state);
+        }
+        else{
+            this.props.addBranch(55, this.state);
+        }
     }
 
     handleChange = e =>{
@@ -35,7 +53,7 @@ class NewBranchForm extends Component{
     render(){
         return(
             <Form onSubmit={e => this.submitForm(e)}>
-                <h1>Add a Branch</h1>
+                {this.props.updating ? <h1>Update Branch</h1> : <h1>Add a Branch</h1> }
                 <InnerContainer>
                     <div>
                         <h2>Contact Information</h2>
@@ -122,7 +140,7 @@ class NewBranchForm extends Component{
     }
 }
 
-export default connect(null, { addBranch })(NewBranchForm);
+export default connect(null, { addBranch, updateBranch })(NewBranchForm);
 
 const InnerContainer = styled.div`
     display: flex;

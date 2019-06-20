@@ -34,8 +34,14 @@ export default (state = initialState, action) => {
         ...state,
         data: action.payload,
         installmentCardDataStart: false,
-        installmentCardDataSuccess: true,
-        installmentCardDataFailure: false
+        installmentCardDataSuccess: true
+      };
+    case DATA_INSTALLMENT_CARD_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
+        installmentCardDataStart: false,
+        installmentCardDataFailure: true
       };
     case DATA_INSTALLMENT_CARD_ADD:
       return {

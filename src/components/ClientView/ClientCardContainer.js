@@ -5,13 +5,11 @@ import CardContainer from "../../styles/CardContainerStyles";
 
 class ClientCardContainer extends Component {
   render() {
-    console.log("re-rendering");
-    console.log(this.props.data);
     return (
       <CardContainer>
         {this.props.searchStart && <h2>Loading...</h2>}
         {this.props.data && this.props.data.length === 0 ? (
-          <p>No Farmers found</p>
+          <p>No Clients found</p>
         ) : null}
         {this.props.data &&
           this.props.data.map(client => (
@@ -23,14 +21,12 @@ class ClientCardContainer extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log("Updating state");
-  console.log(state);
   return {
-    data: state.farmerData.listData,
-    error: state.farmerData.error,
-    searchStart: state.farmerData.searchStart,
-    searchSuccess: state.farmerData.searchSuccess,
-    searchFailure: state.farmerData.searchFailure
+    data: state.clientData.listData,
+    error: state.clientData.error,
+    searchStart: state.clientData.searchStart,
+    searchSuccess: state.clientData.searchSuccess,
+    searchFailure: state.clientData.searchFailure
   };
 };
 

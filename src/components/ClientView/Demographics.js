@@ -1,19 +1,19 @@
 import styled, { css } from "styled-components";
 import React, { useState, useEffect } from "react";
-import { connect } from 'react-redux';
-import { withRouter, Redirect } from 'react-router-dom';
-import { Modal } from 'reactstrap';
+import { connect } from "react-redux";
+import { withRouter, Redirect } from "react-router-dom";
+import { Modal } from "reactstrap";
 
 import EditClientForm from "./EditClientForm";
 import { theme } from "../../config";
 
-import { getFarmer, deleteFarmer, clearDeleted } from "../../actions";
+import { getClient, deleteClient, clearDeleted } from "../../actions";
 
 function ClientDemographics(props) {
   const { client } = props;
 
   useEffect(() => {
-    props.getFarmer(props.match.params.id);
+    props.getClient(props.match.params.id);
   }, []);
 
   const [modal, setModal] = useState(false);
@@ -25,12 +25,12 @@ function ClientDemographics(props) {
     setModal(!modal);
   };
 
-  const deleteFarmer = () => {
+  const deleteClient = () => {
     let confirm = window.confirm(
-      "Are you sure you want to\n\nPERMANENTLY DELETE\n\nthis farmer and all associated data?"
+      "Are you sure you want to\n\nPERMANENTLY DELETE\n\nthis client and all associated data?"
     );
     if (confirm) {
-      props.deleteFarmer(client.id);
+      props.deleteClient(client.id);
     }
   };
 
@@ -42,7 +42,7 @@ function ClientDemographics(props) {
     );
   }
 
-  if (props.farmerDeleted) {
+  if (props.clientDeleted) {
     props.clearDeleted();
     return <Redirect to="/search" />;
   }
@@ -51,13 +51,15 @@ function ClientDemographics(props) {
     <StyledDiv>
       <div className="header">
         <h1>
-        {client.firstName} {client.secondName}, {client.type.toLowerCase()} since {client.startyear} <span className="toggleSpan">-</span> <br className="toggleBreak" /> Amount Owed: ${client.amountOwed}
-        <br />
-        Lead: {client.lead ? "True" : "False"}
+          {client.firstName} {client.secondName}, {client.type.toLowerCase()}{" "}
+          since {client.startyear} <span className="toggleSpan">-</span>{" "}
+          <br className="toggleBreak" /> Amount Owed: ${client.amountOwed}
+          <br />
+          Lead: {client.lead ? "True" : "False"}
         </h1>
         <div className="actions">
           <i class="fas fa-edit edit" onClick={toggleModal} />
-          <i className="fas fa-trash delete" onClick={deleteFarmer} />
+          <i className="fas fa-trash delete" onClick={deleteClient} />
         </div>
       </div>
 
@@ -77,7 +79,6 @@ function ClientDemographics(props) {
                 {client.district || "district"}
               </p>
             </div>
-            
           </div>
           <div className="contact-box">
             <p>Nearby Landmark: {client.landmark || "Not In System"}</p>
@@ -113,22 +114,23 @@ function ClientDemographics(props) {
 
 const mapStateToProps = state => {
   return {
-    client: state.farmerData.farmer,
-    farmerDemoError: state.farmerData.error,
-    farmerDemoDataStart: state.farmerData.getStart,
-    farmerDeleted: state.farmerData.farmerDeleted
-  }
-  
-}
+    client: state.clientData.client,
+    clientDemoError: state.clientData.error,
+    clientDemoDataStart: state.clientData.getStart,
+    clientDeleted: state.clientData.clientDeleted
+  };
+};
 
-export default withRouter(connect(
-  mapStateToProps,
-  {
-    getFarmer,
-    deleteFarmer,
-    clearDeleted
-  }
-)(ClientDemographics));
+export default withRouter(
+  connect(
+    mapStateToProps,
+    {
+      getClient,
+      deleteClient,
+      clearDeleted
+    }
+  )(ClientDemographics)
+);
 
 const sizes = {
   desktop: 992,
@@ -158,19 +160,18 @@ const StyledDiv = styled.div`
 
   ${media.tablet`font-size: 1.2rem;`}
 
-  h1{
-
+  h1 {
     ${media.phone`font-size:1.7rem;`}
 
-    .toggleSpan{
-      @media(max-width: 950px){
+    .toggleSpan {
+      @media (max-width: 950px) {
         display: none;
       }
     }
 
-    .toggleBreak{
+    .toggleBreak {
       display: none;
-      @media(max-width: 950px){
+      @media (max-width: 950px) {
         display: block;
       }
     }
@@ -218,7 +219,7 @@ const StyledDiv = styled.div`
 
       ${media.phone`flex-direction:column;`}
 
-      .contact-box{
+      .contact-box {
         ${media.tablet`width: 30%;`}
         ${media.phone`width: 100%;`}
       }
@@ -227,7 +228,7 @@ const StyledDiv = styled.div`
     ${media.tablet`flex-direction: column;`}
     ${media.tablet`align-items: center;`}
 
-    p{
+    p {
       line-height: 1;
       margin-top: 2px;
 

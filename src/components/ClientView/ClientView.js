@@ -8,12 +8,11 @@ import Transactions from "../Transaction/Transactions";
 import Installments from "../Installment/InstallmentComponent";
 
 class ClientView extends Component {
-
   toggleTransaction = () => {
-      this.setState({
-        addingTransaction: !this.state.addingTransaction
-      })
-  }
+    this.setState({
+      addingTransaction: !this.state.addingTransaction
+    });
+  };
 
   render() {
     return (
@@ -24,7 +23,10 @@ class ClientView extends Component {
             <Demographics />
           </StyledDemos>
           <StyledInfoView>
-          <Transactions id={this.props.match.params.id} modalToggle={this.toggleTransaction} />
+            <Transactions
+              id={this.props.match.params.id}
+              modalToggle={this.toggleTransaction}
+            />
           </StyledInfoView>
 
           {/* Installments Container */}
@@ -41,16 +43,17 @@ const mapStateToProps = state => {
   console.log("Updating state");
   console.log(state);
   return {
-    data: state.farmerData.farmerDemoData,
-    error: state.farmerData.error,
-    searchStart: state.farmerData.getStart,
-    searchSuccess: state.farmerData.getSuccess,
-    searchFailure: state.farmerData.getFailure
+    data: state.clientData.clientDemoData,
+    error: state.clientData.error,
+    searchStart: state.clientData.getStart,
+    searchSuccess: state.clientData.getSuccess,
+    searchFailure: state.clientData.getFailure
   };
 };
 
 export default connect(
-  mapStateToProps, null
+  mapStateToProps,
+  null
 )(ClientView);
 
 const sizes = {
@@ -105,5 +108,4 @@ const InfoViewContainer = styled.div`
   justify-content: space-between;
 
   ${media.tablet`flex-direction: column;`}
-
 `;

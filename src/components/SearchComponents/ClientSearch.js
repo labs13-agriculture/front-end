@@ -6,14 +6,10 @@ import { Modal } from "reactstrap";
 // Custom Components
 import ClientCardContainer from "../ClientView/ClientCardContainer";
 import SearchForm from "./SearchForm";
-import NewFarmerForm from "../ClientView/NewClientForm";
+import NewClientForm from "../ClientView/NewClientForm";
 
 // Actions
-import {
-  searchFarmers,
-  addFarmer,
-  clearAdded
-} from "../../actions/farmerAction";
+import { searchClients, addClient, clearAdded } from "../../actions";
 
 class ClientSearch extends Component {
   constructor(props) {
@@ -28,33 +24,33 @@ class ClientSearch extends Component {
   };
 
   submitSearch = query => {
-    this.props.searchFarmers(query);
+    this.props.searchClients(query);
     this.setState({
       defaultView: false
     });
   };
 
-  submitFarmer = newFarmer => {
-    console.log(newFarmer);
-    console.log("about to add the farmer!");
-    this.props.addFarmer(newFarmer);
+  submitClient = newClient => {
+    console.log(newClient);
+    console.log("about to add the client!");
+    this.props.addClient(newClient);
   };
 
   render() {
-    if (this.props.farmerAdded) {
+    if (this.props.clientAdded) {
       this.props.clearAdded();
-      this.props.history.push(`/dashboard/farmer/${this.props.farmer.id}`);
+      this.props.history.push(`/dashboard/client/${this.props.client.id}`);
     }
 
     return (
       <div>
-        <Header>Find a Farmer</Header>
+        <Header>Find a Client</Header>
         <i style={tempi} onClick={this.toggleModal} class="fas fa-plus" />
         <SearchForm submitSearch={this.submitSearch} />
         <ClientCardContainer />
         <Modal isOpen={this.state.modal} toggle={this.toggleModal}>
-          <NewFarmerForm
-            submitForm={this.submitFarmer}
+          <NewClientForm
+            submitForm={this.submitClient}
             toggleModal={this.toggleModal}
           />
         </Modal>
@@ -65,20 +61,20 @@ class ClientSearch extends Component {
 
 const mapStateToProps = state => {
   return {
-    farmerData: state.farmerData.listData,
-    searchStart: state.farmerData.searchStart,
-    searchFailure: state.farmerData.searchFailure,
-    error: state.farmerData.error,
-    searchSuccess: state.farmerData.searchSuccess,
-    farmerAdded: state.farmerData.farmerAdded,
-    farmerDeleted: state.farmerData.farmerDeleted,
-    farmer: state.farmerData.farmer
+    clientData: state.clientData.listData,
+    searchStart: state.clientData.searchStart,
+    searchFailure: state.clientData.searchFailure,
+    error: state.clientData.error,
+    searchSuccess: state.clientData.searchSuccess,
+    clientAdded: state.clientData.clientAdded,
+    clientDeleted: state.clientData.clientDeleted,
+    client: state.clientData.client
   };
 };
 
 export default connect(
   mapStateToProps,
-  { searchFarmers, addFarmer, clearAdded }
+  { searchClients, addClient, clearAdded }
 )(ClientSearch);
 
 const Header = styled.h1`

@@ -4,7 +4,7 @@ import loginReducer from "../reducers/loginReducer";
 import retailerReducer from "../reducers/retailerReducer";
 import clientTransactions from "../reducers/clientTransactions";
 import reducerInstallmentCard from "../reducers/reducerInstallmentCard";
-import farmerReducer from "../reducers/farmerReducer";
+import clientReducer from "../reducers/clientReducer";
 import organizationReducer from "../reducers/organizationReducer";
 import inventoryReducer from "../reducers/inventoryReducer";
 import itemTypeReducer from "./itemTypeReducer.js";
@@ -19,7 +19,7 @@ export default combineReducers({
   login: loginReducer,
   installments: reducerInstallmentCard,
   retailerData: retailerReducer,
-  farmerData: farmerReducer,
+  clientData: clientReducer,
   organizationData: organizationReducer,
   addTransactionRetailer: reducerRetailerTransaction,
   inventory: inventoryReducer,

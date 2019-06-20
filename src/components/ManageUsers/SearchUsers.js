@@ -1,13 +1,14 @@
 import React, { Component } from "react";
-import styled from "styled-components";
+
 import {UserResultsList} from "../ManageUsers/UserResultsList";
 import { connect } from "react-redux";
 import {userSearchResults} from '../../actions';
 import PrivateRoute from '../PrivateRoute';
-
+import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 import AddUser from './AddUser';
-import UserDetails from './UserDetails';
+
+import { Modal } from 'reactstrap';
 
  class SearchUsers extends Component{
     constructor(props){
@@ -15,11 +16,20 @@ import UserDetails from './UserDetails';
 
         this.state = {
             searchResults :[],
-            searchQuery:''
+            searchQuery:'',
+            toggleAddModal:false,
+            
         }
     }
 
+    focusCursor() {
+        const field = document.querySelector(".search-input");
+    
+        field.focus();
+    }
 
+    
+    toggleAddModal = () => this.setState({toggleAddModal:!this.state.toggleAddModal})
     
     handleChanges = (e) =>{
         e.preventDefault();
@@ -36,6 +46,9 @@ import UserDetails from './UserDetails';
         
     // }
 
+    componentDidMount(){
+        this.focusCursor();
+    }
     componentDidUpdate (prevProps, prevState) {
         if(prevState.searchQuery !== this.state.searchQuery) {
           this.props.userSearchResults(this.state.searchQuery);
@@ -50,17 +63,20 @@ import UserDetails from './UserDetails';
             <StyledSearchUsers>
                 <StyledSearchBar>
                 <div className="search-tools-cont">
-                <input onChange={this.handleChanges} className="search-input" value={this.state.searchQuery}></input>
-                <button onClick={()=>{this.props.userSearchResults(this.state.searchQuery)}} className="search-button">Search</button>
+                <input placeholder="Search Username..." onChange={this.handleChanges} className="search-input" value={this.state.searchQuery}></input>
+                {/* <button onClick={()=>{this.props.userSearchResults(this.state.searchQuery)}} className="search-button">Search</button> */}
                 </div>
                 <div className="new-user-tools-cont">
-                <Link to='/dashboard/manage-users/add'><button className="search-button">ADD NEW</button></Link>
+                <button onClick={this.toggleAddModal} className="search-button">ADD NEW</button>
                 </div>
-                
+                <Modal isOpen={this.state.toggleAddModal}>
+            
+                    <AddUser userid={this.props.userid}/>
+                    <button onClick={this.toggleAddModal}  color="secondary">Cancel</button>
+                </Modal>
                 </StyledSearchBar>
-                <UserResultsList returnedUserData={this.props.returnedUserData} userSearchSuccess={this.props.userSearchSuccess} />
-                <PrivateRoute path='/dashboard/manage-users/:id' component={UserDetails}/>
-                <PrivateRoute path='/dashboard/manage-users/add' component={AddUser}/>
+                <UserResultsList  returnedUserData={this.props.returnedUserData} userSearchSuccess={this.props.userSearchSuccess} userSearchStart={this.props.userSearchStart} />
+              
             </StyledSearchUsers>
         )
     }
@@ -70,11 +86,33 @@ import UserDetails from './UserDetails';
 
 }
 
+
+//begin styling
+const sizes = {
+    desktop: 992,
+    tablet: 768,
+    phone: 576
+  };
+
+const media = Object.keys(sizes).reduce((acc, label) => {
+    acc[label] = (...args) =>
+      css`
+        @media (max-width: ${sizes[label]}px) {
+          ${css(...args)}
+        }
+      `;
+  
+    return acc;
+  }, {});
+  
+
 const StyledSearchUsers = styled.div`
     height:100%;
     display:flex;
     flex-direction:column;
     position:relative;
+
+    
 
 
 `
@@ -82,8 +120,58 @@ const StyledSearchBar = styled.div`
 
     width:100%;
     display: flex;
+    flex-direction:column;
     justify-content: space-between;
 
+    .search-tools-cont{
+        width:100%;
+        border-top:3px solid rgb(60,57,75);
+
+        .search-input{
+            width: 100%;
+            height: 70px;
+            margin-bottom: 40px;
+            background: #00000047;
+            border: none;
+            border-radius: 0px;
+            font-size: 30px;
+            font-weight: 600;
+            font-family: "Josefin Sans", sans-serif;
+            color: white;
+            caret-color: #40E0D0;
+            padding: 16px 0px 10px 40px;
+            
+
+            ::placeholder{
+                color:gray;
+                size:30px;
+            }
+        
+        }
+
+       
+        
+    }
+
+    .new-user-tools-cont{
+            height:100%;
+            ${media.phone`display:flex;`}
+            ${media.phone`justify-content:flex-end;`}
+        }
+
+    .search-button{
+            padding: 7px 90px;
+            background: none;
+            border: 2px solid white;
+            border-radius: 30px;
+            color: white;
+            background: #00000047;
+            font-family: "Josefin Sans", sans-serif;
+            font-size:15px;
+            font-size: 1.2rem;
+            font-weight: 600;
+
+        }
 
 `
 

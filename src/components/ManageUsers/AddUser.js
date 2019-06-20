@@ -32,8 +32,7 @@ class AddUser extends Component{
     render(){
         return(
             <StyledUserDetails>
-                <i className="far fa-window-close" onClick={()=>window.history.back()}></i>
-                <StyledRegisterDetailsContainer>
+          
                 <Form>
                     <FormGroup>
                     <h1>Create New User</h1>
@@ -58,7 +57,6 @@ class AddUser extends Component{
                     <Button onClick={() =>this.addNewSystemUser(this.state)}>Submit</Button>
                 </Form>
 
-                </StyledRegisterDetailsContainer>
             </StyledUserDetails>
             
         )
@@ -67,11 +65,11 @@ class AddUser extends Component{
 
 const mapStateToProps = state => {
     return {
-        addSystemUserStart:state.addSystemUserReducer.addSystemUserStart,
-        addSystemUserFailure:state.addSystemUserReducer.addSystemUserFailure,
-        addSystemUserSuccess:state.addSystemUserReducer.addSystemUserSuccess,
-        addSystemUserData:state.addSystemUserReducer.data,
-        addSystemUserError:state.addSystemUserReducer.error,
+        addSystemUserStart:state.userReducer.addSystemUserStart,
+        addSystemUserFailure:state.userReducer.addSystemUserFailure,
+        addSystemUserSuccess:state.userReducer.addSystemUserSuccess,
+        addSystemUserData:state.userReducer.data,
+        addSystemUserError:state.userReducer.error,
 
 
     }
@@ -81,39 +79,12 @@ export default connect(mapStateToProps,{addNewSystemUser})(AddUser);
 
 
 const StyledUserDetails = styled.div`
-    position:absolute;
-    height:100%;
-    width:100%;
-    background: #00000054;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    .far.fa-window-close{
-        color:white;
-        font-size:40px;
-        right:0;
-        position: absolute;
-        top: 0;
-        &:hover{
-            cursor:pointer;
-        }
-    }
+   
 
 `
 
 const StyledRegisterDetailsContainer = styled.div`
-    height:500px;
-    width:400px;
-    background:white;
-    padding:20px;
-
-    .credential-input{
-        margin:20px;
-        display:flex;
-        flex-direction:column;
-        align-items:space-around;
-    }
+    
 
 
 `

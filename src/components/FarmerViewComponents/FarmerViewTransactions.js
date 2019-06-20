@@ -26,16 +26,20 @@ class FarmerViewTransactions extends Component {
     return (
       <TransactionContainer>
         <TransactionHeader id={this.props.id} />
-        {
-          this.props.transactionDataSuccess && this.props.transactionData
-        .map(t => <FarmerTransactionItem 
+        <StyledTable>
+          <tbody>
+            {
+              this.props.transactionDataSuccess && this.props.transactionData
+            .map(t => <FarmerTransactionItem 
 
-        deleteClientTransaction={this.props.deleteClientTransaction}
-        getClientTransaction={this.props.getClientTransaction} 
-        clientId={this.props.id} item={t}
+            deleteClientTransaction={this.props.deleteClientTransaction}
+            getClientTransaction={this.props.getClientTransaction} 
+            clientId={this.props.id} item={t}
 
-         />)
-         }
+            />)
+            }
+          </tbody>
+        </StyledTable>
       </TransactionContainer>
     );
   }

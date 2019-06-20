@@ -20,8 +20,8 @@ export class FarmerTransactionItem extends Component{
             <Row>
                 
                 <StyledTd>{Math.round(this.props.item.total*100)/100}</StyledTd>
-                <StyledTd>{this.props.item.date}</StyledTd>
                 <StyledTd>{this.props.item.type}</StyledTd>
+                <StyledTd>{this.props.item.date.split("T")[0]}</StyledTd>
                 <StyledTd>{this.props.item.personnel}</StyledTd>
                 <StyledTd className="actions">
                     <i onClick={this.toggleUpdateModal} className="fas fa-edit edit" />

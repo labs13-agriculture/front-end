@@ -4,30 +4,24 @@ import { connect } from "react-redux";
 import {
   searchOrganizations,
   addOrganization,
-  getAllOrganizations
+  getAllOrganizations,
+  clearAddedOrgs
 } from "../../actions/organizationActions";
 import OrganizationCardContainer from "../Organization/OrganizationCardContainer";
 import styled from "styled-components";
 import NewOrganizationForm from "../Organization/NewOrganizationForm";
+import { Modal } from "reactstrap";
 
 class OrganizationSearch extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      addingOrganization: false
+      modal: false
     };
   }
 
-  toggleAddOrganization = () => {
-    if (this.state.addingOrganization) {
-      this.setState({
-        addingOrganization: false
-      });
-    } else {
-      this.setState({
-        addingOrganization: true
-      });
-    }
+  toggleModal = () => {
+    this.setState({ modal: !this.state.modal });
   };
 
   submitSearch = query => {
@@ -47,20 +41,25 @@ class OrganizationSearch extends Component {
   };
 
   render() {
+    if (this.props.organizationAdded) {
+      this.props.clearAddedOrgs();
+      this.props.history.push(
+        `dashboard/organization/${this.props.organization.id}`
+      );
+    }
     console.log("ORGANIZATION DATA", this.props.organizationData);
     return (
       <div>
         <Header>Find an Organization</Header>
+        <i style={tempi} onClick={this.toggleModal} class="fas fa-plus" />
         <SearchForm submitSearch={this.submitSearch} />
         <OrganizationCardContainer />
-        {this.state.addingOrganization && (
-          <NewOrganizationForm submitForm={this.submitOrganization} />
-        )}
-        <i
-          style={tempi}
-          onClick={() => this.toggleAddOrganization()}
-          class="fas fa-plus"
-        />
+        <Modal isOpen={this.state.modal} toggle={this.toggleModal}>
+          <NewOrganizationForm
+            submitForm={this.submitOrganization}
+            toggleModal={this.toggleModal}
+          />
+        </Modal>
       </div>
     );
   }
@@ -78,7 +77,7 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { searchOrganizations, addOrganization, getAllOrganizations }
+  { searchOrganizations, addOrganization, getAllOrganizations, clearAddedOrgs }
 )(OrganizationSearch);
 
 const Header = styled.h1`

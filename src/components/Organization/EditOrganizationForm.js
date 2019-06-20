@@ -1,16 +1,20 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { Input, Label, Form } from "reactstrap";
+import { connect } from "react-redux";
 
 import { theme } from "../../config";
+import { updateOrganization } from "../../actions";
 
 class NewOrganizationForm extends Component {
   constructor(props) {
     super(props);
+
+    let organization = { ...props.organization };
     this.state = {
-      name: "",
-      headquarters: "",
-      beneficiaries: "",
+      name: organization.name,
+      headquarters: organization.headquarters,
+      beneficiaries: organization.beneficiaries,
       lead: false,
       validBeneficiaries: true
     };
@@ -32,20 +36,17 @@ class NewOrganizationForm extends Component {
       return;
     }
     let emptyFields = false;
-    console.log("empty fields before map:", emptyFields);
+
     Object.keys(this.state).map(k => {
-      //false booleans were evaluating to '', making it impossible to submit form
       if (
         this.state[k] === "" &&
         k !== "lead" &&
         k !== "blankField" &&
         k !== "validBeneficiaries"
       ) {
-        console.log(k, this.state[k]);
         emptyFields = true;
       }
     });
-    console.log("empty fields after map:", emptyFields);
     if (emptyFields) {
       this.setState({
         blankField: true
@@ -58,15 +59,15 @@ class NewOrganizationForm extends Component {
       validBeneficiaries: true
     });
 
-    //Setting up Organization as object backend can expect
-    const newOrganization = {
+    const updatedOrganization = {
+      id: this.props.organization.id,
       name: this.state.name,
       lead: this.state.lead,
       beneficiaries: parseInt(this.state.beneficiaries),
       headquarters: this.state.headquarters
-      //for organization, contacts and locations are arrays
     };
-    this.props.submitForm(newOrganization);
+    this.props.updateOrganization(updatedOrganization);
+    this.props.closeModal();
   };
 
   render() {
@@ -120,7 +121,10 @@ class NewOrganizationForm extends Component {
   }
 }
 
-export default NewOrganizationForm;
+export default connect(
+  () => {},
+  { updateOrganization }
+)(NewOrganizationForm);
 
 const ModalDiv = styled.div`
   background: white;

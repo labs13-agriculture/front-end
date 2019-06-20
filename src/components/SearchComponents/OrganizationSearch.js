@@ -1,82 +1,91 @@
 import React, { Component } from "react";
 import SearchForm from "./SearchForm";
 import { connect } from "react-redux";
-import { searchOrganizations, addOrganization } from "../../actions/organizationActions"
-import OrganizationCardContainer from '../OrganizationCardContainer';
-import styled from 'styled-components';
-import NewOrganizationForm from '../NewOrganizationForm';
+import {
+  searchOrganizations,
+  addOrganization,
+  getAllOrganizations
+} from "../../actions/organizationActions";
+import OrganizationCardContainer from "../OrganizationCardContainer";
+import styled from "styled-components";
+import NewOrganizationForm from "../NewOrganizationForm";
 
-class OrganizationSearch extends Component{
-    constructor(props){
-        super(props);
-        this.state={
-            addingOrganization:false
-        }
+class OrganizationSearch extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      addingOrganization: false
+    };
+  }
+
+  toggleAddOrganization = () => {
+    if (this.state.addingOrganization) {
+      this.setState({
+        addingOrganization: false
+      });
+    } else {
+      this.setState({
+        addingOrganization: true
+      });
     }
+  };
 
-    submitSearch = query =>{
-        this.props.searchOrganizations(query);
+  submitSearch = query => {
+    if (query.name == "" && query.location == "") {
+      this.props.getAllOrganizations();
+    } else {
+      this.props.searchOrganizations(query);
+      this.setState({
+        defaultView: false
+      });
     }
+  };
 
-    toggleAddOrganization = () =>{
-        if(this.state.addingOrganization){
-            this.setState({
-                addingOrganization: false
-            })
-        }
-        else{
-            this.setState({
-                addingOrganization: true
-            })
-        }
-    }
+  submitOrganization = newOrganization => {
+    console.log(newOrganization);
+    this.props.addOrganization(newOrganization);
+  };
 
-    submitOrganization = newOrganization =>{
-        console.log(newOrganization);
-        this.props.addOrganization(newOrganization);
-    }
-    
-
-    render(){
-        return(
-            <div>
-                <Header>Find an Organization</Header>
-
-                {/* Search Bar */}
-                <SearchForm submitSearch={this.submitSearch}/>
-
-                {/* Displays Cards */}
-                <OrganizationCardContainer />
-
-                {/* Add Organization Form */}
-                {this.state.addingOrganization && <NewOrganizationForm submitForm={this.submitOrganization} />}
-                <i style={tempi} onClick={() => this.toggleAddOrganization()} class="fas fa-plus"></i>
-            </div>
-        );
-    }
+  render() {
+    console.log("ORGANIZATION DATA", this.props.organizationData);
+    return (
+      <div>
+        <Header>Find an Organization</Header>
+        <SearchForm submitSearch={this.submitSearch} />
+        <OrganizationCardContainer />
+        {this.state.addingOrganization && (
+          <NewOrganizationForm submitForm={this.submitOrganization} />
+        )}
+        <i
+          style={tempi}
+          onClick={() => this.toggleAddOrganization()}
+          class="fas fa-plus"
+        />
+      </div>
+    );
+  }
 }
 
-
-const mapStateToProps = state =>{
-    return{
-        organizationData: state.organizationData.data,
-        searchStart: state.organizationData.searchStart,
-        searchFailure: state.organizationData.searchFailure,
-        error: state.organizationData.error,
-        searchSuccess: state.organizationData.searchSuccess
-    }
-}
+const mapStateToProps = state => {
+  return {
+    organizationData: state.organizationData.listData,
+    searchStart: state.organizationData.searchStart,
+    searchFailure: state.organizationData.searchFailure,
+    error: state.organizationData.error,
+    searchSuccess: state.organizationData.searchSuccess
+  };
+};
 
 export default connect(
-    mapStateToProps,
-    { searchOrganizations, addOrganization }
+  mapStateToProps,
+  { searchOrganizations, addOrganization, getAllOrganizations }
 )(OrganizationSearch);
 
 const Header = styled.h1`
-    text-align: center;
-    color: white;
+  text-align: center;
+  color: white;
 `;
 
 const tempi = {
-    color: 'white'
-}
+  color: "white"
+};

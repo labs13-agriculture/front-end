@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { Modal } from 'reactstrap';
 import FormUpdateClientTransaction from './FormUpdateClientTransaction';
+import { StyledTd } from "../../styles/InstallmentStyles";
+import { theme } from '../../config'
 
 export class FarmerTransactionItem extends Component{
     constructor(props){
@@ -15,19 +17,23 @@ export class FarmerTransactionItem extends Component{
 
     render(){
         return(
-            <StyledTransactionContainer>
+            <Row>
                 
-                <h3>{Math.round(this.props.item.total*100)/100}</h3>
-                <h3>{this.props.item.date}</h3>
-                <h3>{this.props.item.type}</h3>
-                <h3>{this.props.item.personnel}</h3>
-                <button onClick={this.toggleUpdateModal} isOpen={this.state.toggleUpdateModal} color="secondary">Update</button>
-                <button onClick={()=>{this.props.deleteClientTransaction(this.props.item.id)}}>DELETE</button>
+                <StyledTd>{Math.round(this.props.item.total*100)/100}</StyledTd>
+                <StyledTd>{this.props.item.type}</StyledTd>
+                <StyledTd>{this.props.item.date.split("T")[0]}</StyledTd>
+                <StyledTd>{this.props.item.personnel}</StyledTd>
+                <StyledTd className="actions">
+                    <i onClick={this.toggleUpdateModal} className="fas fa-edit edit" />
+                </StyledTd>
+                <StyledTd className="actions">
+                    <i onClick={this.props.deleteClientTransaction} className="fas fa-trash delete" />
+                </StyledTd>
                 <Modal isOpen={this.state.toggleUpdateModal}>
                     <FormUpdateClientTransaction transaction={this.props.item}/>
                     <button onClick={this.toggleUpdateModal}  color="secondary">Cancel</button>
                 </Modal>
-            </StyledTransactionContainer>
+            </Row>
         )
     }
 }
@@ -35,18 +41,18 @@ export class FarmerTransactionItem extends Component{
 
 
 
-const StyledTransactionContainer =  styled.div`
+const Row = styled.tr`
+  i {
+    transition: all .15s ease;
+  }
 
-    display:flex;
-    justify-content:space-between;
+  i.delete:hover {
+    color: ${theme.warning}
+  }
 
-    h3{
-        margin:5px 10px;
+  i.edit:hover {
+    color: ${theme.accent}
+  }
+`;
 
-    }
-
-
-
-
-`
 

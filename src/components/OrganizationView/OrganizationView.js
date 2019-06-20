@@ -1,25 +1,65 @@
-import React from 'react';
-//import styled from 'styled-components';
-import {connect} from 'react-redux';
+import React, { Component } from "react";
+import styled from "styled-components";
+import { connect } from "react-redux";
+import OrganizationViewDemographics from "./OrganizationViewDemographics.js";
+import OrganizationBranch from "./OrganizationBranch.js";
 
-import OrgComponent from './OrgDemoComponent.js'
+class OrganizationView extends Component {
+  constructor(props) {
+    super(props);
+  }
 
-function OrganizationView(props) {
+  componentDidMount() {
+    console.log("PROPSPPSPSPSP", this.props);
+  }
 
+  render() {
     return (
-    <> 
-        {/* Organization View */}
-        <OrgComponent />
+      <StyledContainer>
+        <StyledDemos>
+          {/* <OrganizationViewDemographics id={this.props.match.params.id} /> */}
 
-        {/* Installment Component */}
-
-        {/* Transaction Component */}
-    </>
-    )
+          <OrganizationViewDemographics id={this.props.match.params.id} />
+        </StyledDemos>
+        <StyledInfoView>
+          <OrganizationBranch />
+        </StyledInfoView>
+      </StyledContainer>
+    );
+  }
 }
 
-export default connect(state => ({
+export default connect(
+  state => ({
     // state mapping here
-}), {
+  }),
+  {
     // mapping actions here
-})(OrganizationView)
+  }
+)(OrganizationView);
+
+const StyledContainer = styled.div`
+  display: flex;
+  height: 400px;
+
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+`;
+
+const StyledDemos = styled.div`
+  width: 100%;
+  height: auto;
+`;
+
+const StyledInfoView = styled.div`
+  width: 45%;
+  background-color: white;
+  height: 100%;
+  margin-top: 20px;
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`;

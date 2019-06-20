@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
-import AddInstallmentForm from "./AddInstallmentForm";
 import { theme } from "../../config";
+import FarmerTransactionForm from "./FarmerTransactionForm"
 import { StyledTd } from "../../styles/InstallmentStyles";
 
-function InstallmentHeader(props) {
-  const [modal, setModal] = useState(false);
+function TransactionHeader(props){
+    const [modal, setModal] = useState(false);
 
   const toggleModal = e => {
     e.preventDefault();
@@ -17,37 +17,33 @@ function InstallmentHeader(props) {
   return (
     <HeaderContainer>
       <div className="header">
-        <h2>Installments</h2>
+        <h2>Transactions</h2>
 
-        <Button className="add-installment" onClick={toggleModal}>
-          New
-        </Button>
+        <Button className="add-transaction" onClick={toggleModal}>New</Button>
       </div>
       <table>
         <thead>
           <tr>
-            <StyledTd className="amountPaid">Amount Paid</StyledTd>
+            <StyledTd className="amountPaid">Amount</StyledTd>
             <StyledTd className="mode">Mode</StyledTd>
-            <StyledTd className="datePaid">Date Paid</StyledTd>
+            <StyledTd className="datePaid">Date</StyledTd>
             <StyledTd className="officer">Officer</StyledTd>
-            <StyledTd className="actions-head">Actions</StyledTd>
+            <StyledTd className="actions-head">
+              Actions
+            </StyledTd>
           </tr>
         </thead>
       </table>
 
       <Modal isOpen={modal} toggle={toggleModal}>
-        <AddInstallmentForm toggleModal={toggleModal} />
+        <FarmerTransactionForm id={props.id} toggleModal={toggleModal} />
       </Modal>
     </HeaderContainer>
   );
 }
 
-export default connect(
-  null,
-  {
-    // Actions
-  }
-)(InstallmentHeader);
+export default connect(null, {})(TransactionHeader);
+
 
 const HeaderContainer = styled.div`
   width: 100%;
@@ -68,14 +64,16 @@ const HeaderContainer = styled.div`
     }
 
     .add-installment {
+
       &:hover {
-        background: ${theme.accent};
+        background: ${theme.accent}
       }
     }
   }
 
   table {
-    width: 100%;
+    /* 100% was leaving a super small sliver for some reason */
+    width: 100.1%;
     background-color: rgb(60, 57, 75);
     color: ${theme.background_light};
   }

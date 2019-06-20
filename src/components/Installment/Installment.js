@@ -1,17 +1,14 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
-import { withRouter } from 'react-router-dom';
+import { withRouter } from "react-router-dom";
 import { Modal } from "reactstrap";
 
-
-import { theme } from '../../config';
+import { theme } from "../../config";
 import { StyledTd } from "../../styles/InstallmentStyles";
-import EditInstallmentForm from './EditInstallmentForm.js'
+import EditInstallmentForm from "./EditInstallmentForm.js";
 
-import {
-  deleteInstallment
-} from "../../actions"
+import { deleteInstallment } from "../../actions";
 
 function Installment(props) {
   const { installment } = props;
@@ -24,15 +21,17 @@ function Installment(props) {
     }
 
     setModal(!modal);
-  }
+  };
 
   const handleDelete = event => {
     event.preventDefault();
-    let d = window.confirm("Are you sure you want to PERMANENTLY DELETE this istallment?");
+    let d = window.confirm(
+      "Are you sure you want to PERMANENTLY DELETE this istallment?"
+    );
     if (d) {
       props.deleteInstallment(installment.id);
     }
-  }
+  };
 
   return (
     <Row>
@@ -49,7 +48,10 @@ function Installment(props) {
         <i onClick={handleDelete} className="fas fa-trash delete" />
       </StyledTd>
       <Modal isOpen={modal} toggle={toggleModal}>
-        <EditInstallmentForm toggleModal={toggleModal} installment={installment}/>
+        <EditInstallmentForm
+          toggleModal={toggleModal}
+          installment={installment}
+        />
       </Modal>
     </Row>
   );
@@ -61,22 +63,23 @@ const mapStateToProps = state => {
 
 const connected = connect(
   mapStateToProps,
-{
-  deleteInstallment
-})(Installment);
+  {
+    deleteInstallment
+  }
+)(Installment);
 
 export default withRouter(connected);
 
 const Row = styled.tr`
   i {
-    transition: all .15s ease;
+    transition: all 0.15s ease;
   }
 
   i.delete:hover {
-    color: ${theme.warning}
+    color: ${theme.warning};
   }
 
   i.edit:hover {
-    color: ${theme.accent}
+    color: ${theme.accent};
   }
 `;

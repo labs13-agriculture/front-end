@@ -23,8 +23,17 @@ class ClientSearch extends Component {
     this.setState({ modal: !this.state.modal });
   };
 
+  getType() {
+    let type = this.props.match.path.split("/")[2];
+    if (type !== "farmer" && type !== "retailer") {
+      // Keep this console.log in for future debugging
+      console.log("WE ARE NOT GRABBING TYPE FROM URL!");
+    }
+    return type;
+  }
+
   submitSearch = query => {
-    this.props.searchClients(query);
+    this.props.searchClients(query, this.getType());
     this.setState({
       defaultView: false
     });
@@ -45,7 +54,7 @@ class ClientSearch extends Component {
     return (
       <div>
         <Header>Find a Client</Header>
-        <i style={tempi} onClick={this.toggleModal} class="fas fa-plus" />
+        <i style={tempi} onClick={this.toggleModal} className="fas fa-plus" />
         <SearchForm submitSearch={this.submitSearch} />
         <ClientCardContainer />
         <Modal isOpen={this.state.modal} toggle={this.toggleModal}>

@@ -5,8 +5,6 @@ import CardContainer from "../../styles/CardContainerStyles";
 
 class ClientCardContainer extends Component {
   render() {
-    console.log("re-rendering");
-    console.log(this.props.data);
     return (
       <CardContainer>
         {this.props.searchStart && <h2>Loading...</h2>}
@@ -23,8 +21,6 @@ class ClientCardContainer extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log("Updating state");
-  console.log(state);
   return {
     data: state.clientData.listData,
     error: state.clientData.error,

@@ -5,18 +5,20 @@ export const CLIENT_SEARCH_START = "CLIENT_SEARCH_START";
 export const CLIENT_SEARCH_SUCCESS = "CLIENT_SEARCH_SUCCESS";
 export const CLIENT_SEARCH_FAILURE = "CLIENT_SEARCH_FAILURE";
 
-export const searchClients = query => dispatch => {
+export const searchClients = (query, type) => dispatch => {
   const nameSearch = encodeURI(query.name);
   const locationSearch = encodeURI(query.location);
   dispatch({
     type: CLIENT_SEARCH_START,
     payload: { name: nameSearch, location: locationSearch }
   });
-  //console.log(nameSearch + " " + locationSearch);
 
-  const urlString = `${BASE_URL}/farmers/search?name=${nameSearch}&location=${locationSearch}&lead=${
-    query.leads
-  }`;
+  // this maps out to something like
+  // https://backendurl.com/farmer/search?name=john&location=town&lead=false
+  const urlString = `${BASE_URL}/${type}${
+    type === "farmer" ? "s" : ""
+  }/search?name=${nameSearch}&location=${locationSearch}&lead=${query.leads}`;
+  // could be cleaned up by making the endpoints on backend uniform or using a general client controller
 
   return axios
     .get(urlString, {
@@ -26,8 +28,6 @@ export const searchClients = query => dispatch => {
       }
     })
     .then(res => {
-      console.log("OUTPUTTING RES");
-      console.log(res.data);
       dispatch({ type: CLIENT_SEARCH_SUCCESS, payload: res.data });
     })
     .catch(err => {

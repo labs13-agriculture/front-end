@@ -1,9 +1,9 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { initiateLogin } from "../../actions";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Spinner } from "reactstrap";
+import { media} from '../../styles/searchStyles';
 
 class Login extends Component {
   constructor(props) {
@@ -308,22 +308,7 @@ export default connect(
 
 //begin styling
 
-const sizes = {
-  desktop: 992,
-  tablet: 768,
-  phone: 576
-};
 
-const media = Object.keys(sizes).reduce((acc, label) => {
-  acc[label] = (...args) =>
-    css`
-      @media (max-width: ${sizes[label]}px) {
-        ${css(...args)}
-      }
-    `;
-
-  return acc;
-}, {});
 
 const StyledLoginContainer = styled.div`
   display: flex;

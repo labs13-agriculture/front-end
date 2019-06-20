@@ -1,14 +1,11 @@
 import React, { Component } from "react";
-
 import {UserResultsList} from "../ManageUsers/UserResultsList";
 import { connect } from "react-redux";
 import {userSearchResults} from '../../actions';
-import PrivateRoute from '../PrivateRoute';
-import styled, { css } from "styled-components";
-import { Link } from "react-router-dom";
+import styled from "styled-components";
 import AddUser from './AddUser';
-
 import { Modal } from 'reactstrap';
+import {  media} from '../../styles/searchStyles';
 
  class SearchUsers extends Component{
     constructor(props){
@@ -38,17 +35,12 @@ import { Modal } from 'reactstrap';
        
     }
 
-    // setTypingListener(){
-    //     var input = document.querySelector(".search-input");
-    //     input.addEventListener("keyup", function(event) {
-    //     const typingTimer = setTimeout(this.props.userSearchResults(this.state.searchQuery), 5000);
-    //     })
-        
-    // }
+   
 
     componentDidMount(){
         this.focusCursor();
     }
+
     componentDidUpdate (prevProps, prevState) {
         if(prevState.searchQuery !== this.state.searchQuery) {
           this.props.userSearchResults(this.state.searchQuery);
@@ -88,22 +80,7 @@ import { Modal } from 'reactstrap';
 
 
 //begin styling
-const sizes = {
-    desktop: 992,
-    tablet: 768,
-    phone: 576
-  };
 
-const media = Object.keys(sizes).reduce((acc, label) => {
-    acc[label] = (...args) =>
-      css`
-        @media (max-width: ${sizes[label]}px) {
-          ${css(...args)}
-        }
-      `;
-  
-    return acc;
-  }, {});
   
 
 const StyledSearchUsers = styled.div`
@@ -155,8 +132,10 @@ const StyledSearchBar = styled.div`
 
     .new-user-tools-cont{
             height:100%;
+            padding:20px;
             ${media.phone`display:flex;`}
             ${media.phone`justify-content:flex-end;`}
+
         }
 
     .search-button{

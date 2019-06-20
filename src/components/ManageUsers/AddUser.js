@@ -82,9 +82,3 @@ const StyledUserDetails = styled.div`
    
 
 `
-
-const StyledRegisterDetailsContainer = styled.div`
-    
-
-
-`

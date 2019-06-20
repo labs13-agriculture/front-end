@@ -106,18 +106,3 @@ const StyledUserDetails = styled.div`
 
 `
 
-const StyledRegisterDetailsContainer = styled.div`
-    height:500px;
-    width:400px;
-    background:white;
-    padding:20px;
-
-    .credential-input{
-        margin:20px;
-        display:flex;
-        flex-direction:column;
-        align-items:space-around;
-    }
-
-
-`

@@ -1,9 +1,6 @@
 import React, { Component } from "react";
-import styled, { css } from "styled-components";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import styled from "styled-components";
 import UserResultsItem from "./UserResultsItem";
-import { connect } from "react-redux";
-import { getProductStatData } from "../../actions";
 import { Spinner } from 'reactstrap';
 
 
@@ -52,22 +49,7 @@ export class UserResultsList extends Component {
 
 //begin styling
 
-const sizes = {
-  desktop: 992,
-  tablet: 768,
-  phone: 576
-};
 
-const media = Object.keys(sizes).reduce((acc, label) => {
-  acc[label] = (...args) =>
-    css`
-      @media (max-width: ${sizes[label]}px) {
-        ${css(...args)}
-      }
-    `;
-
-  return acc;
-}, {});
 
 const StyledUserResultsVue = styled.div`
    
@@ -76,10 +58,7 @@ const StyledUserResultsVue = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap:wrap;
-  ${'' /* box-shadow: 0 13px 27px -5px rgba(50, 50, 93, 0.25),
-    0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.025); */}
-  /* margin: 60px 60px 60px 0px; */
-  ${'' /* border: 1px solid #d3d3d37a; */}
+  padding:20px;
 
   h3 {
     font-family: "Mandali", sans-serif;

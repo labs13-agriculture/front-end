@@ -36,13 +36,14 @@ const GN = styled.div`
   width: 100%;
   height: 75px;
   align-items: center;
-
+  margin-top:20px;
   a {
     font-family: "Josefin Sans", sans-serif;
     margin-left: 30px;
     color: ${theme.background_light};
     font-size: 1.4rem;
     letter-spacing: 1px;
+    opacity:.5;
 
     transition: all 0.15s ease;
 
@@ -55,6 +56,9 @@ const GN = styled.div`
       color: #40e0d0;
     }
 
+    &.active {
+      opacity:1;
+    }
     &.active:hover {
       text-decoration: none;
       color: ${theme.background_light};

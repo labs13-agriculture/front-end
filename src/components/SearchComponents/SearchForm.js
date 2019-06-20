@@ -49,23 +49,27 @@ class SearchForm extends Component {
     return (
       <StyledForm onSubmit={e => this.submitForm(e)}>
         <label className="name">
-          Name
+         
           <input
             onChange={e => this.handleChange(e)}
             type="text"
             name="name"
+            placeholder="Name"
             value={this.state.name}
           />
         </label>
         <label className="location">
-          Location
+          
           <input
             onChange={e => this.handleChange(e)}
             type="text"
             name="location"
+            placeholder="Location"
             value={this.state.location}
           />
         </label>
+       
+        
         <div>
           <label className="checkbox">
             Active
@@ -88,7 +92,8 @@ class SearchForm extends Component {
             />
           </label>
         </div>
-        <input className="submitButton" type="submit" />
+        <input className="submitButton" value="SUBMIT" type="submit" />
+        
       </StyledForm>
     );
   }

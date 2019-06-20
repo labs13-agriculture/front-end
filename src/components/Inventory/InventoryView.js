@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
+
+import InventoryTableHead from './InventoryTableHead';
 import InventoryItem from './InventoryItem';
 import AddItemModal from './AddItemModal';
+
+import { theme } from '../../config'
 
 import {
     // Import actions here
@@ -28,22 +32,22 @@ function InventoryView(props) {
             <div className="banner">
                 <h2>Inventory</h2>
             </div>
-            
-            <div className="content">
+
+            <table className="inventory-table">
                 {/* Inventory card Container */}
-                <InventoryItem 
-                    header
+                <InventoryTableHead
                     item={{id:"id", name:"name", quantity:"quantity", active:"active"}}
                     doModal={() => {setModal(true)}}
                 />
-
+                <tbody>
                 {/* Inventory Cards */}
                 {props.inventoryList && props.inventoryList.map((i, index) => {
                     return (
                         <InventoryItem key={i.id} item={i} />
                     );
                 })}
-            </div>
+                </tbody>
+            </table>
             
             {useModal && <AddItemModal doModal={() => setModal(false)}/>}
         </ViewContainer>
@@ -70,23 +74,31 @@ export default connect(state => ({
 
 const ViewContainer = styled.div`
     height: 100%;
+    max-height: 100vh;
     /* if you add width here it stretches container? */
     background: #f3f3f3;
-
     margin: 10px;
-
-    border-radius: 10px;
-    border-top-left-radius: 2px;
-    border-top-right-radius: 2px;
+    border-radius: 2px;
     /* border-top: 5px solid #d3d3d3; */
+
+    overflow-y: scroll;
+    &::-webkit-scrollbar {
+        display: none;
+    }
     
     .banner {
         /* border-bottom: 1.5px solid #d3d3d3; */
-        padding: 10px 10px 0;
+        padding: 10px;
+        background: ${theme.navgrey};
+        color: ${theme.background_light};
 
         h2 {
             font-size: 3rem;
             font-weight: 700;
         }
+    }
+
+    .inventory-table {
+        width: 100%;
     }
 `;

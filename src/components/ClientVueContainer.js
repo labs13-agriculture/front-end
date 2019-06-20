@@ -24,17 +24,13 @@ export default class ClientVueContainer extends Component {
           path="/dashboard/statistics"
           component={StatisticsVue}
         /> */}
-        
+
         <PrivateRoute
           exact
           path="/search/retailers"
-          component={FarmerSearch}
+          component={RetailerSearch}
         />
-        <PrivateRoute
-          exact
-          path="/search/farmers"
-          component={FarmerSearch}
-        />
+        <PrivateRoute exact path="/search/farmers" component={FarmerSearch} />
         <PrivateRoute
           exact
           path="/search/organizations"

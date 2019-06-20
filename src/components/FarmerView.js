@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import styled from "styled-components";
-import { theme } from "../config";
+import styled, { css } from "styled-components";
 
 // components
 import FarmerViewDemographics from "./FarmerViewComponents/FarmerViewDemographics";
@@ -18,20 +17,22 @@ class FarmerView extends Component {
 
   render() {
     return (
-      <StyledContainer>
-        {/* Demographics Container */}
-        <StyledDemos>
-          <FarmerViewDemographics />
-        </StyledDemos>
-        <StyledInfoView>
-        <FarmerViewTransactions id={this.props.match.params.id} modalToggle={this.toggleTransaction} />
-        </StyledInfoView>
+      <InfoViewContainer>
+        <StyledContainer>
+          {/* Demographics Container */}
+          <StyledDemos>
+            <FarmerViewDemographics />
+          </StyledDemos>
+          <StyledInfoView>
+          <FarmerViewTransactions id={this.props.match.params.id} modalToggle={this.toggleTransaction} />
+          </StyledInfoView>
 
-        {/* Installments Container */}
-        <StyledInfoView>
-          <Installments />
-        </StyledInfoView>
-      </StyledContainer>
+          {/* Installments Container */}
+          <StyledInfoView>
+            <Installments />
+          </StyledInfoView>
+        </StyledContainer>
+      </InfoViewContainer>
     );
   }
 }
@@ -52,6 +53,23 @@ export default connect(
   mapStateToProps, null
 )(FarmerView);
 
+const sizes = {
+  desktop: 992,
+  tablet: 768,
+  phone: 576
+};
+
+const media = Object.keys(sizes).reduce((acc, label) => {
+  acc[label] = (...args) =>
+    css`
+      @media (max-width: ${sizes[label]}px) {
+        ${css(...args)}
+      }
+    `;
+
+  return acc;
+}, {});
+
 const StyledContainer = styled.div`
   display: flex;
   height: 400px;
@@ -67,13 +85,25 @@ const StyledDemos = styled.div`
 `;
 
 const StyledInfoView = styled.div`
-  width: 45%;
+  width: 48%;
   background-color: white;
-  height: 100%;
+  height: 90%;
   margin-top: 20px;
   overflow-y: scroll;
+
+  ${media.tablet`width: 100%;`}
 
   &::-webkit-scrollbar {
     display: none;
   }
+`;
+
+const InfoViewContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  ${media.tablet`flex-direction: column;`}
+
 `;

@@ -22,7 +22,7 @@ export default class GlobalSideNav extends Component {
         <StyledH1 className="title"><span className="navspan">TIEME NDO</span><i className="fas fa-seedling" /></StyledH1>
         <StyledDiv className="hvr-underline-reveal">
           <NavLink to="/dashboard" style={{ textDecoration: "none" }}>
-            <i class="fas fa-th"></i>
+            <i className="fas fa-th"></i>
             <span className="navspan">DASHBOARD</span>
           </NavLink>
         </StyledDiv>

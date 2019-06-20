@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import UserResultsItem from "./UserResultsItem";
 import { connect } from "react-redux";
 import { getProductStatData } from "../../actions";
-
+import { Spinner } from 'reactstrap';
 
 
 export class UserResultsList extends Component {
@@ -22,12 +22,13 @@ export class UserResultsList extends Component {
     return (
       <StyledUserResultsVue>
         <StyledMiniNav>
-          <h3 className="mini-nav-title">Username</h3>
-          <h3 className="mini-nav-title">Created By</h3>
-          <h3 className="mini-nav-title">Roles</h3>
+         {this.props.userSearchSuccess && <h3 className="mini-nav-title">Users</h3>} 
+          
         </StyledMiniNav>
         <StyledResultsList>
-          {this.props.returnedUserData.length == 0 && <div className="search-placeholder"><i className="fas fa-search"></i></div>}
+          {this.props.userSearchStart && <div className="search-placeholder">
+            <Spinner style={{ width: '10rem', height: '10rem' }} />
+          </div>}
           {this.props.userSearchSuccess &&
             this.props.returnedUserData.map(user => (
               <UserResultsItem
@@ -35,6 +36,7 @@ export class UserResultsList extends Component {
                 creator={user.creator}
                 userRoles={user.userRoles}
                 userid={user.userid}
+                
                 
               />
             ))}
@@ -68,10 +70,12 @@ const media = Object.keys(sizes).reduce((acc, label) => {
 }, {});
 
 const StyledUserResultsVue = styled.div`
-  
-  height: 100%;
+   
+   background:none;
+   overflow-y: scroll;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap:wrap;
   ${'' /* box-shadow: 0 13px 27px -5px rgba(50, 50, 93, 0.25),
     0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.025); */}
   /* margin: 60px 60px 60px 0px; */
@@ -80,10 +84,12 @@ const StyledUserResultsVue = styled.div`
   h3 {
     font-family: "Mandali", sans-serif;
 
-    margin: 0px;
+   
     font-size: 14px;
     width:200px;
-   
+    font-family: "Josefin Sans", sans-serif;
+    
+
   }
 
 
@@ -93,12 +99,11 @@ const StyledUserResultsVue = styled.div`
     ${'' /* padding: 20px 20px 15px 20px; */}
 
     
-    background: white;
+    font-size:30px;
+    font-weight:800;
+    color:white;
 
-    &:nth-child(3) {
-
-    width: 67px;
-    padding-left: 0px;
+  
   }
 
   
@@ -106,19 +111,19 @@ const StyledUserResultsVue = styled.div`
 const StyledMiniNav = styled.div`
   
   width: 100%;
-  padding: 5px 20px 5px;
+  
   display:flex;
   width:100%;
   justify-content:space-between;
-  background:white;
-  border-bottom: 2px solid #d3d3d37a;
+  margin-top:40px;
+  
   &:last-child{
     width:67px;
   }
 `;
 
 const StyledResultsList = styled.div`
-  height: 100%;
+  height: 400px;
   width: 100%;
   overflow-y: scroll;
   display:flex;
@@ -126,9 +131,13 @@ const StyledResultsList = styled.div`
   
   .search-placeholder{
     display:flex;
-   
+   height:100%; 
     font-size:90px;
+    justify-content:center;
     
+    .fas.fa-search{
+      color:#00000047;
+    }
 
   }
   

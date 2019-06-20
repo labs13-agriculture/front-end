@@ -19,7 +19,9 @@ function InstallmentHeader(props) {
       <div className="header">
         <h2>Installments</h2>
 
-        <Button className="add-installment" onClick={toggleModal}>New</Button>
+        <Button className="add-installment" onClick={toggleModal}>
+          New
+        </Button>
       </div>
       <table>
         <thead>
@@ -28,9 +30,7 @@ function InstallmentHeader(props) {
             <StyledTd className="mode">Mode</StyledTd>
             <StyledTd className="datePaid">Date Paid</StyledTd>
             <StyledTd className="officer">Officer</StyledTd>
-            <StyledTd className="actions-head">
-              Actions
-            </StyledTd>
+            <StyledTd className="actions-head">Actions</StyledTd>
           </tr>
         </thead>
       </table>
@@ -68,16 +68,14 @@ const HeaderContainer = styled.div`
     }
 
     .add-installment {
-
       &:hover {
-        background: ${theme.accent}
+        background: ${theme.accent};
       }
     }
   }
 
   table {
-    /* 100% was leaving a super small sliver for some reason */
-    width: 100.1%;
+    width: 100%;
     background-color: rgb(60, 57, 75);
     color: ${theme.background_light};
   }

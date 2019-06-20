@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import { withRouter, Redirect } from 'react-router-dom';
 import { Modal } from 'reactstrap';
 
-import EditClientForm from './EditClientForm';
-import {theme} from '../../config';
+import EditClientForm from "./EditClientForm";
+import { theme } from "../../config";
 
 import { getFarmer, deleteFarmer, clearDeleted } from "../../actions";
 
@@ -13,37 +13,42 @@ function ClientDemographics(props) {
   const { client } = props;
 
   useEffect(() => {
-    props.getFarmer(props.match.params.id)
+    props.getFarmer(props.match.params.id);
   }, []);
 
   const [modal, setModal] = useState(false);
 
-  const toggleModal = (e) => {
+  const toggleModal = e => {
     if (e) {
       e.preventDefault();
     }
     setModal(!modal);
-  }
+  };
 
   const deleteFarmer = () => {
-    let confirm = window.confirm("Are you sure you want to\n\nPERMANENTLY DELETE\n\nthis farmer and all associated data?")
+    let confirm = window.confirm(
+      "Are you sure you want to\n\nPERMANENTLY DELETE\n\nthis farmer and all associated data?"
+    );
     if (confirm) {
       props.deleteFarmer(client.id);
     }
-  }
+  };
 
   if (!client) {
-    return(<StyledDiv><h1>Client not Found</h1></StyledDiv>)
+    return (
+      <StyledDiv>
+        <h1>Client not Found</h1>
+      </StyledDiv>
+    );
   }
 
   if (props.farmerDeleted) {
     props.clearDeleted();
-    return <Redirect to="/search" />
+    return <Redirect to="/search" />;
   }
 
   return (
     <StyledDiv>
-      
       <div className="header">
         <h1>
         {client.firstName} {client.secondName}, {client.type.toLowerCase()} since {client.startyear} <span className="toggleSpan">-</span> <br className="toggleBreak" /> Amount Owed: ${client.amountOwed}
@@ -51,15 +56,14 @@ function ClientDemographics(props) {
         Lead: {client.lead ? "True" : "False"}
         </h1>
         <div className="actions">
-          <i class="fas fa-edit edit" onClick={toggleModal}></i>
-          <i className="fas fa-trash delete" onClick={deleteFarmer}></i>
+          <i class="fas fa-edit edit" onClick={toggleModal} />
+          <i className="fas fa-trash delete" onClick={deleteFarmer} />
         </div>
       </div>
 
       <div className="demoWrapper">
         <h3>Contact</h3>
         <div className="info-section contact-info">
-          
           <div className="contact-box">
             <p>Phone: {client.phone || "Not In System"}</p>
             <p>Email: {client.email || "Not In System"}</p>
@@ -68,7 +72,10 @@ function ClientDemographics(props) {
             <p>Address:</p>
             <div>
               <p>{client.address || "Not In System"}</p>
-              <p>{client.community || "Community"}, {client.district || "district"}</p>
+              <p>
+                {client.community || "Community"},{" "}
+                {client.district || "district"}
+              </p>
             </div>
             
           </div>
@@ -77,7 +84,7 @@ function ClientDemographics(props) {
             <p>Region: {client.region || "Not In System"}</p>
           </div>
         </div>
-        
+
         <h3>Demographics</h3>
         <div className="info-section demo-info">
           <div className="demo-box">
@@ -105,10 +112,10 @@ function ClientDemographics(props) {
 }
 
 const mapStateToProps = state => {
-  return{
-    client:state.farmerData.farmer,
-    farmerDemoError:state.farmerData.error,
-    farmerDemoDataStart:state.farmerData.getStart,
+  return {
+    client: state.farmerData.farmer,
+    farmerDemoError: state.farmerData.error,
+    farmerDemoDataStart: state.farmerData.getStart,
     farmerDeleted: state.farmerData.farmerDeleted
   }
   
@@ -176,7 +183,7 @@ const StyledDiv = styled.div`
   }
 
   .header {
-    background: #3C394B;
+    background: #3c394b;
     color: ${theme.background_light};
 
     padding: 10px 20px;
@@ -190,7 +197,7 @@ const StyledDiv = styled.div`
       font-size: 2rem;
       margin-left: 20px;
 
-      transition: all .15s ease;
+      transition: all 0.15s ease;
 
       &.edit:hover {
         color: ${theme.accent};
@@ -202,7 +209,7 @@ const StyledDiv = styled.div`
     }
   }
 
-  .demoWrapper{
+  .demoWrapper {
     .info-section {
       width: 100%;
       display: flex;

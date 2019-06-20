@@ -63,7 +63,8 @@ export default (state=initialState,action) => {
             
             deleteSystemUserStart:false,
             deleteSystemUserSuccess:true,
-            deleteSystemUserFailure:false
+            deleteSystemUserFailure:false,
+            
             
         }
 
@@ -85,7 +86,7 @@ export default (state=initialState,action) => {
         case UPDATE_SYSTEM_USER_SUCCESS:
         return{
             ...state,
-            data:action.payload,
+            data:[action.payload],
             updateSystemUserStart:false,
            updateSystemUserSuccess:true,
             updateSystemUserFailure:false
@@ -110,7 +111,7 @@ export default (state=initialState,action) => {
         case ADD_SYSTEM_USER_SUCCESS:
         return{
             ...state,
-            data:action.payload,
+            data:[action.payload],
             addSystemUserStart:false,
             addSystemUserSuccess:true,
             addSystemUserFailure:false

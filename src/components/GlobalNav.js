@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import "./GSN.css";
-import {theme} from "../config"
+import { theme } from "../config";
 
 class GlobalSideNav extends Component {
   constructor(props) {
@@ -42,9 +42,9 @@ const GN = styled.div`
     margin-left: 30px;
     color: ${theme.background_light};
     font-size: 1.4rem;
-    letter-spacing:1px;
+    letter-spacing: 1px;
 
-    transition: all .15s ease;
+    transition: all 0.15s ease;
 
     &:firstchild {
       margin-left: 0;
@@ -52,7 +52,7 @@ const GN = styled.div`
 
     &:hover {
       text-decoration: none;
-      color: #40E0D0;
+      color: #40e0d0;
     }
 
     &.active:hover {
@@ -63,7 +63,7 @@ const GN = styled.div`
     &.active:after {
       content: "";
       height: 2px;
-      background-color: #40E0D0;
+      background-color: #40e0d0;
       width: 30px;
       position: relative;
       display: block;

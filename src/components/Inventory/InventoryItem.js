@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
+import { Input } from "reactstrap";
 
+import { theme } from '../../config';
 import { deleteItemFromInventory, updateItemInInventory } from '../../actions'
 
 function InventoryItem(props) {
@@ -37,57 +39,46 @@ function InventoryItem(props) {
 
     return (
         <Container>
-            <div className="left">
-                { props.header ?(<>
-                    {/* If header is true lets add in these default headings */}
-                    <div className="name">Item Name</div>
-                    <div className="quantity">Quantity </div>
-                    <div className="active">Active </div>
-                    </>
-                ) : (<>
-                    {/* otherwise lets use the item passed to populate some fields */}
-                    <div className="name">{item.name}</div>
-                    {/* if editing its the quantity input otherwise it just displays item quantity */}
-                    { isEditing
-                        ? <input className="qty-input" type="text" name="quantity" 
-                            placeholder={item.quantity} 
-                            onChange={handleQty}
-                            value={newQty}
-                            />
-                        : <div className="quantity">{item.quantity}</div>
-                    }
-                    { isEditing
-                        ? <input 
-                            className="active-input"
-                            type="checkbox"
-                            name="active"
-                            checked={isActive}
-                            onChange={toggleActive}
-                          />
-                        : <div className="active">{item.active ? "true" : "false"}</div>
-                    }
-                    </>
-                )}
-            </div>
-            <div className="right">
-                {/* This section contains all the buttons */}
-                {!props.header ?(<>
-                    <button 
-                        className={`edit${props.header ? " hidden" : ""}`}
-                        onClick={toggleEditing}
-                    >{isEditing ? `Cancel` : `Edit`}</button>
-                </> ) : ( <>
-                    <button className='add' onClick={props.doModal}>Add</button>
-                </>)}
-                {isEditing
-                ? <button className='add' onClick={submitUpdate}>Submit</button>
-                : <button
-                    // this button isn't used in the header but is set to invisible to keep spacing consistent
-                    className={`delete${props.header ? " hidden" : ""}`}
-                    onClick={() => props.deleteItemFromInventory(item.id)}
-                >Delete</button>
+            {/* otherwise lets use the item passed to populate some fields */}
+            <td className="name">{item.name}</td>
+            {/* if editing its the quantity input otherwise it just displays item quantity */}
+            <td className="quantity">
+                { isEditing
+                    ? <Input className="qty-input" type="text" name="quantity" 
+                        placeholder={item.quantity} 
+                        onChange={handleQty}
+                        value={newQty}
+                        />
+                    : item.quantity
                 }
-            </div>
+            </td>
+
+            <td className="active">
+                { isEditing
+                    ? <Input 
+                        className="active-input"
+                        type="checkbox"
+                        name="active"
+                        checked={isActive}
+                        onChange={toggleActive}
+                        />
+                    : item.active ? "True" : "False"
+                }
+            </td>
+
+            {/* This section contains all the buttons */}
+            <td className="actions">
+
+                { isEditing
+                    ? <i class="fas fa-window-close bad" onClick={toggleEditing} />
+                    : <i onClick={toggleEditing} className="fas fa-edit good" />
+                }
+
+                { isEditing
+                    ? <i class="fas fa-check-square good" onClick={submitUpdate} />
+                    : <i className="fas fa-trash delete bad" onClick={() => props.deleteItemFromInventory(item.id)} />
+                }
+            </td>
         </Container>
     )
 }
@@ -99,91 +90,52 @@ export default connect(state => ({
     updateItemInInventory
 })(InventoryItem)
 
-const Container = styled.div`
+const Container = styled.tr`
     width: 100%;
-    padding: 10px;
-    font-size: 2rem;
 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    border-bottom: 1px solid grey;
-
-    @media (max-width: 750px) {
-        font-size: 1.5rem;
+    &:nth-of-type(even) {
+        background: lightgray;
     }
 
-    @media (max-width: 550px) {
-        flex-direction: column;
-        justify-content: flex-start;
+    td {
+        width: 15%;
+        padding: 10px;
     }
 
-    .left {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        width: 100%;
-    }
-    .right {
-        display: flex;
+    i {
+        font-size: 2rem;
 
-        @media (max-width: 550px) {
-            width: 100%;
+        &:last-child {
+            margin-left: 15px;
         }
     }
 
     .name {
-        width: 50%;
+        width: 40%;
     }
-    .quantity {
-        width: 25%;
+
+    .active, .quantity {
+        text-align: center;
     }
-    .qty-input {
-        width: 100px;
-    }
+
     .active {
-        width: 25%;
-    }
-    .active-input {
-        margin-left: 13%
+        vertical-align: middle;
+        padding: 0;
     }
 
-    .hidden {
-        visibility: hidden;
+    .actions {
+        text-align: right;
+        width: 20%;
     }
-    
-    button {
-        margin-left: 20px;
-        border-radius: 4px;
-        background: white;
-        box-shadow: 2px 1px 1px rgba(0,0,0,0.4);
-        transition: .25s;
-        padding: 2px 15px;
 
-        @media (max-width: 550px) {
-            width: 100%;
-        }
-
-        &:hover {
-            box-shadow: 1px 1px 1px rgba(0,0,0,0.4); 
-
-
-        }
-
-        &.delete:hover {
-            background: palevioletred;
-            border-color: palevioletred
-        }
-
-        &.edit:hover {
-            background: lightblue;
-            border-color: lightblue;
-        }
-
-        &.add:hover {
-            background: lightgreen;
-            border-color: lightgreen;
-        }
+    i {
+        transition: all .15s ease;
     }
-`;
+    .good:hover {
+        color: ${theme.accent}
+    }
+
+    .bad:hover {
+        color ${theme.warning}
+    }
+`

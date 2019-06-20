@@ -7,6 +7,7 @@ import FarmerSearch from "./SearchComponents/FarmerSearch";
 import OrganizationSearch from "./SearchComponents/OrganizationSearch";
 import FarmerView from "./FarmerView.js";
 import OrganizationView from "./OrganizationView/OrganizationView.js";
+import UserDetails from "../components/ManageUsers/UserDetails";
 
 export default class ClientVueContainer extends Component {
   constructor(props) {
@@ -23,17 +24,13 @@ export default class ClientVueContainer extends Component {
           path="/dashboard/statistics"
           component={StatisticsVue}
         /> */}
-        
+
         <PrivateRoute
           exact
           path="/search/retailers"
-          component={FarmerSearch}
+          component={RetailerSearch}
         />
-        <PrivateRoute
-          exact
-          path="/search/farmers"
-          component={FarmerSearch}
-        />
+        <PrivateRoute exact path="/search/farmers" component={FarmerSearch} />
         <PrivateRoute
           exact
           path="/search/organizations"
@@ -57,10 +54,7 @@ export default class ClientVueContainer extends Component {
           component={OrganizationView}
         />
 
-        <PrivateRoute
-          path="/dashboard/manage-users"
-          component={ManageUsersContainer}
-        />
+       
         {/* <GlobalCardContainer/> */}
       </StyledClientVueContainer>
     );

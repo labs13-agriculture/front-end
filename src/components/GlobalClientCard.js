@@ -10,11 +10,11 @@ export default class GlobalClientCard extends Component {
     };
   }
 
-  redirect = () =>{
+  redirect = () => {
     this.setState({
       redirect: true
-    })
-  }
+    });
+  };
 
   render() {
     const { client } = this.props;
@@ -25,31 +25,14 @@ export default class GlobalClientCard extends Component {
       //return h3 element with formatted key value pairs
       <Link to={`/dashboard/${client.type}/${client.id}`}>
         <StyledGlobalClientCard>
-          <h3>{client.firstName} {client.secondName}</h3>
+          <h3>
+            {client.firstName} {client.secondName}
+          </h3>
           <div className="demo">
             <p>title: {client.title}</p>
             <p>dob: {client.dateofbirth}</p>
             <p>gender: {client.gender}</p>
           </div>
-{/* address: "463 Fritsch Harbors, East Clarkshire, NH 35652-0806"
-community: null
-dateofbirth: null
-district: null
-educationlevel: null
-email: "andre.waelchi@yahoo.com"
-firstName: "Jon Umber"
-gender: null
-id: 119
-landmark: "Shermer of Smithyton"
-lead: false
-nationality: null
-phone: "1-651-240-6142"
-position: null
-region: null
-secondName: null
-startyear: 2004
-title: null
-type: "FARMER" */}
           <div className="contact">
             <p>email: {client.email}</p>
             <p>phone: {client.phone}</p>
@@ -72,8 +55,7 @@ const StyledGlobalClientCard = styled.div`
   margin: 10px auto;
   padding: 10px;
   border-radius: 3px;
-  box-shadow: 0px 0px 20px rgba(0,0,0,0.3);
-  
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
 
   &:hover {
     cursor: pointer;

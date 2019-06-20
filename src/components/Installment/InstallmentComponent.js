@@ -7,10 +7,6 @@ import Installment from "./Installment";
 
 import { getInstallmentData } from "../../actions";
 
-// import FarmerViewInstallments from "./FarmerViewComponents/FarmerViewInstallments";
-// import FarmerInstallmentForm from "./FarmerViewComponents/FarmerInstallmentForm";
-// import FarmerEditInstallment from "./FarmerViewComponents/FarmerEditInstallment";
-
 function InstallmentComponent(props) {
   useEffect(() => {
     // This acts as onMount
@@ -25,11 +21,11 @@ function InstallmentComponent(props) {
       {/* Installments Container */}
       <StyledTable className="installmentitem-container">
         <tbody>
-        {/* Installment items */}
-        {props.installments &&
-          props.installments.map(i => {
-            return <Installment key={i.id} installment={i} />;
-          })}
+          {/* Installment items */}
+          {props.installments &&
+            props.installments.map(i => {
+              return <Installment key={i.id} installment={i} />;
+            })}
         </tbody>
       </StyledTable>
     </InstallmentContainer>

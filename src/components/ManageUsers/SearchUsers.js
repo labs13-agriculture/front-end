@@ -139,18 +139,31 @@ const StyledSearchBar = styled.div`
         }
 
     .search-button{
-            padding: 7px 90px;
-            background: none;
-            border: 2px solid white;
-            border-radius: 30px;
-            color: white;
-            background: #00000047;
-            font-family: "Josefin Sans", sans-serif;
-            font-size:15px;
-            font-size: 1.2rem;
-            font-weight: 600;
+        padding: 10px 40px;
 
+        background: none;
+
+        font-size: 1.5rem;
+
+        margin: auto 0px;
+
+        border: none;
+
+
+
+
+
+        color: white;
+
+        font-family: "Josefin Sans",sans-serif;
+        border:2px solid rgb(126,121,147);
+
+        &:hover{
+        background:rgba(128, 123, 151, 0.08);
+        
         }
+
+        
 
 `
 

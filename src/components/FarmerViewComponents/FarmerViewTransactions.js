@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import {FarmerTransactionItem} from "./FarmerTransactionItem";
-
 import { connect } from "react-redux";
 import {getClientTransaction,deleteClientTransaction} from "../../actions";
+import TransactionHeader from './TransactionHeader';
 
 class FarmerViewTransactions extends Component {
   constructor(props) {
@@ -24,15 +24,8 @@ class FarmerViewTransactions extends Component {
 
   render() {
     return (
-      <div>
-        <h2>Transaction History</h2>
-        <i onClick={() => this.props.modalToggle()} className="fas fa-plus" />
-        <StyledTransactionNav>
-          <h3 className="t-nav-header">DATE</h3>
-          <h3 className="t-nav-header">TOTAL</h3>
-          <h3 className="t-nav-header">TYPE</h3>
-          <h3 className="t-nav-header">OFFICER</h3>
-        </StyledTransactionNav>
+      <TransactionContainer>
+        <TransactionHeader id={this.props.id} />
         {
           this.props.transactionDataSuccess && this.props.transactionData
         .map(t => <FarmerTransactionItem 
@@ -43,7 +36,7 @@ class FarmerViewTransactions extends Component {
 
          />)
          }
-      </div>
+      </TransactionContainer>
     );
   }
 }
@@ -97,7 +90,13 @@ const StyledTransactionNav = styled.div`
   display:flex;
   justify-content:space-between;
 
-
-
-
 `
+
+const TransactionContainer = styled.div`
+  width: 100%;
+  border-radius: 3px;
+
+  .installmentitem-container {
+    width: 100%;
+  }
+`;

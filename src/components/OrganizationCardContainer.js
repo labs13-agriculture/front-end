@@ -6,8 +6,6 @@ import OrganizationCard from "./OrganizationCard";
 
 class OrganizationCardContainer extends Component {
   render() {
-    console.log("re-rendering");
-    console.log(this.props.searchSuccess);
     return (
       <CardContainer>
         {this.props.searchStart && <h2>Loading...</h2>}

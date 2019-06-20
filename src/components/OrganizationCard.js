@@ -19,7 +19,6 @@ export default class OrganizationCard extends Component {
   render() {
     const organization = { ...this.props };
 
-    console.log("ORGANIZATION CARD PROPS", this.props);
     return (
       <Link to={`/dashboard/organization/${organization.id}`}>
         <StyledGlobalClientCard>

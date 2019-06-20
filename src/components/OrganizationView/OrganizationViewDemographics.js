@@ -12,9 +12,22 @@ class OrganizationViewDemographics extends Component {
     this.props.getOrganizationById(this.props.id);
   }
   render() {
+    console.log("SOME PROPSSSS", this.props);
     return (
       <StyledDiv>
-        <h1>YO YO</h1>
+        <h1>{this.props.id}</h1>
+        <h1>
+          {this.props.organizationDemoData &&
+            this.props.organizationDemoData.name}
+        </h1>
+        <h1>
+          {this.props.organizationDemoData &&
+            this.props.organizationDemoData.headquarters}
+        </h1>
+        <h1>
+          {this.props.organizationDemoData &&
+            this.props.organizationDemoData.beneficiaries}
+        </h1>
       </StyledDiv>
     );
   }
@@ -22,7 +35,7 @@ class OrganizationViewDemographics extends Component {
 
 const mapStateToProps = state => {
   return {
-    organizationDemoData: state.organizationData.organizationDemoData,
+    organizationDemoData: state.organizationData.organization,
     organizationDemoError: state.organizationData.error,
     organizationDemoDataStart: state.organizationData.getStart
   };

@@ -16,8 +16,7 @@ export const searchFarmers = query => dispatch =>{
     //console.log(nameSearch + " " + locationSearch);
 
     const urlString = `${BASE_URL}/farmers/search?name=${nameSearch}&location=${locationSearch}&lead=${query.leads}`
-    console.log(urlString);
-
+    
     return axios
         .get(urlString, {
             headers: {
@@ -61,7 +60,7 @@ export const deleteFarmer = (id) => dispatch => {
      
       }).catch(
         err => {console.log(err)
-            dispatch({type:DELETE_FARMER_FAILURE,payload:err})
+            dispatch({type:DELETE_FARMER_FAILURE, payload:err})
         }        
     );}
 
@@ -94,6 +93,7 @@ export const addFarmer = newFarmer => dispatch =>{
               }       
           );
         }
+
 export const GET_FARMER_START = 'GET_FARMER_START';
 export const GET_FARMER_SUCCESS = 'GET_FARMER_SUCCESS';
 export const GET_FARMER_FAILURE = 'GET_FARMER_FAILURE';
@@ -124,4 +124,38 @@ export const getFarmer = farmerId => dispatch =>{
         );
       }
           
+export const UPDATE_FARMER = 'UPDATE_FARMER';
+export const UPDATE_FARMER_SUCCESS = 'UPDATE_FARMER_SUCCESS';
+export const UPDATE_FARMER_FAILURE = 'UPDATE_FARMER_FAILURE';
 
+export const updateFarmer = farmer => dispatch =>{
+    dispatch({ type: UPDATE_FARMER })
+    console.log("attempting to update", farmer);
+    return axios
+      .put(`${BASE_URL}/farmers/farmer/${farmer.id}`, farmer, {
+        headers: {
+          'Content-Type' : 'application/json',
+          Authorization: `Bearer ${window.localStorage.getItem('token')}`
+        }
+      })
+      .then(res => {
+        dispatch({ type: UPDATE_FARMER_SUCCESS, payload: res.data });
+      }).catch(
+        err => {console.log(err)
+        dispatch({type:UPDATE_FARMER_FAILURE, payload:err})
+      }       
+      );
+        
+}
+
+export const CLEAR_DELETED = "CLEAR_DELETED";
+
+export const clearDeleted = () => dispatch => {
+    dispatch({ type: CLEAR_DELETED })
+}
+
+export const CLEAR_ADDED = "CLEAR_ADDED";
+
+export const clearAdded = () => dispatch => {
+    dispatch({ type: CLEAR_ADDED })
+}

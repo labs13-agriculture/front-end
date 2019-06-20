@@ -6,19 +6,34 @@ import { getInventoryList, updateClientTransaction,getClientTransaction } from "
 class FormUpdateClientTransaction extends Component{
     constructor(props){
         super(props);
-        const today=new Date();
+        //populate with existing data
+        const year = parseInt(props.transaction.date.substring(0,4));
+        const month = parseInt(props.transaction.date.substring(5,7));
+        const day = parseInt(props.transaction.date.substring(8,10));
+        let items = props.transaction.inputs;
+        console.log(items);
+        const updatedItems = items.map(item => {
+            return(
+                {
+                    quantity: item.quantity,
+                    itemName: item.item.name,
+                    unitPrice: item.unitPrice
+                }
+            )
+        })
         this.state={
-            payment: "MTN Mobile Money",
-            month: today.getMonth() + 1,
-            day: today.getDate(),
-            year: today.getYear() + 1900,
-            officer:'',
-            items: [{itemName: '', unitPrice: '', quantity: ''}],
-            transactionId: props.transactionId,
+            payment: props.transaction.type,
+            month: month,
+            day: day,
+            year: year,
+            officer:props.transaction.personnel,
+            items: updatedItems,
+            transactionId: props.transaction.id,
         }
     }
 
     componentDidMount(){
+        console.log('STATE', this.state)
         this.props.getInventoryList()
     }
 
@@ -149,49 +164,39 @@ class FormUpdateClientTransaction extends Component{
                     <input
                         type="radio"
                         name="payment"
-                        value="MTN Mobile Money"
-                        checked={this.state.payment === "MTN Mobile Money"}
+                        value="CREDIT"
+                        checked={this.state.payment === "CREDIT"}
                         onChange={this.radioChange}
                     />
-                    <label for="MTN Mobile Money">MTN Mobile Money</label>
+                    <label for="CREDIT">Credit</label>
                     </div>
                     <div>
                     <input
                         type="radio"
                         name="payment"
-                        value="Bank"
-                        checked={this.state.payment === "Bank"}
+                        value="CASH"
+                        checked={this.state.payment === "CASH"}
                         onChange={this.radioChange}
                     />
-                    <label for="Bank">Bank</label>
-                    </div>
-                    <div>
-                    <input
-                        type="radio"
-                        name="payment"
-                        value="Cash"
-                        checked={this.state.payment === "Cash"}
-                        onChange={this.radioChange}
-                    />
-                    <label for="Cash">Cash</label>
+                    <label for="CASH">Cash</label>
                     </div>
                 </label>
                 {this.state.items.map((item, index) =>(
                     <div key={index}>
                         <label>
                             Item {index + 1}:
-                            <Dropdown data-class="itemName" data-item={index} name={`item-${index}`} onChange={e=> this.formChange(e)} data-id={index}>
+                            <Dropdown data-class="itemName" data-item={index} name={`item-${index}`} onChange={e=> this.formChange(e)} data-id={index} value={this.state.items[index].itemName}>
                                 <option data-class="itemName" data-item="">Please select an item</option>
                                 {this.props.inventory.map((item, idx) => (<option className="itemName" key={idx} data-item={item}>{item.name}</option>))}
                             </Dropdown>
                         </label>
                         <label>
                             Quantity:
-                            <input data-id={index} data-class="quantity" type="text" name="quantity" data-qty={index} onChange={e => this.formChange(e)} />
+                            <input data-id={index} data-class="quantity" type="text" name="quantity" data-qty={index} onChange={e => this.formChange(e)} value={this.state.items[index].quantity}/>
                         </label>
                         <label>
                             Price:
-                            <input data-id={index} data-class="unitPrice" type="text" name="unitPrice" data-price={index} onChange={e => this.formChange(e)} />
+                            <input data-id={index} data-class="unitPrice" type="text" name="unitPrice" data-price={index} onChange={e => this.formChange(e)} value={this.state.items[index].unitPrice}/>
                         </label>
                     </div>
                 ))}

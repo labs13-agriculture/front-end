@@ -9,11 +9,13 @@ import rootReducer from "./reducers";
 import App from "./App";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+import { checkToken } from "./Middleware/checkToken";
+
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(
   rootReducer,
-  composeEnhancers(applyMiddleware(thunk)) //root reducer path important for netlify?
+  composeEnhancers(applyMiddleware(thunk, checkToken)) //root reducer path important for netlify?
 );
 
 ReactDOM.render(

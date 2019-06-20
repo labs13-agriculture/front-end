@@ -52,9 +52,20 @@ class ClientSearch extends Component {
 
     return (
       <div>
-        <Header>Find a Client</Header>
-        <i style={tempi} onClick={this.toggleModal} className="fas fa-plus" />
-        <SearchForm submitSearch={this.submitSearch} />
+        <StyledSearchToolContainer>
+          <StyledHeader>
+          <Header>Find Client</Header>
+          <button onClick={this.toggleModal}>ADD</button>
+          </StyledHeader>
+         
+          
+          <SearchForm submitSearch={this.submitSearch} />
+          
+        </StyledSearchToolContainer>
+
+        
+        
+        
         <ClientCardContainer />
         <Modal isOpen={this.state.modal} toggle={this.toggleModal}>
           <NewClientForm
@@ -89,8 +100,50 @@ export default connect(
 const Header = styled.h1`
   text-align: center;
   color: white;
+  font-family: "Josefin Sans",sans-serif;
+  margin: 26px 0px 20px 0px;
+  font-weight: 800;
+  font-size: 30px;
 `;
 
 const tempi = {
   color: "white"
 };
+
+const StyledSearchToolContainer = styled.div`
+
+  display:flex;
+  align-items:flex-start;
+  flex-direction:column;
+
+`
+const StyledHeader = styled.div`
+  display:flex;
+  justify-content:space-between;
+  width:100%;
+  button{
+    padding: 10px 40px;
+
+    background: none;
+
+    font-size: 1.5rem;
+
+    margin: auto 0px;
+
+    border: none;
+    
+
+
+    
+
+    color: white;
+
+    font-family: "Josefin Sans",sans-serif;
+    border:2px solid rgb(126,121,147);
+
+    &:hover{
+      background:rgba(128, 123, 151, 0.08);
+     
+    }
+  }
+`

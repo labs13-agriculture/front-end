@@ -17,17 +17,18 @@ export const media = Object.keys(sizes).reduce((acc, label) => {
 }, {});
 
 const CardContainer = styled.div`
-  height: 425px;
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  overflow-y: scroll;
+    height: 425px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    overflow-y: scroll;
 
-  &::-webkit-scrollbar {
-    display: none;
-  }
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
 
   h3 {
     text-decoration: none;

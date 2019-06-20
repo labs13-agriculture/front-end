@@ -112,3 +112,15 @@ export const getAllOrganizations = () => dispatch => {
       dispatch({ type: GET_ALL_ORGANIZATIONS_FAILURE, payload: err });
     });
 };
+
+export const CLEAR_DELETED_ORGS = "CLEAR_DELETED_ORGS";
+
+export const clearDeletedOrgs = () => dispatch => {
+  dispatch({ type: CLEAR_DELETED_ORGS });
+};
+
+export const CLEAR_ADDED_ORGS = "CLEAR_ADDED_ORGS";
+
+export const clearAddedOrgs = () => dispatch => {
+  dispatch({ type: CLEAR_ADDED_ORGS });
+};

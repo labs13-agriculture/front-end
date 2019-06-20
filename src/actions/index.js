@@ -145,5 +145,9 @@ export {
   GET_ALL_ORGANIZATIONS,
   GET_ALL_ORGANIZATIONS_SUCCESS,
   GET_ALL_ORGANIZATIONS_FAILURE,
-  getAllOrganizations
+  getAllOrganizations,
+  CLEAR_ADDED_ORGS,
+  CLEAR_DELETED_ORGS,
+  clearAddedOrgs,
+  clearDeletedOrgs
 } from "./organizationActions";

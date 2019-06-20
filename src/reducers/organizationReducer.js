@@ -10,7 +10,9 @@ import {
   ADD_ORGANIZATION_FAILURE,
   ORGANIZATION_SEARCH_START,
   ORGANIZATION_SEARCH_SUCCESS,
-  ORGANIZATION_SEARCH_FAILURE
+  ORGANIZATION_SEARCH_FAILURE,
+  CLEAR_ADDED_ORGS,
+  CLEAR_DELETED_ORGS
 } from "../actions";
 
 const initialState = {
@@ -26,11 +28,23 @@ const initialState = {
   gettingAllOrganizations: false,
   updatingOrganization: false,
   deletingOrganization: false,
+  organizationDeleted: false,
+  organizationAdded: false,
   error: null
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case CLEAR_DELETED_ORGS:
+      return {
+        ...state,
+        organizationDeleted: false
+      };
+    case CLEAR_ADDED_ORGS:
+      return {
+        ...state,
+        organizationAdded: false
+      };
     case GET_ORGANIZATION:
       return {
         ...state,

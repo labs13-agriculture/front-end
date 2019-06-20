@@ -124,9 +124,9 @@ const StyledForm = styled.form`
       border-radius: 0px;
 
       border: none;
-      background:rgb(126, 121, 147);
+      background:#40e0d0;
       &:hover{
-        background: #ffe891;
+        opacity:.8;
       }
 
       font-family: "Josefin Sans", sans-serif;

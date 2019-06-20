@@ -8,6 +8,12 @@ import {
   ADD_ORGANIZATION_START,
   ADD_ORGANIZATION_SUCCESS,
   ADD_ORGANIZATION_FAILURE,
+  DELETE_ORGANIZATION_START,
+  DELETE_ORGANIZATION_SUCCESS,
+  DELETE_ORGANIZATION_FAILURE,
+  UPDATE_ORGANIZATION,
+  UPDATE_ORGANIZATION_SUCCESS,
+  UPDATE_ORGANIZATION_FAILURE,
   ORGANIZATION_SEARCH_START,
   ORGANIZATION_SEARCH_SUCCESS,
   ORGANIZATION_SEARCH_FAILURE,
@@ -24,6 +30,7 @@ const initialState = {
   addStart: false,
   addSuccess: false,
   addFailure: false,
+  deleteStart: false,
   gettingOrganization: false,
   gettingAllOrganizations: false,
   updatingOrganization: false,
@@ -129,6 +136,47 @@ export default (state = initialState, action) => {
         addStart: false,
         addSuccess: false,
         addFailure: true,
+        error: action.payload
+      };
+
+    case DELETE_ORGANIZATION_START:
+      return {
+        ...state,
+        deleteStart: true,
+        deleteSuccess: false,
+        deleteFailure: false
+      };
+    case DELETE_ORGANIZATION_SUCCESS:
+      return {
+        ...state,
+        deleteStart: false,
+        organizationDeleted: true,
+        listData: []
+      };
+    case DELETE_ORGANIZATION_FAILURE:
+      return {
+        ...state,
+        deleteStart: false,
+        deleteFailure: true,
+        deleteSuccess: false,
+        error: action.payload
+      };
+    case UPDATE_ORGANIZATION:
+      return {
+        ...state,
+        updatingOrganization: true,
+        error: null
+      };
+    case UPDATE_ORGANIZATION_SUCCESS:
+      return {
+        ...state,
+        updatingOrganization: false,
+        organization: action.payload
+      };
+    case UPDATE_ORGANIZATION_FAILURE:
+      return {
+        ...state,
+        updatingOrganization: false,
         error: action.payload
       };
     default:

@@ -1,0 +1,134 @@
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
+import styled from 'styled-components';
+import { addBranch } from "../../actions";
+
+class NewBranchForm extends Component{
+    constructor(props){
+        super(props);
+
+        this.state={
+            name: "",
+            phone: "",
+            email: "",
+            position: "",
+            address: "",
+            district: "",
+            region: "",
+            landmark: ""
+        }
+    }
+
+    submitForm = e =>{
+        e.preventDefault();
+        console.log(this.state);
+        this.props.addBranch(55, this.state);
+    }
+
+    handleChange = e =>{
+        this.setState({
+            [e.target.name]: e.target.value
+        })
+    }
+
+    render(){
+        return(
+            <Form onSubmit={e => this.submitForm(e)}>
+                <h1>Add a Branch</h1>
+                <InnerContainer>
+                    <div>
+                        <h2>Contact Information</h2>
+                        <FormGroup>
+                            <Label>Name</Label>
+                            <Input 
+                                type="text" 
+                                onChange={e => this.handleChange(e)} 
+                                value={this.state.name}
+                                name="name" 
+                            />
+                        </FormGroup>
+                        <FormGroup>
+                            <Label>Phone</Label>
+                            <Input 
+                                type="text" 
+                                onChange={e => this.handleChange(e)} 
+                                value={this.state.phone}
+                                name="phone" 
+                            />
+                        </FormGroup>
+                        <FormGroup>
+                            <Label>Email</Label>
+                            <Input 
+                                type="text" 
+                                onChange={e => this.handleChange(e)} 
+                                value={this.state.email}
+                                name="email" 
+                            />
+                        </FormGroup>
+                        <FormGroup>
+                            <Label>Position</Label>
+                            <Input 
+                                type="text" 
+                                onChange={e => this.handleChange(e)} 
+                                value={this.state.position}
+                                name="position" 
+                            />
+                        </FormGroup>
+                    </div>
+                    <div>
+                        <h2>Location</h2>
+                        <FormGroup>
+                            <Label>Address</Label>
+                            <Input 
+                                type="text" 
+                                onChange={e => this.handleChange(e)} 
+                                value={this.state.address}
+                                name="address" 
+                            />
+                        </FormGroup>
+                        <FormGroup>
+                            <Label>District</Label>
+                            <Input 
+                                type="text" 
+                                onChange={e => this.handleChange(e)} 
+                                value={this.state.district}
+                                name="district" 
+                            />
+                        </FormGroup>
+                        <FormGroup>
+                            <Label>Region</Label>
+                            <Input 
+                                type="text" 
+                                onChange={e => this.handleChange(e)} 
+                                value={this.state.region}
+                                name="region" 
+                            />
+                        </FormGroup>
+                        <FormGroup>
+                            <Label>Landmark</Label>
+                            <Input 
+                                type="text" 
+                                onChange={e => this.handleChange(e)} 
+                                value={this.state.landmark}
+                                name="landmark" 
+                            />
+                        </FormGroup>
+                    </div>
+                </InnerContainer>
+                <Button>Submit</Button>
+            </Form>
+        )
+    }
+}
+
+export default connect(null, { addBranch })(NewBranchForm);
+
+const InnerContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+
+    div{
+        width: 45%;
+    }
+`;

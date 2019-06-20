@@ -1,7 +1,7 @@
 import React, { Component}  from "react";
 import { NavLink } from 'react-router-dom'
-import styled, { css } from "styled-components";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import styled from "styled-components";
+
 import SalesOverTime from './SalesOverTime';
 import MultiGraphNav from './MultiGraphNav';
 
@@ -35,22 +35,7 @@ export default class ProductMultiVue extends Component{
     }
 }
 
-const sizes = {
-    desktop: 992,
-    tablet: 768,
-    phone: 576
-};
-  
-  const media = Object.keys(sizes).reduce((acc, label) => {
-    acc[label] = (...args) =>
-      css`
-        @media (max-width: ${sizes[label]}px) {
-          ${css(...args)}
-        }
-      `;
-  
-    return acc;
-}, {});
+
 
 
 //begin stylig 
@@ -85,13 +70,10 @@ const StyledProductMultiVue = styled.div`
             color:lightgray;
         }
 
-        /* .navlink.active{
-                border-top:4px solid #362cff;
-        } */
+        
 
         .menu-link{
             display:flex;
-            /* height:80px; */
             flex-direction:column;
             text-align: left;
             box-sizing: border-box;

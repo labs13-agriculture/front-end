@@ -1,6 +1,6 @@
 import React, { Component }  from "react";
-import styled, { css } from "styled-components";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import styled  from "styled-components";
+
 import Example from './ProductStatsMiniChart';
 
 
@@ -30,25 +30,8 @@ export default class ProductStatsMini extends Component{
 
 
 //begin styling
-const sizes = {
-  desktop: 992,
-  tablet: 768,
-  phone: 576
-};
-
-const media = Object.keys(sizes).reduce((acc, label) => {
-  acc[label] = (...args) =>
-    css`
-      @media (max-width: ${sizes[label]}px) {
-        ${css(...args)}
-      }
-    `;
-
-  return acc;
-}, {});
 
 
-//begin styling
 
 const StyledProductStatsMini = styled.div`
   height:55px;

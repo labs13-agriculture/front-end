@@ -1,15 +1,12 @@
 import React, { Component } from "react";
 import "./App.css";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import styled, { css } from "styled-components";
 import Login from "./components/LoginComponent/Login";
 import PrivateRoute from "./components/PrivateRoute";
 import GlobalViewContainer from "./components/GlobalViewContainer";
 import GlobalSideNav from "./components/GlobalSideNav";
-import GlobalNav from "./components/GlobalNav";
-import StatisticsVue from "./components/StatisticsDashboardComp/StatisticsVue";
-import FarmerView from "./components/FarmerView";
-import ClientVueContainer from "./components/ClientVueContainer";
+
 
 // import ItemList from './components/ItemList';
 // import {DashboardVue} from './components/DashboardView';

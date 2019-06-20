@@ -20,8 +20,8 @@ class GlobalSideNav extends Component {
   render() {
     return (
       <GN>
-        <NavLink to="/search/farmers">FARMERS</NavLink>
-        <NavLink to="/search/retailers">RETAILERS</NavLink>
+        <NavLink to="/search/farmer">FARMERS</NavLink>
+        <NavLink to="/search/retailer">RETAILERS</NavLink>
         <NavLink to="/search/organizations">ORGANIZATIONS</NavLink>
       </GN>
     );

@@ -7,7 +7,6 @@ import OrganizationSearch from "./SearchComponents/OrganizationSearch";
 import ClientView from "./ClientView/ClientView";
 import OrganizationView from "./Organization/OrganizationView.js";
 
-
 export default class ViewContainer extends Component {
   constructor(props) {
     super(props);
@@ -17,24 +16,23 @@ export default class ViewContainer extends Component {
   render() {
     return (
       <StyledViewContainer>
-        {/* //search component will go here */}
         {/* <PrivateRoute
           exact
           path="/dashboard/statistics"
           component={StatisticsVue}
         /> */}
 
-        <PrivateRoute
-          exact
-          path="/search/retailers"
-          component={ClientSearch}
-        />
-        <PrivateRoute exact path="/search/farmers" component={ClientSearch} />
+        {/* ClientSearch and  ClientView are type agnostic, they grab the type from the path to tell it what controllers to hit*/}
+        <PrivateRoute exact path="/search/retailer" component={ClientSearch} />
+        <PrivateRoute exact path="/search/farmer" component={ClientSearch} />
+
         <PrivateRoute
           exact
           path="/search/organizations"
           component={OrganizationSearch}
         />
+
+        {/* ClientSearch and  ClientView are type agnostic, they grab the type from the path to tell it what controllers to hit*/}
         <PrivateRoute
           exact
           path="/dashboard/farmer/:id"
@@ -52,9 +50,6 @@ export default class ViewContainer extends Component {
           path="/dashboard/organization/:id"
           component={OrganizationView}
         />
-
-       
-        
       </StyledViewContainer>
     );
   }

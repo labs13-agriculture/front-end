@@ -29,7 +29,7 @@ export default class GlobalVueContainer extends Component {
         <Route
           exact
           path="/search"
-          render={props => <Redirect to="/search/farmers" {...props} />}
+          render={props => <Redirect to="/search/farmer" {...props} />}
         />
         <Route
           exact
@@ -52,11 +52,11 @@ const GVC = styled.div`
   display: flex;
   width: 100%;
   flex-direction: column;
-  ${'' /* background-color: #1f1f1f; */}
+  ${"" /* background-color: #1f1f1f; */}
   background:rgb(35, 33, 43);
   background-size: cover;
   overflow-y: scroll;
-  &::-webkit-scrollbar{
+  &::-webkit-scrollbar {
     display: none;
   }
   padding-bottom: -20px;

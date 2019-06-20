@@ -19,7 +19,6 @@ export default class GlobalClientCard extends Component {
   render() {
     const { client } = this.props;
 
-    console.log("GLOBAL CLIENT CARD PROPS", this.props);
     return (
       //loop through keys of card data in props
       //return h3 element with formatted key value pairs

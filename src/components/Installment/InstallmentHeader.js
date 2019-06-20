@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import { Button, Modal } from "reactstrap";
 import AddInstallmentForm from "./AddInstallmentForm";
 import { theme } from "../../config";
 import { StyledTd } from "../../styles/InstallmentStyles";

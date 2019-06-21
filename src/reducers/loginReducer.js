@@ -1,10 +1,12 @@
+import { AUTH_TOKEN } from "../config";
 import { LOGIN_START, LOGIN_SUCCESS, LOGIN_FAILURE } from "../actions";
 
 const initialState = {
   loginStart: false,
   loginSuccess: false,
   loginFailure: false,
-  loggedIn: false,
+  // double bang to coerce it to a boolean value
+  loggedIn: !!localStorage.getItem(AUTH_TOKEN),
   error: ""
 };
 

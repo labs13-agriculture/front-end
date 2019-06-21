@@ -4,6 +4,7 @@ const initialState = {
   loginStart: false,
   loginSuccess: false,
   loginFailure: false,
+  loggedIn: false,
   error: ""
 };
 
@@ -12,7 +13,8 @@ export default (state = initialState, action) => {
     case LOGIN_START:
       return {
         ...state,
-        loginStart: true
+        loginStart: true,
+        loggedIn: false
       };
 
     case LOGIN_SUCCESS:
@@ -20,7 +22,8 @@ export default (state = initialState, action) => {
         ...state,
         loginSuccess: true,
         loginFailure: false,
-        loginStart: false
+        loginStart: false,
+        loggedIn: true
       };
 
     case LOGIN_FAILURE:
@@ -29,7 +32,13 @@ export default (state = initialState, action) => {
         loginSuccess: false,
         loginFailure: true,
         loginStart: false,
+
         error: action.payload
+      };
+    case "LOGGED_OUT":
+      return {
+        ...state,
+        loggedIn: false
       };
     default:
       return state;

@@ -127,6 +127,14 @@ const StyledH1 = styled.h1`
     width: 20px;
     height: 20px;
     display: inline;
+    position: relative;
+    left: -51px;
+    top: -10px;
+
+    @media (max-width: 800px) {
+      left: 0;
+      top: 0;
+    }
   }
 `;
 

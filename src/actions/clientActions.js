@@ -13,13 +13,23 @@ export const searchClients = (query, type) => dispatch => {
     payload: { name: nameSearch, location: locationSearch }
   });
 
-  // this maps out to something like
-  // https://backendurl.com/farmer/search?name=john&location=town&lead=false
-  // or the equivalent for retailer
-  const urlString = `${BASE_URL}/${type}${
-    type === "farmer" ? "s" : ""
-  }/search?name=${nameSearch}&location=${locationSearch}&lead=${query.leads}`;
-  // could be cleaned up by making the endpoints on backend uniform or using a general client controller
+  let urlString = ";";
+
+  if (!nameSearch && !locationSearch) {
+    // If not search params are passed we'll hit a find all
+    urlString = `${BASE_URL}/${type}${
+      type === "farmer" ? "s/all" : "/retailers"
+    }`;
+    console.log("Searching ALLLL");
+  } else {
+    // this maps out to something like
+    // https://backendurl.com/farmer/search?name=john&location=town&lead=false
+    // or the equivalent for retailer
+    urlString = `${BASE_URL}/${type}${
+      type === "farmer" ? "s" : ""
+    }/search?name=${nameSearch}&location=${locationSearch}&lead=${query.leads}`;
+    // could be cleaned up by making the endpoints on backend uniform or using a general client controller
+  }
 
   return axios
     .get(urlString, {

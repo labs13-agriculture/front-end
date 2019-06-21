@@ -54,18 +54,13 @@ class ClientSearch extends Component {
       <div>
         <StyledSearchToolContainer>
           <StyledHeader>
-          <Header>Find Client</Header>
-          <button onClick={this.toggleModal}>ADD</button>
+            <Header>Find {this.getType()}</Header>
+            <button onClick={this.toggleModal}>ADD</button>
           </StyledHeader>
-         
-          
+
           <SearchForm submitSearch={this.submitSearch} />
-          
         </StyledSearchToolContainer>
 
-        
-        
-        
         <ClientCardContainer />
         <Modal isOpen={this.state.modal} toggle={this.toggleModal}>
           <NewClientForm
@@ -100,7 +95,7 @@ export default connect(
 const Header = styled.h1`
   text-align: center;
   color: white;
-  font-family: "Josefin Sans",sans-serif;
+  font-family: "Josefin Sans", sans-serif;
   margin: 26px 0px 20px 0px;
   font-weight: 800;
   font-size: 30px;
@@ -111,17 +106,15 @@ const tempi = {
 };
 
 const StyledSearchToolContainer = styled.div`
-
-  display:flex;
-  align-items:flex-start;
-  flex-direction:column;
-
-`
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+`;
 const StyledHeader = styled.div`
-  display:flex;
-  justify-content:space-between;
-  width:100%;
-  button{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  button {
     padding: 10px 40px;
 
     background: none;
@@ -131,19 +124,14 @@ const StyledHeader = styled.div`
     margin: auto 0px;
 
     border: none;
-    
-
-
-    
 
     color: white;
 
-    font-family: "Josefin Sans",sans-serif;
-    border:2px solid rgb(126,121,147);
+    font-family: "Josefin Sans", sans-serif;
+    border: 2px solid rgb(126, 121, 147);
 
-    &:hover{
-      background:rgba(128, 123, 151, 0.08);
-     
+    &:hover {
+      background: rgba(128, 123, 151, 0.08);
     }
   }
-`
+`;

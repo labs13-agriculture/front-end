@@ -119,17 +119,6 @@ export {
 } from "./clientActions";
 
 export {
-  RETAILER_SEARCH_FAILURE,
-  RETAILER_SEARCH_SUCCESS,
-  RETAILER_SEARCH_START,
-  searchRetailers,
-  ADD_RETAILER_START,
-  ADD_RETAILER_SUCCESS,
-  ADD_RETAILER_FAILURE,
-  addRetailer
-} from "./retailerActions";
-
-export {
   ADD_ORGANIZATION_START,
   ADD_ORGANIZATION_SUCCESS,
   ADD_ORGANIZATION_FAILURE,

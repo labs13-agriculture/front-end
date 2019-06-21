@@ -40,7 +40,7 @@ class BranchForm extends Component{
             this.props.updateBranch(this.props.branch.branch_id, this.state);
         }
         else{
-            this.props.addBranch(55, this.state);
+            this.props.addBranch(this.props.id, this.state);
         }
     }
 

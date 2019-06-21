@@ -24,6 +24,30 @@ function BranchHeader(props){
           <table>
             <thead>
               <tr>
+              <StyledTd className="name-head">
+                  Name
+                </StyledTd>
+                <StyledTd className="phone-head">
+                  Phone
+                </StyledTd>
+                <StyledTd className="email-head">
+                  Email
+                </StyledTd>
+                <StyledTd className="position-head">
+                  Position
+                </StyledTd>
+                <StyledTd className="address-head">
+                  Address
+                </StyledTd>
+                <StyledTd className="district-head">
+                  District
+                </StyledTd>
+                <StyledTd className="region-head">
+                  Region
+                </StyledTd>
+                <StyledTd className="landmark-head">
+                  Landmark
+                </StyledTd>
                 <StyledTd className="actions-head">
                   Actions
                 </StyledTd>

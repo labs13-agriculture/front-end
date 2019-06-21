@@ -5,6 +5,7 @@ import { withRouter } from "react-router-dom";
 // import { Modal } from "reactstrap";
 import BranchHeader from '../Branch/BranchHeader';
 import { getBranches } from '../../actions';
+import Branch from '../Branch/Branch';
 // import { theme } from "../../config";
 // import { StyledTd } from "../../styles/InstallmentStyles";
 
@@ -20,11 +21,11 @@ class OrganizationBranch extends Component{
   render(){
     return (
       <BranchContainer>
-        <BranchHeader />
+        <BranchHeader id={this.props.id}/>
         <StyledTable>
           <tbody>
             {this.props.data.length > 0 && this.props.data.map(branch => {
-              return(<p>{branch.name}</p>);
+            return(<Branch branch={branch} key={branch.branch_id}/>);
             })}
           </tbody>
         </StyledTable>

@@ -56,7 +56,7 @@ export const updateBranch = (branchId, newBranch) => dispatch =>{
     dispatch({type: UPDATE_BRANCH_START});
 
     axios
-        .post(`${BASE_URL}/organizations/branch/update/${branchId}`, newBranch,{
+        .put(`${BASE_URL}/organizations/branch/update/${branchId}`, newBranch,{
             headers: {
               'Content-Type' : 'application/json',
               

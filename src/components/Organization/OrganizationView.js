@@ -22,7 +22,7 @@ class OrganizationView extends Component {
           <OrganizationViewDemographics id={this.props.match.params.id} />
         </StyledDemos>
         <StyledInfoView>
-          <OrganizationBranch />
+          <OrganizationBranch id={this.props.match.params.id}/>
         </StyledInfoView>
       </StyledContainer>
     );
@@ -53,7 +53,7 @@ const StyledDemos = styled.div`
 `;
 
 const StyledInfoView = styled.div`
-  width: 45%;
+  width: 100%;
   background-color: white;
   height: 100%;
   margin-top: 20px;

@@ -22,7 +22,10 @@ export default class GlobalClientCard extends Component {
     return (
       //loop through keys of card data in props
       //return h3 element with formatted key value pairs
-      <Link style={{ textDecoration: 'none' }} to={`/dashboard/${client.type}/${client.id}`}>
+      <Link
+        style={{ textDecoration: "none" }}
+        to={`/dashboard/${client.type}/${client.id}`}
+      >
         <StyledGlobalClientCard>
           <StyledContactContainer>
             <div className="identity-icon">
@@ -36,16 +39,14 @@ export default class GlobalClientCard extends Component {
               </h3>
               <p className="email">{client.email}</p>
             </div>
-            
           </StyledContactContainer>
-          
+
           <div className="demo">
             <p>TITLE: {client.title}</p>
             <p>DOB: {client.dateofbirth}</p>
             <p>GENDER: {client.gender}</p>
           </div>
           <div className="contact">
-            
             <p>PHONE: {client.phone}</p>
           </div>
           <div className="location">
@@ -66,65 +67,58 @@ const StyledGlobalClientCard = styled.div`
   margin: 10px;
   padding: 20px;
   border-radius: 10px;
-  ${'' /* box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3); */}
+  ${"" /* box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3); */}
   background:rgb(60,57,75);
   width: 325px;
-  color:white;
-  ${'' /* &:hover {
+  color: white;
+  ${"" /* &:hover {
     cursor: pointer;
     text-decoration:none;
   } */}
-  h3{
-    margin-bottom:0px;
+  h3 {
+    margin-bottom: 0px;
   }
   font-family: "Josefin Sans", sans-serif;
-  
-  
 
   .circle {
-    height:40px;
-    width:40px;
-    border-radius:50%;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
     color: #40e0d0;
-    font-size:2rem;
-    margin-right:15px;
+    font-size: 2rem;
+    margin-right: 15px;
     text-align: center;
 
-    background: rgb(35,33,43);
+    background: rgb(35, 33, 43);
 
     display: flex;
 
     justify-content: center;
 
     align-items: center;
-  
+
     text-align: center;
-    background: rgb(35,33,43);
-  .first-name{
-    width:20px;
-    height:20px;
-    display: flex;
+    background: rgb(35, 33, 43);
+    .first-name {
+      width: 20px;
+      height: 20px;
+      display: flex;
 
-    justify-content: center;
+      justify-content: center;
 
-    align-items: center;
+      align-items: center;
+    }
+
+    .head-contact-container {
+    }
   }
-  
-  .head-contact-container{
-    
-  }
-
-  
-  
-}
 `;
 
 const StyledContactContainer = styled.div`
-  display:flex;
-  justify-content:flex-start;
+  display: flex;
+  justify-content: flex-start;
 
-  .email{
-      color:gray;
-    }
-
-`
+  .email {
+    color: gray;
+  }
+`;

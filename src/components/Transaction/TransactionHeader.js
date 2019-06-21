@@ -63,7 +63,7 @@ const HeaderContainer = styled.div`
       margin: 0;
     }
 
-    .add-installment {
+    .add-transaction {
 
       &:hover {
         background: ${theme.accent}

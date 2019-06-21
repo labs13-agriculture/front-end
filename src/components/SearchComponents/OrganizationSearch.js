@@ -50,9 +50,13 @@ class OrganizationSearch extends Component {
     console.log("ORGANIZATION DATA", this.props.organizationData);
     return (
       <div>
-        <Header>Find an Organization</Header>
-        <i style={tempi} onClick={this.toggleModal} class="fas fa-plus" />
-        <SearchForm submitSearch={this.submitSearch} />
+        <StyledSearchToolContainer>
+          <StyledHeader>
+            <Header>Find Organization</Header>
+            <button onClick={this.toggleModal}>ADD</button>
+          </StyledHeader>
+          <SearchForm submitSearch={this.submitSearch} />
+        </StyledSearchToolContainer>
         <OrganizationCardContainer />
         <Modal isOpen={this.state.modal} toggle={this.toggleModal}>
           <NewOrganizationForm
@@ -83,8 +87,39 @@ export default connect(
 const Header = styled.h1`
   text-align: center;
   color: white;
+  font-family: "Josefin Sans", sans-serif;
+  margin: 26px 0px 20px 0px;
+  font-weight: 800;
+  font-size: 30px;
 `;
 
-const tempi = {
-  color: "white"
-};
+const StyledSearchToolContainer = styled.div`
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+`;
+const StyledHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  button {
+    padding: 10px 40px;
+
+    background: none;
+
+    font-size: 1.5rem;
+
+    margin: auto 0px;
+
+    border: none;
+
+    color: white;
+
+    font-family: "Josefin Sans", sans-serif;
+    border: 2px solid rgb(126, 121, 147);
+
+    &:hover {
+      background: rgba(128, 123, 151, 0.08);
+    }
+  }
+`;

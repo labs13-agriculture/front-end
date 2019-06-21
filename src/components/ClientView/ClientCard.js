@@ -68,11 +68,7 @@ const StyledGlobalClientCard = styled.div`
   flex-direction: column;
   margin: 10px;
   padding: 20px;
-<<<<<<< HEAD
   border-radius: 3px;
-=======
-  border-radius: 10px;
->>>>>>> 6c8e1e973c03e46b432b773bac4cbe2e3c9d9c9b
   ${"" /* box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3); */}
   background:rgb(60,57,75);
   width: 325px;

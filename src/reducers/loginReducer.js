@@ -35,6 +35,11 @@ export default (state = initialState, action) => {
 
         error: action.payload
       };
+    case "LOGGED_OUT":
+      return {
+        ...state,
+        loggedIn: false
+      };
     default:
       return state;
   }

@@ -51,8 +51,8 @@ export default withRouter(connected);
 const StyledTable = styled.table`
   font-family: arial, sans-serif;
   border-collapse: collapse;
-  margin: 5%;
-  width: 90%;
+  margin: 1%;
+  width: 100%;
 `;
 
 const BranchContainer = styled.div`

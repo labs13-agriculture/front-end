@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { connect } from "react-redux";
 import { Button, Modal } from "reactstrap";
 import { theme } from "../../config";
 import BranchForm from "./BranchForm";
-import { StyledTd } from "../../styles/InstallmentStyles";
 
 function BranchHeader(props){
     const [modal, setModal] = useState(false);
@@ -96,5 +95,19 @@ const HeaderContainer = styled.div`
     width: 100.1%;
     background-color: rgb(60, 57, 75);
     color: ${theme.background_light};
+
+    tr{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+    }
   }
 `;
+
+
+const StyledTd = styled.td`
+  padding: 10px 0;
+
+  width: auto;
+`;
+

@@ -5,16 +5,17 @@ import CardContainer from "../../styles/CardContainerStyles";
 
 class ClientCardContainer extends Component {
   render() {
+   
     return (
       <CardContainer>
         {this.props.searchStart && <h2>Loading...</h2>}
         {this.props.data && this.props.data.length === 0 ? (
           <p>No Clients found</p>
-        ) : null}
-        {this.props.data &&
-          this.props.data.map(client => (
-            <ClientCard key={client.id} client={client} />
-          ))}
+        ) : null} 
+        {(this.props.data._embedded && this.props.data._embedded.clientList.length > 0) &&
+         this.props.data._embedded.clientList.map(client => {
+            return (<ClientCard key={client.id} client={client}/>)})}
+          
       </CardContainer>
     );
   }

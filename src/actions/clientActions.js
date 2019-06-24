@@ -40,6 +40,7 @@ export const searchClients = (query, type) => dispatch => {
     })
     .then(res => {
       dispatch({ type: CLIENT_SEARCH_SUCCESS, payload: res.data });
+      console.log("Search Res" + JSON.stringify(res.data))
     })
     .catch(err => {
       console.log(err);

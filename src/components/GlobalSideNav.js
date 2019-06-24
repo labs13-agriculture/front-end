@@ -128,8 +128,8 @@ const StyledH1 = styled.h1`
     height: 20px;
     display: inline;
     position: relative;
-    left: -51px;
-    top: -10px;
+    left: -8px;
+    top: -8px;
 
     @media (max-width: 800px) {
       left: 0;

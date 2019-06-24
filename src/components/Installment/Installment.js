@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { Modal } from "reactstrap";
-
 import { theme } from "../../config";
 import { StyledTd } from "../../styles/InstallmentStyles";
 import EditInstallmentForm from "./EditInstallmentForm.js";

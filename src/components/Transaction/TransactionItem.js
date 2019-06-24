@@ -19,10 +19,14 @@ export class TransactionItem extends Component {
   render() {
     return (
       <Row>
-        <StyledTd>{Math.round(this.props.item.total * 100) / 100}</StyledTd>
-        <StyledTd>{this.props.item.type}</StyledTd>
-        <StyledTd>{this.props.item.date.split("T")[0]}</StyledTd>
-        <StyledTd>{this.props.item.personnel}</StyledTd>
+        <StyledTd className="amountPaid">
+          {Math.round(this.props.item.total * 100) / 100}
+        </StyledTd>
+        <StyledTd className="mode">{this.props.item.type}</StyledTd>
+        <StyledTd className="datePaid">
+          {this.props.item.date.split("T")[0]}
+        </StyledTd>
+        <StyledTd className="officer">{this.props.item.personnel}</StyledTd>
         <StyledTd className="actions">
           <i onClick={this.toggleUpdateModal} className="fas fa-edit edit" />
         </StyledTd>

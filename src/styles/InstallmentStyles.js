@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledTd = styled.td`
-  padding: 10px 0;
+  padding: 10px;
 
   &.amountPaid {
     width: 25%;
@@ -26,9 +26,12 @@ export const StyledTd = styled.td`
   &.actions {
     width: 5%;
   }
-  
-  &.actions-head {
-    width: 10%
-  }
 
+  &.actions-head {
+    width: 10%;
+  }
+  &.amountPaid2 {
+    width: 25%;
+    padding: 10px 10px;
+  }
 `;

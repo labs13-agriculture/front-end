@@ -61,8 +61,13 @@ export default connect(
 const StyledTable = styled.table`
   font-family: arial, sans-serif;
   border-collapse: collapse;
-  margin: 5%;
-  width: 90%;
+  width: 100%;
+
+  tr {
+    &:nth-of-type(even) {
+      background-color: lightgrey;
+    }
+  }
 `;
 
 const TransactionContainer = styled.div`

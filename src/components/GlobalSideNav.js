@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import "./GSN.css";
+import tiemeNdo from "../tiemeNdo.svg";
 
 export default class GlobalSideNav extends Component {
   constructor(props) {
@@ -20,7 +21,7 @@ export default class GlobalSideNav extends Component {
       <GSN>
         <StyledH1 className="title">
           <span className="navspan">TIEME NDO</span>
-          <i className="fas fa-seedling" />
+          <img className="logo" src={tiemeNdo} />
         </StyledH1>
         <StyledDiv className="hvr-underline-reveal">
           <NavLink to="/dashboard" style={{ textDecoration: "none" }}>
@@ -30,8 +31,8 @@ export default class GlobalSideNav extends Component {
         </StyledDiv>
         <StyledDiv className="hvr-underline-reveal">
           <NavLink to="/search" style={{ textDecoration: "none" }}>
-            <i className="fas fa-search" />
-            <span className="navspan">SEARCH</span>
+            <i className="fas fa-database" />
+            <span className="navspan">CRM</span>
           </NavLink>
         </StyledDiv>
         <StyledDiv className="hvr-underline-reveal">
@@ -95,6 +96,7 @@ const GSN = styled.div`
 
 const StyledH1 = styled.h1`
   display: flex;
+  align-items: center;
   margin-top: 2px;
   ${"" /* background: linear-gradient(to left, transparent, #2800a9, transparent); */}
   ${"" /* background-size: 100% 2px;
@@ -121,9 +123,18 @@ const StyledH1 = styled.h1`
     display: none;
   }
 
-  .fas.fa-seedling {
-    margin-right: 4px;
-    font-size: 13px;
+  .logo {
+    width: 20px;
+    height: 20px;
+    display: inline;
+    position: relative;
+    left: -8px;
+    top: -8px;
+
+    @media (max-width: 800px) {
+      left: 0;
+      top: 0;
+    }
   }
 `;
 

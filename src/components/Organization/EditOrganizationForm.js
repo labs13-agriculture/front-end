@@ -37,7 +37,7 @@ class NewOrganizationForm extends Component {
     }
     let emptyFields = false;
 
-    Object.keys(this.state).map(k => {
+    Object.keys(this.state).forEach(k => {
       if (
         this.state[k] === "" &&
         k !== "lead" &&

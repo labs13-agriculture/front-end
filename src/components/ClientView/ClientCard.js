@@ -30,7 +30,9 @@ export default class GlobalClientCard extends Component {
           <StyledContactContainer>
             <div className="identity-icon">
               <div className="circle">
-                <div className="first-name">{client.firstName[0]}</div>
+                <div className="first-name">
+                  {client.firstName ? client.firstName[0] : "?"}
+                </div>
               </div>
             </div>
             <div className="head-contact-container">
@@ -66,7 +68,7 @@ const StyledGlobalClientCard = styled.div`
   flex-direction: column;
   margin: 10px;
   padding: 20px;
-  border-radius: 10px;
+  border-radius: 3px;
   ${"" /* box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3); */}
   background:rgb(60,57,75);
   width: 325px;

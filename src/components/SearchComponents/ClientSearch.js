@@ -42,6 +42,10 @@ class ClientSearch extends Component {
     this.props.addClient(newClient, this.getType());
   };
 
+  capitalize = string => {
+    return string.slice(0, 1).toUpperCase() + string.slice(1, string.length);
+  };
+
   render() {
     if (this.props.clientAdded) {
       this.props.clearAdded();
@@ -54,7 +58,7 @@ class ClientSearch extends Component {
       <div>
         <StyledSearchToolContainer>
           <StyledHeader>
-            <Header>Find Client</Header>
+            <Header>Find {this.capitalize(this.getType())}</Header>
             <button onClick={this.toggleModal}>ADD</button>
           </StyledHeader>
 
@@ -100,10 +104,6 @@ const Header = styled.h1`
   font-weight: 800;
   font-size: 30px;
 `;
-
-const tempi = {
-  color: "white"
-};
 
 const StyledSearchToolContainer = styled.div`
   display: flex;

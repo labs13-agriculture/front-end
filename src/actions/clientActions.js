@@ -1,17 +1,17 @@
 import axios from "axios";
 import { BASE_URL } from "../config";
 
-export const CLIENT_SEARCH_START = "CLIENT_SEARCH_START";
-export const CLIENT_SEARCH_SUCCESS = "CLIENT_SEARCH_SUCCESS";
-export const CLIENT_SEARCH_FAILURE = "CLIENT_SEARCH_FAILURE";
+//Need to do separate action types so we can store search result data separately
+export const FARMER_SEARCH_START = "FARMER_SEARCH_START";
+export const FARMER_SEARCH_SUCCESS = "FARMER_SEARCH_SUCCESS";
+export const FARMER_SEARCH_FAILURE = "FARMER_SEARCH_FAILURE";
+export const RETAILER_SEARCH_START = "RETAILER_SEARCH_START";
+export const RETAILER_SEARCH_SUCCESS = "RETAILER_SEARCH_SUCCESS";
+export const RETAILER_SEARCH_FAILURE = "RETAILER_SEARCH_FAILURE";
 
 export const searchClients = (query, type) => dispatch => {
   const nameSearch = encodeURI(query.name);
   const locationSearch = encodeURI(query.location);
-  dispatch({
-    type: CLIENT_SEARCH_START,
-    payload: { name: nameSearch, location: locationSearch }
-  });
 
   let urlString = ";";
 
@@ -31,21 +31,47 @@ export const searchClients = (query, type) => dispatch => {
     // could be cleaned up by making the endpoints on backend uniform or using a general client controller
   }
 
-  return axios
-    .get(urlString, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${window.localStorage.getItem("token")}`
-      }
-    })
-    .then(res => {
-      dispatch({ type: CLIENT_SEARCH_SUCCESS, payload: res.data });
-    })
-    .catch(err => {
-      console.log(err);
-      dispatch({ type: CLIENT_SEARCH_FAILURE, payload: err });
+
+  if(type==="farmer"){
+    dispatch({
+      type: FARMER_SEARCH_START,
+      payload: { name: nameSearch, location: locationSearch }
     });
-};
+    return axios
+      .get(urlString, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${window.localStorage.getItem("token")}`
+        }
+      })
+      .then(res => {
+        dispatch({ type: FARMER_SEARCH_SUCCESS, payload: res.data });
+      })
+      .catch(err => {
+        console.log(err);
+        dispatch({ type: FARMER_SEARCH_FAILURE, payload: err });
+      });}
+
+  else{
+    dispatch({
+      type: RETAILER_SEARCH_START,
+      payload: { name: nameSearch, location: locationSearch }
+    });
+    return axios
+      .get(urlString, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${window.localStorage.getItem("token")}`
+        }
+      })
+      .then(res => {
+        dispatch({ type: RETAILER_SEARCH_SUCCESS, payload: res.data });
+      })
+      .catch(err => {
+        console.log(err);
+        dispatch({ type: RETAILER_SEARCH_FAILURE, payload: err });
+      });}
+  }
 
 export const DELETE_CLIENT_START = "DELETE_CLIENT_START";
 export const DELETE_CLIENT_SUCCESS = "DELETE_CLIENT_SUCCESS";

@@ -1,7 +1,10 @@
 import {
-  CLIENT_SEARCH_START,
-  CLIENT_SEARCH_SUCCESS,
-  CLIENT_SEARCH_FAILURE,
+  FARMER_SEARCH_START,
+  FARMER_SEARCH_SUCCESS,
+  FARMER_SEARCH_FAILURE,
+  RETAILER_SEARCH_START,
+  RETAILER_SEARCH_SUCCESS,
+  RETAILER_SEARCH_FAILURE,
   ADD_CLIENT_START,
   ADD_CLIENT_SUCCESS,
   ADD_CLIENT_FAILURE,
@@ -43,25 +46,47 @@ export default (state = initialState, action) => {
         ...state,
         clientAdded: false
       };
-    case CLIENT_SEARCH_START:
+    case FARMER_SEARCH_START:
       return {
         ...state,
         searchStart: true,
         error: "",
-        listData: [],
+        farmerListData: [],
         previousSearch: action.payload
       };
-    case CLIENT_SEARCH_SUCCESS:
+    case FARMER_SEARCH_SUCCESS:
       return {
         ...state,
-        listData: action.payload,
+        farmerListData: action.payload,
         searchStart: false,
         error: ""
       };
-    case CLIENT_SEARCH_FAILURE:
+    case FARMER_SEARCH_FAILURE:
       return {
         ...state,
-        listData: null,
+        farmerListData: null,
+        searchStart: false,
+        error: action.payload
+      };
+      case RETAILER_SEARCH_START:
+      return {
+        ...state,
+        searchStart: true,
+        error: "",
+        retailerListData: [],
+        previousSearch: action.payload
+      };
+    case RETAILER_SEARCH_SUCCESS:
+      return {
+        ...state,
+        retailerListData: action.payload,
+        searchStart: false,
+        error: ""
+      };
+    case RETAILER_SEARCH_FAILURE:
+      return {
+        ...state,
+        retailerListData: null,
         searchStart: false,
         error: action.payload
       };

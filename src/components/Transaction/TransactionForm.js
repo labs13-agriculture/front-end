@@ -177,6 +177,7 @@ class TransactionForm extends Component {
           <div style={{ padding: "0 20px" }}>
             <Input
               type="radio"
+              color="warning"
               name="payment"
               value="CASH"
               checked={this.state.payment === "CASH"}
@@ -220,7 +221,9 @@ class TransactionForm extends Component {
                   onChange={e => this.formChange(e)}
                 />
               </Label>
-              <Label style={{ padding: "0 1%" }}>
+            </FormGroup>
+            <FormGroup>
+              <Label>
                 Price:
                 <Input
                   data-id={index}
@@ -239,9 +242,14 @@ class TransactionForm extends Component {
             Add another item
           </Button>
           <FormGroup style={{ padding: "1% 0" }}>
-            <Button color="warning" type="button" onClick={this.removeItem}>
+            <Button color="danger" type="button" onClick={this.removeItem}>
               Remove item
             </Button>
+            <FormGroup style={{ padding: "1% 0" }}>
+              <Button color="warning" onClick={this.props.toggleModal}>
+                Cancel
+              </Button>
+            </FormGroup>
           </FormGroup>
           <Input type="submit" />
         </FormGroup>

@@ -87,76 +87,57 @@ export default class UserStatsItem extends Component {
 //begin styling
 
 const StyledProductStatsMini = styled.div`
-  height:55px;
-  width:100%;
-  display:flex;
-  justify-content:space-between;
+  height: 55px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
   padding: 5px 20px 5px;
-  align-items:center;
-  background:white;
+  align-items: center;
+  background: white;
   margin: 10px 0px 0px 0px;
   background: rgba(60, 57, 75, 0.47);
 
-  0 13px 27px -5px rgba(14, 14, 14, 0),0 2px 5px -4px rgba(154, 154, 154, 0.18),0 10px 16px 1px rgba(31, 31, 31, 0.12);
+  /* 0 13px 27px -5px rgba(14, 14, 14, 0),
+    0 2px 5px -4px rgba(154, 154, 154, 0.18),
+    0 10px 16px 1px rgba(31, 31, 31, 0.12); */
 
   color: white;
 
   font-family: "Josefin Sans", sans-serif;
 
   font-weight: 800;
-  transition: all .15s ease;
+  transition: all 0.15s ease;
 
-  &:hover{
+  &:hover {
     ${"" /* background:lightgray; */}
     cursor: pointer;
-    background:rgb(65, 62, 81);
+    background: rgb(65, 62, 81);
 
-    .pencil-btn{
-    background-color: Transparent;
-    border:none;
-    visibility:visible;
-    z-index:2;}
-    
-
-      
-
+    .pencil-btn {
+      background-color: Transparent;
+      border: none;
+      visibility: visible;
+      z-index: 2;
+    }
   }
 
-  .pencil-btn{
-  
-    border:none;
-    visibility:hidden;
+  .pencil-btn {
+    border: none;
+    visibility: hidden;
   }
 
-  .personnel{
-    width:200px;
-    height:20px;
+  .personnel {
+    width: 200px;
+    height: 20px;
     text-overflow: ellipse;
     font-weight: 800;
-
-
   }
 
-  .personnel.creator{
+  .personnel.creator {
     ${media.phone`display:none;`}
   }
 
-  
-
-  .fas.fa-pencil-alt{
-      color:lightgray;
-      }
-
-
-  
-    
-  
-
-  
-  
-
-
-  
-  
-
+  .fas.fa-pencil-alt {
+    color: lightgray;
+  }
 `;

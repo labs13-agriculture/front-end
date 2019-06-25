@@ -2,16 +2,18 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import ClientCard from "./ClientCard";
 import CardContainer from "../../styles/CardContainerStyles";
+import { Spinner } from 'reactstrap';
+import { theme } from '../../config';
+import styled from 'styled-components';
 
 class ClientCardContainer extends Component {
   render() {
-
     //Had to do conditional render this way. 
     //MapStateToProps does not have accesss to this.props
     if(this.props.type === "farmer"){
       return (
         <CardContainer>
-          {this.props.searchStart && <h2>Loading...</h2>}
+          {this.props.searchStart && <Spinner className="spinner" />}
           {this.props.farmerData && this.props.farmerData.length === 0 ? (
             <p>No Clients found</p>
           ) : null}
@@ -25,7 +27,7 @@ class ClientCardContainer extends Component {
     else{
       return (
         <CardContainer>
-          {this.props.searchStart && <h2>Loading...</h2>}
+          {this.props.searchStart && <Spinner className="spinner" />}
           {this.props.retailerData && this.props.retailerData.length === 0 ? (
             <p>No Clients found</p>
           ) : null}
@@ -53,3 +55,4 @@ const mapStateToProps = state => {
 };
 
 export default connect(mapStateToProps)(ClientCardContainer);
+

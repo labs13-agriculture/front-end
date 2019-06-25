@@ -116,7 +116,11 @@ class NewOrganizationForm extends Component {
             </select>
           </Label>
           <FormGroup>
-            <Button onClick={this.props.toggleModal} color="warning">
+            <Button
+              style={{ width: "100px", marginBottom: "1%" }}
+              onClick={this.props.toggleModal}
+              color="warning"
+            >
               Cancel
             </Button>
           </FormGroup>

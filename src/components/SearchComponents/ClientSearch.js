@@ -65,7 +65,7 @@ class ClientSearch extends Component {
           <SearchForm submitSearch={this.submitSearch} />
         </StyledSearchToolContainer>
 
-        <ClientCardContainer />
+        <ClientCardContainer type={this.getType()} />
         <Modal isOpen={this.state.modal} toggle={this.toggleModal}>
           <NewClientForm
             submitForm={this.submitClient}

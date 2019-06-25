@@ -4,13 +4,19 @@ import { Modal } from "reactstrap";
 import UpdateTransactionForm from "./UpdateTransactionForm";
 import { StyledTd } from "../../styles/InstallmentStyles";
 import { theme } from "../../config";
+import { deleteClientTransaction } from '../../actions';
+import { connect } from 'react-redux';
 
-export class TransactionItem extends Component {
+class TransactionItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
       toggleUpdateModal: false
     };
+  }
+
+  deleteTransaction = () =>{
+    this.props.deleteClientTransaction(this.props.item.id)
   }
 
   toggleUpdateModal = () =>
@@ -32,20 +38,19 @@ export class TransactionItem extends Component {
         </StyledTd>
         <StyledTd className="actionsi">
           <i
-            onClick={this.props.deleteClientTransaction}
+            onClick={() => this.deleteTransaction()}
             className="fas fa-trash delete"
           />
         </StyledTd>
         <Modal isOpen={this.state.toggleUpdateModal}>
-          <UpdateTransactionForm transaction={this.props.item} />
-          <button onClick={this.toggleUpdateModal} color="secondary">
-            Cancel
-          </button>
+          <UpdateTransactionForm toggleModal={this.toggleUpdateModal} transaction={this.props.item} />
         </Modal>
       </Row>
     );
   }
 }
+
+export default connect(null, {deleteClientTransaction})(TransactionItem)
 
 const Row = styled.tr`
   i {

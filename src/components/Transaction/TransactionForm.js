@@ -15,7 +15,9 @@ class TransactionForm extends Component {
       year: today.getYear() + 1900,
       officer: "",
       items: [{ itemName: "", unitPrice: "", quantity: "" }],
-      clientId: props.id
+      clientId: props.id,
+      needItems: false,
+      needItemData: false
     };
   }
 
@@ -25,7 +27,8 @@ class TransactionForm extends Component {
 
   addItem = () => {
     this.setState(prevState => ({
-      items: [...prevState.items, { itemName: "", unitPrice: "", quantity: "" }]
+      items: [...prevState.items, { itemName: "", unitPrice: "", quantity: "" }],
+      needItems: false
     }));
   };
 
@@ -59,11 +62,29 @@ class TransactionForm extends Component {
 
   submitForm = e => {
     e.preventDefault();
+
+    if(this.state.items.length === 0){
+      this.setState({
+        needItems: true,
+        needItemData: false
+      })
+      return;
+    }
+
+    let needDetails = false;
     let finalItems = [];
     this.state.items.map(item => {
+      //make sure an item was selected
+      if(item.itemName === ""){
+        needDetails = true;
+      }
       let itemObject = this.props.inventory.filter(
         inventoryItem => inventoryItem.name === item.itemName
       );
+      //Make sure quantity and price were filled
+      if(item.quantity === "" || item.unitPrice === ""){
+        needDetails = true;
+      }
       finalItems.push({
         quantity: item.quantity,
         unitPrice: item.unitPrice,
@@ -72,6 +93,21 @@ class TransactionForm extends Component {
 
       return null;
     });
+
+    if(needDetails){
+      this.setState({
+        needItems: false, // We must have had items if we determined that needDetails is true
+        needItemData: needDetails
+      })
+      return;
+    }
+
+    //if we've gotten here, we have the required info and can remove our error messages
+
+    this.setState({
+      needItemData: false,
+      needItems: false
+    })
 
     const transaction = {
       type: this.state.payment,
@@ -271,6 +307,8 @@ class TransactionForm extends Component {
           </Button>
         </FormGroup>
         <Input type="submit" />
+        {this.state.needItems && <ErrorMessage>Please add at least one item to this transaction</ErrorMessage>}
+        {this.state.needItemData && <ErrorMessage>All items must include a name, quantity, and price</ErrorMessage>}
       </Form>
     );
   }
@@ -290,4 +328,10 @@ export default connect(
 const Dropdown = styled.select`
   width: auto;
   margin-left: 1%;
+`;
+
+const ErrorMessage = styled.p`
+  color: #ff4868;
+  font-size: 11px;
+  font-weight: 550;
 `;

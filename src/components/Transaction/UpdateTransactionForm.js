@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
+import { Label, Form, FormGroup, Input, Button } from "reactstrap";
 import {
   getInventoryList,
   updateClientTransaction,
@@ -30,7 +31,9 @@ class UpdateTransactionForm extends Component {
       year: year,
       officer: props.transaction.personnel,
       items: updatedItems,
-      transactionId: props.transaction.id
+      transactionId: props.transaction.id,
+      needItems: false,
+      needItemData: false
     };
   }
 
@@ -41,7 +44,8 @@ class UpdateTransactionForm extends Component {
 
   addItem = () => {
     this.setState(prevState => ({
-      items: [...prevState.items, { itemName: "", unitPrice: "", quantity: "" }]
+      items: [...prevState.items, { itemName: "", unitPrice: "", quantity: "" }],
+      needItems: false
     }));
   };
 
@@ -75,11 +79,29 @@ class UpdateTransactionForm extends Component {
 
   submitForm = e => {
     e.preventDefault();
+
+    if(this.state.items.length === 0){
+      this.setState({
+        needItems: true,
+        needItemData: false
+      })
+      return;
+    }
+
+    let needDetails = false;
     let finalItems = [];
     this.state.items.map(item => {
+      //make sure an item was selected
+      if(item.itemName === ""){
+        needDetails = true;
+      }
       let itemObject = this.props.inventory.filter(
         inventoryItem => inventoryItem.name === item.itemName
       );
+      //Make sure quantity and price were filled
+      if(item.quantity === "" || item.unitPrice === ""){
+        needDetails = true;
+      }
       finalItems.push({
         quantity: item.quantity,
         unitPrice: item.unitPrice,
@@ -87,6 +109,21 @@ class UpdateTransactionForm extends Component {
       });
       return itemObject;
     });
+
+    if(needDetails){
+      this.setState({
+        needItems: false, // We must have had items if we determined that needDetails is true
+        needItemData: needDetails
+      })
+      return;
+    }
+
+    //if we've gotten here, we have the required info and can remove our error messages
+
+    this.setState({
+      needItemData: false,
+      needItems: false
+    })
 
     const transaction = {
       type: this.state.payment,
@@ -118,17 +155,17 @@ class UpdateTransactionForm extends Component {
       yearArray.push(i);
     }
     return (
-      <form onSubmit={e => this.submitForm(e)}>
-        <label>
+      <Form onSubmit={e => this.submitForm(e)}>
+        <Label>
           Officer:
-          <input
+          <Input
             type="text"
             name="officer"
             value={this.state.officer}
             onChange={e => this.formChange(e)}
           />
-        </label>
-        <label>
+        </Label>
+        <Label>
           Transaction Date:
           <div>
             <Dropdown
@@ -165,33 +202,33 @@ class UpdateTransactionForm extends Component {
               ))}
             </Dropdown>
           </div>
-        </label>
-        <label>
+        </Label>
+        <Label>
           Payment Method:
           <div>
-            <input
+            <Input
               type="radio"
               name="payment"
               value="CREDIT"
               checked={this.state.payment === "CREDIT"}
               onChange={this.radioChange}
             />
-            <label for="CREDIT">Credit</label>
+            <Label for="CREDIT">Credit</Label>
           </div>
           <div>
-            <input
+            <Input
               type="radio"
               name="payment"
               value="CASH"
               checked={this.state.payment === "CASH"}
               onChange={this.radioChange}
             />
-            <label for="CASH">Cash</label>
+            <Label for="CASH">Cash</Label>
           </div>
-        </label>
+        </Label>
         {this.state.items.map((item, index) => (
           <div key={index}>
-            <label>
+            <Label>
               Item {index + 1}:
               <Dropdown
                 data-class="itemName"
@@ -210,10 +247,10 @@ class UpdateTransactionForm extends Component {
                   </option>
                 ))}
               </Dropdown>
-            </label>
-            <label>
+            </Label>
+            <Label>
               Quantity:
-              <input
+              <Input
                 data-id={index}
                 data-class="quantity"
                 type="text"
@@ -222,10 +259,10 @@ class UpdateTransactionForm extends Component {
                 onChange={e => this.formChange(e)}
                 value={this.state.items[index].quantity}
               />
-            </label>
-            <label>
+            </Label>
+            <Label>
               Price:
-              <input
+              <Input
                 data-id={index}
                 data-class="unitPrice"
                 type="text"
@@ -234,18 +271,47 @@ class UpdateTransactionForm extends Component {
                 onChange={e => this.formChange(e)}
                 value={this.state.items[index].unitPrice}
               />
-            </label>
+            </Label>
           </div>
         ))}
 
-        <button type="button" onClick={this.addItem}>
-          Add another item
-        </button>
-        <button type="button" onClick={this.removeItem}>
-          Remove item
-        </button>
-        <input type="submit" />
-      </form>
+        <FormGroup
+          style={{
+            padding: "1% 0",
+            display: "flex",
+            flexDirection: "column",
+            margin: "0"
+          }}
+        >
+          <Button
+            style={{ width: "100px", marginBottom: "1%" }}
+            type="button"
+            onClick={this.addItem}
+          >
+            Add another item
+          </Button>
+
+          <Button
+            style={{ width: "100px", marginBottom: "1%" }}
+            color="danger"
+            type="button"
+            onClick={this.removeItem}
+          >
+            Remove item
+          </Button>
+
+          <Button
+            style={{ width: "100px" }}
+            color="warning"
+            onClick={this.props.toggleModal}
+          >
+            Cancel
+          </Button>
+        </FormGroup>
+        <Input type="submit" />
+        {this.state.needItems && <ErrorMessage>Please add at least one item to this transaction</ErrorMessage>}
+        {this.state.needItemData && <ErrorMessage>All items must include a name, quantity, and price</ErrorMessage>}
+      </Form>
     );
   }
 }
@@ -264,4 +330,10 @@ export default connect(
 const Dropdown = styled.select`
   width: auto;
   margin-left: 2%;
+`;
+
+const ErrorMessage = styled.p`
+  color: #ff4868;
+  font-size: 11px;
+  font-weight: 550;
 `;

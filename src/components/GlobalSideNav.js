@@ -1,18 +1,51 @@
 import React, { Component } from "react";
+import axios from "axios";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import "./GSN.css";
 import tiemeNdo from "../tiemeNdo.svg";
+import {BASE_URL} from '../config';
 
 export default class GlobalSideNav extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      names: []
+      names: [],
+      admin: false
     };
   }
 
+  componentDidMount(){
+    //Going to do the axios call here, redux seems like overkill, 
+    //since it will be attached to localStorage
+    axios
+      .get(`${BASE_URL}/user/usertype`, {
+        headers: {
+          'Content-Type' : 'application/json',
+          
+          
+          Authorization: `Bearer ${window.localStorage.getItem('token')}`
+        }
+      })
+      .then(res =>{
+        //Check if one of the objects is {authority: "ROLE_ADMIN"}
+        if(res.data.filter(roles => roles.authority === "ROLE_ADMIN").length > 0){
+          window.localStorage.setItem("admin", true);
+          //Have to use state here, since localStorage won't cause re-render
+          this.setState({
+            admin: true
+          })
+        }
+        else{
+          window.localStorage.setItem("admin", false);
+        }
+      })
+      .catch(err => console.log(err));
+
+  }
+
   logout = () => {
+    window.localStorage.removeItem("admin");
     window.localStorage.removeItem("token");
   };
 
@@ -35,12 +68,12 @@ export default class GlobalSideNav extends Component {
             <span className="navspan">CRM</span>
           </NavLink>
         </StyledDiv>
-        <StyledDiv className="hvr-underline-reveal">
+        {this.state.admin && (<StyledDiv className="hvr-underline-reveal">
           <NavLink to="/users" style={{ textDecoration: "none" }}>
             <i className="fas fa-user" />
             <span className="navspan">USERS</span>
           </NavLink>
-        </StyledDiv>
+        </StyledDiv>)}
         <StyledDiv className="hvr-underline-reveal">
           <NavLink to="/inventory" style={{ textDecoration: "none" }}>
             <i className="fas fa-boxes" />

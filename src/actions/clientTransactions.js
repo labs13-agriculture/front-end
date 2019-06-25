@@ -20,7 +20,7 @@ export const addNewTransaction = (transactionDetails,id) => dispatch => {
         }
       })
       .then(res => {
-        console.log("add_new_sys_user_data", res.data);
+        console.log("add transaction response", res.data);
         
         dispatch({ type: ADD_TRANSACTION_SUCCESS, payload: res.data });
         

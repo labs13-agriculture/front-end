@@ -43,10 +43,7 @@ class TransactionItem extends Component {
           />
         </StyledTd>
         <Modal isOpen={this.state.toggleUpdateModal}>
-          <UpdateTransactionForm transaction={this.props.item} />
-          <button onClick={this.toggleUpdateModal} color="secondary">
-            Cancel
-          </button>
+          <UpdateTransactionForm toggleModal={this.toggleUpdateModal} transaction={this.props.item} />
         </Modal>
       </Row>
     );

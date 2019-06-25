@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
+import { Label, Form, FormGroup, Input, Button } from "reactstrap";
 import { getInventoryList, addNewTransaction } from "../../actions";
 
 class TransactionForm extends Component {
@@ -101,17 +102,27 @@ class TransactionForm extends Component {
       yearArray.push(i);
     }
     return (
-      <form onSubmit={e => this.submitForm(e)}>
-        <label>
+      <Form
+        onSubmit={e => this.submitForm(e)}
+        style={{
+          padding: "20px",
+          display: "flex",
+          flexDirection: "column"
+        }}
+      >
+        <h1>New Transaction</h1>
+
+        <Label>
           Officer:
-          <input
+          <Input
             type="text"
             name="officer"
             value={this.state.officer}
             onChange={e => this.formChange(e)}
           />
-        </label>
-        <label>
+        </Label>
+
+        <Label>
           Transaction Date:
           <div>
             <Dropdown
@@ -148,33 +159,38 @@ class TransactionForm extends Component {
               ))}
             </Dropdown>
           </div>
-        </label>
-        <label>
+        </Label>
+        <Label>
           Payment Method:
-          <div>
-            <input
+          <div style={{ padding: "0 20px" }}>
+            <Input
               type="radio"
               name="payment"
               value="CREDIT"
               checked={this.state.payment === "CREDIT"}
               onChange={this.radioChange}
             />
-            <label for="CREDIT">Credit</label>
+            <Label style={{ padding: "0 1%" }} for="CREDIT">
+              Credit
+            </Label>
           </div>
-          <div>
-            <input
+          <div style={{ padding: "0 20px" }}>
+            <Input
               type="radio"
+              color="warning"
               name="payment"
               value="CASH"
               checked={this.state.payment === "CASH"}
               onChange={this.radioChange}
             />
-            <label for="CASH">Cash</label>
+            <Label style={{ padding: "0 1%" }} for="CASH">
+              Cash
+            </Label>
           </div>
-        </label>
+        </Label>
         {this.state.items.map((item, index) => (
           <div key={index}>
-            <label>
+            <Label>
               Item {index + 1}:
               <Dropdown
                 data-class="itemName"
@@ -184,7 +200,7 @@ class TransactionForm extends Component {
                 data-id={index}
               >
                 <option data-class="itemName" data-item="">
-                  Please select an item
+                  Select item ...
                 </option>
                 {this.props.inventory.map((item, idx) => (
                   <option className="itemName" key={idx} data-item={item}>
@@ -192,40 +208,70 @@ class TransactionForm extends Component {
                   </option>
                 ))}
               </Dropdown>
-            </label>
-            <label>
-              Quantity:
-              <input
-                data-id={index}
-                data-class="quantity"
-                type="text"
-                name="quantity"
-                data-qty={index}
-                onChange={e => this.formChange(e)}
-              />
-            </label>
-            <label>
-              Price:
-              <input
-                data-id={index}
-                data-class="unitPrice"
-                type="text"
-                name="unitPrice"
-                data-price={index}
-                onChange={e => this.formChange(e)}
-              />
-            </label>
+            </Label>
+            <FormGroup>
+              <Label>
+                Quantity:
+                <Input
+                  data-id={index}
+                  data-class="quantity"
+                  type="text"
+                  name="quantity"
+                  data-qty={index}
+                  onChange={e => this.formChange(e)}
+                />
+              </Label>
+            </FormGroup>
+            <FormGroup>
+              <Label>
+                Price:
+                <Input
+                  data-id={index}
+                  data-class="unitPrice"
+                  type="text"
+                  name="unitPrice"
+                  data-price={index}
+                  onChange={e => this.formChange(e)}
+                />
+              </Label>
+            </FormGroup>
           </div>
         ))}
+        <FormGroup
+          style={{
+            padding: "1% 0",
+            display: "flex",
+            flexDirection: "column",
+            margin: "0"
+          }}
+        >
+          <Button
+            style={{ width: "100px", marginBottom: "1%" }}
+            type="button"
+            onClick={this.addItem}
+          >
+            Add another item
+          </Button>
 
-        <button type="button" onClick={this.addItem}>
-          Add another item
-        </button>
-        <button type="button" onClick={this.removeItem}>
-          Remove item
-        </button>
-        <input type="submit" />
-      </form>
+          <Button
+            style={{ width: "100px", marginBottom: "1%" }}
+            color="danger"
+            type="button"
+            onClick={this.removeItem}
+          >
+            Remove item
+          </Button>
+
+          <Button
+            style={{ width: "100px" }}
+            color="warning"
+            onClick={this.props.toggleModal}
+          >
+            Cancel
+          </Button>
+        </FormGroup>
+        <Input type="submit" />
+      </Form>
     );
   }
 }
@@ -243,5 +289,5 @@ export default connect(
 
 const Dropdown = styled.select`
   width: auto;
-  margin-left: 2%;
+  margin-left: 1%;
 `;

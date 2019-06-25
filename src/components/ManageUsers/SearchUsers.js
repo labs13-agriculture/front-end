@@ -60,8 +60,14 @@ class SearchUsers extends Component {
               ADD NEW
             </button>
           </div>
-          <Modal isOpen={this.state.toggleAddModal}>
-            <AddUser userid={this.props.userid} />
+          <Modal
+            isOpen={this.state.toggleAddModal}
+            toggle={this.toggleAddModal}
+          >
+            <AddUser
+              userid={this.props.userid}
+              toggleModal={this.toggleAddModal}
+            />
             <button onClick={this.toggleAddModal} color="secondary">
               Cancel
             </button>
@@ -77,87 +83,6 @@ class SearchUsers extends Component {
   }
 }
 
-//begin styling
-
-const StyledSearchUsers = styled.div`
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-`;
-const StyledSearchBar = styled.div`
-
-    width:100%;
-    display: flex;
-    flex-direction:column;
-    justify-content: space-between;
-
-    .search-tools-cont{
-        width:100%;
-
-        .search-input{
-            width: 100%;
-            height: 70px;
-            margin-bottom: 40px;
-            background: #00000047;
-            border: none;
-            border-radius: 0px;
-            font-size: 30px;
-            font-weight: 600;
-            font-family: "Josefin Sans", sans-serif;
-            color: white;
-            caret-color: #40E0D0;
-            padding: 16px 0px 10px 40px;
-            
-
-            ::placeholder{
-                color:gray;
-                size:30px;
-            }
-        
-        }
-
-       
-        
-    }
-
-    .new-user-tools-cont{
-            height:100%;
-            padding:20px;
-            ${media.phone`display:flex;`}
-            ${media.phone`justify-content:flex-end;`}
-
-        }
-
-    .search-button{
-        padding: 10px 40px;
-
-        background: none;
-
-        font-size: 1.5rem;
-
-        margin: auto 0px;
-
-        border: none;
-
-
-
-
-
-        color: white;
-
-        font-family: "Josefin Sans",sans-serif;
-        border:2px solid rgb(126,121,147);
-
-        &:hover{
-        background:rgba(128, 123, 151, 0.08);
-        
-        }
-
-        
-
-`;
-
 const mapStateToProps = state => {
   return {
     returnedUserData: state.userReducer.data,
@@ -171,3 +96,62 @@ export default connect(
   mapStateToProps,
   { userSearchResults }
 )(SearchUsers);
+
+//begin styling
+
+const StyledSearchUsers = styled.div`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+`;
+
+const StyledSearchBar = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .search-tools-cont {
+    width: 100%;
+
+    .search-input {
+      width: 100%;
+      height: 70px;
+      margin-bottom: 40px;
+      background: #00000047;
+      border: none;
+      border-radius: 0px;
+      font-size: 30px;
+      font-weight: 600;
+      font-family: "Josefin Sans", sans-serif;
+      color: white;
+      caret-color: #40e0d0;
+      padding: 16px 0px 10px 40px;
+
+      ::placeholder {
+        color: gray;
+        size: 30px;
+      }
+    }
+  }
+  .new-user-tools-cont {
+    height: 100%;
+    padding: 20px;
+    ${media.phone`display:flex;`}
+    ${media.phone`justify-content:flex-end;`}
+  }
+  .search-button {
+    padding: 10px 40px;
+    background: none;
+    font-size: 1.5rem;
+    margin: auto 0px;
+    border: none;
+    color: white;
+    font-family: "Josefin Sans", sans-serif;
+    border: 2px solid rgb(126, 121, 147);
+  }
+  &:hover {
+    background: rgba(128, 123, 151, 0.08);
+  }
+`;

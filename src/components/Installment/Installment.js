@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { Modal } from "reactstrap";
-
 import { theme } from "../../config";
 import { StyledTd } from "../../styles/InstallmentStyles";
 import EditInstallmentForm from "./EditInstallmentForm.js";
@@ -41,10 +40,10 @@ function Installment(props) {
         {installment.datePaid.split("T")[0]}
       </StyledTd>
       <StyledTd className="officer">{installment.officer}</StyledTd>
-      <StyledTd className="actions">
+      <StyledTd className="actionsi">
         <i onClick={toggleModal} className="fas fa-edit edit" />
       </StyledTd>
-      <StyledTd className="actions">
+      <StyledTd className="actionsi">
         <i onClick={handleDelete} className="fas fa-trash delete" />
       </StyledTd>
       <Modal isOpen={modal} toggle={toggleModal}>

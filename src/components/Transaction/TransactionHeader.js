@@ -6,8 +6,8 @@ import { theme } from "../../config";
 import TransactionForm from "./TransactionForm";
 import { StyledTd } from "../../styles/InstallmentStyles";
 
-function TransactionHeader(props){
-    const [modal, setModal] = useState(false);
+function TransactionHeader(props) {
+  const [modal, setModal] = useState(false);
 
   const toggleModal = e => {
     e.preventDefault();
@@ -19,7 +19,9 @@ function TransactionHeader(props){
       <div className="header">
         <h2>Transactions</h2>
 
-        <Button className="add-transaction" onClick={toggleModal}>New</Button>
+        <Button className="add-transaction" onClick={toggleModal}>
+          New
+        </Button>
       </div>
       <table>
         <thead>
@@ -28,9 +30,7 @@ function TransactionHeader(props){
             <StyledTd className="mode">Mode</StyledTd>
             <StyledTd className="datePaid">Date</StyledTd>
             <StyledTd className="officer">Officer</StyledTd>
-            <StyledTd className="actions-head">
-              Actions
-            </StyledTd>
+            <StyledTd className="actions-head">Actions</StyledTd>
           </tr>
         </thead>
       </table>
@@ -42,8 +42,10 @@ function TransactionHeader(props){
   );
 }
 
-export default connect(null, {})(TransactionHeader);
-
+export default connect(
+  null,
+  {}
+)(TransactionHeader);
 
 const HeaderContainer = styled.div`
   width: 100%;
@@ -64,16 +66,15 @@ const HeaderContainer = styled.div`
     }
 
     .add-transaction {
-
       &:hover {
-        background: ${theme.accent}
+        background: ${theme.accent};
       }
     }
   }
 
   table {
     /* 100% was leaving a super small sliver for some reason */
-    width: 100.1%;
+    width: 100%;
     background-color: rgb(60, 57, 75);
     color: ${theme.background_light};
   }

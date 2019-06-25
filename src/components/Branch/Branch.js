@@ -56,6 +56,7 @@ export default connect(null, { deleteBranch })(Branch);
 
 
 const Row = styled.tr`
+    width: 100%;
   i {
     transition: all 0.15s ease;
   }

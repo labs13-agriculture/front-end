@@ -1,71 +1,90 @@
-import React, { Component }  from "react";
+import React, { Component } from "react";
 import styled from "styled-components";
-import { ButtonDropdown, Button,DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
-import { Modal } from 'reactstrap';
+import {
+  ButtonDropdown,
+  Button,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem
+} from "reactstrap";
+import { Modal } from "reactstrap";
 import UserDetails from "./UserDetails";
-import { media} from '../../styles/searchStyles';
+import { media } from "../../styles/searchStyles";
 
+export default class UserStatsItem extends Component {
+  constructor(props) {
+    super(props);
+    this.toggle = this.toggle.bind(this);
+    this.state = {
+      dropdownOpen: false,
 
+      toggleUpdateModal: false
+    };
+  }
 
+  toggleUpdateModal = () =>
+    this.setState({ toggleUpdateModal: !this.state.toggleUpdateModal });
 
-export default class UserStatsItem extends Component{
-    constructor(props){
-        super(props);
-        this.toggle = this.toggle.bind(this);
-        this.state = {
-          dropdownOpen: false,
+  toggle() {
+    this.setState({
+      dropdownOpen: !this.state.dropdownOpen
+      // toggleUpdateModal:false
+    });
+  }
 
-          toggleUpdateModal:false
-          
-        };
+  render() {
+    return (
+      // <Link to={`/dashboard/manage-users/${this.props.userid}`}>
 
-      }
-
-     
-    
-      toggleUpdateModal = () => this.setState({toggleUpdateModal:!this.state.toggleUpdateModal});
-
-      toggle() {
-        this.setState({
-          dropdownOpen: !this.state.dropdownOpen,
-          // toggleUpdateModal:false
-        });
-      }
-
-    
-
-    render(){
-        return(
-          // <Link to={`/dashboard/manage-users/${this.props.userid}`}>
-          
-          <StyledProductStatsMini className="user-search-item">
-            <h4 className="personnel username">{this.props.username.toUpperCase()}</h4>
-            <h4 className="personnel creator">{this.props.creator.toUpperCase()}</h4>
-            <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-              <Button id="caret" color="primary">Roles</Button>
-              <DropdownToggle caret color="primary" />
-              <DropdownMenu>
-              {this.props.userRoles.map(userRole=><DropdownItem>{userRole.role.name}</DropdownItem>)}
-                
-              </DropdownMenu>
-            </ButtonDropdown>
-            <button className="pencil-btn" id="invisible" onClick={this.toggleUpdateModal}  color="secondary"><i class="fas fa-pencil-alt"></i></button>
-            <Modal isOpen={this.state.toggleUpdateModal}>
-            
-              <UserDetails username={this.props.username} userRoles={this.props.userRoles} userid={this.props.userid}/>
-              <button onClick={this.toggleUpdateModal}  color="secondary">CANCEL</button>
-            </Modal>
-       
-            
-          </StyledProductStatsMini>
-      
-        )
-    }
+      <StyledProductStatsMini className="user-search-item">
+        <h4 className="personnel username">
+          {this.props.username.toUpperCase()}
+        </h4>
+        <h4 className="personnel creator">
+          {this.props.creator.toUpperCase()}
+        </h4>
+        <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+          <Button id="caret" color="primary">
+            Roles
+          </Button>
+          <DropdownToggle caret color="primary" />
+          <DropdownMenu>
+            {this.props.userRoles.map(userRole => (
+              <DropdownItem>{userRole.role.name}</DropdownItem>
+            ))}
+          </DropdownMenu>
+        </ButtonDropdown>
+        <button
+          className="pencil-btn"
+          id="invisible"
+          onClick={this.toggleUpdateModal}
+          color="secondary"
+        >
+          <i class="fas fa-pencil-alt" />
+        </button>
+        <Modal
+          isOpen={this.state.toggleUpdateModal}
+          toggle={this.toggleUpdateModal}
+        >
+          <UserDetails
+            username={this.props.username}
+            userRoles={this.props.userRoles}
+            userid={this.props.userid}
+          />
+          <Button
+            style={{ width: "100px", marginBottom: "1%" }}
+            onClick={this.toggleUpdateModal}
+            color="warning"
+          >
+            CANCEL
+          </Button>
+        </Modal>
+      </StyledProductStatsMini>
+    );
+  }
 }
 
-
 //begin styling
-
 
 const StyledProductStatsMini = styled.div`
   height:55px;
@@ -88,7 +107,7 @@ const StyledProductStatsMini = styled.div`
   transition: all .15s ease;
 
   &:hover{
-    ${'' /* background:lightgray; */}
+    ${"" /* background:lightgray; */}
     cursor: pointer;
     background:rgb(65, 62, 81);
 
@@ -140,4 +159,4 @@ const StyledProductStatsMini = styled.div`
   
   
 
-`
+`;

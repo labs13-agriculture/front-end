@@ -66,7 +66,7 @@ function ClientDemographics(props) {
           Lead: {client.lead ? "True" : "False"}
         </h1>
         <div className="actions">
-          <i class="fas fa-edit edit" onClick={toggleModal} />
+          <i className="fas fa-edit edit" onClick={toggleModal} />
           <i className="fas fa-trash delete" onClick={deleteClient} />
         </div>
       </div>

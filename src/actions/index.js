@@ -41,7 +41,11 @@ export {
   UPDATE_TRANSACTION_START,
   UPDATE_TRANSACTION_SUCCESS,
   UPDATE_TRANSACTION_FAILURE,
-  updateClientTransaction
+  updateClientTransaction,
+  ADD_TRANSACTION_START,
+  ADD_TRANSACTION_SUCCESS,
+  ADD_TRANSACTION_FAILURE,
+  addNewTransaction
 } from "./clientTransactions";
 
 export {
@@ -60,13 +64,6 @@ export {
   updateInstallmentItem,
   deleteInstallment
 } from "./dataInstallmentCard";
-
-export {
-  ADD_TRANSACTION_START,
-  ADD_TRANSACTION_SUCCESS,
-  ADD_TRANSACTION_FAILURE,
-  addNewTransaction
-} from "./clientTransactions";
 
 export {
   GETTING_INVENTORY,

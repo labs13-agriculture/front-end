@@ -8,12 +8,16 @@ import {
   UPDATE_TRANSACTION_START,
   UPDATE_TRANSACTION_SUCCESS,
   UPDATE_TRANSACTION_FAILURE,
-  
-
+  ADD_TRANSACTION_START,
+  ADD_TRANSACTION_SUCCESS,
+  ADD_TRANSACTION_FAILURE
 } from "../actions";
 
 const initialState = {
-    transactionData:[],
+  transactionData:[],
+  addTransactionStart: false,
+  addTransactionSuccess: false,
+  addTransactionFailure: false,
   getTransactionStart: false,
   getTransactionSuccess: false,
   getTransactionFailure: false,
@@ -28,6 +32,30 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case ADD_TRANSACTION_START:
+      return{
+        ...state,
+        error: "",
+        addTransactionStart: true,
+        addTransactionFailure: false,
+        addTransactionSuccess: false
+      }
+    case ADD_TRANSACTION_SUCCESS:
+        return{
+          ...state,
+          addTransactionFailure: false,
+          addTransactionStart: false,
+          addTransactionSuccess: true,
+          transactionData: action.payload
+        }
+    case ADD_TRANSACTION_FAILURE:
+        return{
+          ...state,
+          addTransactionFailure: true,
+          addTransactionStart: false,
+          addTransactionSuccess: false,
+          error: action.payload
+        }
     case GET_TRANSACTION_START:
       return {
         ...state,

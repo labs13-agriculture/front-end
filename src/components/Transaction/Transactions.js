@@ -62,6 +62,12 @@ const StyledTable = styled.table`
   font-family: arial, sans-serif;
   border-collapse: collapse;
   width: 100%;
+
+  tr {
+    &:nth-of-type(even) {
+      background-color: lightgrey;
+    }
+  }
 `;
 
 const TransactionContainer = styled.div`

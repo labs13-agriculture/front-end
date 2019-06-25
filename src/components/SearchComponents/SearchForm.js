@@ -7,7 +7,8 @@ class SearchForm extends Component {
     this.state = {
       name: "",
       location: "",
-      includeLeads: false
+      includeLeads: false,
+      text: "FIND ALL"
     };
   }
 
@@ -73,7 +74,15 @@ class SearchForm extends Component {
         >
           SEARCHING {this.state.includeLeads ? "LEADS" : "CLIENTS"}
         </button>
-        <input className="submitButton" value="SUBMIT" type="submit" />
+        <input
+          className="submitButton"
+          value={
+            this.state.name === "" && this.state.location === ""
+              ? "VIEW ALL"
+              : "SEARCH"
+          }
+          type="submit"
+        />
       </StyledForm>
     );
   }

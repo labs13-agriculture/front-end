@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { Input, Label, Form } from "reactstrap";
+import { Input, Label, Form, FormGroup, Button } from "reactstrap";
 import { connect } from "react-redux";
 
 import { theme } from "../../config";
@@ -73,8 +73,11 @@ class NewOrganizationForm extends Component {
   render() {
     return (
       <ModalDiv>
-        <h2>Add an Organization</h2>
-        <Form onSubmit={e => this.formSubmit(e)}>
+        <h2>Edit Organization</h2>
+        <Form
+          style={{ display: "flex", flexDirection: "column" }}
+          onSubmit={e => this.formSubmit(e)}
+        >
           <Label>
             Name:
             <Input
@@ -98,7 +101,7 @@ class NewOrganizationForm extends Component {
           )}
           <Label>
             Headquarters:
-            <input
+            <Input
               onChange={e => this.handleChanges(e)}
               type="text"
               name="headquarters"
@@ -112,6 +115,15 @@ class NewOrganizationForm extends Component {
               <option value={false}>Active</option>
               <option value={true}>Lead</option>
             </select>
+            <FormGroup>
+              <Button
+                style={{ width: "100px", marginTop: "1%" }}
+                onClick={this.props.toggleModal}
+                color="warning"
+              >
+                Cancel
+              </Button>
+            </FormGroup>
           </Label>
           <input type="submit" />
         </Form>

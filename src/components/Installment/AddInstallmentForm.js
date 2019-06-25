@@ -76,10 +76,20 @@ function AddInstallmentForm(props) {
           value={installment.officer}
         />
       </FormGroup>
-      <Button onClick={submitHandler}>Add</Button>
-      <Button color="warning" onClick={props.toggleModal}>
-        Cancel
-      </Button>
+      <FormGroup
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          width: "100px"
+        }}
+      >
+        <Button style={{ marginBottom: "2%" }} onClick={submitHandler}>
+          Add
+        </Button>
+        <Button color="warning" onClick={props.toggleModal}>
+          Cancel
+        </Button>
+      </FormGroup>
     </Form>
   );
 }

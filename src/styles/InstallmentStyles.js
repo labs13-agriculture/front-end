@@ -27,6 +27,14 @@ export const StyledTd = styled.td`
     width: 5%;
   }
 
+  &.actionsi {
+    display: flex;
+    flex-direction: row;
+    padding: 3% !important;
+    align-items: center;
+    justify-content: center;
+  }
+
   &.actions-head {
     width: 10%;
   }

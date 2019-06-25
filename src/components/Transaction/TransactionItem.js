@@ -27,10 +27,10 @@ export class TransactionItem extends Component {
           {this.props.item.date.split("T")[0]}
         </StyledTd>
         <StyledTd className="officer">{this.props.item.personnel}</StyledTd>
-        <StyledTd className="actions">
+        <StyledTd className="actionsi">
           <i onClick={this.toggleUpdateModal} className="fas fa-edit edit" />
         </StyledTd>
-        <StyledTd className="actions">
+        <StyledTd className="actionsi">
           <i
             onClick={this.props.deleteClientTransaction}
             className="fas fa-trash delete"

@@ -237,22 +237,40 @@ class TransactionForm extends Component {
             </FormGroup>
           </div>
         ))}
-        <FormGroup style={{ padding: "1% 0" }}>
-          <Button type="button" onClick={this.addItem}>
+        <FormGroup
+          style={{
+            padding: "1% 0",
+            display: "flex",
+            flexDirection: "column",
+            margin: "0"
+          }}
+        >
+          <Button
+            style={{ width: "100px", marginBottom: "1%" }}
+            type="button"
+            onClick={this.addItem}
+          >
             Add another item
           </Button>
-          <FormGroup style={{ padding: "1% 0" }}>
-            <Button color="danger" type="button" onClick={this.removeItem}>
-              Remove item
-            </Button>
-            <FormGroup style={{ padding: "1% 0" }}>
-              <Button color="warning" onClick={this.props.toggleModal}>
-                Cancel
-              </Button>
-            </FormGroup>
-          </FormGroup>
-          <Input type="submit" />
+
+          <Button
+            style={{ width: "100px", marginBottom: "1%" }}
+            color="danger"
+            type="button"
+            onClick={this.removeItem}
+          >
+            Remove item
+          </Button>
+
+          <Button
+            style={{ width: "100px" }}
+            color="warning"
+            onClick={this.props.toggleModal}
+          >
+            Cancel
+          </Button>
         </FormGroup>
+        <Input type="submit" />
       </Form>
     );
   }

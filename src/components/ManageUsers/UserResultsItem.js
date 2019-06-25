@@ -73,7 +73,7 @@ const StyledProductStatsMini = styled.div`
   display:flex;
   justify-content:space-between;
   padding: 5px 20px 5px;
-  align-items:center;
+  align-items:baseline;
   background:white;
   margin: 10px 0px 0px 0px;
   background: rgba(60, 57, 75, 0.47);
@@ -89,11 +89,13 @@ const StyledProductStatsMini = styled.div`
 
   &:hover{
     ${'' /* background:lightgray; */}
-    cursor: pointer;
+    
     background:rgb(65, 62, 81);
 
     .pencil-btn{
+      
     background-color: Transparent;
+    border-radius:50%;
     border:none;
     visibility:visible;
     z-index:2;}

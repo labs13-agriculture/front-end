@@ -150,8 +150,9 @@ const StyledSearchBar = styled.div`
     color: white;
     font-family: "Josefin Sans", sans-serif;
     border: 2px solid rgb(126, 121, 147);
-  }
-  &:hover {
+    &:hover {
     background: rgba(128, 123, 151, 0.08);
   }
+  }
+  
 `;

@@ -1,62 +1,61 @@
 import React, { Component } from "react";
-import BranchForm from './BranchForm';
+import BranchForm from "./BranchForm";
 import { StyledTd } from "../../styles/InstallmentStyles";
 import { theme } from "../../config";
 import styled from "styled-components";
 import { Modal } from "reactstrap";
-import { deleteBranch } from '../../actions';
-import { connect } from 'react-redux';
+import { deleteBranch } from "../../actions";
+import { connect } from "react-redux";
 
-class Branch extends Component{
-    constructor(props){
-        super(props);
-        this.state={
-            toggleUpdate: false
-        }
-    }
+class Branch extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      toggleUpdate: false
+    };
+  }
 
-    toggleUpdateModal = () =>{
-        this.setState({
-            toggleUpdate: !this.state.toggleUpdate
-        })
-    }
+  toggleUpdateModal = () => {
+    this.setState({
+      toggleUpdate: !this.state.toggleUpdate
+    });
+  };
 
-    render(){
-        return(
-            <Row>
-                <StyledTd>{this.props.branch.name}</StyledTd>
-                <StyledTd>{this.props.branch.phone}</StyledTd>
-                <StyledTd>{this.props.branch.email}</StyledTd>
-                <StyledTd>{this.props.branch.position}</StyledTd>
-                <StyledTd>{this.props.branch.address}</StyledTd>
-                <StyledTd>{this.props.branch.district}</StyledTd>
-                <StyledTd>{this.props.branch.region}</StyledTd>
-                <StyledTd>{this.props.branch.landmark}</StyledTd>
-                <StyledTd className="actions">
-                    <i onClick={this.toggleUpdateModal} className="fas fa-edit edit" />
-                </StyledTd>
-                <StyledTd className="actions">
-                    <i
-                        onClick={() => this.props.deleteBranch(this.props.branch.branch_id)}
-                        className="fas fa-trash delete"
-                    />
-                </StyledTd>
-                <Modal isOpen={this.state.toggleUpdate}>
-                    <BranchForm updating={true} branch={this.props.branch} />
-                        <button onClick={this.toggleUpdateModal} color="secondary">
-                            Cancel
-                        </button>
-                </Modal>
-            </Row>
-        )
-    }
+  render() {
+    return (
+      <Row>
+        <StyledTd>{this.props.branch.name}</StyledTd>
+        <StyledTd>{this.props.branch.phone}</StyledTd>
+        <StyledTd>{this.props.branch.email}</StyledTd>
+        <StyledTd>{this.props.branch.position}</StyledTd>
+        <StyledTd>{this.props.branch.address}</StyledTd>
+        <StyledTd>{this.props.branch.district}</StyledTd>
+        <StyledTd>{this.props.branch.region}</StyledTd>
+        <StyledTd>{this.props.branch.landmark}</StyledTd>
+        <StyledTd className="actions">
+          <i onClick={this.toggleUpdateModal} className="fas fa-edit edit" />
+        </StyledTd>
+        <StyledTd className="actions">
+          <i
+            onClick={() => this.props.deleteBranch(this.props.branch.branch_id)}
+            className="fas fa-trash delete"
+          />
+        </StyledTd>
+        <Modal isOpen={this.state.toggleUpdate} toggle={this.toggleUpdateModal}>
+          <BranchForm updating={true} branch={this.props.branch} />
+        </Modal>
+      </Row>
+    );
+  }
 }
 
-export default connect(null, { deleteBranch })(Branch);
-
+export default connect(
+  null,
+  { deleteBranch }
+)(Branch);
 
 const Row = styled.tr`
-    width: 100%;
+  width: 100%;
   i {
     transition: all 0.15s ease;
   }

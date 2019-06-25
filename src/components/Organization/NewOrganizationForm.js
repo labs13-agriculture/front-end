@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { Input, Label, Form } from "reactstrap";
+import { Input, Label, Form, FormGroup, Button } from "reactstrap";
 
 import { theme } from "../../config";
 
@@ -73,7 +73,10 @@ class NewOrganizationForm extends Component {
     return (
       <ModalDiv>
         <h2>Add an Organization</h2>
-        <Form onSubmit={e => this.formSubmit(e)}>
+        <Form
+          style={{ display: "flex", flexDirection: "column" }}
+          onSubmit={e => this.formSubmit(e)}
+        >
           <Label>
             Name:
             <Input
@@ -97,7 +100,7 @@ class NewOrganizationForm extends Component {
           )}
           <Label>
             Headquarters:
-            <input
+            <Input
               onChange={e => this.handleChanges(e)}
               type="text"
               name="headquarters"
@@ -112,6 +115,15 @@ class NewOrganizationForm extends Component {
               <option value={true}>Lead</option>
             </select>
           </Label>
+          <FormGroup>
+            <Button
+              style={{ width: "100px", marginBottom: "1%" }}
+              onClick={this.props.toggleModal}
+              color="warning"
+            >
+              Cancel
+            </Button>
+          </FormGroup>
           <input type="submit" />
         </Form>
         {this.state.blankField && <p>All fields are required</p>}
@@ -123,6 +135,8 @@ class NewOrganizationForm extends Component {
 export default NewOrganizationForm;
 
 const ModalDiv = styled.div`
+  display: flex;
+  flex-direction: column;
   background: white;
   padding: 20px;
   border-radius: 4px;

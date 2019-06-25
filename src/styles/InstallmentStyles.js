@@ -31,8 +31,12 @@ export const StyledTd = styled.td`
     display: flex;
     flex-direction: row;
     padding: 3% !important;
+    margin: 5px !important;
     align-items: center;
     justify-content: center;
+    &:nth-child(even) {
+      margin-right: 13% !important;
+    }
   }
 
   &.actions-head {

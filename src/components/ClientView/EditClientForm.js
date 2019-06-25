@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { Input, Label, Form } from "reactstrap";
+import { Input, Label, Form, FormGroup, Button } from "reactstrap";
 import { connect } from "react-redux";
 
 import { theme } from "../../config";
@@ -108,7 +108,7 @@ class NewClientForm extends Component {
   render() {
     return (
       <ModalDiv>
-        <h2>Add a Client</h2>
+        <h2>Edit Client</h2>
         <Form onSubmit={this.formSubmit}>
           <div className="form-section">
             <Label className="half">
@@ -276,6 +276,15 @@ class NewClientForm extends Component {
                 value={this.state.educationlevel}
               />
             </Label>
+            <FormGroup>
+              <Button
+                onClick={this.props.toggleModal}
+                color="warning"
+                style={{ marginTop: "2%" }}
+              >
+                Cancel
+              </Button>
+            </FormGroup>
           </div>
           {!this.state.validYear && <p>Please enter a 4 digit year</p>}
           <Input className="submit" type="submit" />

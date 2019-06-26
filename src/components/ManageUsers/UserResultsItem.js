@@ -116,8 +116,11 @@ const StyledProductStatsMini = styled.div`
     height:20px;
     text-overflow: ellipse;
     font-weight: 800;
+    margin:0xp;
 
-
+  }
+  h4.personnel{
+    margin:0px;
   }
 
   .personnel.creator{

@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import CardContainer from "../../styles/CardContainerStyles";
 import OrganizationCard from "./OrganizationCard";
 import { Spinner } from "reactstrap";
+import { getNextOrgPage } from '../../actions';
 
 class OrganizationCardContainer extends Component {
   render() {
@@ -33,6 +34,9 @@ class OrganizationCardContainer extends Component {
               lead={o.lead}
             />
           ))}
+          {/*Can't conditionally check for pageLinks.next without making sure there is a pageLinks */}
+        {(this.props.pageLinks && this.props.pageLinks.next) && <button onClick={() => this.props.getNextOrgPage(this.props.pageLinks.next)}>View More</button>}
+        {this.props.gettingNext && <Spinner className="spinner" />}
       </CardContainer>
     );
   }
@@ -46,7 +50,9 @@ const mapStateToProps = state => {
     searchStart: state.organizationData.searchStart,
     searchSuccess: state.organizationData.searchSuccess,
     searchFailure: state.organizationData.searchFailure,
+    pageLinks: state.organizationData.searchHeaders,
+    gettingNext: state.organizationData.gettingNextPage
   };
 };
 
-export default connect(mapStateToProps)(OrganizationCardContainer);
+export default connect(mapStateToProps, {getNextOrgPage})(OrganizationCardContainer);

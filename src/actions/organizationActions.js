@@ -168,6 +168,29 @@ export const updateOrganization = organization => dispatch => {
     });
 };
 
+export const GET_NEXT_ORGS_START = "GET_NEXT_ORGS_START";
+export const GET_NEXT_ORGS_SUCCESS = "GET_NEXT_ORGS_SUCCESS";
+export const GET_NEXT_ORGS_FAILURE = "GET_NEXT_ORGS_FAILURE";
+
+export const getNextOrgPage = nextLink => dispatch => {
+  dispatch({type: GET_NEXT_ORGS_START});
+  return axios
+    .get(nextLink, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${window.localStorage.getItem("token")}`
+      }
+    })
+    .then(res =>{
+      console.log(res)
+      dispatch({type: GET_NEXT_ORGS_SUCCESS, payload: res})
+    })
+    .catch(err =>{
+      console.log(err)
+      dispatch({type: GET_NEXT_ORGS_FAILURE, payload: err})
+    });
+}
+
 export const CLEAR_DELETED_ORGS = "CLEAR_DELETED_ORGS";
 
 export const clearDeletedOrgs = () => dispatch => {

@@ -17,6 +17,9 @@ import {
   ORGANIZATION_SEARCH_START,
   ORGANIZATION_SEARCH_SUCCESS,
   ORGANIZATION_SEARCH_FAILURE,
+  GET_NEXT_ORGS_START,
+  GET_NEXT_ORGS_FAILURE,
+  GET_NEXT_ORGS_SUCCESS,
   CLEAR_ADDED_ORGS,
   CLEAR_DELETED_ORGS
 } from "../actions";
@@ -37,7 +40,8 @@ const initialState = {
   organizationDeleted: false,
   organizationAdded: false,
   error: null,
-  searchHeaders: null
+  searchHeaders: null,
+  gettingNextPage: false
 };
 
 export default (state = initialState, action) => {
@@ -74,14 +78,16 @@ export default (state = initialState, action) => {
       return {
         ...state,
         searchStart: true,
-        error: null
+        error: null,
+        listData: []
       };
     case GET_ALL_ORGANIZATIONS_SUCCESS:
       return {
         ...state,
         searchStart: false,
         searchSuccess: true,
-        listData: action.payload.data
+        listData: action.payload.data,
+        searchHeaders: action.payload.headers
       };
     case GET_ALL_ORGANIZATIONS_FAILURE:
       return {
@@ -181,6 +187,24 @@ export default (state = initialState, action) => {
         updatingOrganization: false,
         error: action.payload
       };
+    case GET_NEXT_ORGS_START:
+      return{
+        ...state,
+        gettingNextPage: true
+      }
+    case GET_NEXT_ORGS_SUCCESS:
+      return{
+        ...state,
+        gettingNextPage: false,
+        listData: [...state.listData, ...action.payload.data],
+        searchHeaders: action.payload.headers
+      }
+    case GET_NEXT_ORGS_FAILURE:
+      return{
+        ...state,
+        gettingNextPage: false,
+        error: action.payload
+      }
     default:
       return state;
   }

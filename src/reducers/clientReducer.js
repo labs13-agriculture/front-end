@@ -59,6 +59,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         searchStart: true,
+        farmerSearchSuccess: false,
         error: "",
         farmerListData: [],
         previousSearch: action.payload,
@@ -90,6 +91,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         searchStart: true,
+        retailerSearchSuccess: false,
         error: "",
         retailerListData: [],
         previousSearch: action.payload

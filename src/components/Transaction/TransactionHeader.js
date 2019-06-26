@@ -10,7 +10,7 @@ function TransactionHeader(props) {
   const [modal, setModal] = useState(false);
 
   const toggleModal = e => {
-    e.preventDefault();
+    if (e) e.preventDefault();
     setModal(!modal);
   };
 

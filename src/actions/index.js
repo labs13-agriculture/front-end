@@ -45,7 +45,9 @@ export {
   ADD_TRANSACTION_START,
   ADD_TRANSACTION_SUCCESS,
   ADD_TRANSACTION_FAILURE,
-  addNewTransaction
+  addNewTransaction,
+  CLEAR_TRANSACTION_ALERT,
+  clearTransactionAlerts
 } from "./clientTransactions";
 
 export {

@@ -10,11 +10,12 @@ import {
   UPDATE_TRANSACTION_FAILURE,
   ADD_TRANSACTION_START,
   ADD_TRANSACTION_SUCCESS,
-  ADD_TRANSACTION_FAILURE
+  ADD_TRANSACTION_FAILURE,
+  CLEAR_TRANSACTION_ALERT
 } from "../actions";
 
 const initialState = {
-  transactionData:[],
+  transactionData: [],
   addTransactionStart: false,
   addTransactionSuccess: false,
   addTransactionFailure: false,
@@ -22,46 +23,45 @@ const initialState = {
   getTransactionSuccess: false,
   getTransactionFailure: false,
   error: "",
-  deleteTransactionStart:false,
-  deleteTransactionSuccess:false,
-  deleteTransactionFailure:false,
-  updateTransactionStart:false,
-  updateTransactionSuccess:false,
-  updateTransactionFailure:false
+  deleteTransactionStart: false,
+  deleteTransactionSuccess: false,
+  deleteTransactionFailure: false,
+  updateTransactionStart: false,
+  updateTransactionSuccess: false,
+  updateTransactionFailure: false
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
     case ADD_TRANSACTION_START:
-      return{
+      return {
         ...state,
         error: "",
         addTransactionStart: true,
         addTransactionFailure: false,
         addTransactionSuccess: false
-      }
+      };
     case ADD_TRANSACTION_SUCCESS:
-        return{
-          ...state,
-          addTransactionFailure: false,
-          addTransactionStart: false,
-          addTransactionSuccess: true,
-          transactionData: action.payload
-        }
+      return {
+        ...state,
+        addTransactionFailure: false,
+        addTransactionStart: false,
+        addTransactionSuccess: true,
+        transactionData: action.payload
+      };
     case ADD_TRANSACTION_FAILURE:
-        return{
-          ...state,
-          addTransactionFailure: true,
-          addTransactionStart: false,
-          addTransactionSuccess: false,
-          error: action.payload
-        }
+      return {
+        ...state,
+        addTransactionFailure: true,
+        addTransactionStart: false,
+        addTransactionSuccess: false,
+        error: action.payload
+      };
     case GET_TRANSACTION_START:
       return {
         ...state,
         getTransactionStart: true,
-        transactionData:[]
-
+        transactionData: []
       };
     case GET_TRANSACTION_SUCCESS:
       return {
@@ -75,69 +75,74 @@ export default (state = initialState, action) => {
     case GET_TRANSACTION_FAILURE:
       return {
         ...state,
-        transactionData:null,
+        transactionData: null,
         getTransactionStart: false,
         getTransactionFailure: true,
         getTransactionSuccess: false,
         error: action.payload
       };
 
-      case DELETE_TRANSACTION_START:
+    case DELETE_TRANSACTION_START:
       return {
         ...state,
         deleteTransactionStart: true,
-        deleteTransactionSuccess:false,
-        deleteTransactionFailure:false
-
+        deleteTransactionSuccess: false,
+        deleteTransactionFailure: false
       };
 
-      case DELETE_TRANSACTION_SUCCESS:
+    case DELETE_TRANSACTION_SUCCESS:
       return {
         ...state,
         deleteTransactionStart: false,
-        deleteTransactionSuccess:true,
-        deleteTransactionFailure:false,
-        transactionData:action.payload
-
+        deleteTransactionSuccess: true,
+        deleteTransactionFailure: false,
+        transactionData: action.payload
       };
 
-      case DELETE_TRANSACTION_FAILURE:
+    case DELETE_TRANSACTION_FAILURE:
       return {
         ...state,
         deleteTransactionStart: false,
-        deleteTransactionSuccess:false,
-        deleteTransactionFailure:true,
-        error:action.payload
-
+        deleteTransactionSuccess: false,
+        deleteTransactionFailure: true,
+        error: action.payload
       };
 
-      case UPDATE_TRANSACTION_START:
+    case UPDATE_TRANSACTION_START:
       return {
         ...state,
         updateTransactionStart: true,
-        updateTransactionSuccess:false,
-        updateTransactionFailure:false
-
+        updateTransactionSuccess: false,
+        updateTransactionFailure: false
       };
 
-      case UPDATE_TRANSACTION_SUCCESS:
+    case UPDATE_TRANSACTION_SUCCESS:
       return {
         ...state,
         updateTransactionStart: false,
-        updateTransactionSuccess:true,
-        updateTransactionFailure:false,
-        transactionData:action.payload
-
+        updateTransactionSuccess: true,
+        updateTransactionFailure: false,
+        transactionData: action.payload
       };
 
-      case UPDATE_TRANSACTION_FAILURE:
+    case UPDATE_TRANSACTION_FAILURE:
       return {
         ...state,
         updateTransactionStart: false,
-        updateTransactionSuccess:false,
-        updateTransactionFailure:true,
-        error:action.payload
+        updateTransactionSuccess: false,
+        updateTransactionFailure: true,
+        error: action.payload
+      };
 
+    case CLEAR_TRANSACTION_ALERT:
+      return {
+        ...state,
+        addTransactionSuccess: false,
+        addTransactionFailure: false,
+        deleteTransactionSuccess: false,
+        deleteTransactionFailure: false,
+        updateTransactionSuccess: false,
+        updateTransactionFailure: false
       };
 
     default:

@@ -16,7 +16,12 @@ class TransactionItem extends Component {
   }
 
   deleteTransaction = () => {
-    this.props.deleteClientTransaction(this.props.item.id);
+    let d = window.confirm(
+      "Are you sure you want to PERMANENTLY DELETE this transaction?"
+    );
+    if (d) {
+      this.props.deleteClientTransaction(this.props.item.id);
+    }
   };
 
   toggleUpdateModal = () => this.setState({ ModalOpen: !this.state.ModalOpen });

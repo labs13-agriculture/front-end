@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
-import { Button, Modal } from "reactstrap";
+import { Button, Modal, Alert } from "reactstrap";
 import AddInstallmentForm from "./AddInstallmentForm";
 import { theme } from "../../config";
 import { StyledTd } from "../../styles/InstallmentStyles";
+import { clearInstallmentAlerts } from "../../actions";
 
 function InstallmentHeader(props) {
   const [modal, setModal] = useState(false);
@@ -12,6 +13,10 @@ function InstallmentHeader(props) {
   const toggleModal = e => {
     e.preventDefault();
     setModal(!modal);
+  };
+
+  const onDismiss = () => {
+    props.clearInstallmentAlerts();
   };
 
   return (
@@ -34,6 +39,54 @@ function InstallmentHeader(props) {
           </tr>
         </thead>
       </table>
+      <Alert
+        style={{ marginBottom: "0" }}
+        color="success"
+        isOpen={props.addSuccess}
+        toggle={onDismiss}
+      >
+        Add Success
+      </Alert>
+      <Alert
+        style={{ marginBottom: "0" }}
+        color="success"
+        isOpen={props.updateSuccess}
+        toggle={onDismiss}
+      >
+        Update Success
+      </Alert>
+      <Alert
+        style={{ marginBottom: "0" }}
+        color="success"
+        isOpen={props.deleteSuccess}
+        toggle={onDismiss}
+      >
+        Delete Success
+      </Alert>
+      <Alert
+        style={{ marginBottom: "0" }}
+        color="danger"
+        isOpen={props.addFailure}
+        toggle={onDismiss}
+      >
+        Failed To Add
+      </Alert>
+      <Alert
+        style={{ marginBottom: "0" }}
+        color="danger"
+        isOpen={props.updateFailure}
+        toggle={onDismiss}
+      >
+        Failed To Update
+      </Alert>
+      <Alert
+        style={{ marginBottom: "0" }}
+        color="danger"
+        isOpen={props.deleteFailure}
+        toggle={onDismiss}
+      >
+        Failed To Delete
+      </Alert>
 
       <Modal isOpen={modal} toggle={toggleModal}>
         <AddInstallmentForm toggleModal={toggleModal} />
@@ -43,9 +96,17 @@ function InstallmentHeader(props) {
 }
 
 export default connect(
-  null,
+  state => ({
+    updateSuccess: state.installments.updateSuccess,
+    updateFailure: state.installments.updateFailure,
+    addSuccess: state.installments.addSuccess,
+    addFailure: state.installments.addFailure,
+    deleteSuccess: state.installments.deleteSuccess,
+    deleteFailure: state.installments.deleteFailure
+  }),
   {
     // Actions
+    clearInstallmentAlerts
   }
 )(InstallmentHeader);
 

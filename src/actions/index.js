@@ -52,17 +52,26 @@ export {
   DATA_INSTALLMENT_CARD_START,
   DATA_INSTALLMENT_CARD_SUCCESS,
   DATA_INSTALLMENT_CARD_FAILURE,
-  DATA_INSTALLMENT_CARD_ADD,
+  ADD_INSTALLMENT,
+  ADD_INSTALLMENT_SUCCESS,
+  ADD_INSTALLMENT_FAILURE,
+  CLEAR_INSTALLMENT_ADD,
   UPDATE_INSTALLMENT,
   UPDATE_INSTALLMENT_SUCCESS,
   UPDATE_INSTALLMENT_FAILURE,
+  CLEAR_INSTALLMENT_UPDATE,
   DELETE_INSTALLMENT,
   DELETE_INSTALLMENT_SUCCESS,
   DELETE_INSTALLMENT_FAILURE,
+  CLEAR_INSTALLMENT_DELETE,
   getInstallmentData,
   addInstallment,
   updateInstallmentItem,
-  deleteInstallment
+  deleteInstallment,
+  clearInstallmentUpdate,
+  clearInstallmentAdd,
+  clearInstallmentDelete,
+  clearInstallmentAlerts
 } from "./dataInstallmentCard";
 
 export {

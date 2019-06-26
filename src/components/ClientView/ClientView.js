@@ -40,8 +40,6 @@ class ClientView extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log("Updating state");
-  console.log(state);
   return {
     data: state.clientData.clientDemoData,
     error: state.clientData.error,

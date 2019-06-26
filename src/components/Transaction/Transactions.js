@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { TransactionItem } from "./TransactionItem";
+import TransactionItem from "./TransactionItem";
 import { connect } from "react-redux";
 import { getClientTransaction, deleteClientTransaction } from "../../actions";
 import TransactionHeader from "./TransactionHeader";
@@ -28,7 +28,6 @@ class ViewTransactions extends Component {
             {this.props.transactionDataSuccess &&
               this.props.transactionData.map(t => (
                 <TransactionItem
-                  deleteClientTransaction={this.props.deleteClientTransaction}
                   getClientTransaction={this.props.getClientTransaction}
                   clientId={this.props.id}
                   item={t}

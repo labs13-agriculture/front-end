@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { Input, Label, Form } from "reactstrap";
+import { Input, Label, Form, FormGroup, Button } from "reactstrap";
 
 import { theme } from "../../config";
 
@@ -318,6 +318,15 @@ class NewClientForm extends Component {
                 value={this.state.education}
               />
             </Label>
+            <FormGroup>
+              <Button
+                style={{ marginTop: "2%" }}
+                onClick={this.props.toggleModal}
+                color="warning"
+              >
+                Cancel
+              </Button>
+            </FormGroup>
           </div>
           {!this.state.validYear && <p>Please enter a 4 digit year</p>}
           <Input className="submit" type="submit" />

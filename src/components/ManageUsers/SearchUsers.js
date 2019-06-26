@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { userSearchResults } from "../../actions";
 import styled from "styled-components";
 import AddUser from "./AddUser";
-import { Modal } from "reactstrap";
+import { Modal, Button, FormGroup } from "reactstrap";
 import { media } from "../../styles/searchStyles";
 
 class SearchUsers extends Component {
@@ -68,9 +68,15 @@ class SearchUsers extends Component {
               userid={this.props.userid}
               toggleModal={this.toggleAddModal}
             />
-            <button onClick={this.toggleAddModal} color="secondary">
-              Cancel
-            </button>
+            <FormGroup>
+              <Button
+                style={{ width: "100px", marginTop: "1%" }}
+                color="warning"
+                onClick={this.toggleAddModal}
+              >
+                Cancel
+              </Button>
+            </FormGroup>
           </Modal>
         </StyledSearchBar>
         <UserResultsList

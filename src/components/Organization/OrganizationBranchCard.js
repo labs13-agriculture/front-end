@@ -36,7 +36,14 @@ class OrganizationBranchCard extends Component {
           <StyledContactContainer>
             
             <div className="gen-head-container">
+                <div className="title-description">
+                    
+                    <span className="branch-info location">{this.props.branch.district}</span>
+                </div>
                 <div className="header-detail">
+                    <div className="circle">
+                        <div className="first-name">{this.props.branch.name[0]}</div>
+                    </div>
                     <h3>{this.props.branch.name}</h3>
                     <div className="edit-options">
                         <i onClick={this.toggleUpdateModal} className="fas fa-edit edit" />
@@ -53,8 +60,8 @@ class OrganizationBranchCard extends Component {
                             </div>
                             
                             <div className="gen-style-container">
-                                <h3 className="info-container-heading">District</h3>
-                                <h3 className="branch-info location">{this.props.branch.district}</h3>
+                                
+                                
                                 <h3 className="info-container-heading">Landmark</h3>
                                 <h3>{this.props.branch.landmark}</h3>
                             </div>
@@ -105,7 +112,7 @@ const StyledGlobalClientCard = styled.div`
   border-radius: 3px;
   ${"" /* box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3); */}
   background:rgb(60,57,75);
-  width: 325px;
+  width: 260px;
   color: white;
   ${"" /* &:hover {
     cursor: pointer;
@@ -120,16 +127,19 @@ const StyledGlobalClientCard = styled.div`
 
         background: #40e0d000;
 
-        padding: 20px 20px 5px 20px;
+        padding: 20px 30px 18px 30px;
         width:100%;
         border-bottom:1px solid #ffffff26;
     }
+
+   
 
     .header-detail{
         display: flex;
         justify-content: space-evenly;
         flex-direction:column;
         align-items:center;
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
         .edit-options{
             width:100%;
             display:flex;
@@ -162,8 +172,16 @@ const StyledGlobalClientCard = styled.div`
   .contact-detail{
       width:100%;
   }
-  .branch-info{
-    
+  .title-description{
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+
+    h3{
+        
+        border-radius:20px;
+        
+    }
   }
 
   .info-container-heading{
@@ -171,6 +189,41 @@ const StyledGlobalClientCard = styled.div`
       color:gray;
   }
 
+  .circle {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    color: #40e0d0;
+    margin: 15px;
+    text-align: center;
+    background: rgb(35,33,43);
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    
+    justify-content: center;
+    
+    align-items: center;
+    position: relative;
+    text-align: center;
+    background: rgb(35,33,43);
+    .first-name {
+        height: 60px;
+        width: 20px;
+       
+        justify-content: center;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        font-size: 3rem;
+        color: #40e0d0;
+        position: absolute;
+        align-items: center;
+        position: absolute;
+        top: 2px;
+    }
   
 
 `;

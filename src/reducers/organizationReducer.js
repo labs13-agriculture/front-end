@@ -32,12 +32,12 @@ const initialState = {
   addFailure: false,
   deleteStart: false,
   gettingOrganization: false,
-  gettingAllOrganizations: false,
   updatingOrganization: false,
   deletingOrganization: false,
   organizationDeleted: false,
   organizationAdded: false,
-  error: null
+  error: null,
+  searchHeaders: null
 };
 
 export default (state = initialState, action) => {
@@ -73,21 +73,22 @@ export default (state = initialState, action) => {
     case GET_ALL_ORGANIZATIONS:
       return {
         ...state,
-        gettingAllOrganizations: true,
+        searchStart: true,
         error: null
       };
     case GET_ALL_ORGANIZATIONS_SUCCESS:
       return {
         ...state,
-        gettingAllOrganizations: false,
+        searchStart: false,
         searchSuccess: true,
         listData: action.payload.data
       };
     case GET_ALL_ORGANIZATIONS_FAILURE:
       return {
         ...state,
-        gettingAllOrganizations: false,
-        error: action.payload
+        searchStart: false,
+        error: action.payload,
+
       };
     case ORGANIZATION_SEARCH_START:
       return {
@@ -105,7 +106,8 @@ export default (state = initialState, action) => {
         searchSuccess: true,
         searchFailure: false,
         error: "",
-        listData: action.payload.data
+        listData: action.payload.data,
+        searchHeaders: action.payload.headers
       };
     case ORGANIZATION_SEARCH_FAILURE:
       return {

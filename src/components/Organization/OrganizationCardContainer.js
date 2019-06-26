@@ -2,12 +2,13 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import CardContainer from "../../styles/CardContainerStyles";
 import OrganizationCard from "./OrganizationCard";
+import { Spinner } from "reactstrap";
 
 class OrganizationCardContainer extends Component {
   render() {
     return (
       <CardContainer>
-        {this.props.searchStart && <h2>Loading...</h2>}
+        {this.props.searchStart && <Spinner className="spinner" />}
         {this.props.searchSuccess && this.props.data.length === 0 ? (
           <p>No Organizations found</p>
         ) : null}
@@ -45,7 +46,6 @@ const mapStateToProps = state => {
     searchStart: state.organizationData.searchStart,
     searchSuccess: state.organizationData.searchSuccess,
     searchFailure: state.organizationData.searchFailure,
-    gettingAllOrganizations: state.organizationData.gettingAllOrganizations
   };
 };
 

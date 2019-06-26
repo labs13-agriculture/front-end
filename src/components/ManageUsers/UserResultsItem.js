@@ -108,10 +108,21 @@ const StyledProductStatsMini = styled.div`
   font-weight: 800;
   transition: all 0.15s ease;
 
-  &:hover {
-    ${"" /* background:lightgray; */}
-    cursor: pointer;
-    background: rgb(65, 62, 81);
+  &:hover{
+    ${'' /* background:lightgray; */}
+    
+    background:rgb(65, 62, 81);
+
+    .pencil-btn{
+      
+    background-color: Transparent;
+    border-radius:50%;
+    border:none;
+    visibility:visible;
+    z-index:2;}
+    
+
+      
 
     .pencil-btn {
       background-color: Transparent;
@@ -131,6 +142,11 @@ const StyledProductStatsMini = styled.div`
     height: 20px;
     text-overflow: ellipse;
     font-weight: 800;
+    margin:0xp;
+
+  }
+  h4.personnel{
+    margin:0px;
   }
 
   .personnel.creator {

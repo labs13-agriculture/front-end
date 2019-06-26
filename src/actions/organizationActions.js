@@ -1,4 +1,4 @@
-import axios from "axios";
+  import axios from "axios";
 import { BASE_URL } from "../config";
 
 export const ADD_ORGANIZATION_START = "ADD_ORGANIZATION_START";
@@ -11,7 +11,7 @@ export const addOrganization = newOrganization => dispatch => {
 
   return axios
     .post(
-      "https://tieme-ndo-backend.herokuapp.com/organizations/new-organization",
+      `${BASE_URL}/organizations/new-organization`,
       newOrganization,
       {
         headers: {
@@ -41,7 +41,7 @@ export const searchOrganizations = query => dispatch => {
 
   const nameSearch = encodeURI(query.name);
   const locationSearch = encodeURI(query.location);
-  const urlString = `https://tieme-ndo-backend.herokuapp.com/organizations/search?name=${nameSearch}&location=${locationSearch}&lead=${
+  const urlString = `${BASE_URL}/organizations/search?name=${nameSearch}&location=${locationSearch}&lead=${
     query.leads
   }`;
   console.log(urlString);
@@ -72,7 +72,7 @@ export const getOrganizationById = orgId => dispatch => {
   dispatch({ type: GET_ORGANIZATION });
 
   return axios
-    .get(`https://tieme-ndo-backend.herokuapp.com/organizations/${orgId}`, {
+    .get(`${BASE_URL}/organizations/${orgId}`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${window.localStorage.getItem("token")}`
@@ -96,7 +96,7 @@ export const getAllOrganizations = () => dispatch => {
 
   return axios
     .get(
-      `https://tieme-ndo-backend.herokuapp.com/organizations/organizations-list`,
+      `${BASE_URL}/organizations/organizations-list`,
       {
         headers: {
           "Content-Type": "application/json",

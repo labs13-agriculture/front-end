@@ -45,7 +45,7 @@ const GN = styled.div`
     letter-spacing: 1px;
     opacity:.5;
 
-    transition: all 0.15s ease;
+    transition: all 0.55s ease;
 
     &:firstchild {
       margin-left: 0;
@@ -53,7 +53,8 @@ const GN = styled.div`
 
     &:hover {
       text-decoration: none;
-      color: #40e0d0;
+      color: white;
+      opacity:1;
     }
 
     &.active {

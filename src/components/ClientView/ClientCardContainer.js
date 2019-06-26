@@ -5,6 +5,7 @@ import CardContainer from "../../styles/CardContainerStyles";
 import { Spinner } from 'reactstrap';
 import { theme } from '../../config';
 import styled from 'styled-components';
+import ClientResultsBtn from "./ClientResultsBtn";
 
 class ClientCardContainer extends Component {
   render() {
@@ -17,10 +18,13 @@ class ClientCardContainer extends Component {
           {this.props.farmerData && this.props.farmerData.length === 0 ? (
             <p>No Clients found</p>
           ) : null}
-          {this.props.farmerData &&
-            this.props.farmerData.map(client => (
-              <ClientCard key={client.id} client={client} />
-            ))}
+          
+          {/* {this.props.farmerData && this.props.farmerData._embedded && 
+            <ClientResultsBtn resultsPageInfo={this.props.farmerData.page} resultsLinkInfo={this.props.farmerData._links}/>} */}
+
+          {this.props.farmerData && this.props.farmerData.map(client => (
+            <ClientCard key={client.id} client={client} />
+          ))}
         </CardContainer>
       );
     }
@@ -31,6 +35,7 @@ class ClientCardContainer extends Component {
           {this.props.retailerData && this.props.retailerData.length === 0 ? (
             <p>No Clients found</p>
           ) : null}
+          
           {this.props.retailerData &&
             this.props.retailerData.map(client => (
               <ClientCard key={client.id} client={client} />

@@ -6,6 +6,7 @@ import { Spinner } from "reactstrap";
 import BranchHeader from "../Branch/BranchHeader";
 import { getBranches } from "../../actions";
 import Branch from "../Branch/Branch";
+import OrganizationBranchCard from "./OrganizationBranchCard";
 // import { theme } from "../../config";
 // import { StyledTd } from "../../styles/InstallmentStyles";
 
@@ -18,7 +19,12 @@ class OrganizationBranch extends Component {
     return (
       <BranchContainer>
         <BranchHeader id={this.props.id} />
-        <StyledTable>
+        <div className="branch-info-container">
+        {this.props.data.length > 0 &&
+              this.props.data.map(branch => {
+                return <OrganizationBranchCard branch={branch} key={branch.branch_id} />})}
+        </div>
+        {/* <StyledTable>
           <tbody>
             {this.props.start && <div className="spindiv"><Spinner className="spinner" /></div>}
             {this.props.data.length > 0 &&
@@ -26,7 +32,7 @@ class OrganizationBranch extends Component {
                 return <Branch branch={branch} key={branch.branch_id} />;
               })}
           </tbody>
-        </StyledTable>
+        </StyledTable> */}
       </BranchContainer>
     );
   }
@@ -67,4 +73,10 @@ const StyledTable = styled.table`
 const BranchContainer = styled.div`
   width: 100%;
   border-radius: 3px;
+  .branch-info-container{
+    display:flex;
+    justify-content:flex-start;
+    flex-wrap:wrap;
+    background: rgb(35,33,43);
+  }
 `;

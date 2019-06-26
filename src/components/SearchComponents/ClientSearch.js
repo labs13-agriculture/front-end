@@ -116,7 +116,7 @@ const StyledHeader = styled.div`
   width: 100%;
   button {
     padding: 10px 40px;
-
+    opacity:.8;
     background: none;
 
     font-size: 1.5rem;
@@ -131,7 +131,10 @@ const StyledHeader = styled.div`
     border: 2px solid rgb(126, 121, 147);
 
     &:hover {
-      background: rgba(128, 123, 151, 0.08);
+      &:hover {
+    background: rgba(128, 123, 151, 0.08);
+  }
+     
     }
   }
 `;

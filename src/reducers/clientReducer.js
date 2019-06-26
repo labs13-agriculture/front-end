@@ -18,20 +18,29 @@ import {
   UPDATE_CLIENT_SUCCESS,
   UPDATE_CLIENT_FAILURE,
   CLEAR_DELETED,
-  CLEAR_ADDED
+  CLEAR_ADDED,
+  FARMER_PAGE_START,
+  FARMER_PAGE_SUCCESS,
+  FARMER_PAGE_FAILURE,
+  RETAILER_PAGE_START,
+  RETAILER_PAGE_SUCCESS,
+  RETAILER_PAGE_FAILURE,
 } from "../actions";
 
 const initialState = {
   deleteStart: false,
   addStart: false,
   searchStart: false,
-  listData: [],
+  farmerListData: [],
+  retailerListData: [],
   error: "",
   client: null,
   previousSearch: null,
   updatingFarmer: false,
   clientDeleted: false,
-  clientAdded: false
+  clientAdded: false,
+  farmerHeaders:[],
+  retailerHeaders:[]
 };
 
 export default (state = initialState, action) => {
@@ -52,21 +61,30 @@ export default (state = initialState, action) => {
         searchStart: true,
         error: "",
         farmerListData: [],
-        previousSearch: action.payload
+        previousSearch: action.payload,
+        farmerHeaders:[]
       };
     case FARMER_SEARCH_SUCCESS:
       return {
         ...state,
         farmerListData: action.payload,
         searchStart: false,
-        error: ""
+        farmerSearchSuccess: true,
+        error: "",
+        farmerHeaders:action.headers,
+        farmerPrevPage:("prev" in action.headers) ? action.headers.prev:false,
+        farmerNextPage:("next" in action.headers) ? action.headers.next:false
       };
     case FARMER_SEARCH_FAILURE:
       return {
         ...state,
         farmerListData: null,
+        farmerSearchSuccess: false,
         searchStart: false,
-        error: action.payload
+        error: action.payload,
+        farmerHeaders:null,
+        farmerPrevPage:null,
+        farmerNextPage:null,
       };
       case RETAILER_SEARCH_START:
       return {
@@ -80,15 +98,23 @@ export default (state = initialState, action) => {
       return {
         ...state,
         retailerListData: action.payload,
+        retailerHeaders:action.headers,
         searchStart: false,
-        error: ""
+        retailerSearchSuccess: true,
+        error: "",
+        retailerPrevPage:("prev" in action.headers) ? action.headers.prev:false,
+        retailerNextPage:("next" in action.headers) ? action.headers.next:false
       };
     case RETAILER_SEARCH_FAILURE:
       return {
         ...state,
         retailerListData: null,
         searchStart: false,
-        error: action.payload
+        retailerSearchSuccess: false,
+        error: action.payload,
+        retailerPrevPage:null,
+        retailerNextPage:null,
+        retailerHeaders:null,
       };
     case ADD_CLIENT_START:
       return {
@@ -173,6 +199,65 @@ export default (state = initialState, action) => {
         ...state,
         updatingFarmer: false,
         error: action.payload
+      };
+
+    case FARMER_PAGE_START:
+      return {
+        ...state,
+        fetchingFarmerPage:true
+      }
+
+    case FARMER_PAGE_SUCCESS:
+    return {
+      ...state,
+      fetchFarmerPageStart:false,
+      fetchFarmerPageSuccess:true,
+      farmerListData:action.payload,
+      farmerNextPage:action.headers.next,
+      farmerHeaders:action.headers,
+      farmerPrevPage:("prev" in action.headers) ? action.headers.prev:false
+      
+    }
+
+    case FARMER_PAGE_FAILURE:
+      return {
+        ...state,
+        fetchFarmerPageStart:false,
+        fetchFarmerPageSuccess:true,
+        farmerListData:null,
+        farmerNextPage:null,
+        farmerPrevPage:null,
+        error:action.payload,
+        farmerHeaders:null,
+      };
+
+      case RETAILER_PAGE_START:
+      return {
+        ...state,
+        fetchingRetailerPage:true
+      }
+
+    case RETAILER_PAGE_SUCCESS:
+    return {
+      ...state,
+      fetchRetailerPageStart:false,
+      fetchRetailerPageSuccess:true,
+      retailerListData:action.payload,
+      retailerNextPage:action.headers.next,
+      retailerHeaders:action.headers,
+      retailerPrevPage:("prev" in action.headers) ? action.headers.prev:false
+    }
+
+    case RETAILER_PAGE_FAILURE:
+      return {
+        ...state,
+        fetchRetailerPageStart:false,
+        fetchRetailerPageSuccess:true,
+        retailerListData:null,
+        retailerNextPage:null,
+        retailerPrevPage:null,
+        retailerHeaders:null,
+        error:action.payload
       };
     default:
       return state;

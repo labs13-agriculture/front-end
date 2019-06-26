@@ -5,6 +5,8 @@ import CardContainer from "../../styles/CardContainerStyles";
 import ClientResultsBtn from "./ClientResultsBtn";
 
 class ClientCardContainer extends Component {
+
+  
   render() {
     const {farmerData} = this.props;
     // return (
@@ -26,14 +28,15 @@ class ClientCardContainer extends Component {
       return (
         <CardContainer>
           {this.props.searchStart && <h2>Loading...</h2>}
-          {this.props.farmerData && this.props.farmerData.length === 0 ? (
+          {this.props.farmerData && this.props.farmerData.length === 0? (
             <p>No Clients found</p>
           ) : null}
           
-          {this.props.farmerData && this.props.farmerData._embedded && 
-            <ClientResultsBtn resultsPageInfo={this.props.farmerData.page} resultsLinkInfo={this.props.farmerData._links}/>}
+          {/* start pageable button
+          {this.props.farmerData && this.props.farmerData.length > 0 && 
+            <ClientResultsBtn searchType={this.props.type} resultsPageInfo={this.props.farmerPageData}/>} */}
 
-          {this.props.farmerData && this.props.farmerData._embedded && this.props.farmerData._embedded.clientList.map(client => (
+          {this.props.farmerData && this.props.farmerData.length > 0 && this.props.farmerData.map(client => (
             <ClientCard key={client.id} client={client} />
           ))}
         </CardContainer>
@@ -41,11 +44,15 @@ class ClientCardContainer extends Component {
     }
     else{
       return (
-        <CardContainer>
+        <CardContainer >
           {this.props.searchStart && <h2>Loading...</h2>}
           {this.props.retailerData && this.props.retailerData.length === 0 ? (
             <p>No Clients found</p>
           ) : null}
+
+           {/* start pageable button
+           {this.props.retailerData && this.props.retailerData.length > 0 && 
+            <ClientResultsBtn searchType={this.props.type} resultsPageInfo={this.props.retailerPageData}/>} */}
           
           {this.props.retailerData &&
             this.props.retailerData.map(client => (
@@ -66,7 +73,9 @@ const mapStateToProps = state => {
     error: state.clientData.error,
     searchStart: state.clientData.searchStart,
     searchSuccess: state.clientData.searchSuccess,
-    searchFailure: state.clientData.searchFailure
+    searchFailure: state.clientData.searchFailure,
+    farmerPageData:state.clientData.farmerHeaders,
+    retailerPageData:state.clientData.retailerHeaders
   };
 };
 

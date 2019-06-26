@@ -69,13 +69,15 @@ const HeaderContainer = styled.div`
   position: -webkit-sticky;
   position: sticky;
   top: 0;
+  z-index:5;
 
   .header {
     display: flex;
     justify-content: space-between;
     align-content: center;
     padding: 10px;
-    background-color: rgb(60, 57, 75);
+    background:rgb(35,33,43);
+    
     color: ${theme.background_light};
 
     h2 {

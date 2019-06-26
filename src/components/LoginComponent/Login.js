@@ -101,7 +101,7 @@ class Login extends Component {
       this.props
         .initiateLogin(this.state.credentials)
 
-        .then(() => this.props.history.push("/dashboard/statistics"))
+        .then(() => this.props.history.push("/search"))
         .catch(err => {
           console.log(err);
         });

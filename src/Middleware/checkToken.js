@@ -5,6 +5,7 @@ export const checkToken = store => next => action => {
     // This may need to change in the future depending on error details.
     if (action.payload.response.status === 401) {
       localStorage.removeItem(AUTH_TOKEN);
+      localStorage.removeItem("admin"); //just in case an admin is logged out and logs back in as a regular user
       store.dispatch({ type: "LOGGED_OUT" });
     }
   }

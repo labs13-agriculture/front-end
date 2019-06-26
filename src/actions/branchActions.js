@@ -78,6 +78,7 @@ export const DELETE_BRANCH_FAILURE = "DELETE_BRANCH_FAILURE";
 
 export const deleteBranch = (branchId) => dispatch =>{
     dispatch({type: DELETE_BRANCH_START});
+    console.log("BRANCH ID:", branchId);
 
     axios
         .delete(`${BASE_URL}/organizations/contact/${branchId}`, {

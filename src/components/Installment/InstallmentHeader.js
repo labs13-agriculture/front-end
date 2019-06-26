@@ -26,9 +26,9 @@ function InstallmentHeader(props) {
       <table>
         <thead>
           <tr>
-            <StyledTd className="amountPaid">Amount Paid</StyledTd>
+            <StyledTd className="amountPaid">Amount</StyledTd>
             <StyledTd className="mode">Mode</StyledTd>
-            <StyledTd className="datePaid">Date Paid</StyledTd>
+            <StyledTd className="datePaid">Date</StyledTd>
             <StyledTd className="officer">Officer</StyledTd>
             <StyledTd className="actions-head">Actions</StyledTd>
           </tr>

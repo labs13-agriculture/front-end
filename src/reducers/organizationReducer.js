@@ -81,7 +81,7 @@ export default (state = initialState, action) => {
         ...state,
         gettingAllOrganizations: false,
         searchSuccess: true,
-        listData: action.payload
+        listData: action.payload.data
       };
     case GET_ALL_ORGANIZATIONS_FAILURE:
       return {
@@ -105,7 +105,7 @@ export default (state = initialState, action) => {
         searchSuccess: true,
         searchFailure: false,
         error: "",
-        listData: action.payload
+        listData: action.payload.data
       };
     case ORGANIZATION_SEARCH_FAILURE:
       return {

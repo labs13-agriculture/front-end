@@ -54,8 +54,8 @@ export const searchOrganizations = query => dispatch => {
       }
     })
     .then(res => {
-      console.log(res);
-      dispatch({ type: ORGANIZATION_SEARCH_SUCCESS, payload: res.data });
+      console.log("ORGANIZATION SEARCH RES", res);
+      dispatch({ type: ORGANIZATION_SEARCH_SUCCESS, payload: res });
     })
     .catch(err => {
       console.log(err);
@@ -105,8 +105,8 @@ export const getAllOrganizations = () => dispatch => {
       }
     )
     .then(res => {
-      console.log("RESPONSE DATA", res.data);
-      dispatch({ type: GET_ALL_ORGANIZATIONS_SUCCESS, payload: res.data });
+      console.log("GET ALL ORGS", res);
+      dispatch({ type: GET_ALL_ORGANIZATIONS_SUCCESS, payload: res });
     })
     .catch(err => {
       console.log(err);

@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { theme } from '../config';
 const sizes = {
   desktop: 992,
   tablet: 768,
@@ -29,6 +30,14 @@ const CardContainer = styled.div`
       display: none;
     }
 
+    .spinner{
+      color: ${theme.accent};
+    width: 10rem;
+    height: 10rem;
+    margin: auto;
+    border: 1em solid ${theme.accent};
+    border-right-color: transparent;
+    }
 
   h3 {
     text-decoration: none;

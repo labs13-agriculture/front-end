@@ -87,7 +87,7 @@ const StyledGlobalClientCard = styled.div`
     width: 40px;
     border-radius: 50%;
     color: #40e0d0;
-    font-size: 2rem;
+    
     margin-right: 15px;
     text-align: center;
 
@@ -98,17 +98,21 @@ const StyledGlobalClientCard = styled.div`
     justify-content: center;
 
     align-items: center;
-
+    position:relative;
     text-align: center;
     background: rgb(35, 33, 43);
     .first-name {
-      width: 20px;
-      height: 20px;
-      display: flex;
-
+      height:40px;
+      width:20px;
       justify-content: center;
-
-      align-items: center;
+      display: flex;
+    font-size: 2rem;
+    /* font-weight: 800; */
+    color: #40e0d0;
+      position:absolute;
+    align-items: center;
+    position: absolute;
+    top: 1px;
     }
 
     .head-contact-container {

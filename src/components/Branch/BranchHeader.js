@@ -20,7 +20,7 @@ function BranchHeader(props){
     
             <Button className="add-branch" onClick={toggleModal}>New</Button>
           </div>
-          <table>
+          {/* {/* <table>
             <thead>
               <tr>
               <StyledTd className="name-head">
@@ -51,8 +51,8 @@ function BranchHeader(props){
                   Actions
                 </StyledTd>
               </tr>
-            </thead>
-          </table>
+            </thead> */}
+          {/* </table> */}
     
           <Modal isOpen={modal} toggle={toggleModal}>
             <BranchForm id={props.id} toggleModal={toggleModal} />

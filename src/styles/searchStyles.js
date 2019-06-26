@@ -120,13 +120,14 @@ const StyledForm = styled.form`
       height: 70px;
       width: 20%;
       padding: 0px;
-
+      opacity:.8;
       border-radius: 0px;
+      transition: all 0.55s ease;
 
       border: none;
       background:#40e0d0;
       &:hover{
-        opacity:.8;
+        opacity:1;
       }
 
       font-family: "Josefin Sans", sans-serif;
@@ -137,7 +138,7 @@ const StyledForm = styled.form`
       height: 70px;
       width: 20%;
       padding: 0px;
-
+      transition: all 0.55s ease;
       border-radius: 0px;
 
       border: none;

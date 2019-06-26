@@ -2,9 +2,23 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import ClientCard from "./ClientCard";
 import CardContainer from "../../styles/CardContainerStyles";
+import ClientResultsBtn from "./ClientResultsBtn";
 
 class ClientCardContainer extends Component {
   render() {
+    const {farmerData} = this.props;
+    // return (
+    //   <CardContainer>
+    //     {this.props.searchStart && <h2>Loading...</h2>}
+    //     {this.props.data && this.props.data.length === 0 ? (
+    //       <p>No Clients found</p>
+    //     ) : null} 
+    //     {(this.props.data._embedded && this.props.data._embedded.clientList.length > 0) &&
+    //      this.props.data._embedded.clientList.map(client => {
+    //         return (<ClientCard key={client.id} client={client}/>)})}
+          
+    //   </CardContainer>
+    // );
 
     //Had to do conditional render this way. 
     //MapStateToProps does not have accesss to this.props
@@ -15,10 +29,13 @@ class ClientCardContainer extends Component {
           {this.props.farmerData && this.props.farmerData.length === 0 ? (
             <p>No Clients found</p>
           ) : null}
-          {this.props.farmerData &&
-            this.props.farmerData.map(client => (
-              <ClientCard key={client.id} client={client} />
-            ))}
+          
+          {this.props.farmerData && this.props.farmerData._embedded && 
+            <ClientResultsBtn resultsPageInfo={this.props.farmerData.page} resultsLinkInfo={this.props.farmerData._links}/>}
+
+          {this.props.farmerData && this.props.farmerData._embedded && this.props.farmerData._embedded.clientList.map(client => (
+            <ClientCard key={client.id} client={client} />
+          ))}
         </CardContainer>
       );
     }
@@ -29,6 +46,7 @@ class ClientCardContainer extends Component {
           {this.props.retailerData && this.props.retailerData.length === 0 ? (
             <p>No Clients found</p>
           ) : null}
+          
           {this.props.retailerData &&
             this.props.retailerData.map(client => (
               <ClientCard key={client.id} client={client} />

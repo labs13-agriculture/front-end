@@ -6,25 +6,7 @@ import ClientResultsBtn from "./ClientResultsBtn";
 
 class ClientCardContainer extends Component {
   render() {
-<<<<<<< HEAD
-    const {farmerData} = this.props;
-    // return (
-    //   <CardContainer>
-    //     {this.props.searchStart && <h2>Loading...</h2>}
-    //     {this.props.data && this.props.data.length === 0 ? (
-    //       <p>No Clients found</p>
-    //     ) : null} 
-    //     {(this.props.data._embedded && this.props.data._embedded.clientList.length > 0) &&
-    //      this.props.data._embedded.clientList.map(client => {
-    //         return (<ClientCard key={client.id} client={client}/>)})}
-          
-    //   </CardContainer>
-    // );
-
-    //Had to do conditional render this way. 
-=======
     //Had to do conditional render this way.
->>>>>>> 3248f1fa93a6f89c5be724be67460e74e4ecce93
     //MapStateToProps does not have accesss to this.props
     if (this.props.type === "farmer") {
       return (
@@ -33,13 +15,19 @@ class ClientCardContainer extends Component {
           {this.props.farmerData && this.props.farmerData.length === 0 ? (
             <p>No Clients found</p>
           ) : null}
-          
-          {this.props.farmerData && this.props.farmerData._embedded && 
-            <ClientResultsBtn resultsPageInfo={this.props.farmerData.page} resultsLinkInfo={this.props.farmerData._links}/>}
 
-          {this.props.farmerData && this.props.farmerData._embedded && this.props.farmerData._embedded.clientList.map(client => (
-            <ClientCard key={client.id} client={client} />
-          ))}
+          {this.props.farmerData && this.props.farmerData._embedded && (
+            <ClientResultsBtn
+              resultsPageInfo={this.props.farmerData.page}
+              resultsLinkInfo={this.props.farmerData._links}
+            />
+          )}
+
+          {this.props.farmerData &&
+            this.props.farmerData._embedded &&
+            this.props.farmerData._embedded.clientList.map(client => (
+              <ClientCard key={client.id} client={client} />
+            ))}
         </CardContainer>
       );
     } else {
@@ -49,7 +37,7 @@ class ClientCardContainer extends Component {
           {this.props.retailerData && this.props.retailerData.length === 0 ? (
             <p>No Clients found</p>
           ) : null}
-          
+
           {this.props.retailerData &&
             this.props.retailerData.map(client => (
               <ClientCard key={client.id} client={client} />

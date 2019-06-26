@@ -4,31 +4,26 @@ import {pageClient} from "../../actions";
 import {connect} from "react-redux";
 
 class ClientResultsBtn extends Component{
-    constructor(props){
-        super(props);
-        this.state ={
-
-        }
-    }
-
-    
+   
 
     render(){
 
-        const {farmerNextPage,farmerPrevPage,retailerNextPage,retailerPrevPage} = this.props;
+        const {searchType,resultsPageInfo,farmerNextPage,farmerPrevPage,retailerNextPage,retailerPrevPage} = this.props;
         return(
             
             <StyledClientResultsBtn>
-                {/* do I need a previous button? */}
-                {parseInt(this.props.resultsPageInfo.number) !== 0 && 
+                {/* condition for: do I need a previous button? */}
+                {parseInt(resultsPageInfo.number) !== 0 && 
                     <button 
-                        onClick={()=>this.props.pageClient(this.props.searchType === 'farmer' ? farmerPrevPage:retailerPrevPage,this.props.searchType)} 
+                        onClick={()=>this.props.pageClient(searchType === 'farmer' ? farmerPrevPage:retailerPrevPage,searchType)} 
                         className="results-btn prev">
                     Previous</button>}
                 
-                <div className="results-description">{`Page ${parseInt(this.props.resultsPageInfo.number) +1} of ${this.props.resultsPageInfo.total_pages}`}</div>
-                {this.props.resultsPageInfo.total_pages > parseInt(this.props.resultsPageInfo.number) +1 &&
-                    <button onClick={()=>this.props.pageClient(this.props.searchType === 'farmer' ? farmerNextPage:retailerNextPage,this.props.searchType)} 
+                <div className="results pages">{`Page ${parseInt(resultsPageInfo.number) +1} of ${resultsPageInfo.total_pages}`}</div>
+                <div className="results total">{`${parseInt(resultsPageInfo.results)} Results`}</div>
+                {/* condition for: do I need a next button? */}
+                {resultsPageInfo.total_pages > parseInt(resultsPageInfo.number) +1 &&
+                    <button onClick={()=>this.props.pageClient(searchType === 'farmer' ? farmerNextPage:retailerNextPage,searchType)} 
                     className="results-btn next">
                     Next</button>
                 }

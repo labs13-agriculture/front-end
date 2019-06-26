@@ -32,9 +32,6 @@ class ClientCardContainer extends Component {
             <p>No Clients found</p>
           ) : null}
           
-          {/* start pageable button
-          {this.props.farmerData && this.props.farmerData.length > 0 && 
-            <ClientResultsBtn searchType={this.props.type} resultsPageInfo={this.props.farmerPageData}/>} */}
 
           {this.props.farmerData && this.props.farmerData.length > 0 && this.props.farmerData.map(client => (
             <ClientCard key={client.id} client={client} />
@@ -50,9 +47,6 @@ class ClientCardContainer extends Component {
             <p>No Clients found</p>
           ) : null}
 
-           {/* start pageable button
-           {this.props.retailerData && this.props.retailerData.length > 0 && 
-            <ClientResultsBtn searchType={this.props.type} resultsPageInfo={this.props.retailerPageData}/>} */}
           
           {this.props.retailerData &&
             this.props.retailerData.map(client => (

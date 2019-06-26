@@ -6,6 +6,7 @@ import ClientResultsBtn from "./ClientResultsBtn";
 
 class ClientCardContainer extends Component {
   render() {
+<<<<<<< HEAD
     const {farmerData} = this.props;
     // return (
     //   <CardContainer>
@@ -21,8 +22,11 @@ class ClientCardContainer extends Component {
     // );
 
     //Had to do conditional render this way. 
+=======
+    //Had to do conditional render this way.
+>>>>>>> 3248f1fa93a6f89c5be724be67460e74e4ecce93
     //MapStateToProps does not have accesss to this.props
-    if(this.props.type === "farmer"){
+    if (this.props.type === "farmer") {
       return (
         <CardContainer>
           {this.props.searchStart && <h2>Loading...</h2>}
@@ -38,8 +42,7 @@ class ClientCardContainer extends Component {
           ))}
         </CardContainer>
       );
-    }
-    else{
+    } else {
       return (
         <CardContainer>
           {this.props.searchStart && <h2>Loading...</h2>}
@@ -54,12 +57,10 @@ class ClientCardContainer extends Component {
         </CardContainer>
       );
     }
-    
   }
 }
 
 const mapStateToProps = state => {
-
   return {
     farmerData: state.clientData.farmerListData,
     retailerData: state.clientData.retailerListData,

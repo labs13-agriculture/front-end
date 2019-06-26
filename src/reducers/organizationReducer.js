@@ -14,6 +14,7 @@ import {
   UPDATE_ORGANIZATION,
   UPDATE_ORGANIZATION_SUCCESS,
   UPDATE_ORGANIZATION_FAILURE,
+  CLEAR_ORGANIZATION_UPDATED,
   ORGANIZATION_SEARCH_START,
   ORGANIZATION_SEARCH_SUCCESS,
   ORGANIZATION_SEARCH_FAILURE,
@@ -37,6 +38,8 @@ const initialState = {
   deletingOrganization: false,
   organizationDeleted: false,
   organizationAdded: false,
+  updateOrganizationSuccess: false,
+  updateOrganizationFailure: false,
   error: null
 };
 
@@ -171,13 +174,22 @@ export default (state = initialState, action) => {
       return {
         ...state,
         updatingOrganization: false,
+        updateOrganizationSuccess: true,
         organization: action.payload
       };
     case UPDATE_ORGANIZATION_FAILURE:
       return {
         ...state,
         updatingOrganization: false,
+        updateOrganizationFailure: true,
         error: action.payload
+      };
+
+    case CLEAR_ORGANIZATION_UPDATED:
+      return {
+        ...state,
+        updateOrganizationSuccess: false,
+        updateOrganizationFailure: false
       };
     default:
       return state;

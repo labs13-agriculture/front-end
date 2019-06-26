@@ -109,13 +109,17 @@ export {
   UPDATE_CLIENT_FAILURE,
   CLEAR_DELETED,
   CLEAR_ADDED,
+  CLEAR_CLIENT_UPDATED,
   getClient,
   addClient,
   deleteClient,
   searchClients,
   updateClient,
   clearDeleted,
-  clearAdded
+  clearAdded,
+  updateClientSuccess,
+  updateClientFailure,
+  clearClientUpdated
 } from "./clientActions";
 
 export {
@@ -131,6 +135,10 @@ export {
   UPDATE_ORGANIZATION_SUCCESS,
   UPDATE_ORGANIZATION_FAILURE,
   updateOrganization,
+  updateOrganizationSuccess,
+  updateOrganizationFailure,
+  CLEAR_ORGANIZATION_UPDATED,
+  clearOrganizationUpdated,
   ORGANIZATION_SEARCH_START,
   ORGANIZATION_SEARCH_SUCCESS,
   ORGANIZATION_SEARCH_FAILURE,
@@ -166,4 +174,4 @@ export {
   DELETE_BRANCH_SUCCESS,
   DELETE_BRANCH_FAILURE,
   deleteBranch
-} from './branchActions';
+} from "./branchActions";

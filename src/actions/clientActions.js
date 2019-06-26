@@ -31,8 +31,7 @@ export const searchClients = (query, type) => dispatch => {
     // could be cleaned up by making the endpoints on backend uniform or using a general client controller
   }
 
-
-  if(type==="farmer"){
+  if (type === "farmer") {
     dispatch({
       type: FARMER_SEARCH_START,
       payload: { name: nameSearch, location: locationSearch }
@@ -50,9 +49,8 @@ export const searchClients = (query, type) => dispatch => {
       .catch(err => {
         console.log(err);
         dispatch({ type: FARMER_SEARCH_FAILURE, payload: err });
-      });}
-
-  else{
+      });
+  } else {
     dispatch({
       type: RETAILER_SEARCH_START,
       payload: { name: nameSearch, location: locationSearch }
@@ -70,8 +68,9 @@ export const searchClients = (query, type) => dispatch => {
       .catch(err => {
         console.log(err);
         dispatch({ type: RETAILER_SEARCH_FAILURE, payload: err });
-      });}
+      });
   }
+};
 
 export const DELETE_CLIENT_START = "DELETE_CLIENT_START";
 export const DELETE_CLIENT_SUCCESS = "DELETE_CLIENT_SUCCESS";
@@ -200,6 +199,19 @@ export const updateClient = client => dispatch => {
       console.log(err);
       dispatch({ type: UPDATE_CLIENT_FAILURE, payload: err });
     });
+};
+
+export const updateClientSuccess = () => dispatch => {
+  dispatch({ type: UPDATE_CLIENT_SUCCESS });
+};
+
+export const updateClientFailure = () => dispatch => {
+  dispatch({ type: UPDATE_CLIENT_FAILURE });
+};
+
+export const CLEAR_CLIENT_UPDATED = "CLEAR_CLIENT_UPDATED";
+export const clearClientUpdated = () => dispatch => {
+  dispatch({ type: CLEAR_CLIENT_UPDATED });
 };
 
 export const CLEAR_DELETED = "CLEAR_DELETED";

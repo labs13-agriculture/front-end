@@ -2,12 +2,17 @@ import styled, { css } from "styled-components";
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { withRouter, Redirect } from "react-router-dom";
-import { Modal } from "reactstrap";
+import { Modal, Alert } from "reactstrap";
 
 import EditClientForm from "./EditClientForm";
 import { theme } from "../../config";
 
-import { getClient, deleteClient, clearDeleted } from "../../actions";
+import {
+  getClient,
+  deleteClient,
+  clearDeleted,
+  clearClientUpdated
+} from "../../actions";
 
 function ClientDemographics(props) {
   const { client } = props;
@@ -25,6 +30,12 @@ function ClientDemographics(props) {
   }, []);
 
   const [modal, setModal] = useState(false);
+
+  console.log("UPDATE CLIENT SUCCESS", props.updateClientSuccess);
+
+  const onDismiss = e => {
+    props.clearClientUpdated();
+  };
 
   const toggleModal = e => {
     if (e) {
@@ -57,6 +68,22 @@ function ClientDemographics(props) {
 
   return (
     <StyledDiv>
+      <Alert
+        style={{ marginBottom: "0" }}
+        color="success"
+        isOpen={props.updateClientSuccess}
+        toggle={onDismiss}
+      >
+        Update Success
+      </Alert>
+      <Alert
+        style={{ marginBottom: "0" }}
+        color="danger"
+        isOpen={props.updateClientFailure}
+        toggle={onDismiss}
+      >
+        Failed to Update
+      </Alert>
       <div className="header">
         <h1>
           {client.firstName} {client.secondName}, {client.type.toLowerCase()}{" "}
@@ -125,7 +152,10 @@ const mapStateToProps = state => {
     client: state.clientData.client,
     clientDemoError: state.clientData.error,
     clientDemoDataStart: state.clientData.getStart,
-    clientDeleted: state.clientData.clientDeleted
+    clientDeleted: state.clientData.clientDeleted,
+    updateClientSuccess: state.clientData.updateClientSuccess,
+    updateClientFailure: state.clientData.updateClientFailure,
+    clearClientUpdated: state.clientData.clearClientUpdated
   };
 };
 
@@ -135,7 +165,8 @@ export default withRouter(
     {
       getClient,
       deleteClient,
-      clearDeleted
+      clearDeleted,
+      clearClientUpdated
     }
   )(ClientDemographics)
 );

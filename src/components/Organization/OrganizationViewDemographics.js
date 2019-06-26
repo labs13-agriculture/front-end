@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled, { css } from "styled-components";
 import { connect } from "react-redux";
 import { withRouter, Redirect } from "react-router-dom";
-import { Modal } from "reactstrap";
+import { Modal, Spinner } from "reactstrap";
 import {
   getOrganizationById,
   deleteOrganization,
@@ -21,6 +21,8 @@ function OrganizationViewDemographics(props) {
 
   const [modal, setModal] = useState(false);
 
+  console.log(props);
+
   const toggleModal = e => {
     if (e) {
       e.preventDefault();
@@ -37,10 +39,10 @@ function OrganizationViewDemographics(props) {
     }
   };
 
-  if (!organization) {
+  if (props.organizationDemoDataStart) {
     return (
       <StyledDiv>
-        <h1>Organization not Found</h1>
+        <div className="spindiv"><Spinner className="spinner" /></div>
       </StyledDiv>
     );
   }
@@ -49,52 +51,59 @@ function OrganizationViewDemographics(props) {
     props.clearDeletedOrg();
     return <Redirect to="/search" />;
   }
-  return (
-    <StyledDiv>
-      <div className="header">
-        <h1>
-          {organization && organization.name} <br />
-          Lead: {organization.lead ? "True" : "False"}
-        </h1>
+  else if (props.organization){
+    return (
+      <StyledDiv>
+        <div className="header">
+          <h1>
+            {organization && organization.name} <br />
+            Lead: {organization.lead ? "True" : "False"}
+          </h1>
 
-        <div className="actions">
-          <i class="fas fa-edit edit" onClick={toggleModal} />
-          <i className="fas fa-trash delete" onClick={deleteOrganization} />
-        </div>
-      </div>
-      <div className="demoWrapper">
-        <h3>Headquarters</h3>
-        <div className="info-section contact-info">
-          <div className="contact-box">
-            <p>{organization && organization.headquarters}</p>
+          <div className="actions">
+            <i class="fas fa-edit edit" onClick={toggleModal} />
+            <i className="fas fa-trash delete" onClick={deleteOrganization} />
           </div>
         </div>
-      </div>
-      <div className="demoWrapper">
-        <h3>Beneficiaries</h3>
-        <div className="info-section contact-info">
-          <div className="contact-box">
-            <p>{organization && organization.beneficiaries}</p>
+        <div className="demoWrapper">
+          <h3>Headquarters</h3>
+          <div className="info-section contact-info">
+            <div className="contact-box">
+              <p>{organization && organization.headquarters}</p>
+            </div>
           </div>
         </div>
-      </div>
+        <div className="demoWrapper">
+          <h3>Beneficiaries</h3>
+          <div className="info-section contact-info">
+            <div className="contact-box">
+              <p>{organization && organization.beneficiaries}</p>
+            </div>
+          </div>
+        </div>
 
-      <Modal isOpen={modal} toggle={toggleModal}>
-        {/* This is all good to go just need to add in the Edit Form */}
-        <EditOrganizationForm
-          organization={organization}
-          closeModal={toggleModal}
-        />
-      </Modal>
-    </StyledDiv>
-  );
+        <Modal isOpen={modal} toggle={toggleModal}>
+          {/* This is all good to go just need to add in the Edit Form */}
+          <EditOrganizationForm
+            organization={organization}
+            closeModal={toggleModal}
+          />
+        </Modal>
+      </StyledDiv>
+    );
+  }
+  else{
+    return(
+      <StyledDiv>No Organization Found</StyledDiv>
+    )
+  }
 }
 
 const mapStateToProps = state => {
   return {
     organization: state.organizationData.organization,
     organizationDemoError: state.organizationData.error,
-    organizationDemoDataStart: state.organizationData.getStart
+    organizationDemoDataStart: state.organizationData.gettingOrganization
   };
 };
 
@@ -207,5 +216,17 @@ const StyledDiv = styled.div`
 
       ${media.phone`font-size:1.6rem;`}
     }
+  }
+
+  .spindiv{
+    width: 100%
+    text-align: center;
+  }
+  .spinner{
+    border: .5em solid lightgray;
+    border-right-color: transparent;
+    width: 10rem;
+    height: 10rem;
+    margin: auto;
   }
 `;

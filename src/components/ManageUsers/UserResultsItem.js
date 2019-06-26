@@ -92,13 +92,8 @@ const StyledProductStatsMini = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 5px 20px 5px;
-<<<<<<< HEAD
-  align-items:baseline;
-  background:white;
-=======
   align-items: center;
   background: white;
->>>>>>> 1741915895249cbb7ccb8f1989f1bd7a6ac348ed
   margin: 10px 0px 0px 0px;
   background: rgba(60, 57, 75, 0.47);
 
@@ -147,14 +142,11 @@ const StyledProductStatsMini = styled.div`
     height: 20px;
     text-overflow: ellipse;
     font-weight: 800;
-<<<<<<< HEAD
     margin:0xp;
 
   }
   h4.personnel{
     margin:0px;
-=======
->>>>>>> 1741915895249cbb7ccb8f1989f1bd7a6ac348ed
   }
 
   .personnel.creator {

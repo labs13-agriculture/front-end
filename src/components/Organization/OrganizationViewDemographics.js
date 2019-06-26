@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import styled, { css } from "styled-components";
 import { connect } from "react-redux";
 import { withRouter, Redirect } from "react-router-dom";
-import { Modal } from "reactstrap";
+import { Modal, Alert } from "reactstrap";
 import {
   getOrganizationById,
   deleteOrganization,
+  clearOrganizationUpdated,
   clearDeletedOrgs
 } from "../../actions";
 
@@ -21,6 +22,10 @@ function OrganizationViewDemographics(props) {
 
   const [modal, setModal] = useState(false);
 
+  const onDismiss = e => {
+    props.clearOrganizationUpdated();
+  };
+
   const toggleModal = e => {
     if (e) {
       e.preventDefault();
@@ -28,7 +33,7 @@ function OrganizationViewDemographics(props) {
     setModal(!modal);
   };
 
-  const deleteOrganization = () => {
+  const deleteOrg = () => {
     let confirm = window.confirm(
       "Are you sure you want to\n\nPERMANENTLY DELETE\n\nthis organization and all associated data?"
     );
@@ -46,11 +51,27 @@ function OrganizationViewDemographics(props) {
   }
 
   if (props.organizationDeleted) {
-    props.clearDeletedOrg();
-    return <Redirect to="/search" />;
+    props.clearDeletedOrgs();
+    return <Redirect to="/search/organizations" />;
   }
   return (
     <StyledDiv>
+      <Alert
+        style={{ marginBottom: "0" }}
+        color="success"
+        isOpen={props.updateOrganizationSuccess}
+        toggle={onDismiss}
+      >
+        Update Success
+      </Alert>
+      <Alert
+        style={{ marginBottom: "0" }}
+        color="danger"
+        isOpen={props.updateOrganizationFailure}
+        toggle={onDismiss}
+      >
+        Failed to Update
+      </Alert>
       <div className="header">
         <h1>
           {organization && organization.name} <br />
@@ -59,7 +80,7 @@ function OrganizationViewDemographics(props) {
 
         <div className="actions">
           <i class="fas fa-edit edit" onClick={toggleModal} />
-          <i className="fas fa-trash delete" onClick={deleteOrganization} />
+          <i className="fas fa-trash delete" onClick={deleteOrg} />
         </div>
       </div>
       <div className="demoWrapper">
@@ -94,14 +115,23 @@ const mapStateToProps = state => {
   return {
     organization: state.organizationData.organization,
     organizationDemoError: state.organizationData.error,
-    organizationDemoDataStart: state.organizationData.getStart
+    organizationDemoDataStart: state.organizationData.getStart,
+    organizationDeleted: state.organizationData.organizationDeleted,
+    updateOrganizationSuccess: state.organizationData.updateOrganizationSuccess,
+    updateOrganizationFailure: state.organizationData.updateOrganizationFailure,
+    clearOrganizationUpdated: state.organizationData.clearOrganizationUpdated
   };
 };
 
 export default withRouter(
   connect(
     mapStateToProps,
-    { getOrganizationById, deleteOrganization, clearDeletedOrgs }
+    {
+      getOrganizationById,
+      deleteOrganization,
+      clearDeletedOrgs,
+      clearOrganizationUpdated
+    }
   )(OrganizationViewDemographics)
 );
 

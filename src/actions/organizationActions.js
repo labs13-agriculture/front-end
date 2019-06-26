@@ -179,3 +179,16 @@ export const CLEAR_ADDED_ORGS = "CLEAR_ADDED_ORGS";
 export const clearAddedOrgs = () => dispatch => {
   dispatch({ type: CLEAR_ADDED_ORGS });
 };
+
+export const updateOrganizationSuccess = () => dispatch => {
+  dispatch({ type: UPDATE_ORGANIZATION_SUCCESS });
+};
+
+export const updateOrganizationFailure = () => dispatch => {
+  dispatch({ type: UPDATE_ORGANIZATION_FAILURE });
+};
+
+export const CLEAR_ORGANIZATION_UPDATED = "CLEAR_ORGANIZATION_UPDATED";
+export const clearOrganizationUpdated = () => dispatch => {
+  dispatch({ type: CLEAR_ORGANIZATION_UPDATED });
+};

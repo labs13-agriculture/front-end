@@ -5,10 +5,9 @@ import CardContainer from "../../styles/CardContainerStyles";
 
 class ClientCardContainer extends Component {
   render() {
-
-    //Had to do conditional render this way. 
+    //Had to do conditional render this way.
     //MapStateToProps does not have accesss to this.props
-    if(this.props.type === "farmer"){
+    if (this.props.type === "farmer") {
       return (
         <CardContainer>
           {this.props.searchStart && <h2>Loading...</h2>}
@@ -21,8 +20,7 @@ class ClientCardContainer extends Component {
             ))}
         </CardContainer>
       );
-    }
-    else{
+    } else {
       return (
         <CardContainer>
           {this.props.searchStart && <h2>Loading...</h2>}
@@ -36,12 +34,10 @@ class ClientCardContainer extends Component {
         </CardContainer>
       );
     }
-    
   }
 }
 
 const mapStateToProps = state => {
-
   return {
     farmerData: state.clientData.farmerListData,
     retailerData: state.clientData.retailerListData,

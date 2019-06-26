@@ -17,6 +17,7 @@ import {
   UPDATE_CLIENT,
   UPDATE_CLIENT_SUCCESS,
   UPDATE_CLIENT_FAILURE,
+  CLEAR_CLIENT_UPDATED,
   CLEAR_DELETED,
   CLEAR_ADDED
 } from "../actions";
@@ -30,6 +31,8 @@ const initialState = {
   client: null,
   previousSearch: null,
   updatingFarmer: false,
+  updateClientSuccess: false,
+  updateClientFailure: false,
   clientDeleted: false,
   clientAdded: false
 };
@@ -68,7 +71,7 @@ export default (state = initialState, action) => {
         searchStart: false,
         error: action.payload
       };
-      case RETAILER_SEARCH_START:
+    case RETAILER_SEARCH_START:
       return {
         ...state,
         searchStart: true,
@@ -166,13 +169,22 @@ export default (state = initialState, action) => {
       return {
         ...state,
         updatingFarmer: false,
+        updateClientSuccess: true,
         client: action.payload
       };
     case UPDATE_CLIENT_FAILURE:
       return {
         ...state,
         updatingFarmer: false,
+        updateClientFailure: true,
         error: action.payload
+      };
+
+    case CLEAR_CLIENT_UPDATED:
+      return {
+        ...state,
+        updateClientSuccess: false,
+        updateClientFailure: false
       };
     default:
       return state;

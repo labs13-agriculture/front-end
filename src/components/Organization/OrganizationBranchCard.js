@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { Modal } from "reactstrap";
+import { Modal, Alert } from "reactstrap";
 import BranchForm from "../Branch/BranchForm";
-import { deleteBranch } from "../../actions";
+import { deleteBranch, clearBranchAlerts } from "../../actions";
 import { connect } from "react-redux";
 
 class OrganizationBranchCard extends Component {
@@ -12,6 +12,12 @@ class OrganizationBranchCard extends Component {
     this.state = {
       redirect: false
     };
+
+    this.onDismiss = this.onDismiss.bind(this);
+  }
+
+  onDismiss() {
+    this.props.clearBranchAlerts();
   }
 
   redirect = () => {
@@ -31,6 +37,20 @@ class OrganizationBranchCard extends Component {
 
     return (
       <StyledGlobalClientCard>
+        <Alert
+          color="info"
+          isOpen={this.props.updateSuccess}
+          toggle={this.onDismiss}
+        >
+          {this.props.branch.name} Successfully Updated!
+        </Alert>
+        <Alert
+          color="info"
+          isOpen={this.props.updateFailure}
+          toggle={this.onDismiss}
+        >
+          {this.props.branch.name} Successfully Updated!
+        </Alert>
         <StyledContactContainer>
           <div className="gen-head-container">
             <div className="title-description">
@@ -104,6 +124,14 @@ class OrganizationBranchCard extends Component {
     );
   }
 }
+
+export default connect(
+  state => ({
+    updateSuccess: state.branchData.updateSuccess,
+    updateFailure: state.branchData.updateFailure
+  }),
+  { deleteBranch, clearBranchAlerts }
+)(OrganizationBranchCard);
 
 const StyledGlobalClientCard = styled.div`
   background: white;
@@ -237,8 +265,3 @@ const StyledContactContainer = styled.div`
     color: gray;
   }
 `;
-
-export default connect(
-  null,
-  { deleteBranch }
-)(OrganizationBranchCard);

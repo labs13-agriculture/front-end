@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import styled, { css } from "styled-components";
 import { connect } from "react-redux";
-import { Button, Modal } from "reactstrap";
+import { Button, Modal, Alert } from "reactstrap";
 import { theme } from "../../config";
 import BranchForm from "./BranchForm";
+import { clearBranchAlerts } from "../../actions";
 
 function BranchHeader(props) {
   const [modal, setModal] = useState(false);
@@ -11,6 +12,10 @@ function BranchHeader(props) {
   const toggleModal = e => {
     // e.preventDefault();
     setModal(!modal);
+  };
+
+  const onDismiss = () => {
+    props.clearBranchAlerts();
   };
 
   return (
@@ -22,6 +27,22 @@ function BranchHeader(props) {
           New
         </Button>
       </div>
+      <Alert
+        style={{ marginBottom: "0" }}
+        color="success"
+        isOpen={props.addSuccess}
+        toggle={onDismiss}
+      >
+        Add Success
+      </Alert>
+      <Alert
+        style={{ marginBottom: "0" }}
+        color="danger"
+        isOpen={props.addFailure}
+        toggle={onDismiss}
+      >
+        Failed To Add
+      </Alert>
       {/* {/* <table>
             <thead>
               <tr>
@@ -64,8 +85,11 @@ function BranchHeader(props) {
 }
 
 export default connect(
-  null,
-  {}
+  state => ({
+    addSuccess: state.branchData.addSuccess,
+    addFailure: state.branchData.addFailure
+  }),
+  { clearBranchAlerts }
 )(BranchHeader);
 
 const HeaderContainer = styled.div`

@@ -200,5 +200,12 @@ export {
   DELETE_BRANCH_START,
   DELETE_BRANCH_SUCCESS,
   DELETE_BRANCH_FAILURE,
-  deleteBranch
+  deleteBranch,
+  CLEAR_BRANCH_ADD,
+  CLEAR_BRANCH_UPDATE,
+  CLEAR_BRANCH_DELETE,
+  clearBranchAdd,
+  clearBranchpdate,
+  clearBranchDelete,
+  clearBranchAlerts
 } from "./branchActions";

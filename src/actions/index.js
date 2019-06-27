@@ -26,7 +26,9 @@ export {
   DELETE_SYSTEM_USER_START,
   DELETE_SYSTEM_USER_SUCCESS,
   DELETE_SYSTEM_USER_FAILURE,
-  deleteSystemUser
+  deleteSystemUser,
+  CLEAR_USER_ALERTS,
+  clearUserAlerts
 } from "./userActions";
 
 export {

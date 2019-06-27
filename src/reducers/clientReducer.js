@@ -272,6 +272,7 @@ export default (state = initialState, action) => {
         retailerHeaders: null,
         error: action.payload
       };
+
     default:
       return state;
   }

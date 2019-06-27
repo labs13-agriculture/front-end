@@ -40,8 +40,11 @@ const initialState = {
   organizationDeleted: false,
   organizationAdded: false,
   error: null,
-  searchHeaders: null,
-  gettingNextPage: false
+  nextPage: null,
+  prevPage: null,
+  currentPage: null,
+  totalPages: null,
+  numResults: null
 };
 
 export default (state = initialState, action) => {
@@ -87,7 +90,11 @@ export default (state = initialState, action) => {
         searchStart: false,
         searchSuccess: true,
         listData: action.payload.data,
-        searchHeaders: action.payload.headers
+        nextPage: action.payload.headers.next,
+        prevPage: action.payload.headers.prev,
+        currentPage: action.payload.headers.number,
+        totalPages: action.payload.headers.total_pages,
+        numResults: action.payload.headers.results
       };
     case GET_ALL_ORGANIZATIONS_FAILURE:
       return {
@@ -113,7 +120,11 @@ export default (state = initialState, action) => {
         searchFailure: false,
         error: "",
         listData: action.payload.data,
-        searchHeaders: action.payload.headers
+        nextPage: action.payload.headers.next,
+        prevPage: action.payload.headers.prev,
+        currentPage: action.payload.headers.number,
+        totalPages: action.payload.headers.total_pages,
+        numResults: action.payload.headers.results
       };
     case ORGANIZATION_SEARCH_FAILURE:
       return {
@@ -190,19 +201,23 @@ export default (state = initialState, action) => {
     case GET_NEXT_ORGS_START:
       return{
         ...state,
-        gettingNextPage: true
+        searchStart: true
       }
     case GET_NEXT_ORGS_SUCCESS:
       return{
         ...state,
-        gettingNextPage: false,
+        searchStart: false,
         listData: action.payload.data,
-        searchHeaders: action.payload.headers
+        nextPage: action.payload.headers.next,
+        prevPage: action.payload.headers.prev,
+        currentPage: action.payload.headers.number,
+        totalPages: action.payload.headers.total_pages,
+        numResults: action.payload.headers.results
       }
     case GET_NEXT_ORGS_FAILURE:
       return{
         ...state,
-        gettingNextPage: false,
+        searchStart: false,
         error: action.payload
       }
     default:

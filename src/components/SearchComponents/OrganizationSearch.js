@@ -11,6 +11,7 @@ import OrganizationCardContainer from "../Organization/OrganizationCardContainer
 import styled from "styled-components";
 import NewOrganizationForm from "../Organization/NewOrganizationForm";
 import { Modal } from "reactstrap";
+import OrgResultsBtn from '../Organization/OrgResultsBtn';
 
 class OrganizationSearch extends Component {
   constructor(props) {
@@ -57,6 +58,7 @@ class OrganizationSearch extends Component {
           </StyledHeader>
           <SearchForm submitSearch={this.submitSearch} />
         </StyledSearchToolContainer>
+        <OrgResultsBtn />
         <OrganizationCardContainer />
         <Modal isOpen={this.state.modal} toggle={this.toggleModal}>
           <NewOrganizationForm

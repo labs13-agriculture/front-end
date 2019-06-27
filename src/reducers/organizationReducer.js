@@ -196,7 +196,7 @@ export default (state = initialState, action) => {
       return{
         ...state,
         gettingNextPage: false,
-        listData: [...state.listData, ...action.payload.data],
+        listData: action.payload.data,
         searchHeaders: action.payload.headers
       }
     case GET_NEXT_ORGS_FAILURE:

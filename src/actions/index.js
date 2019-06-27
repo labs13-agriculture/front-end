@@ -211,5 +211,9 @@ export {
   clearBranchAdd,
   clearBranchpdate,
   clearBranchDelete,
-  clearBranchAlerts
+  clearBranchAlerts,
+  GET_NEXT_BRANCH_START,
+  GET_NEXT_BRANCH_SUCCESS,
+  GET_NEXT_BRANCH_FAILURE,
+  getNextBranchPage
 } from "./branchActions";

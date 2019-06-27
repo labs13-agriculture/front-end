@@ -19,7 +19,7 @@ export const searchClients = (query, type) => dispatch => {
     // If not search params are passed we'll hit a find all
     urlString = `${BASE_URL}/${type}${
       type === "farmer" ? "s/all" : "/retailers"
-    }`;
+    }?lead=${query.leads}`;
     console.log("Searching ALLLL");
   } else {
     // this maps out to something like
@@ -30,6 +30,7 @@ export const searchClients = (query, type) => dispatch => {
     }/search?name=${nameSearch}&location=${locationSearch}&lead=${query.leads}`;
     // could be cleaned up by making the endpoints on backend uniform or using a general client controller
   }
+  console.log(urlString);
 
   if (type === "farmer") {
     dispatch({

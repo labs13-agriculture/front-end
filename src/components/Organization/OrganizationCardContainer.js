@@ -39,7 +39,6 @@ class OrganizationCardContainer extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state);
   return {
     data: state.organizationData.listData,
     error: state.organizationData.error,

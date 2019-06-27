@@ -21,12 +21,12 @@ class ClientResultsBtn extends Component{
                             <button 
                                 onClick={()=>this.props.pageClient(searchType === 'farmer' ? farmerPrevPage:retailerPrevPage,searchType)} 
                                 className="results-btn prev">
-                            <i class="fas fa-arrow-left"></i>Prev</button>}
+                            <i class="far fa-arrow-alt-circle-left"></i></button>}
                         {/* condition for: do I need a next button? */}
                         {resultsPageInfo.total_pages > parseInt(resultsPageInfo.number) +1 &&
                             <button onClick={()=>this.props.pageClient(searchType === 'farmer' ? farmerNextPage:retailerNextPage,searchType)} 
                             className="results-btn next">
-                            Next<i class="fas fa-arrow-right"></i></button>
+                            <i class="far fa-arrow-alt-circle-right"></i></button>
                         }
                     </div>
                     <div className="results pages"><h3>{`Page ${parseInt(resultsPageInfo.number) +1} of ${resultsPageInfo.total_pages}`}</h3></div>

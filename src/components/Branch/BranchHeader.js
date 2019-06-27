@@ -5,6 +5,7 @@ import { Button, Modal, Alert } from "reactstrap";
 import { theme } from "../../config";
 import BranchForm from "./BranchForm";
 import { clearBranchAlerts } from "../../actions";
+import OrganizationBranchResultsBtn from "../Organization/OrganizationBranchResultsBtn";
 
 function BranchHeader(props) {
   const [modal, setModal] = useState(false);
@@ -22,7 +23,7 @@ function BranchHeader(props) {
     <HeaderContainer>
       <div className="header">
         <h2>Branches</h2>
-
+        <OrganizationBranchResultsBtn />
         <Button className="add-branch" onClick={toggleModal}>
           New
         </Button>
@@ -43,39 +44,6 @@ function BranchHeader(props) {
       >
         Failed To Add
       </Alert>
-      {/* {/* <table>
-            <thead>
-              <tr>
-              <StyledTd className="name-head">
-                  Name
-                </StyledTd>
-                <StyledTd className="phone-head">
-                  Phone
-                </StyledTd>
-                <StyledTd className="email-head">
-                  Email
-                </StyledTd>
-                <StyledTd className="position-head">
-                  Position
-                </StyledTd>
-                <StyledTd className="address-head">
-                  Address
-                </StyledTd>
-                <StyledTd className="district-head">
-                  District
-                </StyledTd>
-                <StyledTd className="region-head">
-                  Region
-                </StyledTd>
-                <StyledTd className="landmark-head">
-                  Landmark
-                </StyledTd>
-                <StyledTd className="actions-head">
-                  Actions
-                </StyledTd>
-              </tr>
-            </thead> */}
-      {/* </table> */}
 
       <Modal isOpen={modal} toggle={toggleModal}>
         <BranchForm id={props.id} toggleModal={toggleModal} />

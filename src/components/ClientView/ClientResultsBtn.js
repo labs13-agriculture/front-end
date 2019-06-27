@@ -23,13 +23,15 @@ class ClientResultsBtn extends Component{
                                 className="results-btn prev">
                             <i class="far fa-arrow-alt-circle-left"></i></button>}
                         {/* condition for: do I need a next button? */}
-                        {resultsPageInfo.total_pages > parseInt(resultsPageInfo.number) +1 &&
+                        {parseInt(resultsPageInfo.total_pages) > parseInt(resultsPageInfo.number) +1 &&
                             <button onClick={()=>this.props.pageClient(searchType === 'farmer' ? farmerNextPage:retailerNextPage,searchType)} 
                             className="results-btn next">
                             <i class="far fa-arrow-alt-circle-right"></i></button>
                         }
+                        {(parseInt(resultsPageInfo.total_pages) === 1 || parseInt(resultsPageInfo.total_pages) === 0) && <i class="fas fa-book-open"></i>}
                     </div>
-                    <div className="results pages"><h3>{`Page ${parseInt(resultsPageInfo.number) +1} of ${resultsPageInfo.total_pages}`}</h3></div>
+                    {parseInt(resultsPageInfo.total_pages) >= 1 ? <div className="results pages"><h3>{`Page ${parseInt(resultsPageInfo.number) +1} of ${resultsPageInfo.total_pages}`}</h3></div>:
+                    <div className="results pages"><h3>{`Page ${parseInt(resultsPageInfo.number)} of ${resultsPageInfo.total_pages}`}</h3></div>}
                 </div>
                 
                
@@ -115,5 +117,11 @@ const StyledClientResultsBtn = styled.div`
             color:${theme.activeblue};
         }
 
+    }
+
+    .fas.fa-book-open{
+        color:${theme.activeblue};
+        margin:5px;
+        font-size: 2.3rem;
     }
 `

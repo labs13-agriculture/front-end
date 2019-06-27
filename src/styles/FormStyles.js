@@ -21,6 +21,7 @@ const FormStyles = styled.div`
   .header {
     background-color: ${theme.sideNavBackground};
     padding: 15px 20px;
+    border-bottom:4px solid ${theme.activeblue};
   }
 
   h2 {

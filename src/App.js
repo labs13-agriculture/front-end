@@ -6,7 +6,7 @@ import Login from "./components/LoginComponent/Login";
 import PrivateRoute from "./components/PrivateRoute";
 import GlobalViewContainer from "./components/GlobalViewContainer";
 import GlobalSideNav from "./components/GlobalSideNav";
-
+import { theme } from "./config";
 
 // import ItemList from './components/ItemList';
 // import {DashboardVue} from './components/DashboardView';
@@ -24,15 +24,13 @@ class App extends Component {
           <PrivateRoute path="/users" component={GlobalSideNav} />
           <PrivateRoute path="/inventory" component={GlobalSideNav} />
 
-          <div className="mobilenavbuffer">
-            <PrivateRoute path="/dashboard" component={GlobalViewContainer} />
-            {/* <Route path="/dashboard/testfarmer" component={FarmerView} /> */}
-            <PrivateRoute path="/search" component={GlobalViewContainer} />
-            <PrivateRoute path="/users" component={GlobalViewContainer} />
-            <PrivateRoute path="/inventory" component={GlobalViewContainer} />
-          </div>
+          <PrivateRoute path="/dashboard" component={GlobalViewContainer} />
+          {/* <Route path="/dashboard/testfarmer" component={FarmerView} /> */}
+          <PrivateRoute path="/search" component={GlobalViewContainer} />
+          <PrivateRoute path="/users" component={GlobalViewContainer} />
+          <PrivateRoute path="/inventory" component={GlobalViewContainer} />
 
-            {/* <Route path="/testdashboard" component={GlobalSideNav} />
+          {/* <Route path="/testdashboard" component={GlobalSideNav} />
             <Route path="/testdashboard" component={GlobalNav} />
             <Route path="/testdashboard" component={GlobalViewContainer} /> */}
         </StyledApp>
@@ -71,18 +69,10 @@ const StyledApp = styled.div`
   font-family: "Roboto", sans-serif;
   font-size: 1.4rem;
 
-  .mobilenavbuffer {
-    display: flex;
-    width: 100%;
-    height: 100%;
-  }
+  background: ${theme.background_dark};
 
   @media (max-width: 500px) {
     display: block;
-
-    .mobilenavbuffer {
-      padding-top: 50px;
-    }
   }
 
   input:focus,
@@ -90,11 +80,6 @@ const StyledApp = styled.div`
   textarea:focus,
   button:focus {
     outline: none;
-  }
-
-  .gen-login-container {
-    margin-top: 100px;
-    ${media.desktop`margin-top:0px;`}
   }
 
   #login-opacity {

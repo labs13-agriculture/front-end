@@ -28,7 +28,7 @@ class OrganizationSearch extends Component {
 
   submitSearch = query => {
     if (query.name === "" && query.location === "") {
-      this.props.getAllOrganizations();
+      this.props.getAllOrganizations(query.leads);
     } else {
       this.props.searchOrganizations(query);
       this.setState({

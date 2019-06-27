@@ -91,12 +91,12 @@ export const GET_ALL_ORGANIZATIONS = "GET_ALL_ORGANIZATIONS";
 export const GET_ALL_ORGANIZATIONS_SUCCESS = "GET_ALL_ORGANIZATIONS_SUCCESS";
 export const GET_ALL_ORGANIZATIONS_FAILURE = "GET_ALL_ORGANIZATIONS_FAILURE";
 
-export const getAllOrganizations = () => dispatch => {
+export const getAllOrganizations = (lead) => dispatch => {
   dispatch({ type: GET_ALL_ORGANIZATIONS });
 
   return axios
     .get(
-      `${BASE_URL}/organizations/organizations-list`,
+      `${BASE_URL}/organizations/organizations-list?lead=${lead}`,
       {
         headers: {
           "Content-Type": "application/json",

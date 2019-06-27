@@ -9,5 +9,11 @@ export const theme = {
   background_dark: `#1F1F1F`,
   warning: `#EE8E2D`,
   accent: `#46D1A3`,
-  navgrey: `#3C394B`
+  navgrey: `#3C394B`,
+  activeblue:`#40e0d0`,
+  inputblack:`#00000047`,
+  searchAddBtnBorder:`rgb(126, 121, 147)`,
+  searchAddBtnHover:`rgba(128, 123, 151, 0.08)`,
+  globalViewBackground:`rgb(35, 33, 43)`,
+  sideNavBackground:`rgb(60,57,75)`
 };

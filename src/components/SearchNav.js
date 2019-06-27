@@ -68,7 +68,7 @@ const GN = styled.div`
     &.active:after {
       content: "";
       height: 2px;
-      background-color: #40e0d0;
+      background-color: ${theme.activeblue};
       width: 30px;
       position: relative;
       display: block;
@@ -77,12 +77,5 @@ const GN = styled.div`
       margin-left: -15px;
     }
   }
-  /* background-image: linear-gradient(
-    to top,
-    #d5d4d0 0%,
-    #d5d4d0 1%,
-    #eeeeec 31%,
-    #efeeec 75%,
-    #e9e9e7 100%
-  ); */
+  
 `;

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
 import { Modal } from "reactstrap";
+import { theme } from '../../config';
 
 // Custom Components
 import ClientCardContainer from "../ClientView/ClientCardContainer";
@@ -144,11 +145,11 @@ const StyledHeader = styled.div`
     color: white;
 
     font-family: "Josefin Sans", sans-serif;
-    border: 2px solid rgb(126, 121, 147);
+    border: 2px solid ${theme.searchAddBtnBorder};
 
     &:hover {
       &:hover {
-    background: rgba(128, 123, 151, 0.08);
+    background: ${theme.searchAddBtnHover};
   }
      
     }

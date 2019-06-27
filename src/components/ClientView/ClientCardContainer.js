@@ -16,7 +16,7 @@ class ClientCardContainer extends Component {
     if(this.props.type === "farmer"){
       return (
         <CardContainer>
-          {this.props.searchStart && <Spinner className="spinner" />}
+          {this.props.searchStart && <Spinner className="spinner"/>}
           {this.props.farmerData && this.props.farmerData.length === 0 ? (
             <p>No Clients found</p>
           ) : null}
@@ -33,7 +33,7 @@ class ClientCardContainer extends Component {
     else{
       return (
         <CardContainer>
-          {this.props.searchStart && <Spinner className="spinner" />}
+          {this.props.searchStart && <Spinner className="spinner"  />}
           {this.props.retailerData && this.props.retailerData.length === 0 ? (
             <p>No Clients found</p>
           ) : null}

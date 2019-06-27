@@ -5,6 +5,7 @@ import styled from "styled-components";
 import "./GSN.css";
 import tiemeNdo from "../tiemeNdo.svg";
 import {BASE_URL} from '../config';
+import {theme} from "../config";
 
 export default class GlobalSideNav extends Component {
   constructor(props) {
@@ -126,7 +127,7 @@ const GSN = styled.div`
     #e9e9e7 100%
   ); */}
 
-  background:rgb(60,57,75);
+  background:${theme.sideNavBackground};
   box-shadow: 0 13px 27px -5px rgba(50, 50, 93, 0.25),
     0 8px 16px -8px rgba(0, 0, 0, 0.44), 0 10px 16px 1px rgba(0, 0, 0, 0.53);
   z-index: 2;
@@ -147,10 +148,6 @@ const StyledH1 = styled.h1`
   display: flex;
   align-items: center;
   margin-top: 2px;
-  ${"" /* background: linear-gradient(to left, transparent, #2800a9, transparent); */}
-  ${"" /* background-size: 100% 2px;
-  background-repeat: no-repeat;
-  background-position: bottom; */}
   font-family: "Josefin Sans", sans-serif;
   justify-content: center;
   width: 100%;
@@ -253,14 +250,14 @@ const StyledDiv = styled.div`
     }
 
     &.active {
-      /* I didnt not steal this from spotify */
+      
 
-      color: #40e0d0;
-      border-right: 4px solid #40e0d0;
+      color: ${theme.activeblue};
+      border-right: 4px solid ${theme.activeblue};
 
       @media (max-width: 500px) {
         border-right: none;
-        border-bottom: 3px solid #40e0d0;
+        border-bottom: 3px solid ${theme.activeblue};
       }
     }
   }

@@ -35,7 +35,7 @@ const CardContainer = styled.div`
     width: 10rem;
     height: 10rem;
     margin: auto;
-    border: 1em solid ${theme.accent};
+    border: 1em solid ${theme.activeblue};
     border-right-color: transparent;
     }
 

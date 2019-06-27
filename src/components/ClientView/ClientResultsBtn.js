@@ -38,7 +38,8 @@ const mapStateToProps = state => {
       farmerNextPage: state.clientData.farmerNextPage,
       farmerPrevPage: state.clientData.farmerPrevPage,
       retailerNextPage:state.clientData.retailerNextPage,
-      retailerPrevPage:state.clientData.retailerPrevPage
+      retailerPrevPage:state.clientData.retailerPrevPage,
+      
     };
   };
   

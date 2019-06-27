@@ -37,8 +37,10 @@ class BranchForm extends Component {
     console.log(this.state);
     if (this.props.updating) {
       this.props.updateBranch(this.props.branch.branch_id, this.state);
+      this.props.toggleModal();
     } else {
       this.props.addBranch(this.props.id, this.state);
+      this.props.toggleModal();
     }
   };
 
@@ -138,7 +140,7 @@ class BranchForm extends Component {
             onClick={this.props.toggleModal}
             color="warning"
           >
-            Cancel
+            CANCEL
           </Button>
         </FormGroup>
         <Button>Submit</Button>

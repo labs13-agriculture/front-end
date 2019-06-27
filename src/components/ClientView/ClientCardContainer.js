@@ -53,7 +53,9 @@ const mapStateToProps = state => {
     error: state.clientData.error,
     searchStart: state.clientData.searchStart,
     searchSuccess: state.clientData.searchSuccess,
-    searchFailure: state.clientData.searchFailure
+    searchFailure: state.clientData.searchFailure,
+    farmerPageData: state.clientData.farmerHeaders,
+    retailerPageData: state.clientData.retailerHeaders
   };
 };
 

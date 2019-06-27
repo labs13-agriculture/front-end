@@ -38,7 +38,7 @@ const GN = styled.div`
   align-items: center;
   margin-top:20px;
   a {
-    font-family: "Josefin Sans", sans-serif;
+    font-family: ${theme.searchNavFont};
     margin-left: 30px;
     color: ${theme.background_light};
     font-size: 1.4rem;

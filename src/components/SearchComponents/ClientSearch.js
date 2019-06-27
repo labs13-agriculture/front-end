@@ -116,7 +116,7 @@ export default connect(
 const Header = styled.h1`
   text-align: center;
   color: white;
-  font-family: "Josefin Sans", sans-serif;
+  font-family: ${theme.searchInputFont};
   margin: 26px 0px 20px 0px;
   font-weight: 800;
   font-size: 30px;
@@ -144,7 +144,7 @@ const StyledHeader = styled.div`
 
     color: white;
 
-    font-family: "Josefin Sans", sans-serif;
+    font-family: ${theme.searchInputFont};
     border: 2px solid ${theme.searchAddBtnBorder};
 
     &:hover {

@@ -17,5 +17,11 @@ export const theme = {
   globalViewBackground:`rgb(35, 33, 43)`,
   sideNavBackground:`rgb(60,57,75)`,
   manageUserItemBackground:`rgba(60, 57, 75, 0.47)`,
-  manageUserItemHover:`rgb(65, 62, 81)`
+  manageUserItemHover:`rgb(65, 62, 81)`,
+  searchInputFont:`Roboto, sans-serif;`,
+  searchNavFont:`Josefin Sans, sans-serif`,
+  generalButtonFont:`Roboto, sans-serif`,
+  generalTextFont:`Roboto, sans-serif`,
+  sideNavFont:`Josefin Sans, sans-serif`
+ 
 };

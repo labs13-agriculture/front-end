@@ -116,21 +116,15 @@ export default class GlobalSideNav extends Component {
 
 const GSN = styled.div`
   align-items: left;
-  ${"" /* width: 17%; */}
+  
   width:250px;
-  ${"" /* background-image: linear-gradient(
-    to top,
-    #d5d4d0 0%,
-    #d5d4d0 1%,
-    #eeeeec 31%,
-    #efeeec 75%,
-    #e9e9e7 100%
-  ); */}
-
+  
   background:${theme.sideNavBackground};
   box-shadow: 0 13px 27px -5px rgba(50, 50, 93, 0.25),
     0 8px 16px -8px rgba(0, 0, 0, 0.44), 0 10px 16px 1px rgba(0, 0, 0, 0.53);
   z-index: 2;
+
+  
 
   @media (max-width: 800px) {
     width: auto;
@@ -148,7 +142,7 @@ const StyledH1 = styled.h1`
   display: flex;
   align-items: center;
   margin-top: 2px;
-  font-family: "Josefin Sans", sans-serif;
+  font-family: ${theme.sideNavFont};
   justify-content: center;
   width: 100%;
   padding: 20px 0;
@@ -158,6 +152,7 @@ const StyledH1 = styled.h1`
   letter-spacing: -3px;
   letter-spacing: 1px;
   margin-bottom: 20px;
+  
 
   @media (max-width: 800px) {
     span.navspan {
@@ -187,12 +182,8 @@ const StyledH1 = styled.h1`
 const StyledDiv = styled.div`
   display: flex;
   width: 100%;
-  ${"" /* padding: 10px 5px;
-  margin: 5px 5px; */}
-  /* font-family: "Josefin Sans", sans-serif; */
-  /* text-shadow: 0 1px 3px rgba(57, 55, 70, 0.4); */
   font-size: 1.7rem;
-  ${"" /* color: #2800a9; */}
+
   color: gray;
   letter-spacing: -2px;
   letter-spacing: 1px;
@@ -229,6 +220,7 @@ const StyledDiv = styled.div`
 
       span.navspan {
         display: none;
+        
       }
     }
 
@@ -245,7 +237,7 @@ const StyledDiv = styled.div`
     span {
       width: 100px;
       display: inline-block;
-      font-family: "Josefin Sans", sans-serif;
+      font-family: ${theme.sideNavFont};
       padding-left: 2rem;
     }
 

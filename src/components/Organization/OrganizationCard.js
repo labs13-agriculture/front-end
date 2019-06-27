@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import {theme} from "../../config";
 
 export default class OrganizationCard extends Component {
   constructor(props) {
@@ -52,7 +53,7 @@ const StyledGlobalClientCard = styled.div`
   padding: 20px;
   border-radius: 3px;
   ${"" /* box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3); */}
-  background:rgb(60,57,75);
+  background:${theme.sideNavBackground};
   width: 325px;
   color: white;
   ${"" /* &:hover {
@@ -62,18 +63,18 @@ const StyledGlobalClientCard = styled.div`
   h3 {
     margin-bottom: 0px;
   }
-  font-family: "Josefin Sans", sans-serif;
+  font-family: ${theme.searchInputFont};
 
   .circle {
     height: 40px;
     width: 40px;
     border-radius: 50%;
-    color: #40e0d0;
+    color: ${theme.activeblue};
     position:relative;
     margin-right: 15px;
     text-align: center;
 
-    background: rgb(35, 33, 43);
+    background: ${theme.globalViewBackground};
 
     display: flex;
 
@@ -82,7 +83,7 @@ const StyledGlobalClientCard = styled.div`
     align-items: center;
 
     text-align: center;
-    background: rgb(35, 33, 43);
+    background: ${theme.globalViewBackground};
     .first-name {
       height:40px;
       width:20px;
@@ -90,11 +91,11 @@ const StyledGlobalClientCard = styled.div`
       display: flex;
     font-size: 2rem;
     /* font-weight: 800; */
-    color: #40e0d0;
+    color: ${theme.activeblue};
       position:absolute;
     align-items: center;
     position: absolute;
-    top: 1px;
+    
     }
 
     .head-contact-container {

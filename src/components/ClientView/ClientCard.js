@@ -81,7 +81,7 @@ const StyledGlobalClientCard = styled.div`
   h3 {
     margin-bottom: 0px;
   }
-  font-family: "Josefin Sans", sans-serif;
+  font-family: ${theme.generalTextFont};
 
   .circle {
     height: 40px;
@@ -113,7 +113,7 @@ const StyledGlobalClientCard = styled.div`
       position:absolute;
     align-items: center;
     position: absolute;
-    top: 1px;
+    
     }
 
     .head-contact-container {

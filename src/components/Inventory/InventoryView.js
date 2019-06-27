@@ -136,30 +136,19 @@ export default connect(
 const ViewContainer = styled.div`
   height: 100%;
   max-height: 100vh;
-  /* if you add width here it stretches container? */
   background: #f3f3f3;
   margin: 10px;
   border-radius: 2px;
-  /* border-top: 5px solid #d3d3d3; */
-
   overflow-y: scroll;
+
   &::-webkit-scrollbar {
     display: none;
-  }
 
-  /* .alert {
-    background: ${theme.navgrey};
-    border: none;
-    border-radius: none !important;
-
-    &.alert-danger {
-      color: palevioletred;
+    .banner {
+      padding: 10px;
+      background: ${theme.navgrey};
+      color: ${theme.background_light};
     }
-  } */
-  .banner {
-    padding: 10px;
-    background: ${theme.navgrey};
-    color: ${theme.background_light};
 
     h2 {
       font-size: 3rem;

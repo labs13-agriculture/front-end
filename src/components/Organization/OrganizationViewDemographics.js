@@ -56,7 +56,9 @@ function OrganizationViewDemographics(props) {
   if (props.organizationDeleted) {
     props.clearDeletedOrgs();
     return <Redirect to="/search/organizations" />;
-  } else if (props.organization) {
+  }
+
+  if (props.organization) {
     return (
       <StyledDiv>
         <Alert
@@ -83,7 +85,7 @@ function OrganizationViewDemographics(props) {
 
           <div className="actions">
             <i class="fas fa-edit edit" onClick={toggleModal} />
-            <i className="fas fa-trash delete" onClick={deleteOrganization} />
+            <i className="fas fa-trash delete" onClick={deleteOrg} />
           </div>
         </div>
         <div className="demoWrapper">

@@ -215,7 +215,6 @@ export default (state = initialState, action) => {
         updateClientSuccess: false,
         updateClientFailure: false
       };
-
     case FARMER_PAGE_START:
       return {
         ...state,

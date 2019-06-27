@@ -10,7 +10,10 @@ import {
   UPDATE_BRANCH_FAILURE,
   DELETE_BRANCH_START,
   DELETE_BRANCH_SUCCESS,
-  DELETE_BRANCH_FAILURE
+  DELETE_BRANCH_FAILURE,
+  CLEAR_BRANCH_ADD,
+  CLEAR_BRANCH_UPDATE,
+  CLEAR_BRANCH_DELETE
 } from "../actions";
 
 const initialState = {
@@ -19,6 +22,12 @@ const initialState = {
   AddBranchStart: false,
   updateBranchStart: false,
   deleteBranchStart: false,
+  updateSuccess: false,
+  updateFailure: false,
+  addSuccess: false,
+  addFailure: false,
+  deleteSuccess: false,
+  deleteFailure: false,
   error: ""
 };
 
@@ -55,6 +64,7 @@ export default (state = initialState, action) => {
         ...state,
         branchData: action.payload,
         addBranchStart: false,
+        addSuccess: true,
         error: ""
       };
     case ADD_BRANCH_FAILURE:
@@ -62,6 +72,7 @@ export default (state = initialState, action) => {
         ...state,
         branchData: [],
         addBranchStart: false,
+        addSuccess: true,
         error: action.payload
       };
     case UPDATE_BRANCH_START:
@@ -75,6 +86,7 @@ export default (state = initialState, action) => {
         ...state,
         branchData: action.payload,
         updateBranchStart: false,
+        updateSuccess: true,
         error: ""
       };
     case UPDATE_BRANCH_FAILURE:
@@ -82,6 +94,7 @@ export default (state = initialState, action) => {
         ...state,
         branchData: [],
         updateBranchStart: false,
+        updateFailure: true,
         error: action.payload
       };
     case DELETE_BRANCH_START:
@@ -95,6 +108,7 @@ export default (state = initialState, action) => {
         ...state,
         branchData: action.payload,
         deleteBranchStart: false,
+        deleteSuccess: true,
         error: ""
       };
     case DELETE_BRANCH_FAILURE:
@@ -102,7 +116,26 @@ export default (state = initialState, action) => {
         ...state,
         branchData: [],
         deleteBranchStart: false,
+        deleteFailure: true,
         error: action.payload
+      };
+    case CLEAR_BRANCH_ADD:
+      return {
+        ...state,
+        addSuccess: false,
+        addFailure: false
+      };
+    case CLEAR_BRANCH_UPDATE:
+      return {
+        ...state,
+        updateSuccess: false,
+        updateFailure: false
+      };
+    case CLEAR_BRANCH_DELETE:
+      return {
+        ...state,
+        deleteSuccess: false,
+        deleteFailure: false
       };
     default:
       return state;

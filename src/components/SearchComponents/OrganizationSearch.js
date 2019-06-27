@@ -11,11 +11,8 @@ import OrganizationCardContainer from "../Organization/OrganizationCardContainer
 import styled from "styled-components";
 import NewOrganizationForm from "../Organization/NewOrganizationForm";
 import { Modal } from "reactstrap";
-<<<<<<< HEAD
 import OrgResultsBtn from '../Organization/OrgResultsBtn';
-=======
 import {theme} from "../../config";
->>>>>>> 408ea6ba8318d56810dcd9378265c23107d82054
 
 class OrganizationSearch extends Component {
   constructor(props) {

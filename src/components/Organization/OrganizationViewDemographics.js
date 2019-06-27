@@ -169,7 +169,6 @@ const StyledDiv = styled.div`
   background: white;
   display: flex;
   flex-direction: column;
- 
 
   ${media.tablet`font-size: 1.2rem;`}
 
@@ -249,12 +248,12 @@ const StyledDiv = styled.div`
     }
   }
 
-  .spindiv{
-    width: 100%
+  .spindiv {
+    width: 100%;
     text-align: center;
   }
-  .spinner{
-    border: .5em solid lightgray;
+  .spinner {
+    border: 0.5em solid lightgray;
     border-right-color: transparent;
     width: 10rem;
     height: 10rem;

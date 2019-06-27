@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import ClientCard from "./ClientCard";
 import CardContainer from "../../styles/CardContainerStyles";
 import { Spinner } from 'reactstrap';
-import { theme } from '../../config';
+
 import styled from 'styled-components';
 import ClientResultsBtn from "./ClientResultsBtn";
 

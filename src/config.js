@@ -15,5 +15,7 @@ export const theme = {
   searchAddBtnBorder:`rgb(126, 121, 147)`,
   searchAddBtnHover:`rgba(128, 123, 151, 0.08)`,
   globalViewBackground:`rgb(35, 33, 43)`,
-  sideNavBackground:`rgb(60,57,75)`
+  sideNavBackground:`rgb(60,57,75)`,
+  manageUserItemBackground:`rgba(60, 57, 75, 0.47)`,
+  manageUserItemHover:`rgb(65, 62, 81)`
 };

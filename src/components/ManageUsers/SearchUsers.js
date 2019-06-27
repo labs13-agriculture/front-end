@@ -6,6 +6,7 @@ import styled from "styled-components";
 import AddUser from "./AddUser";
 import { Modal, Button, FormGroup } from "reactstrap";
 import { media } from "../../styles/searchStyles";
+import {theme} from "../../config";
 
 class SearchUsers extends Component {
   constructor(props) {
@@ -132,7 +133,7 @@ const StyledSearchBar = styled.div`
       font-weight: 600;
       font-family: "Josefin Sans", sans-serif;
       color: white;
-      caret-color: #40e0d0;
+      caret-color: ${theme.activeblue};
       padding: 16px 0px 10px 40px;
 
       ::placeholder {
@@ -155,9 +156,9 @@ const StyledSearchBar = styled.div`
     border: none;
     color: white;
     font-family: "Josefin Sans", sans-serif;
-    border: 2px solid rgb(126, 121, 147);
+    border: 2px solid ${theme.searchAddBtnBorder};
     &:hover {
-    background: rgba(128, 123, 151, 0.08);
+    background: ${theme.searchAddBtnHover};
   }
   }
   

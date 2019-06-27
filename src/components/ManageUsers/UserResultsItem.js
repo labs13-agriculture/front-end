@@ -10,6 +10,7 @@ import {
 import { Modal } from "reactstrap";
 import UserDetails from "./UserDetails";
 import { media } from "../../styles/searchStyles";
+import {theme} from "../../config";
 
 export default class UserStatsItem extends Component {
   constructor(props) {
@@ -95,7 +96,7 @@ const StyledProductStatsMini = styled.div`
   align-items: center;
   background: white;
   margin: 10px 0px 0px 0px;
-  background: rgba(60, 57, 75, 0.47);
+  background: ${theme.manageUserItemBackground};
 
   /* 0 13px 27px -5px rgba(14, 14, 14, 0),
     0 2px 5px -4px rgba(154, 154, 154, 0.18),
@@ -111,7 +112,7 @@ const StyledProductStatsMini = styled.div`
   &:hover{
     ${'' /* background:lightgray; */}
     
-    background:rgb(65, 62, 81);
+    background:${theme.manageUserItemHover};
 
     .pencil-btn{
       

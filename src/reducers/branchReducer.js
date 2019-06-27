@@ -51,11 +51,11 @@ export default (state = initialState, action) => {
         ...state,
         branchData: action.payload,
         getBranchStart: false,
-        nextPage: action.payload.headers.next,
-        prevPage: action.payload.headers.prev,
-        currentPage: action.payload.headers.number,
-        totalPages: action.payload.headers.total_pages,
-        numResults: action.payload.headers.results,
+        // nextPage: action.payload.headers.next,
+        // prevPage: action.payload.headers.prev,
+        // currentPage: action.payload.headers.number,
+        // totalPages: action.payload.headers.total_pages,
+        // numResults: action.payload.headers.results,
         error: ""
       };
     case GET_BRANCHES_FAILURE:

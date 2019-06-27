@@ -1,3 +1,5 @@
+import {theme} from "../config";
+
 import styled, { css } from "styled-components";
 export const sizes = {
   desktop: 992,
@@ -66,14 +68,14 @@ const StyledForm = styled.form`
             width: 100%;
             height: 70px;
             margin-bottom: 10px;
-            background: #00000047;
+            background: ${theme.inputblack};
             border: none;
             border-radius: 0px;
             font-size: 30px;
             font-weight: 600;
-            font-family: "Josefin Sans", sans-serif;
+            font-family: ${theme.searchInputFont}
             color: white;
-            caret-color: #40E0D0;
+            caret-color: ${theme.activeblue};
             padding: 16px 0px 10px 40px;
             ::placeholder{
                 color:gray;
@@ -92,12 +94,12 @@ const StyledForm = styled.form`
           width: 100%;
             height: 70px;
             margin-bottom: 40px;
-            background: #00000047;
+            background: ${theme.inputblack};
             border: none;
             border-radius: 0px;
             font-size: 30px;
             font-weight: 600;
-            font-family: "Josefin Sans", sans-serif;
+            font-family: ${theme.searchInputFont};
             color: white;
             caret-color: #40E0D0;
             padding: 16px 0px 10px 40px;
@@ -125,12 +127,14 @@ const StyledForm = styled.form`
       transition: all 0.55s ease;
 
       border: none;
-      background:#40e0d0;
+      background:${theme.activeblue};
       &:hover{
         opacity:1;
       }
 
-      font-family: "Josefin Sans", sans-serif;
+      font-family: ${theme.generalButtonFont};
+      font-size:1.25rem;
+      letter-spacing:1px;
         ${media.phone`width: 95%;`}
     }
 
@@ -148,7 +152,9 @@ const StyledForm = styled.form`
         opacity: 1;
       }
 
-      font-family: "Josefin Sans", sans-serif;
+      font-family: ${theme.generalButtonFont};
+      letter-spacing:1px;
+      font-size:1.25rem;
         ${media.phone`width: 95%;`}
     }
 

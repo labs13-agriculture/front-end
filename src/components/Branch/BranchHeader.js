@@ -1,26 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import styled, { css } from "styled-components";
 import { connect } from "react-redux";
 import { Button, Modal } from "reactstrap";
 import { theme } from "../../config";
 import BranchForm from "./BranchForm";
 
-function BranchHeader(props){
-    const [modal, setModal] = useState(false);
+function BranchHeader(props) {
+  const [modal, setModal] = useState(false);
 
-    const toggleModal = e =>{
-        e.preventDefault();
-        setModal(!modal);
-    }
+  const toggleModal = e => {
+    // e.preventDefault();
+    setModal(!modal);
+  };
 
-    return (
-        <HeaderContainer>
-          <div className="header">
-            <h2>Branches</h2>
-    
-            <Button className="add-branch" onClick={toggleModal}>New</Button>
-          </div>
-          {/* {/* <table>
+  return (
+    <HeaderContainer>
+      <div className="header">
+        <h2>Branches</h2>
+
+        <Button className="add-branch" onClick={toggleModal}>
+          New
+        </Button>
+      </div>
+      {/* {/* <table>
             <thead>
               <tr>
               <StyledTd className="name-head">
@@ -52,32 +54,34 @@ function BranchHeader(props){
                 </StyledTd>
               </tr>
             </thead> */}
-          {/* </table> */}
-    
-          <Modal isOpen={modal} toggle={toggleModal}>
-            <BranchForm id={props.id} toggleModal={toggleModal} />
-          </Modal>
-        </HeaderContainer>
-      );
+      {/* </table> */}
+
+      <Modal isOpen={modal} toggle={toggleModal}>
+        <BranchForm id={props.id} toggleModal={toggleModal} />
+      </Modal>
+    </HeaderContainer>
+  );
 }
 
-export default connect(null, {})(BranchHeader);
-
+export default connect(
+  null,
+  {}
+)(BranchHeader);
 
 const HeaderContainer = styled.div`
   width: 100%;
   position: -webkit-sticky;
   position: sticky;
   top: 0;
-  z-index:5;
+  z-index: 5;
 
   .header {
     display: flex;
     justify-content: space-between;
     align-content: center;
     padding: 10px;
-    background:rgb(35,33,43);
-    
+    background: rgb(35, 33, 43);
+
     color: ${theme.background_light};
 
     h2 {
@@ -85,9 +89,8 @@ const HeaderContainer = styled.div`
     }
 
     .add-branch {
-
       &:hover {
-        background: ${theme.accent}
+        background: ${theme.accent};
       }
     }
   }
@@ -98,7 +101,7 @@ const HeaderContainer = styled.div`
     background-color: rgb(60, 57, 75);
     color: ${theme.background_light};
 
-    tr{
+    tr {
       display: flex;
       flex-direction: row;
       justify-content: space-around;
@@ -106,10 +109,8 @@ const HeaderContainer = styled.div`
   }
 `;
 
-
 const StyledTd = styled.td`
   padding: 10px 0;
 
   width: auto;
 `;
-

@@ -20,9 +20,15 @@ class OrganizationBranch extends Component {
       <BranchContainer>
         <BranchHeader id={this.props.id} />
         <div className="branch-info-container">
-        {this.props.data.length > 0 &&
-              this.props.data.map(branch => {
-                return <OrganizationBranchCard branch={branch} key={branch.branch_id} />})}
+          {this.props.data.length > 0 &&
+            this.props.data.map(branch => {
+              return (
+                <OrganizationBranchCard
+                  branch={branch}
+                  key={branch.branch_id}
+                />
+              );
+            })}
         </div>
         {/* <StyledTable>
           <tbody>
@@ -57,12 +63,12 @@ const StyledTable = styled.table`
   border-collapse: collapse;
   width: 100%;
 
-  .spindiv{
-    width: 100%
+  .spindiv {
+    width: 100%;
     text-align: center;
   }
-  .spinner{
-    border: .5em solid lightgray;
+  .spinner {
+    border: 0.5em solid lightgray;
     border-right-color: transparent;
     width: 10rem;
     height: 10rem;
@@ -73,10 +79,10 @@ const StyledTable = styled.table`
 const BranchContainer = styled.div`
   width: 100%;
   border-radius: 3px;
-  .branch-info-container{
-    display:flex;
-    justify-content:flex-start;
-    flex-wrap:wrap;
-    background: rgb(35,33,43);
+  .branch-info-container {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    background: rgb(35, 33, 43);
   }
 `;

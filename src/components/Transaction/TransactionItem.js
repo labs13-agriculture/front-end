@@ -4,23 +4,27 @@ import { Modal } from "reactstrap";
 import UpdateTransactionForm from "./UpdateTransactionForm";
 import { StyledTd } from "../../styles/InstallmentStyles";
 import { theme } from "../../config";
-import { deleteClientTransaction } from '../../actions';
-import { connect } from 'react-redux';
+import { deleteClientTransaction } from "../../actions";
+import { connect } from "react-redux";
 
 class TransactionItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      toggleUpdateModal: false
+      ModalOpen: false
     };
   }
 
-  deleteTransaction = () =>{
-    this.props.deleteClientTransaction(this.props.item.id)
-  }
+  deleteTransaction = () => {
+    let d = window.confirm(
+      "Are you sure you want to PERMANENTLY DELETE this transaction?"
+    );
+    if (d) {
+      this.props.deleteClientTransaction(this.props.item.id);
+    }
+  };
 
-  toggleUpdateModal = () =>
-    this.setState({ toggleUpdateModal: !this.state.toggleUpdateModal });
+  toggleUpdateModal = () => this.setState({ ModalOpen: !this.state.ModalOpen });
 
   render() {
     return (
@@ -42,15 +46,21 @@ class TransactionItem extends Component {
             className="fas fa-trash delete"
           />
         </StyledTd>
-        <Modal isOpen={this.state.toggleUpdateModal}>
-          <UpdateTransactionForm toggleModal={this.toggleUpdateModal} transaction={this.props.item} />
+        <Modal isOpen={this.state.ModalOpen} toggle={this.toggleUpdateModal}>
+          <UpdateTransactionForm
+            toggleModal={this.toggleUpdateModal}
+            transaction={this.props.item}
+          />
         </Modal>
       </Row>
     );
   }
 }
 
-export default connect(null, {deleteClientTransaction})(TransactionItem)
+export default connect(
+  null,
+  { deleteClientTransaction }
+)(TransactionItem);
 
 const Row = styled.tr`
   i {

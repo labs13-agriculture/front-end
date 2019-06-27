@@ -1,17 +1,22 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
-import { Button, Modal } from "reactstrap";
+import { Button, Modal, Alert } from "reactstrap";
 import { theme } from "../../config";
 import TransactionForm from "./TransactionForm";
 import { StyledTd } from "../../styles/InstallmentStyles";
+import { clearTransactionAlerts } from "../../actions";
 
 function TransactionHeader(props) {
   const [modal, setModal] = useState(false);
 
   const toggleModal = e => {
-    e.preventDefault();
+    if (e) e.preventDefault();
     setModal(!modal);
+  };
+
+  const onDismiss = () => {
+    props.clearTransactionAlerts();
   };
 
   return (
@@ -35,6 +40,55 @@ function TransactionHeader(props) {
         </thead>
       </table>
 
+      <Alert
+        style={{ marginBottom: "0" }}
+        color="success"
+        isOpen={props.addSuccess}
+        toggle={onDismiss}
+      >
+        Add Success
+      </Alert>
+      <Alert
+        style={{ marginBottom: "0" }}
+        color="success"
+        isOpen={props.updateSuccess}
+        toggle={onDismiss}
+      >
+        Update Success
+      </Alert>
+      <Alert
+        style={{ marginBottom: "0" }}
+        color="success"
+        isOpen={props.deleteSuccess}
+        toggle={onDismiss}
+      >
+        Delete Success
+      </Alert>
+      <Alert
+        style={{ marginBottom: "0" }}
+        color="danger"
+        isOpen={props.addFailure}
+        toggle={onDismiss}
+      >
+        Failed To Add
+      </Alert>
+      <Alert
+        style={{ marginBottom: "0" }}
+        color="danger"
+        isOpen={props.updateFailure}
+        toggle={onDismiss}
+      >
+        Failed To Update
+      </Alert>
+      <Alert
+        style={{ marginBottom: "0" }}
+        color="danger"
+        isOpen={props.deleteFailure}
+        toggle={onDismiss}
+      >
+        Failed To Delete
+      </Alert>
+
       <Modal isOpen={modal} toggle={toggleModal}>
         <TransactionForm id={props.id} toggleModal={toggleModal} />
       </Modal>
@@ -43,8 +97,18 @@ function TransactionHeader(props) {
 }
 
 export default connect(
-  null,
-  {}
+  state => ({
+    updateSuccess: state.clientTransactions.updateTransactionSuccess,
+    updateFailure: state.clientTransactions.updateTransactionFailure,
+    addSuccess: state.clientTransactions.addTransactionSuccess,
+    addFailure: state.clientTransactions.addTransactionFailure,
+    deleteSuccess: state.clientTransactions.deleteTransactionSuccess,
+    deleteFailure: state.clientTransactions.deleteTransactionFailure
+  }),
+  {
+    // Actions
+    clearTransactionAlerts
+  }
 )(TransactionHeader);
 
 const HeaderContainer = styled.div`

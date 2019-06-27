@@ -23,10 +23,12 @@ export const getInstallmentData = id => dispatch => {
     });
 };
 
-export const DATA_INSTALLMENT_CARD_ADD = "DATA_INSTALLMENT_CARD_ADD";
+export const ADD_INSTALLMENT = "ADD_INSTALLMENT";
+export const ADD_INSTALLMENT_SUCCESS = "ADD_INSTALLMENT_SUCCESS";
+export const ADD_INSTALLMENT_FAILURE = "ADD_INSTALLMENT_FAILURE";
 
 export const addInstallment = (newInstallment, clientId) => dispatch => {
-  dispatch({ type: DATA_INSTALLMENT_CARD_ADD });
+  dispatch({ type: ADD_INSTALLMENT });
 
   return axios
     .post(
@@ -40,11 +42,11 @@ export const addInstallment = (newInstallment, clientId) => dispatch => {
       }
     )
     .then(res => {
-      dispatch({ type: DATA_INSTALLMENT_CARD_SUCCESS, payload: res.data });
+      dispatch({ type: ADD_INSTALLMENT_SUCCESS, payload: res.data });
     })
     .catch(err => {
       console.log(err);
-      dispatch({ type: DATA_INSTALLMENT_CARD_FAILURE, payload: err });
+      dispatch({ type: ADD_INSTALLMENT_FAILURE, payload: err });
     });
 };
 
@@ -97,4 +99,28 @@ export const deleteInstallment = installmentId => dispatch => {
       console.log(err);
       dispatch({ type: DELETE_INSTALLMENT_FAILURE, payload: err });
     });
+};
+
+export const CLEAR_INSTALLMENT_UPDATE = "CLEAR_INSTALLMENT_UPDATE";
+
+export const clearInstallmentUpdate = () => dispatch => {
+  dispatch({ type: CLEAR_INSTALLMENT_UPDATE });
+};
+
+export const CLEAR_INSTALLMENT_ADD = "CLEAR_INSTALLMENT_ADD";
+
+export const clearInstallmentAdd = () => dispatch => {
+  dispatch({ type: CLEAR_INSTALLMENT_ADD });
+};
+
+export const CLEAR_INSTALLMENT_DELETE = "CLEAR_INSTALLMENT_DELETE";
+
+export const clearInstallmentDelete = () => dispatch => {
+  dispatch({ type: CLEAR_INSTALLMENT_DELETE });
+};
+
+export const clearInstallmentAlerts = () => dispatch => {
+  dispatch({ type: CLEAR_INSTALLMENT_UPDATE });
+  dispatch({ type: CLEAR_INSTALLMENT_ADD });
+  dispatch({ type: CLEAR_INSTALLMENT_DELETE });
 };

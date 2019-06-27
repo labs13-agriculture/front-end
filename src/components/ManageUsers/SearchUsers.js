@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { UserResultsList } from "../ManageUsers/UserResultsList";
 import { connect } from "react-redux";
-import { userSearchResults } from "../../actions";
+import { userSearchResults, clearUserAlerts } from "../../actions";
 import styled from "styled-components";
 import AddUser from "./AddUser";
-import { Modal, Button, FormGroup } from "reactstrap";
+import { Modal, Button, FormGroup, Alert } from "reactstrap";
 import { media } from "../../styles/searchStyles";
 import {theme} from "../../config";
 
@@ -18,6 +18,10 @@ class SearchUsers extends Component {
       toggleAddModal: false
     };
   }
+
+  onDismiss = () => {
+    this.props.clearUserAlerts();
+  };
 
   focusCursor() {
     const field = document.querySelector(".search-input");
@@ -47,6 +51,66 @@ class SearchUsers extends Component {
     return (
       <StyledSearchUsers>
         <StyledSearchBar>
+          <Alert
+            color="success"
+            isOpen={this.props.addSuccess}
+            toggle={this.onDismiss}
+          >
+            Add Success
+          </Alert>
+          <Alert
+            color="success"
+            isOpen={this.props.updateSuccess}
+            toggle={this.onDismiss}
+          >
+            Update Success
+          </Alert>
+          <Alert
+            color="success"
+            isOpen={this.props.deleteSuccess}
+            toggle={this.onDismiss}
+          >
+            Delete Success
+          </Alert>
+          <Alert
+            style={{
+              marginBottom: "0",
+              background: "none",
+              color: "palevioletred",
+              border: "none"
+            }}
+            color="danger"
+            isOpen={this.props.addFailure}
+            toggle={this.onDismiss}
+          >
+            Failed To Add
+          </Alert>
+          <Alert
+            style={{
+              marginBottom: "0",
+              background: "none",
+              color: "palevioletred",
+              border: "none"
+            }}
+            color="danger"
+            isOpen={this.props.updateFailure}
+            toggle={this.onDismiss}
+          >
+            Failed To Update
+          </Alert>
+          <Alert
+            style={{
+              marginBottom: "0",
+              background: "none",
+              color: "palevioletred",
+              border: "none"
+            }}
+            color="danger"
+            isOpen={this.props.deleteFailure}
+            toggle={this.onDismiss}
+          >
+            Failed To Delete
+          </Alert>
           <div className="search-tools-cont">
             <input
               placeholder="Search Username..."
@@ -95,13 +159,19 @@ const mapStateToProps = state => {
     returnedUserData: state.userReducer.data,
     userSearchSuccess: state.userReducer.userSearchSuccess,
     userSearchFailure: state.userReducer.userSearchFailure,
-    userSearchStart: state.userReducer.userSearchStart
+    userSearchStart: state.userReducer.userSearchStart,
+    updateSuccess: state.userReducer.updateSystemUserSuccess,
+    updateFailure: state.userReducer.updateSystemUserFailure,
+    addSuccess: state.userReducer.addSystemUserSuccess,
+    addFailure: state.userReducer.addSystemUserFailure,
+    deleteSuccess: state.userReducer.deleteSystemUserSuccess,
+    deleteFailure: state.userReducer.deleteSystemUserFailure
   };
 };
 
 export default connect(
   mapStateToProps,
-  { userSearchResults }
+  { userSearchResults, clearUserAlerts }
 )(SearchUsers);
 
 //begin styling
@@ -160,6 +230,18 @@ const StyledSearchBar = styled.div`
     &:hover {
     background: ${theme.searchAddBtnHover};
   }
+
+  .alert {
+    margin-bottom: 0;
+    background: none;
+    border: none;
+
+    .alert-danger {
+      color: palevioletred;
+    }
+
+    .alert-success {
+      color: lightgreen;
+    }
   }
-  
 `;

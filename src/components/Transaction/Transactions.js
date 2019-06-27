@@ -7,13 +7,6 @@ import TransactionHeader from "./TransactionHeader";
 import { Spinner } from "reactstrap";
 
 class ViewTransactions extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      transactionCardData: []
-    };
-  }
-
   //write function for submitting form information for update
 
   componentDidMount() {

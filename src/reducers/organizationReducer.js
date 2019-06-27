@@ -14,6 +14,7 @@ import {
   UPDATE_ORGANIZATION,
   UPDATE_ORGANIZATION_SUCCESS,
   UPDATE_ORGANIZATION_FAILURE,
+  CLEAR_ORGANIZATION_UPDATED,
   ORGANIZATION_SEARCH_START,
   ORGANIZATION_SEARCH_SUCCESS,
   ORGANIZATION_SEARCH_FAILURE,
@@ -44,7 +45,9 @@ const initialState = {
   prevPage: null,
   currentPage: null,
   totalPages: null,
-  numResults: null
+  updateOrganizationSuccess: false,
+  updateOrganizationFailure: false,
+  error: null
 };
 
 export default (state = initialState, action) => {
@@ -190,12 +193,14 @@ export default (state = initialState, action) => {
       return {
         ...state,
         updatingOrganization: false,
+        updateOrganizationSuccess: true,
         organization: action.payload
       };
     case UPDATE_ORGANIZATION_FAILURE:
       return {
         ...state,
         updatingOrganization: false,
+        updateOrganizationFailure: true,
         error: action.payload
       };
     case GET_NEXT_ORGS_START:
@@ -220,6 +225,12 @@ export default (state = initialState, action) => {
         searchStart: false,
         error: action.payload
       }
+    case CLEAR_ORGANIZATION_UPDATED:
+      return {
+        ...state,
+        updateOrganizationSuccess: false,
+        updateOrganizationFailure: false
+      };
     default:
       return state;
   }

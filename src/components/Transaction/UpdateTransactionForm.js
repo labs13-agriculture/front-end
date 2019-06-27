@@ -44,7 +44,10 @@ class UpdateTransactionForm extends Component {
 
   addItem = () => {
     this.setState(prevState => ({
-      items: [...prevState.items, { itemName: "", unitPrice: "", quantity: "" }],
+      items: [
+        ...prevState.items,
+        { itemName: "", unitPrice: "", quantity: "" }
+      ],
       needItems: false
     }));
   };
@@ -80,11 +83,11 @@ class UpdateTransactionForm extends Component {
   submitForm = e => {
     e.preventDefault();
 
-    if(this.state.items.length === 0){
+    if (this.state.items.length === 0) {
       this.setState({
         needItems: true,
         needItemData: false
-      })
+      });
       return;
     }
 
@@ -92,14 +95,14 @@ class UpdateTransactionForm extends Component {
     let finalItems = [];
     this.state.items.map(item => {
       //make sure an item was selected
-      if(item.itemName === ""){
+      if (item.itemName === "") {
         needDetails = true;
       }
       let itemObject = this.props.inventory.filter(
         inventoryItem => inventoryItem.name === item.itemName
       );
       //Make sure quantity and price were filled
-      if(item.quantity === "" || item.unitPrice === ""){
+      if (item.quantity === "" || item.unitPrice === "") {
         needDetails = true;
       }
       finalItems.push({
@@ -110,11 +113,11 @@ class UpdateTransactionForm extends Component {
       return itemObject;
     });
 
-    if(needDetails){
+    if (needDetails) {
       this.setState({
         needItems: false, // We must have had items if we determined that needDetails is true
         needItemData: needDetails
-      })
+      });
       return;
     }
 
@@ -123,7 +126,7 @@ class UpdateTransactionForm extends Component {
     this.setState({
       needItemData: false,
       needItems: false
-    })
+    });
 
     const transaction = {
       type: this.state.payment,
@@ -138,6 +141,8 @@ class UpdateTransactionForm extends Component {
     };
     console.log("******MYTRANSACTION*******", JSON.stringify(transaction));
     this.props.updateClientTransaction(transaction, this.state.transactionId);
+
+    this.props.toggleModal();
   };
 
   render() {
@@ -309,8 +314,16 @@ class UpdateTransactionForm extends Component {
           </Button>
         </FormGroup>
         <Input type="submit" />
-        {this.state.needItems && <ErrorMessage>Please add at least one item to this transaction</ErrorMessage>}
-        {this.state.needItemData && <ErrorMessage>All items must include a name, quantity, and price</ErrorMessage>}
+        {this.state.needItems && (
+          <ErrorMessage>
+            Please add at least one item to this transaction
+          </ErrorMessage>
+        )}
+        {this.state.needItemData && (
+          <ErrorMessage>
+            All items must include a name, quantity, and price
+          </ErrorMessage>
+        )}
       </Form>
     );
   }

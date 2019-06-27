@@ -54,8 +54,8 @@ export const searchOrganizations = query => dispatch => {
       }
     })
     .then(res => {
-      console.log(res);
-      dispatch({ type: ORGANIZATION_SEARCH_SUCCESS, payload: res.data });
+      console.log("ORGANIZATION SEARCH RES", res);
+      dispatch({ type: ORGANIZATION_SEARCH_SUCCESS, payload: res });
     })
     .catch(err => {
       console.log(err);
@@ -105,8 +105,8 @@ export const getAllOrganizations = () => dispatch => {
       }
     )
     .then(res => {
-      console.log("RESPONSE DATA", res.data);
-      dispatch({ type: GET_ALL_ORGANIZATIONS_SUCCESS, payload: res.data });
+      console.log("GET ALL ORGS", res);
+      dispatch({ type: GET_ALL_ORGANIZATIONS_SUCCESS, payload: res });
     })
     .catch(err => {
       console.log(err);
@@ -167,6 +167,29 @@ export const updateOrganization = organization => dispatch => {
       dispatch({ type: UPDATE_ORGANIZATION_FAILURE, payload: err });
     });
 };
+
+export const GET_NEXT_ORGS_START = "GET_NEXT_ORGS_START";
+export const GET_NEXT_ORGS_SUCCESS = "GET_NEXT_ORGS_SUCCESS";
+export const GET_NEXT_ORGS_FAILURE = "GET_NEXT_ORGS_FAILURE";
+
+export const getNextOrgPage = nextLink => dispatch => {
+  dispatch({type: GET_NEXT_ORGS_START});
+  return axios
+    .get(nextLink, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${window.localStorage.getItem("token")}`
+      }
+    })
+    .then(res =>{
+      console.log(res)
+      dispatch({type: GET_NEXT_ORGS_SUCCESS, payload: res})
+    })
+    .catch(err =>{
+      console.log(err)
+      dispatch({type: GET_NEXT_ORGS_FAILURE, payload: err})
+    });
+}
 
 export const CLEAR_DELETED_ORGS = "CLEAR_DELETED_ORGS";
 

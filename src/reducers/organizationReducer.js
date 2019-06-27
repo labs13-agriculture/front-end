@@ -18,6 +18,9 @@ import {
   ORGANIZATION_SEARCH_START,
   ORGANIZATION_SEARCH_SUCCESS,
   ORGANIZATION_SEARCH_FAILURE,
+  GET_NEXT_ORGS_START,
+  GET_NEXT_ORGS_FAILURE,
+  GET_NEXT_ORGS_SUCCESS,
   CLEAR_ADDED_ORGS,
   CLEAR_DELETED_ORGS
 } from "../actions";
@@ -33,11 +36,15 @@ const initialState = {
   addFailure: false,
   deleteStart: false,
   gettingOrganization: false,
-  gettingAllOrganizations: false,
   updatingOrganization: false,
   deletingOrganization: false,
   organizationDeleted: false,
   organizationAdded: false,
+  error: null,
+  nextPage: null,
+  prevPage: null,
+  currentPage: null,
+  totalPages: null,
   updateOrganizationSuccess: false,
   updateOrganizationFailure: false,
   error: null
@@ -76,21 +83,28 @@ export default (state = initialState, action) => {
     case GET_ALL_ORGANIZATIONS:
       return {
         ...state,
-        gettingAllOrganizations: true,
-        error: null
+        searchStart: true,
+        error: null,
+        listData: []
       };
     case GET_ALL_ORGANIZATIONS_SUCCESS:
       return {
         ...state,
-        gettingAllOrganizations: false,
+        searchStart: false,
         searchSuccess: true,
-        listData: action.payload
+        listData: action.payload.data,
+        nextPage: action.payload.headers.next,
+        prevPage: action.payload.headers.prev,
+        currentPage: action.payload.headers.number,
+        totalPages: action.payload.headers.total_pages,
+        numResults: action.payload.headers.results
       };
     case GET_ALL_ORGANIZATIONS_FAILURE:
       return {
         ...state,
-        gettingAllOrganizations: false,
-        error: action.payload
+        searchStart: false,
+        error: action.payload,
+
       };
     case ORGANIZATION_SEARCH_START:
       return {
@@ -108,7 +122,12 @@ export default (state = initialState, action) => {
         searchSuccess: true,
         searchFailure: false,
         error: "",
-        listData: action.payload
+        listData: action.payload.data,
+        nextPage: action.payload.headers.next,
+        prevPage: action.payload.headers.prev,
+        currentPage: action.payload.headers.number,
+        totalPages: action.payload.headers.total_pages,
+        numResults: action.payload.headers.results
       };
     case ORGANIZATION_SEARCH_FAILURE:
       return {
@@ -184,7 +203,28 @@ export default (state = initialState, action) => {
         updateOrganizationFailure: true,
         error: action.payload
       };
-
+    case GET_NEXT_ORGS_START:
+      return{
+        ...state,
+        searchStart: true
+      }
+    case GET_NEXT_ORGS_SUCCESS:
+      return{
+        ...state,
+        searchStart: false,
+        listData: action.payload.data,
+        nextPage: action.payload.headers.next,
+        prevPage: action.payload.headers.prev,
+        currentPage: action.payload.headers.number,
+        totalPages: action.payload.headers.total_pages,
+        numResults: action.payload.headers.results
+      }
+    case GET_NEXT_ORGS_FAILURE:
+      return{
+        ...state,
+        searchStart: false,
+        error: action.payload
+      }
     case CLEAR_ORGANIZATION_UPDATED:
       return {
         ...state,

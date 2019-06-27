@@ -11,7 +11,11 @@ import OrganizationCardContainer from "../Organization/OrganizationCardContainer
 import styled from "styled-components";
 import NewOrganizationForm from "../Organization/NewOrganizationForm";
 import { Modal } from "reactstrap";
+<<<<<<< HEAD
 import OrgResultsBtn from '../Organization/OrgResultsBtn';
+=======
+import {theme} from "../../config";
+>>>>>>> 408ea6ba8318d56810dcd9378265c23107d82054
 
 class OrganizationSearch extends Component {
   constructor(props) {
@@ -89,7 +93,7 @@ export default connect(
 const Header = styled.h1`
   text-align: center;
   color: white;
-  font-family: "Josefin Sans", sans-serif;
+  font-family: ${theme.searchInputFont};
   margin: 26px 0px 20px 0px;
   font-weight: 800;
   font-size: 30px;
@@ -117,11 +121,11 @@ const StyledHeader = styled.div`
 
     color: white;
 
-    font-family: "Josefin Sans", sans-serif;
-    border: 2px solid rgb(126, 121, 147);
+    font-family: ${theme.searchInputFont};
+    border: 2px solid ${theme.searchAddBtnBorder};
 
     &:hover {
-      background: rgba(128, 123, 151, 0.08);
+      background: ${theme.searchAddBtnHover};
     }
   }
 `;

@@ -3,9 +3,7 @@ import { connect } from "react-redux";
 import ClientCard from "./ClientCard";
 import CardContainer from "../../styles/CardContainerStyles";
 import { Spinner } from "reactstrap";
-import { theme } from "../../config";
-import styled from "styled-components";
-import ClientResultsBtn from "./ClientResultsBtn";
+
 
 class ClientCardContainer extends Component {
   render() {
@@ -14,7 +12,7 @@ class ClientCardContainer extends Component {
     if (this.props.type === "farmer") {
       return (
         <CardContainer>
-          {this.props.searchStart && <Spinner className="spinner" />}
+          {this.props.searchStart && <Spinner className="spinner"/>}
           {this.props.farmerData && this.props.farmerData.length === 0 ? (
             <p>No Clients found</p>
           ) : null}
@@ -31,7 +29,7 @@ class ClientCardContainer extends Component {
     } else {
       return (
         <CardContainer>
-          {this.props.searchStart && <Spinner className="spinner" />}
+          {this.props.searchStart && <Spinner className="spinner"  />}
           {this.props.retailerData && this.props.retailerData.length === 0 ? (
             <p>No Clients found</p>
           ) : null}

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { Input, Label, Form, FormGroup, Button } from "reactstrap";
 import { connect } from "react-redux";
+import FormStyles from "../../styles/FormStyles";
 
 import { theme } from "../../config";
 import { updateOrganization } from "../../actions";
@@ -72,63 +73,71 @@ class NewOrganizationForm extends Component {
 
   render() {
     return (
-      <ModalDiv>
-        <h2>Edit Organization</h2>
-        <Form
-          style={{ display: "flex", flexDirection: "column" }}
-          onSubmit={e => this.formSubmit(e)}
-        >
-          <Label>
-            Name:
-            <Input
-              onChange={e => this.handleChanges(e)}
-              type="text"
-              name="name"
-              value={this.state.name}
-            />
-          </Label>
-          <Label>
-            Number of Beneficiaries:
-            <Input
-              onChange={e => this.handleChanges(e)}
-              type="text"
-              name="beneficiaries"
-              value={this.state.beneficiaries}
-            />
-          </Label>
-          {!this.state.validBeneficiaries && (
-            <p>Please enter a number of beneficiaries</p>
-          )}
-          <Label>
-            Headquarters:
-            <Input
-              onChange={e => this.handleChanges(e)}
-              type="text"
-              name="headquarters"
-              value={this.state.headquarters}
-            />
-          </Label>
+      <FormStyles>
+        <div className="header">
+          <h2>Edit Organization</h2>
+        </div>
+        <ModalDiv>
+          <Form
+            style={{
+              display: "flex",
+              flexDirection: "column"
+            }}
+            onSubmit={e => this.formSubmit(e)}
+          >
+            <Label>
+              Name:
+              <Input
+                onChange={e => this.handleChanges(e)}
+                type="text"
+                name="name"
+                value={this.state.name}
+              />
+            </Label>
+            <Label>
+              Number of Beneficiaries:
+              <Input
+                onChange={e => this.handleChanges(e)}
+                type="text"
+                name="beneficiaries"
+                value={this.state.beneficiaries}
+              />
+            </Label>
+            {!this.state.validBeneficiaries && (
+              <p>Please enter a number of beneficiaries</p>
+            )}
+            <Label>
+              Headquarters:
+              <Input
+                onChange={e => this.handleChanges(e)}
+                type="text"
+                name="headquarters"
+                value={this.state.headquarters}
+              />
+            </Label>
 
-          <Label>
-            Status:
-            <select onChange={e => this.handleChanges(e)} name="lead">
-              <option value={false}>Active</option>
-              <option value={true}>Lead</option>
-            </select>
-            <FormGroup>
-              <Button
-                style={{ width: "100px", marginTop: "1%" }}
-                onClick={this.props.toggleModal}
-                color="warning"
-              >
-                Cancel
-              </Button>
-            </FormGroup>
-          </Label>
-          <input type="submit" />
-        </Form>
-        {this.state.blankField && <p>All fields are required</p>}
-      </ModalDiv>
+            <Label>
+              Status:
+              <select onChange={e => this.handleChanges(e)} name="lead">
+                <option value={false}>Active</option>
+                <option value={true}>Lead</option>
+              </select>
+              <FormGroup>
+                <Button
+                  style={{ width: "100px", marginTop: "1%" }}
+                  onClick={this.props.toggleModal}
+                  color="warning"
+                >
+                  Cancel
+                </Button>
+              </FormGroup>
+            </Label>
+            <input type="submit" />
+          </Form>
+
+          {this.state.blankField && <p>All fields are required</p>}
+        </ModalDiv>
+      </FormStyles>
     );
   }
 }
@@ -139,7 +148,7 @@ export default connect(
 )(NewOrganizationForm);
 
 const ModalDiv = styled.div`
-  background: white;
+  background: ${theme.background_light};
   padding: 20px;
   border-radius: 4px;
 

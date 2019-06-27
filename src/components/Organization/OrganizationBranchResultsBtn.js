@@ -1,15 +1,15 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { getNextOrgPage } from "../../actions";
+import { getNextBranchPage } from "../../actions";
 import { connect } from "react-redux";
 
-class OrgResultsBtn extends Component {
+class OrganizationBranchResultsBtn extends Component {
   render() {
     return (
       <StyledClientResultsBtn>
         {this.props.prevPage && (
           <button
-            onClick={() => this.props.getNextOrgPage(this.props.prevPage)}
+            onClick={() => this.props.getNextBranchPage(this.props.prevPage)}
           >
             Previous
           </button>
@@ -22,12 +22,12 @@ class OrgResultsBtn extends Component {
             </div>
           )}
           {this.props.numResults && (
-            <div>{this.props.numResults} Organizations found</div>
+            <div>{this.props.numResults} Branches found</div>
           )}
         </div>
         {this.props.nextPage && (
           <button
-            onClick={() => this.props.getNextOrgPage(this.props.nextPage)}
+            onClick={() => this.props.getNextBranchPage(this.props.nextPage)}
           >
             Next
           </button>
@@ -39,18 +39,18 @@ class OrgResultsBtn extends Component {
 
 const mapStateToProps = state => {
   return {
-    nextPage: state.organizationData.nextPage,
-    prevPage: state.organizationData.prevPage,
-    currentPage: state.organizationData.currentPage,
-    totalPages: state.organizationData.totalPages,
-    numResults: state.organizationData.numResults
+    nextPage: state.branchData.nextPage,
+    prevPage: state.branchData.prevPage,
+    currentPage: state.branchData.currentPage,
+    totalPages: state.branchData.totalPages,
+    numResults: state.branchData.numResults
   };
 };
 
 export default connect(
   mapStateToProps,
-  { getNextOrgPage }
-)(OrgResultsBtn);
+  { getNextBranchPage }
+)(OrganizationBranchResultsBtn);
 
 const StyledClientResultsBtn = styled.div`
   color: white;

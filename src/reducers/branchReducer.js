@@ -13,7 +13,10 @@ import {
   DELETE_BRANCH_FAILURE,
   CLEAR_BRANCH_ADD,
   CLEAR_BRANCH_UPDATE,
-  CLEAR_BRANCH_DELETE
+  CLEAR_BRANCH_DELETE,
+  GET_NEXT_BRANCH_START,
+  GET_NEXT_BRANCH_SUCCESS,
+  GET_NEXT_BRANCH_FAILURE
 } from "../actions";
 
 const initialState = {
@@ -28,6 +31,10 @@ const initialState = {
   addFailure: false,
   deleteSuccess: false,
   deleteFailure: false,
+  nextPage: null,
+  prevPage: null,
+  currentPage: null,
+  totalPages: null,
   error: ""
 };
 
@@ -44,6 +51,11 @@ export default (state = initialState, action) => {
         ...state,
         branchData: action.payload,
         getBranchStart: false,
+        // nextPage: action.payload.headers.next,
+        // prevPage: action.payload.headers.prev,
+        // currentPage: action.payload.headers.number,
+        // totalPages: action.payload.headers.total_pages,
+        // numResults: action.payload.headers.results,
         error: ""
       };
     case GET_BRANCHES_FAILURE:
@@ -137,6 +149,28 @@ export default (state = initialState, action) => {
         deleteSuccess: false,
         deleteFailure: false
       };
+
+    case GET_NEXT_BRANCH_START:
+      return {
+        ...state
+      };
+    case GET_NEXT_BRANCH_SUCCESS:
+      return {
+        ...state,
+        branchData: action.payload.data,
+        nextPage: action.payload.headers.next,
+        prevPage: action.payload.headers.prev,
+        currentPage: action.payload.headers.number,
+        totalPages: action.payload.headers.total_pages,
+        numResults: action.payload.headers.results
+      };
+    case GET_NEXT_BRANCH_FAILURE:
+      return {
+        ...state,
+
+        error: action.payload
+      };
+
     default:
       return state;
   }

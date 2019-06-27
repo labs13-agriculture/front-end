@@ -103,8 +103,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         searchStart: false,
-        error: action.payload,
-
+        error: action.payload
       };
     case ORGANIZATION_SEARCH_START:
       return {
@@ -204,12 +203,12 @@ export default (state = initialState, action) => {
         error: action.payload
       };
     case GET_NEXT_ORGS_START:
-      return{
+      return {
         ...state,
         searchStart: true
-      }
+      };
     case GET_NEXT_ORGS_SUCCESS:
-      return{
+      return {
         ...state,
         searchStart: false,
         listData: action.payload.data,
@@ -218,13 +217,13 @@ export default (state = initialState, action) => {
         currentPage: action.payload.headers.number,
         totalPages: action.payload.headers.total_pages,
         numResults: action.payload.headers.results
-      }
+      };
     case GET_NEXT_ORGS_FAILURE:
-      return{
+      return {
         ...state,
         searchStart: false,
         error: action.payload
-      }
+      };
     case CLEAR_ORGANIZATION_UPDATED:
       return {
         ...state,

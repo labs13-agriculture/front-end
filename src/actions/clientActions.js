@@ -45,8 +45,12 @@ export const searchClients = (query, type) => dispatch => {
         }
       })
       .then(res => {
-        dispatch({ type: FARMER_SEARCH_SUCCESS, payload: res.data, headers:res.headers});
-        console.log(res)
+        dispatch({
+          type: FARMER_SEARCH_SUCCESS,
+          payload: res.data,
+          headers: res.headers
+        });
+        console.log(res);
       })
       .catch(err => {
         console.log(err);
@@ -65,7 +69,11 @@ export const searchClients = (query, type) => dispatch => {
         }
       })
       .then(res => {
-        dispatch({ type: RETAILER_SEARCH_SUCCESS, payload: res.data, headers:res.headers });
+        dispatch({
+          type: RETAILER_SEARCH_SUCCESS,
+          payload: res.data,
+          headers: res.headers
+        });
       })
       .catch(err => {
         console.log(err);
@@ -228,7 +236,6 @@ export const clearAdded = () => dispatch => {
   dispatch({ type: CLEAR_ADDED });
 };
 
-
 export const FARMER_PAGE_START = "FARMER_PAGE_START";
 export const FARMER_PAGE_SUCCESS = "FARMER_PAGE_SUCCESS";
 export const FARMER_PAGE_FAILURE = "FARMER_PAGE_FAILURE";
@@ -237,32 +244,9 @@ export const RETAILER_PAGE_SUCCESS = "RETAILER_PAGE_SUCCESS";
 export const RETAILER_PAGE_FAILURE = "RETAILER_PAGE_FAILURE";
 
 export const pageClient = (pageString, type) => dispatch => {
-
-
-  if(type==="farmer"){
+  if (type === "farmer") {
     dispatch({
-      type: FARMER_PAGE_START}
-    );
-    return axios
-      .get(pageString, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${window.localStorage.getItem("token")}`
-        }
-      })
-      .then(res => {
-        dispatch({ type: FARMER_PAGE_SUCCESS, payload: res.data, headers:res.headers});
-        console.log(res)
-      })
-      .catch(err => {
-        console.log(err);
-        dispatch({ type: FARMER_PAGE_FAILURE, payload: err });
-      });}
-
-  else{
-    dispatch({
-      type: RETAILER_PAGE_START,
-      
+      type: FARMER_PAGE_START
     });
     return axios
       .get(pageString, {
@@ -272,10 +256,38 @@ export const pageClient = (pageString, type) => dispatch => {
         }
       })
       .then(res => {
-        dispatch({ type: RETAILER_PAGE_SUCCESS, payload: res.data, headers:res.headers});
+        dispatch({
+          type: FARMER_PAGE_SUCCESS,
+          payload: res.data,
+          headers: res.headers
+        });
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
+        dispatch({ type: FARMER_PAGE_FAILURE, payload: err });
+      });
+  } else {
+    dispatch({
+      type: RETAILER_PAGE_START
+    });
+    return axios
+      .get(pageString, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${window.localStorage.getItem("token")}`
+        }
+      })
+      .then(res => {
+        dispatch({
+          type: RETAILER_PAGE_SUCCESS,
+          payload: res.data,
+          headers: res.headers
+        });
       })
       .catch(err => {
         console.log(err);
         dispatch({ type: RETAILER_PAGE_FAILURE, payload: err });
-      });}
+      });
   }
+};

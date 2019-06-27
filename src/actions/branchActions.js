@@ -124,3 +124,26 @@ export const clearBranchAlerts = () => dispatch => {
   dispatch({ type: CLEAR_BRANCH_ADD });
   dispatch({ type: CLEAR_BRANCH_DELETE });
 };
+
+export const GET_NEXT_BRANCH_START = "GET_NEXT_BRANCH_START";
+export const GET_NEXT_BRANCH_SUCCESS = "GET_NEXT_BRANCH_SUCCESS";
+export const GET_NEXT_BRANCH_FAILURE = "GET_NEXT_BRANCH_FAILURE";
+
+export const getNextBranchPage = nextLink => dispatch => {
+  dispatch({ type: GET_NEXT_BRANCH_START });
+  return axios
+    .get(nextLink, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${window.localStorage.getItem("token")}`
+      }
+    })
+    .then(res => {
+      console.log("RESPONSE", res);
+      dispatch({ type: GET_NEXT_BRANCH_SUCCESS, payload: res });
+    })
+    .catch(err => {
+      console.log(err);
+      dispatch({ type: GET_NEXT_BRANCH_FAILURE, payload: err });
+    });
+};

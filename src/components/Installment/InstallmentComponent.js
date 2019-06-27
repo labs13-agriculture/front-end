@@ -6,7 +6,6 @@ import Header from "./InstallmentHeader";
 import Installment from "./Installment";
 import { Spinner } from "reactstrap";
 
-
 import { getInstallmentData } from "../../actions";
 
 function InstallmentComponent(props) {
@@ -23,7 +22,11 @@ function InstallmentComponent(props) {
       {/* Installments Container */}
       <StyledTable className="installmentitem-container">
         <tbody>
-          {props.installmentStart && <div className="spindiv"><Spinner className="spinner" /></div>}
+          {props.installmentStart && (
+            <div className="spindiv">
+              <Spinner className="spinner" />
+            </div>
+          )}
           {/* Installment items */}
           {props.installments &&
             props.installments.map(i => {
@@ -69,12 +72,12 @@ const StyledTable = styled.table`
     }
   }
 
-  .spindiv{
-    width: 100%
+  .spindiv {
+    width: 100%;
     text-align: center;
   }
-  .spinner{
-    border: .5em solid lightgray;
+  .spinner {
+    border: 0.5em solid lightgray;
     border-right-color: transparent;
     width: 10rem;
     height: 10rem;

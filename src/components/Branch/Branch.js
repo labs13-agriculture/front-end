@@ -42,7 +42,11 @@ class Branch extends Component {
           />
         </StyledTd>
         <Modal isOpen={this.state.toggleUpdate} toggle={this.toggleUpdateModal}>
-          <BranchForm updating={true} branch={this.props.branch} />
+          <BranchForm
+            updating={true}
+            branch={this.props.branch}
+            toggle={this.state.toggleUpdateModal}
+          />
         </Modal>
       </Row>
     );

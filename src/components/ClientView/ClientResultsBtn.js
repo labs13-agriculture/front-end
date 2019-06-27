@@ -59,6 +59,14 @@ const StyledClientResultsBtn = styled.div`
     align-items: flex-end;
     margin-bottom: 10px;
 
+    h3{
+        font-size: 1.8rem;
+    }
+
+    h1{
+        font-size:2.3rem;
+    }
+
     .search-option-container{
         width:200px;
         display: flex;

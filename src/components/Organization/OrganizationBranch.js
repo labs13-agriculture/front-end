@@ -2,7 +2,7 @@ import React, { Component } from "react"; // { useState }
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-// import { Modal } from "reactstrap";
+import { Spinner } from "reactstrap";
 import BranchHeader from "../Branch/BranchHeader";
 import { getBranches } from "../../actions";
 import Branch from "../Branch/Branch";
@@ -26,6 +26,7 @@ class OrganizationBranch extends Component {
         </div>
         {/* <StyledTable>
           <tbody>
+            {this.props.start && <div className="spindiv"><Spinner className="spinner" /></div>}
             {this.props.data.length > 0 &&
               this.props.data.map(branch => {
                 return <Branch branch={branch} key={branch.branch_id} />;
@@ -39,7 +40,8 @@ class OrganizationBranch extends Component {
 
 const mapStateToProps = state => {
   return {
-    data: state.branchData.branchData
+    data: state.branchData.branchData,
+    start: state.branchData.getBranchStart
   };
 };
 
@@ -54,6 +56,18 @@ const StyledTable = styled.table`
   font-family: arial, sans-serif;
   border-collapse: collapse;
   width: 100%;
+
+  .spindiv{
+    width: 100%
+    text-align: center;
+  }
+  .spinner{
+    border: .5em solid lightgray;
+    border-right-color: transparent;
+    width: 10rem;
+    height: 10rem;
+    margin: auto;
+  }
 `;
 
 const BranchContainer = styled.div`

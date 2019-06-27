@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { withRouter, Redirect } from "react-router-dom";
-import { Modal, Alert } from "reactstrap";
+import { Modal, Alert, Spinner } from "reactstrap";
 
 import EditClientForm from "./EditClientForm";
 import { theme } from "../../config";
@@ -53,10 +53,10 @@ function ClientDemographics(props) {
     }
   };
 
-  if (!client) {
+  if (props.clientDemoDataStart) {
     return (
       <StyledDiv>
-        <h1>Client not Found</h1>
+        <Spinner className="spinner" />
       </StyledDiv>
     );
   }
@@ -64,6 +64,14 @@ function ClientDemographics(props) {
   if (props.clientDeleted) {
     props.clearDeleted();
     return <Redirect to="/search" />;
+  }
+
+  if (!client) {
+    return (
+      <StyledDiv>
+        <h1>Client not Found</h1>
+      </StyledDiv>
+    );
   }
 
   return (
@@ -195,7 +203,6 @@ const StyledDiv = styled.div`
   background: white;
   display: flex;
   flex-direction: column;
-  width: 100%;
 
   ${media.tablet`font-size: 1.2rem;`}
 
@@ -273,5 +280,13 @@ const StyledDiv = styled.div`
 
       ${media.phone`font-size:1.6rem;`}
     }
+  }
+
+  .spinner {
+    border: 0.5em solid lightgray;
+    border-right-color: transparent;
+    width: 10rem;
+    height: 10rem;
+    margin: auto;
   }
 `;

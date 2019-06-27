@@ -18,29 +18,45 @@ export default class GlobalSideNav extends Component {
   componentDidMount(){
     //Going to do the axios call here, redux seems like overkill, 
     //since it will be attached to localStorage
-    axios
-      .get(`${BASE_URL}/user/usertype`, {
-        headers: {
-          'Content-Type' : 'application/json',
-          
-          
-          Authorization: `Bearer ${window.localStorage.getItem('token')}`
-        }
-      })
-      .then(res =>{
-        //Check if one of the objects is {authority: "ROLE_ADMIN"}
-        if(res.data.filter(roles => roles.authority === "ROLE_ADMIN").length > 0){
-          window.localStorage.setItem("admin", true);
-          //Have to use state here, since localStorage won't cause re-render
-          this.setState({
-            admin: true
-          })
-        }
-        else{
-          window.localStorage.setItem("admin", false);
-        }
-      })
-      .catch(err => console.log(err));
+
+    //check to see if we have localStorage already, can skip this axios call
+    if(!window.localStorage.getItem("admin")){
+      axios
+        .get(`${BASE_URL}/user/usertype`, {
+          headers: {
+            'Content-Type' : 'application/json',
+            
+            
+            Authorization: `Bearer ${window.localStorage.getItem('token')}`
+          }
+        })
+        .then(res =>{
+          //Check if one of the objects is {authority: "ROLE_ADMIN"}
+          if(res.data.filter(roles => roles.authority === "ROLE_ADMIN").length > 0){
+            window.localStorage.setItem("admin", true);
+            //Have to use state here, since localStorage won't cause re-render
+            this.setState({
+              admin: true
+            })
+          }
+          else{
+            window.localStorage.setItem("admin", false);
+          }
+        })
+        .catch(err => console.log(err));
+    }
+    else{
+      if(window.localStorage.getItem("admin") === "true"){
+        this.setState({
+          admin: true
+        })
+      }
+      else{
+        this.setState({
+          admin:false
+        })
+      }
+    }
 
   }
 

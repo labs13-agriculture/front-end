@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import Header from "./InstallmentHeader";
 import Installment from "./Installment";
+import { Spinner } from "reactstrap";
+
 
 import { getInstallmentData } from "../../actions";
 
@@ -21,6 +23,7 @@ function InstallmentComponent(props) {
       {/* Installments Container */}
       <StyledTable className="installmentitem-container">
         <tbody>
+          {props.installmentStart && <div className="spindiv"><Spinner className="spinner" /></div>}
           {/* Installment items */}
           {props.installments &&
             props.installments.map(i => {
@@ -36,7 +39,8 @@ export default withRouter(
   connect(
     state => ({
       // Map State to Props
-      installments: state.installments.data
+      installments: state.installments.data,
+      installmentStart: state.installments.installmentCardDataStart
     }),
     {
       // Actions
@@ -63,5 +67,17 @@ const StyledTable = styled.table`
     &:nth-of-type(even) {
       background-color: lightgrey;
     }
+  }
+
+  .spindiv{
+    width: 100%
+    text-align: center;
+  }
+  .spinner{
+    border: .5em solid lightgray;
+    border-right-color: transparent;
+    width: 10rem;
+    height: 10rem;
+    margin: auto;
   }
 `;

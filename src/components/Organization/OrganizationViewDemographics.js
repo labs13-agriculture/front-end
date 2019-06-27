@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled, { css } from "styled-components";
 import { connect } from "react-redux";
 import { withRouter, Redirect } from "react-router-dom";
-import { Modal, Alert } from "reactstrap";
+import { Modal, Spinner, Alert } from "reactstrap";
 import {
   getOrganizationById,
   deleteOrganization,
@@ -42,10 +42,12 @@ function OrganizationViewDemographics(props) {
     }
   };
 
-  if (!organization) {
+  if (props.organizationDemoDataStart) {
     return (
       <StyledDiv>
-        <h1>Organization not Found</h1>
+        <div className="spindiv">
+          <Spinner className="spinner" />
+        </div>
       </StyledDiv>
     );
   }
@@ -54,6 +56,11 @@ function OrganizationViewDemographics(props) {
     props.clearDeletedOrgs();
     return <Redirect to="/search/organizations" />;
   }
+
+  if (!organization) {
+    return <StyledDiv>No Organization Found</StyledDiv>;
+  }
+
   return (
     <StyledDiv>
       <Alert
@@ -83,6 +90,7 @@ function OrganizationViewDemographics(props) {
           <i className="fas fa-trash delete" onClick={deleteOrg} />
         </div>
       </div>
+
       <div className="demoWrapper">
         <h3>Headquarters</h3>
         <div className="info-section contact-info">
@@ -91,6 +99,7 @@ function OrganizationViewDemographics(props) {
           </div>
         </div>
       </div>
+
       <div className="demoWrapper">
         <h3>Beneficiaries</h3>
         <div className="info-section contact-info">
@@ -119,7 +128,8 @@ const mapStateToProps = state => {
     organizationDeleted: state.organizationData.organizationDeleted,
     updateOrganizationSuccess: state.organizationData.updateOrganizationSuccess,
     updateOrganizationFailure: state.organizationData.updateOrganizationFailure,
-    clearOrganizationUpdated: state.organizationData.clearOrganizationUpdated
+    clearOrganizationUpdated: state.organizationData.clearOrganizationUpdated,
+    organizationDemoDataStart: state.organizationData.gettingOrganization
   };
 };
 
@@ -237,5 +247,17 @@ const StyledDiv = styled.div`
 
       ${media.phone`font-size:1.6rem;`}
     }
+  }
+
+  .spindiv{
+    width: 100%
+    text-align: center;
+  }
+  .spinner{
+    border: .5em solid lightgray;
+    border-right-color: transparent;
+    width: 10rem;
+    height: 10rem;
+    margin: auto;
   }
 `;

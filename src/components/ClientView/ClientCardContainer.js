@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import ClientCard from "./ClientCard";
 import CardContainer from "../../styles/CardContainerStyles";
+import { Spinner } from "reactstrap";
+import { theme } from "../../config";
+import styled from "styled-components";
 import ClientResultsBtn from "./ClientResultsBtn";
 
 class ClientCardContainer extends Component {
@@ -11,21 +14,16 @@ class ClientCardContainer extends Component {
     if (this.props.type === "farmer") {
       return (
         <CardContainer>
-          {this.props.searchStart && <h2>Loading...</h2>}
+          {this.props.searchStart && <Spinner className="spinner" />}
           {this.props.farmerData && this.props.farmerData.length === 0 ? (
             <p>No Clients found</p>
           ) : null}
 
-          {this.props.farmerData && this.props.farmerData._embedded && (
-            <ClientResultsBtn
-              resultsPageInfo={this.props.farmerData.page}
-              resultsLinkInfo={this.props.farmerData._links}
-            />
-          )}
+          {/* {this.props.farmerData && this.props.farmerData._embedded && 
+            <ClientResultsBtn resultsPageInfo={this.props.farmerData.page} resultsLinkInfo={this.props.farmerData._links}/>} */}
 
           {this.props.farmerData &&
-            this.props.farmerData._embedded &&
-            this.props.farmerData._embedded.clientList.map(client => (
+            this.props.farmerData.map(client => (
               <ClientCard key={client.id} client={client} />
             ))}
         </CardContainer>
@@ -33,7 +31,7 @@ class ClientCardContainer extends Component {
     } else {
       return (
         <CardContainer>
-          {this.props.searchStart && <h2>Loading...</h2>}
+          {this.props.searchStart && <Spinner className="spinner" />}
           {this.props.retailerData && this.props.retailerData.length === 0 ? (
             <p>No Clients found</p>
           ) : null}
@@ -55,7 +53,9 @@ const mapStateToProps = state => {
     error: state.clientData.error,
     searchStart: state.clientData.searchStart,
     searchSuccess: state.clientData.searchSuccess,
-    searchFailure: state.clientData.searchFailure
+    searchFailure: state.clientData.searchFailure,
+    farmerPageData: state.clientData.farmerHeaders,
+    retailerPageData: state.clientData.retailerHeaders
   };
 };
 

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled, { css } from "styled-components";
 import { connect } from "react-redux";
 import { withRouter, Redirect } from "react-router-dom";
-import { Modal, Alert } from "reactstrap";
+import { Modal, Spinner, Alert } from "reactstrap";
 import {
   getOrganizationById,
   deleteOrganization,
@@ -25,6 +25,7 @@ function OrganizationViewDemographics(props) {
   const onDismiss = e => {
     props.clearOrganizationUpdated();
   };
+  console.log(props);
 
   const toggleModal = e => {
     if (e) {
@@ -42,10 +43,12 @@ function OrganizationViewDemographics(props) {
     }
   };
 
-  if (!organization) {
+  if (props.organizationDemoDataStart) {
     return (
       <StyledDiv>
-        <h1>Organization not Found</h1>
+        <div className="spindiv">
+          <Spinner className="spinner" />
+        </div>
       </StyledDiv>
     );
   }
@@ -53,62 +56,65 @@ function OrganizationViewDemographics(props) {
   if (props.organizationDeleted) {
     props.clearDeletedOrgs();
     return <Redirect to="/search/organizations" />;
+  } else if (props.organization) {
+    return (
+      <StyledDiv>
+        <Alert
+          style={{ marginBottom: "0" }}
+          color="success"
+          isOpen={props.updateOrganizationSuccess}
+          toggle={onDismiss}
+        >
+          Update Success
+        </Alert>
+        <Alert
+          style={{ marginBottom: "0" }}
+          color="danger"
+          isOpen={props.updateOrganizationFailure}
+          toggle={onDismiss}
+        >
+          Failed to Update
+        </Alert>
+        <div className="header">
+          <h1>
+            {organization && organization.name} <br />
+            Lead: {organization.lead ? "True" : "False"}
+          </h1>
+
+          <div className="actions">
+            <i class="fas fa-edit edit" onClick={toggleModal} />
+            <i className="fas fa-trash delete" onClick={deleteOrganization} />
+          </div>
+        </div>
+        <div className="demoWrapper">
+          <h3>Headquarters</h3>
+          <div className="info-section contact-info">
+            <div className="contact-box">
+              <p>{organization && organization.headquarters}</p>
+            </div>
+          </div>
+        </div>
+        <div className="demoWrapper">
+          <h3>Beneficiaries</h3>
+          <div className="info-section contact-info">
+            <div className="contact-box">
+              <p>{organization && organization.beneficiaries}</p>
+            </div>
+          </div>
+        </div>
+
+        <Modal isOpen={modal} toggle={toggleModal}>
+          {/* This is all good to go just need to add in the Edit Form */}
+          <EditOrganizationForm
+            organization={organization}
+            closeModal={toggleModal}
+          />
+        </Modal>
+      </StyledDiv>
+    );
+  } else {
+    return <StyledDiv>No Organization Found</StyledDiv>;
   }
-  return (
-    <StyledDiv>
-      <Alert
-        style={{ marginBottom: "0" }}
-        color="success"
-        isOpen={props.updateOrganizationSuccess}
-        toggle={onDismiss}
-      >
-        Update Success
-      </Alert>
-      <Alert
-        style={{ marginBottom: "0" }}
-        color="danger"
-        isOpen={props.updateOrganizationFailure}
-        toggle={onDismiss}
-      >
-        Failed to Update
-      </Alert>
-      <div className="header">
-        <h1>
-          {organization && organization.name} <br />
-          Lead: {organization.lead ? "True" : "False"}
-        </h1>
-
-        <div className="actions">
-          <i class="fas fa-edit edit" onClick={toggleModal} />
-          <i className="fas fa-trash delete" onClick={deleteOrg} />
-        </div>
-      </div>
-      <div className="demoWrapper">
-        <h3>Headquarters</h3>
-        <div className="info-section contact-info">
-          <div className="contact-box">
-            <p>{organization && organization.headquarters}</p>
-          </div>
-        </div>
-      </div>
-      <div className="demoWrapper">
-        <h3>Beneficiaries</h3>
-        <div className="info-section contact-info">
-          <div className="contact-box">
-            <p>{organization && organization.beneficiaries}</p>
-          </div>
-        </div>
-      </div>
-
-      <Modal isOpen={modal} toggle={toggleModal}>
-        {/* This is all good to go just need to add in the Edit Form */}
-        <EditOrganizationForm
-          organization={organization}
-          closeModal={toggleModal}
-        />
-      </Modal>
-    </StyledDiv>
-  );
 }
 
 const mapStateToProps = state => {
@@ -119,7 +125,8 @@ const mapStateToProps = state => {
     organizationDeleted: state.organizationData.organizationDeleted,
     updateOrganizationSuccess: state.organizationData.updateOrganizationSuccess,
     updateOrganizationFailure: state.organizationData.updateOrganizationFailure,
-    clearOrganizationUpdated: state.organizationData.clearOrganizationUpdated
+    clearOrganizationUpdated: state.organizationData.clearOrganizationUpdated,
+    organizationDemoDataStart: state.organizationData.gettingOrganization
   };
 };
 
@@ -237,5 +244,17 @@ const StyledDiv = styled.div`
 
       ${media.phone`font-size:1.6rem;`}
     }
+  }
+
+  .spindiv{
+    width: 100%
+    text-align: center;
+  }
+  .spinner{
+    border: .5em solid lightgray;
+    border-right-color: transparent;
+    width: 10rem;
+    height: 10rem;
+    margin: auto;
   }
 `;

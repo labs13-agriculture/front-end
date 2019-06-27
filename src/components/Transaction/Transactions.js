@@ -4,6 +4,7 @@ import TransactionItem from "./TransactionItem";
 import { connect } from "react-redux";
 import { getClientTransaction, deleteClientTransaction } from "../../actions";
 import TransactionHeader from "./TransactionHeader";
+import { Spinner } from "reactstrap";
 
 class ViewTransactions extends Component {
   //write function for submitting form information for update
@@ -18,6 +19,7 @@ class ViewTransactions extends Component {
         <TransactionHeader id={this.props.id} />
         <StyledTable>
           <tbody>
+            {this.props.transactionDataStart && <div className="spindiv"><Spinner className="spinner" /></div>}
             {this.props.transactionDataSuccess &&
               this.props.transactionData.map(t => (
                 <TransactionItem
@@ -68,5 +70,17 @@ const TransactionContainer = styled.div`
 
   .installmentitem-container {
     width: 100%;
+  }
+
+  .spindiv{
+    width: 100%
+    text-align: center;
+  }
+  .spinner{
+    border: .5em solid lightgray;
+    border-right-color: transparent;
+    width: 10rem;
+    height: 10rem;
+    margin: auto;
   }
 `;

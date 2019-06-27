@@ -7,6 +7,7 @@ import { Modal } from "reactstrap";
 import ClientCardContainer from "../ClientView/ClientCardContainer";
 import SearchForm from "./SearchForm";
 import NewClientForm from "../ClientView/NewClientForm";
+import ClientResultsBtn from "../ClientView/ClientResultsBtn";
 
 // Actions
 import { searchClients, addClient, clearAdded } from "../../actions";
@@ -64,6 +65,17 @@ class ClientSearch extends Component {
 
           <SearchForm submitSearch={this.submitSearch} />
         </StyledSearchToolContainer>
+       
+        {this.getType() === "farmer" && this.props.farmerSearchSuccess &&
+        
+            <ClientResultsBtn searchType={this.getType()} resultsPageInfo={this.props.farmerPageData}/>
+
+        }
+        {this.getType() === "retailer" && this.props.retailerSearchSuccess &&
+            <ClientResultsBtn searchType={this.getType()} resultsPageInfo={this.props.retailerPageData}/>
+            
+        }
+
 
         <ClientCardContainer type={this.getType()} />
         <Modal isOpen={this.state.modal} toggle={this.toggleModal}>
@@ -87,7 +99,11 @@ const mapStateToProps = state => {
     searchSuccess: state.clientData.searchSuccess,
     clientAdded: state.clientData.clientAdded,
     clientDeleted: state.clientData.clientDeleted,
-    client: state.clientData.client
+    client: state.clientData.client,
+    farmerPageData:state.clientData.farmerHeaders,
+    retailerPageData:state.clientData.retailerHeaders,
+    farmerSearchSuccess:state.clientData.farmerSearchSuccess,
+    retailerSearchSuccess:state.clientData.retailerSearchSuccess
   };
 };
 

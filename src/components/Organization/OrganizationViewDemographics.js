@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import styled, { css } from "styled-components";
 import { connect } from "react-redux";
 import { withRouter, Redirect } from "react-router-dom";
-import { Modal, Spinner } from "reactstrap";
+import { Modal, Spinner, Alert } from "reactstrap";
 import {
   getOrganizationById,
   deleteOrganization,
+  clearOrganizationUpdated,
   clearDeletedOrgs
 } from "../../actions";
 
@@ -21,7 +22,9 @@ function OrganizationViewDemographics(props) {
 
   const [modal, setModal] = useState(false);
 
-  console.log(props);
+  const onDismiss = e => {
+    props.clearOrganizationUpdated();
+  };
 
   const toggleModal = e => {
     if (e) {
@@ -30,7 +33,7 @@ function OrganizationViewDemographics(props) {
     setModal(!modal);
   };
 
-  const deleteOrganization = () => {
+  const deleteOrg = () => {
     let confirm = window.confirm(
       "Are you sure you want to\n\nPERMANENTLY DELETE\n\nthis organization and all associated data?"
     );
@@ -42,67 +45,90 @@ function OrganizationViewDemographics(props) {
   if (props.organizationDemoDataStart) {
     return (
       <StyledDiv>
-        <div className="spindiv"><Spinner className="spinner" /></div>
+        <div className="spindiv">
+          <Spinner className="spinner" />
+        </div>
       </StyledDiv>
     );
   }
 
   if (props.organizationDeleted) {
-    props.clearDeletedOrg();
-    return <Redirect to="/search" />;
+    props.clearDeletedOrgs();
+    return <Redirect to="/search/organizations" />;
   }
-  else if (props.organization){
-    return (
-      <StyledDiv>
-        <div className="header">
-          <h1>
-            {organization && organization.name} <br />
-            Lead: {organization.lead ? "True" : "False"}
-          </h1>
 
-          <div className="actions">
-            <i class="fas fa-edit edit" onClick={toggleModal} />
-            <i className="fas fa-trash delete" onClick={deleteOrganization} />
-          </div>
-        </div>
-        <div className="demoWrapper">
-          <h3>Headquarters</h3>
-          <div className="info-section contact-info">
-            <div className="contact-box">
-              <p>{organization && organization.headquarters}</p>
-            </div>
-          </div>
-        </div>
-        <div className="demoWrapper">
-          <h3>Beneficiaries</h3>
-          <div className="info-section contact-info">
-            <div className="contact-box">
-              <p>{organization && organization.beneficiaries}</p>
-            </div>
-          </div>
-        </div>
+  if (!organization) {
+    return <StyledDiv>No Organization Found</StyledDiv>;
+  }
 
-        <Modal isOpen={modal} toggle={toggleModal}>
-          {/* This is all good to go just need to add in the Edit Form */}
-          <EditOrganizationForm
-            organization={organization}
-            closeModal={toggleModal}
-          />
-        </Modal>
-      </StyledDiv>
-    );
-  }
-  else{
-    return(
-      <StyledDiv>No Organization Found</StyledDiv>
-    )
-  }
+  return (
+    <StyledDiv>
+      <Alert
+        style={{ marginBottom: "0" }}
+        color="success"
+        isOpen={props.updateOrganizationSuccess}
+        toggle={onDismiss}
+      >
+        Update Success
+      </Alert>
+      <Alert
+        style={{ marginBottom: "0" }}
+        color="danger"
+        isOpen={props.updateOrganizationFailure}
+        toggle={onDismiss}
+      >
+        Failed to Update
+      </Alert>
+      <div className="header">
+        <h1>
+          {organization && organization.name} <br />
+          Lead: {organization.lead ? "True" : "False"}
+        </h1>
+
+        <div className="actions">
+          <i class="fas fa-edit edit" onClick={toggleModal} />
+          <i className="fas fa-trash delete" onClick={deleteOrg} />
+        </div>
+      </div>
+
+      <div className="demoWrapper">
+        <h3>Headquarters</h3>
+        <div className="info-section contact-info">
+          <div className="contact-box">
+            <p>{organization && organization.headquarters}</p>
+          </div>
+        </div>
+      </div>
+
+      <div className="demoWrapper">
+        <h3>Beneficiaries</h3>
+        <div className="info-section contact-info">
+          <div className="contact-box">
+            <p>{organization && organization.beneficiaries}</p>
+          </div>
+        </div>
+      </div>
+
+      <Modal isOpen={modal} toggle={toggleModal}>
+        {/* This is all good to go just need to add in the Edit Form */}
+        <EditOrganizationForm
+          organization={organization}
+          closeModal={toggleModal}
+        />
+      </Modal>
+    </StyledDiv>
+  );
 }
 
 const mapStateToProps = state => {
   return {
     organization: state.organizationData.organization,
     organizationDemoError: state.organizationData.error,
+    organizationDemoDataStart: state.organizationData.getStart,
+    organizationDeleted: state.organizationData.organizationDeleted,
+    updateOrganizationSuccess: state.organizationData.updateOrganizationSuccess,
+    updateOrganizationFailure: state.organizationData.updateOrganizationFailure,
+    clearOrganizationUpdated: state.organizationData.clearOrganizationUpdated,
     organizationDemoDataStart: state.organizationData.gettingOrganization
   };
 };
@@ -110,7 +136,12 @@ const mapStateToProps = state => {
 export default withRouter(
   connect(
     mapStateToProps,
-    { getOrganizationById, deleteOrganization, clearDeletedOrgs }
+    {
+      getOrganizationById,
+      deleteOrganization,
+      clearDeletedOrgs,
+      clearOrganizationUpdated
+    }
   )(OrganizationViewDemographics)
 );
 
@@ -138,7 +169,6 @@ const StyledDiv = styled.div`
   background: white;
   display: flex;
   flex-direction: column;
- 
 
   ${media.tablet`font-size: 1.2rem;`}
 
@@ -218,12 +248,12 @@ const StyledDiv = styled.div`
     }
   }
 
-  .spindiv{
-    width: 100%
+  .spindiv {
+    width: 100%;
     text-align: center;
   }
-  .spinner{
-    border: .5em solid lightgray;
+  .spinner {
+    border: 0.5em solid lightgray;
     border-right-color: transparent;
     width: 10rem;
     height: 10rem;

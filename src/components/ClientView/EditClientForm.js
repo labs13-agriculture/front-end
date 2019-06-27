@@ -289,6 +289,7 @@ class NewClientForm extends Component {
           {!this.state.validYear && <p>Please enter a 4 digit year</p>}
           <Input className="submit" type="submit" />
         </Form>
+
         {this.state.blankField && <p>All fields are required</p>}
       </ModalDiv>
     );

@@ -2,12 +2,17 @@ import styled, { css } from "styled-components";
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { withRouter, Redirect } from "react-router-dom";
-import { Modal, Spinner } from "reactstrap";
+import { Modal, Alert, Spinner } from "reactstrap";
 
 import EditClientForm from "./EditClientForm";
 import { theme } from "../../config";
 
-import { getClient, deleteClient, clearDeleted } from "../../actions";
+import {
+  getClient,
+  deleteClient,
+  clearDeleted,
+  clearClientUpdated
+} from "../../actions";
 
 function ClientDemographics(props) {
   const { client } = props;
@@ -26,6 +31,12 @@ function ClientDemographics(props) {
 
   const [modal, setModal] = useState(false);
 
+  console.log("UPDATE CLIENT SUCCESS", props.updateClientSuccess);
+
+  const onDismiss = e => {
+    props.clearClientUpdated();
+  };
+
   const toggleModal = e => {
     if (e) {
       e.preventDefault();
@@ -42,93 +53,106 @@ function ClientDemographics(props) {
     }
   };
 
-  if(props.clientDemoDataStart){
-    return(
+  if (props.clientDemoDataStart) {
+    return (
       <StyledDiv>
         <Spinner className="spinner" />
       </StyledDiv>
-    )
+    );
   }
-
 
   if (props.clientDeleted) {
     props.clearDeleted();
     return <Redirect to="/search" />;
   }
 
-  if(props.client){
-    return (
-      <StyledDiv>
-        <div className="header">
-          <h1>
-            {client.firstName} {client.secondName}, {client.type.toLowerCase()}{" "}
-            since {client.startyear} <span className="toggleSpan">-</span>{" "}
-            <br className="toggleBreak" /> Amount Owed: ${client.amountOwed}
-            <br />
-            Lead: {client.lead ? "True" : "False"}
-          </h1>
-          <div className="actions">
-            <i className="fas fa-edit edit" onClick={toggleModal} />
-            <i className="fas fa-trash delete" onClick={deleteClient} />
-          </div>
-        </div>
-
-        <div className="demoWrapper">
-          <h3>Contact</h3>
-          <div className="info-section contact-info">
-            <div className="contact-box">
-              <p>Phone: {client.phone || "Not In System"}</p>
-              <p>Email: {client.email || "Not In System"}</p>
-            </div>
-            <div className="contact-box address">
-              <p>Address:</p>
-              <div>
-                <p>{client.address || "Not In System"}</p>
-                <p>
-                  {client.community || "Community"},{" "}
-                  {client.district || "district"}
-                </p>
-              </div>
-            </div>
-            <div className="contact-box">
-              <p>Nearby Landmark: {client.landmark || "Not In System"}</p>
-              <p>Region: {client.region || "Not In System"}</p>
-            </div>
-          </div>
-
-          <h3>Demographics</h3>
-          <div className="info-section demo-info">
-            <div className="demo-box">
-              <p>Position: {client.position || "Not In System"}</p>
-              <p>Title: {client.title || "Not In System"}</p>
-            </div>
-            <div className="demo-box">
-              <p>Nationality: {client.nationality || "Not In System"}</p>
-              <p>Gender: {client.gender || "Not In System"}</p>
-            </div>
-            <div className="demo-box">
-              <p>Date of Birth: {client.dateofbirth || "Not In System"}</p>
-              <p>Education: {client.educationlevel || "Not In System"}</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Modal with Edit Client Form */}
-        <Modal isOpen={modal} toggle={toggleModal}>
-          {/* This is all good to go just need to add in the Edit Form */}
-          <EditClientForm client={client} closeModal={toggleModal} />
-        </Modal>
-      </StyledDiv>
-    );
-  }
-
-  else{
+  if (!client) {
     return (
       <StyledDiv>
         <h1>Client not Found</h1>
       </StyledDiv>
     );
   }
+
+  return (
+    <StyledDiv>
+      <Alert
+        style={{ marginBottom: "0" }}
+        color="success"
+        isOpen={props.updateClientSuccess}
+        toggle={onDismiss}
+      >
+        Update Success
+      </Alert>
+      <Alert
+        style={{ marginBottom: "0" }}
+        color="danger"
+        isOpen={props.updateClientFailure}
+        toggle={onDismiss}
+      >
+        Failed to Update
+      </Alert>
+      <div className="header">
+        <h1>
+          {client.firstName} {client.secondName}, {client.type.toLowerCase()}{" "}
+          since {client.startyear} <span className="toggleSpan">-</span>{" "}
+          <br className="toggleBreak" /> Amount Owed: ${client.amountOwed}
+          <br />
+          Lead: {client.lead ? "True" : "False"}
+        </h1>
+        <div className="actions">
+          <i className="fas fa-edit edit" onClick={toggleModal} />
+          <i className="fas fa-trash delete" onClick={deleteClient} />
+        </div>
+      </div>
+
+      <div className="demoWrapper">
+        <h3>Contact</h3>
+        <div className="info-section contact-info">
+          <div className="contact-box">
+            <p>Phone: {client.phone || "Not In System"}</p>
+            <p>Email: {client.email || "Not In System"}</p>
+          </div>
+          <div className="contact-box address">
+            <p>Address:</p>
+            <div>
+              <p>{client.address || "Not In System"}</p>
+              <p>
+                {client.community || "Community"},{" "}
+                {client.district || "district"}
+              </p>
+            </div>
+          </div>
+          <div className="contact-box">
+            <p>Nearby Landmark: {client.landmark || "Not In System"}</p>
+            <p>Region: {client.region || "Not In System"}</p>
+          </div>
+        </div>
+
+        <h3>Demographics</h3>
+        <div className="info-section demo-info">
+          <div className="demo-box">
+            <p>Position: {client.position || "Not In System"}</p>
+            <p>Title: {client.title || "Not In System"}</p>
+          </div>
+          <div className="demo-box">
+            <p>Nationality: {client.nationality || "Not In System"}</p>
+            <p>Gender: {client.gender || "Not In System"}</p>
+          </div>
+          <div className="demo-box">
+            <p>Date of Birth: {client.dateofbirth || "Not In System"}</p>
+            <p>Education: {client.educationlevel || "Not In System"}</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Modal with Edit Client Form */}
+      <Modal isOpen={modal} toggle={toggleModal}>
+        {/* This is all good to go just need to add in the Edit Form */}
+        <EditClientForm client={client} closeModal={toggleModal} />
+      </Modal>
+    </StyledDiv>
+  );
 }
 
 const mapStateToProps = state => {
@@ -136,7 +160,10 @@ const mapStateToProps = state => {
     client: state.clientData.client,
     clientDemoError: state.clientData.error,
     clientDemoDataStart: state.clientData.getStart,
-    clientDeleted: state.clientData.clientDeleted
+    clientDeleted: state.clientData.clientDeleted,
+    updateClientSuccess: state.clientData.updateClientSuccess,
+    updateClientFailure: state.clientData.updateClientFailure,
+    clearClientUpdated: state.clientData.clearClientUpdated
   };
 };
 
@@ -146,7 +173,8 @@ export default withRouter(
     {
       getClient,
       deleteClient,
-      clearDeleted
+      clearDeleted,
+      clearClientUpdated
     }
   )(ClientDemographics)
 );
@@ -254,8 +282,8 @@ const StyledDiv = styled.div`
     }
   }
 
-  .spinner{
-    border: .5em solid lightgray;
+  .spinner {
+    border: 0.5em solid lightgray;
     border-right-color: transparent;
     width: 10rem;
     height: 10rem;

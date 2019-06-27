@@ -3,9 +3,9 @@ import axios from "axios";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import "./GSN.css";
-import tiemeNdo from "../tiemeNdo.svg";
-import {BASE_URL} from '../config';
-import {theme} from "../config";
+import logo from "../tiemeNdo.svg";
+import { BASE_URL } from "../config";
+import { theme } from "../config";
 
 export default class GlobalSideNav extends Component {
   constructor(props) {
@@ -16,49 +16,47 @@ export default class GlobalSideNav extends Component {
     };
   }
 
-  componentDidMount(){
-    //Going to do the axios call here, redux seems like overkill, 
+  componentDidMount() {
+    //Going to do the axios call here, redux seems like overkill,
     //since it will be attached to localStorage
 
     //check to see if we have localStorage already, can skip this axios call
-    if(!window.localStorage.getItem("admin")){
+    if (!window.localStorage.getItem("admin")) {
       axios
         .get(`${BASE_URL}/user/usertype`, {
           headers: {
-            'Content-Type' : 'application/json',
-            
-            
-            Authorization: `Bearer ${window.localStorage.getItem('token')}`
+            "Content-Type": "application/json",
+
+            Authorization: `Bearer ${window.localStorage.getItem("token")}`
           }
         })
-        .then(res =>{
+        .then(res => {
           //Check if one of the objects is {authority: "ROLE_ADMIN"}
-          if(res.data.filter(roles => roles.authority === "ROLE_ADMIN").length > 0){
+          if (
+            res.data.filter(roles => roles.authority === "ROLE_ADMIN").length >
+            0
+          ) {
             window.localStorage.setItem("admin", true);
             //Have to use state here, since localStorage won't cause re-render
             this.setState({
               admin: true
-            })
-          }
-          else{
+            });
+          } else {
             window.localStorage.setItem("admin", false);
           }
         })
         .catch(err => console.log(err));
-    }
-    else{
-      if(window.localStorage.getItem("admin") === "true"){
+    } else {
+      if (window.localStorage.getItem("admin") === "true") {
         this.setState({
           admin: true
-        })
-      }
-      else{
+        });
+      } else {
         this.setState({
-          admin:false
-        })
+          admin: false
+        });
       }
     }
-
   }
 
   logout = () => {
@@ -71,7 +69,7 @@ export default class GlobalSideNav extends Component {
       <GSN>
         <StyledH1 className="title">
           <span className="navspan">TIEME NDO</span>
-          <img className="logo" src={tiemeNdo} />
+          <img className="logo" src={logo} />
         </StyledH1>
         <StyledDiv className="hvr-underline-reveal">
           <NavLink to="/dashboard" style={{ textDecoration: "none" }}>
@@ -85,12 +83,14 @@ export default class GlobalSideNav extends Component {
             <span className="navspan">CRM</span>
           </NavLink>
         </StyledDiv>
-        {this.state.admin && (<StyledDiv className="hvr-underline-reveal">
-          <NavLink to="/users" style={{ textDecoration: "none" }}>
-            <i className="fas fa-user" />
-            <span className="navspan">USERS</span>
-          </NavLink>
-        </StyledDiv>)}
+        {this.state.admin && (
+          <StyledDiv className="hvr-underline-reveal">
+            <NavLink to="/users" style={{ textDecoration: "none" }}>
+              <i className="fas fa-user" />
+              <span className="navspan">USERS</span>
+            </NavLink>
+          </StyledDiv>
+        )}
         <StyledDiv className="hvr-underline-reveal">
           <NavLink to="/inventory" style={{ textDecoration: "none" }}>
             <i className="fas fa-boxes" />
@@ -116,17 +116,15 @@ export default class GlobalSideNav extends Component {
 
 const GSN = styled.div`
   align-items: left;
-  
-  width:250px;
-  
-  background:${theme.sideNavBackground};
+
+  width: 250px;
+
+  background: ${theme.sideNavBackground};
   box-shadow: 0 13px 27px -5px rgba(50, 50, 93, 0.25),
     0 8px 16px -8px rgba(0, 0, 0, 0.44), 0 10px 16px 1px rgba(0, 0, 0, 0.53);
   z-index: 2;
 
-  
-
-  @media (max-width: 800px) {
+  @media (max-width: 1000px) {
     width: auto;
   }
 
@@ -152,9 +150,8 @@ const StyledH1 = styled.h1`
   letter-spacing: -3px;
   letter-spacing: 1px;
   margin-bottom: 20px;
-  
 
-  @media (max-width: 800px) {
+  @media (max-width: 1000px) {
     span.navspan {
       display: none;
     }
@@ -172,7 +169,7 @@ const StyledH1 = styled.h1`
     left: -8px;
     top: -8px;
 
-    @media (max-width: 800px) {
+    @media (max-width: 1000px) {
       left: 0;
       top: 0;
     }
@@ -214,13 +211,12 @@ const StyledDiv = styled.div`
 
     padding: 10px;
 
-    @media (max-width: 800px) {
+    @media (max-width: 1000px) {
       padding: 15px;
       height: 50px;
 
       span.navspan {
         display: none;
-        
       }
     }
 
@@ -242,8 +238,6 @@ const StyledDiv = styled.div`
     }
 
     &.active {
-      
-
       color: ${theme.activeblue};
       border-right: 4px solid ${theme.activeblue};
 

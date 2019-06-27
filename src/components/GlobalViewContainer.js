@@ -6,7 +6,7 @@ import SearchNav from "./SearchNav";
 import ViewContainer from "./ViewContainer";
 import PrivateRoute from "../components/PrivateRoute";
 import { ManageUsersContainer } from "./ManageUsers/ManageUsersContainer";
-import {theme} from "../config";
+import { theme } from "../config";
 import InventoryView from "./Inventory/InventoryView";
 //import OrganizationCardContainer from "./OrganizationCardContainer";
 import OrganizationCard from "./Organization/OrganizationCard";
@@ -52,12 +52,16 @@ const GVC = styled.div`
   display: flex;
   width: 100%;
   flex-direction: column;
-  
-  background:${theme.globalViewBackground};
+
+  background: ${theme.globalViewBackground};
   background-size: cover;
   overflow-y: scroll;
   &::-webkit-scrollbar {
     display: none;
   }
   padding-bottom: -20px;
+
+  @media (max-width: 500px) {
+    padding-top: 50px;
+  }
 `;

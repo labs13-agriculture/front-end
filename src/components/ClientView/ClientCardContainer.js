@@ -8,6 +8,8 @@ import styled from 'styled-components';
 import ClientResultsBtn from "./ClientResultsBtn";
 
 class ClientCardContainer extends Component {
+
+  
   render() {
     //Had to do conditional render this way. 
     //MapStateToProps does not have accesss to this.props
@@ -35,6 +37,7 @@ class ClientCardContainer extends Component {
           {this.props.retailerData && this.props.retailerData.length === 0 ? (
             <p>No Clients found</p>
           ) : null}
+
           
           {this.props.retailerData &&
             this.props.retailerData.map(client => (
@@ -55,7 +58,9 @@ const mapStateToProps = state => {
     error: state.clientData.error,
     searchStart: state.clientData.searchStart,
     searchSuccess: state.clientData.searchSuccess,
-    searchFailure: state.clientData.searchFailure
+    searchFailure: state.clientData.searchFailure,
+    farmerPageData:state.clientData.farmerHeaders,
+    retailerPageData:state.clientData.retailerHeaders
   };
 };
 

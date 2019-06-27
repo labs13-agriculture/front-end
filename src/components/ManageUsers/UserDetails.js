@@ -9,8 +9,7 @@ class UserDetails extends Component {
     super(props);
 
     this.state = {
-      username: JSON.stringify(null),
-      password: JSON.stringify(null),
+      
       userRoles: []
     };
   }

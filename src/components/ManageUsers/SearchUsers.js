@@ -113,7 +113,7 @@ class SearchUsers extends Component {
           </Alert>
           <div className="search-tools-cont">
             <input
-              placeholder="Search Username..."
+              placeholder="Type to Search System User..."
               onChange={this.handleChanges}
               className="search-input"
               value={this.state.searchQuery}
@@ -122,7 +122,7 @@ class SearchUsers extends Component {
           </div>
           <div className="new-user-tools-cont">
             <button onClick={this.toggleAddModal} className="search-button">
-              ADD NEW
+              ADD
             </button>
           </div>
           <Modal
@@ -196,7 +196,7 @@ const StyledSearchBar = styled.div`
       border-radius: 0px;
       font-size: 30px;
       font-weight: 600;
-      font-family: "Josefin Sans", sans-serif;
+      font-family: ${theme.generalTextFont};
       color: white;
       caret-color: ${theme.activeblue};
       padding: 16px 0px 10px 40px;
@@ -209,9 +209,11 @@ const StyledSearchBar = styled.div`
   }
   .new-user-tools-cont {
     height: 100%;
-    padding: 20px;
+    padding: 0px 20px;
     ${media.phone`display:flex;`}
     ${media.phone`justify-content:flex-end;`}
+    display:flex;
+    justify-content:flex-end;
   }
   .search-button {
     padding: 10px 40px;
@@ -220,10 +222,11 @@ const StyledSearchBar = styled.div`
     margin: auto 0px;
     border: none;
     color: white;
-    font-family: "Josefin Sans", sans-serif;
+    font-family: ${theme.generalTextFont};
     border: 2px solid ${theme.searchAddBtnBorder};
     &:hover {
     background: ${theme.searchAddBtnHover};
+   
   }
 
   .alert {

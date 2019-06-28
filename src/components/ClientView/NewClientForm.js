@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { Input, Label, Form, FormGroup, Button } from "reactstrap";
-
+import FormStyles from "../../styles/FormStyles";
 import { theme } from "../../config";
 
 class NewClientForm extends Component {
@@ -126,7 +126,11 @@ class NewClientForm extends Component {
     }
     return (
       <ModalDiv>
-        <h2>Add a {this.props.type}</h2>
+        <FormStyles>
+        <div className="header">
+          <h2>Add {this.props.type}</h2>
+        </div>
+        </FormStyles>
         <Form onSubmit={e => this.formSubmit(e)}>
           <div className="form-section">
             <Label className="half">
@@ -341,13 +345,16 @@ export default NewClientForm;
 
 const ModalDiv = styled.div`
   background: white;
-  padding: 20px;
+  
   border-radius: 4px;
 
   label {
     margin: 2px;
   }
-
+  form{
+    padding: 20px;
+    background:${theme.background_light};
+  }
   h2 {
     margin-bottom: 20px;
   }
@@ -372,7 +379,7 @@ const ModalDiv = styled.div`
     font-size: 1.8rem;
   }
   .submit:hover {
-    background: ${theme.accent};
-    border: 1px solid ${theme.accent};
+    background: ${theme.activeblue};
+    border: 1px solid ${theme.activeblue};
   }
 `;

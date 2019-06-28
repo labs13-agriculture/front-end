@@ -9,7 +9,6 @@ export const addNewSystemUser = userDetails => dispatch => {
   dispatch({ type: ADD_SYSTEM_USER_START });
 
   const body = JSON.stringify(userDetails);
-  console.log("userDetails JSON " + body);
   return axios
     .post(`${BASE_URL}/users/newuser`, body, {
       headers: {
@@ -19,8 +18,6 @@ export const addNewSystemUser = userDetails => dispatch => {
       }
     })
     .then(res => {
-      console.log("add_new_sys_user_data", res.data);
-
       dispatch({ type: ADD_SYSTEM_USER_SUCCESS, payload: res.data });
     })
     .catch(err => {
@@ -37,8 +34,6 @@ export const updateSystemUser = (userDetails, id) => dispatch => {
   dispatch({ type: UPDATE_SYSTEM_USER_START });
 
   const body = JSON.stringify(userDetails);
-  console.log("userDetails JSON " + body);
-  console.log("MYID  " + id);
   return axios
     .put(`${BASE_URL}/users/update-user/${id}`, body, {
       headers: {
@@ -48,8 +43,6 @@ export const updateSystemUser = (userDetails, id) => dispatch => {
       }
     })
     .then(res => {
-      console.log("UPDATE_new_sys_user_data", res.data);
-
       dispatch({ type: UPDATE_SYSTEM_USER_SUCCESS, payload: res.data });
     })
     .catch(err => {
@@ -74,8 +67,6 @@ export const deleteSystemUser = id => dispatch => {
       }
     })
     .then(res => {
-      console.log("DELETE_new_sys_user_data", id);
-
       dispatch({ type: DELETE_SYSTEM_USER_SUCCESS, payload: res.data });
     })
     .catch(err => {
@@ -92,7 +83,6 @@ export const userSearchResults = searchQuery => dispatch => {
   dispatch({ type: USER_SEARCH_START });
 
   const nameSearch = encodeURI(searchQuery);
-  console.log("name searched " + nameSearch);
 
   return axios
     .get(`${BASE_URL}/users/username/${nameSearch}`, {
@@ -102,7 +92,6 @@ export const userSearchResults = searchQuery => dispatch => {
       }
     })
     .then(res => {
-      console.log(res);
       dispatch({ type: USER_SEARCH_SUCCESS, payload: res.data });
     })
     .catch(err => {

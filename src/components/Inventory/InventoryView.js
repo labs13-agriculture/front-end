@@ -39,6 +39,7 @@ function InventoryView(props) {
       <div className="banner">
         <h2>Inventory</h2>
       </div>
+
       <Alert
         style={{ marginBottom: "0", width: "100%" }}
         color="success"
@@ -102,7 +103,7 @@ function InventoryView(props) {
         </tbody>
       </table>
 
-      {useModal && <AddItemModal doModal={() => setModal(false)} />}
+      <AddItemModal useModal={useModal} doModal={() => setModal(false)} />
     </ViewContainer>
   );
 }
@@ -143,17 +144,17 @@ const ViewContainer = styled.div`
 
   &::-webkit-scrollbar {
     display: none;
+  }
 
-    .banner {
-      padding: 10px;
-      background: ${theme.navgrey};
-      color: ${theme.background_light};
-    }
+  .banner {
+    padding: 10px;
+    background: ${theme.navgrey};
+    color: ${theme.background_light};
+  }
 
-    h2 {
-      font-size: 3rem;
-      font-weight: 700;
-    }
+  h2 {
+    font-size: 3rem;
+    font-weight: 700;
   }
 
   .inventory-table {

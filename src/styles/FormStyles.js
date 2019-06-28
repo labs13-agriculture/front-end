@@ -18,6 +18,8 @@ export const media = Object.keys(sizes).reduce((acc, label) => {
 }, {});
 
 const FormStyles = styled.div`
+  background-color: ${theme.background_light};
+
   .header {
     background-color: ${theme.sideNavBackground};
     padding: 15px 20px;
@@ -57,6 +59,21 @@ const FormStyles = styled.div`
     justify-content: space-around;
     margin-bottom: none;
     padding-bottom: 10px;
+  }
+  .addItemForm-content {
+    padding: 10px 20px;
+  }
+
+  .addItemForm-button-container {
+    display: flex;
+    width: 100%;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+
+    button {
+      max-width: 150px;
+      width: 45%;
+    }
   }
 `;
 

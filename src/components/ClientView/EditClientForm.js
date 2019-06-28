@@ -29,7 +29,7 @@ class NewClientForm extends Component {
       landmark: client.landmark,
       region: client.region,
       lead: client.lead,
-      startyear: client.startyear,
+      startyear: client.startyear.toString(10), // This comes from backend as a number instead of a string
       type: client.type,
       blankField: false,
       validYear: true
@@ -44,39 +44,28 @@ class NewClientForm extends Component {
 
   formSubmit = e => {
     e.preventDefault();
-    //make sure client since is a nubmer
-    if (isNaN(parseInt(this.state.startyear))) {
-      this.setState({
-        validYear: false
-      });
-      return;
-    }
 
+    let validYear = true;
     let emptyFields = false;
 
-    Object.keys(this.state).forEach(k => {
-      //false booleans were evaluating to '', making it impossible to submit form
-      if (
-        this.state[k] === "" &&
-        k !== "lead" &&
-        k !== "blankField" &&
-        k !== "validYear"
-      ) {
-        emptyFields = true;
-      }
-    });
-
-    if (emptyFields) {
-      this.setState({
-        blankField: true
-      });
-      return;
+    //make sure client since is a 4 digit number nubmer (if they choose to enter one)
+    
+    if (this.state.startyear && (this.state.startyear.length != 4 || isNaN(parseInt(this.state.startyear)))) {
+      validYear = false;
+    }
+   
+    if(!this.state.phone || !this.state.firstName || !this.state.secondName){
+      emptyFields = true;
     }
 
     this.setState({
-      validYear: true,
-      blankField: false
-    });
+      validYear: validYear,
+      blankField: emptyFields
+    })
+
+    if(emptyFields || !validYear){
+      return;
+    }
 
     //Setting up Client as object backend can expect
     const updatedClient = {
@@ -292,10 +281,11 @@ class NewClientForm extends Component {
             </FormGroup>
           </div>
           {!this.state.validYear && <p>Please enter a 4 digit year</p>}
+          {this.state.blankField && <p>Name and phone are required</p>}
           <Input className="submit" type="submit" />
         </Form>
 
-        {this.state.blankField && <p>All fields are required</p>}
+        
       </ModalDiv>
     );
   }

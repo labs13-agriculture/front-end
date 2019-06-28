@@ -59,6 +59,10 @@ class NewClientForm extends Component {
       blankField: emptyFields
     })
 
+    if(emptyFields || !validYear){
+      return;
+    }
+
     //Setting up Client as object backend can expect
     const newClient = {
       firstName: this.state.firstName,

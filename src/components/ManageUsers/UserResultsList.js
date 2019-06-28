@@ -73,6 +73,7 @@ const StyledUserResultsVue = styled.div`
 
   .mini-nav-container{
     display:flex;
+    margin-bottom: 10px;
   }
   h3 {
     font-family: ${theme.generalTextFont}

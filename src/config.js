@@ -22,6 +22,7 @@ export const theme = {
   searchNavFont:`Josefin Sans, sans-serif`,
   generalButtonFont:`Roboto, sans-serif`,
   generalTextFont:`Roboto, sans-serif`,
-  sideNavFont:`Josefin Sans, sans-serif`
+  sideNavFont:`Josefin Sans, sans-serif`,
+  experimentalFont:`Mandali,sans-serif;`
  
 };

@@ -81,7 +81,7 @@ const StyledGlobalClientCard = styled.div`
   h3 {
     margin-bottom: 0px;
   }
-  font-family: ${theme.generalTextFont};
+  font-family: ${theme.experimentalFont};
 
   .circle {
     height: 40px;

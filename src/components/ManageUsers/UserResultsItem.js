@@ -95,7 +95,8 @@ const StyledProductStatsMini = styled.div`
   padding: 5px 20px 5px;
   align-items: center;
   background: white;
-  margin: 10px 0px 0px 0px;
+  ${'' /* margin: 10px 0px 0px 0px; */}
+  border-bottom:1px solid ${theme.inputblack};
   background: ${theme.manageUserItemBackground};
 
   /* 0 13px 27px -5px rgba(14, 14, 14, 0),
@@ -104,15 +105,17 @@ const StyledProductStatsMini = styled.div`
 
   color: white;
 
-  font-family: "Josefin Sans", sans-serif;
-
-  font-weight: 800;
+  font-family: ${theme.experimentalFont};
+  font-size:1.4rem;
   transition: all 0.15s ease;
 
   &:hover{
-    ${'' /* background:lightgray; */}
     
+    transform:scale(1.0001,1.0001);
     background:${theme.manageUserItemHover};
+    box-shadow: 0px 0px 20px rgba(0,0,0,0.3);
+    
+    
 
     .pencil-btn{
       
@@ -130,6 +133,8 @@ const StyledProductStatsMini = styled.div`
       border: none;
       visibility: visible;
       z-index: 2;
+
+      
     }
   }
 
@@ -139,10 +144,10 @@ const StyledProductStatsMini = styled.div`
   }
 
   .personnel {
-    width: 200px;
-    height: 20px;
+    width: 280px;
+    
     text-overflow: ellipse;
-    font-weight: 800;
+    
     margin:0xp;
 
   }

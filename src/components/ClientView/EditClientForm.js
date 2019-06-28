@@ -272,7 +272,7 @@ class NewClientForm extends Component {
             </Label>
             <FormGroup>
               <Button
-                onClick={this.props.toggleModal}
+                onClick={this.props.closeModal}
                 color="warning"
                 style={{ marginTop: "2%" }}
               >
@@ -300,16 +300,16 @@ export default connect(
 
 const ModalDiv = styled.div`
   background: white;
-  
+
   border-radius: 4px;
 
   label {
     margin: 2px;
   }
 
-  form{
+  form {
     padding: 20px;
-    background:${theme.background_light};
+    background: ${theme.background_light};
   }
   h2 {
     margin-bottom: 20px;

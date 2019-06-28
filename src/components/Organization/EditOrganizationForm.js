@@ -116,7 +116,7 @@ class NewOrganizationForm extends Component {
               <FormGroup>
                 <Button
                   style={{ width: "100px", marginTop: "1%" }}
-                  onClick={this.props.toggleModal}
+                  onClick={this.props.closeModal}
                   color="warning"
                 >
                   Cancel

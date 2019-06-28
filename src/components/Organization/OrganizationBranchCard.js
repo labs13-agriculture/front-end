@@ -112,10 +112,7 @@ class OrganizationBranchCard extends Component {
 }
 
 export default connect(
-  state => ({
-    updateSuccess: state.branchData.updateSuccess,
-    updateFailure: state.branchData.updateFailure
-  }),
+  state => ({}),
   { deleteBranch, clearBranchAlerts }
 )(OrganizationBranchCard);
 

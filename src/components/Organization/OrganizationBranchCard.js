@@ -38,37 +38,25 @@ class OrganizationBranchCard extends Component {
 
     return (
       <StyledGlobalClientCard>
-        <Alert
-          color="info"
-          isOpen={this.props.updateSuccess}
-          toggle={this.onDismiss}
-        >
-          {this.props.branch.name} Successfully Updated!
-        </Alert>
-        <Alert
-          color="info"
-          isOpen={this.props.updateFailure}
-          toggle={this.onDismiss}
-        >
-          {this.props.branch.name} Successfully Updated!
-        </Alert>
         <div className="contentContainer">
           <div className="header-detail">
             <div className="circle">
               <div className="first-name">{this.props.branch.name[0]}</div>
             </div>
-            <h3>{this.props.branch.name}</h3>
-            <div className="edit-options">
-              <i
-                onClick={this.toggleUpdateModal}
-                className="fas fa-edit edit"
-              />
-              <i
-                onClick={() =>
-                  this.props.deleteBranch(this.props.branch.branch_id)
-                }
-                className="fas fa-trash delete"
-              />
+            <div className="header-content">
+              <h3>{this.props.branch.name}</h3>
+              <div className="edit-options">
+                <i
+                  onClick={this.toggleUpdateModal}
+                  className="fas fa-edit edit"
+                />
+                <i
+                  onClick={() =>
+                    this.props.deleteBranch(this.props.branch.branch_id)
+                  }
+                  className="fas fa-trash delete"
+                />
+              </div>
             </div>
           </div>
 
@@ -152,7 +140,7 @@ const StyledGlobalClientCard = styled.div`
   background: ${theme.navgrey};
   margin-bottom: 20px;
   border-radius: 3px;
-  padding: 10px;
+  padding: 20px;
 
   &:last-child {
     margin-bottom: 0;
@@ -179,7 +167,9 @@ const StyledGlobalClientCard = styled.div`
     width: 30%;
 
     @media (max-width: 600px) {
-      margin: o auto;
+      width: 100%;
+      flex-direction: row;
+      margin-bottom: 30px;
     }
 
     h3 {
@@ -189,6 +179,8 @@ const StyledGlobalClientCard = styled.div`
 
   .section-header {
     border-bottom: 1px solid lightgray;
+    margin-bottom: 15px;
+    padding-bottom: 8px;
   }
 
   .detail-section {
@@ -206,50 +198,51 @@ const StyledGlobalClientCard = styled.div`
     width: 100%;
 
     margin-bottom: 25px;
+
+    @media (max-width: 600px) {
+      margin: 0;
+    }
+
+    i {
+      max-width: 50px;
+    }
   }
 
   .gen-style-container {
-    display: flex;
+    display: inline-flex;
     /* border-bottom: 1px solid lightgray; */
     padding: 3px 10px;
-
-    @media (max-width: 600px) {
-      justify-content: center;
-    }
   }
 
   .info-container-heading {
     margin: 0;
     font-weight: 700;
     font-size: 1.4rem;
-
+    color: rgba(200, 200, 200, 0.5);
     span.data {
       margin-left: 15px;
       font-weight: 100;
       font-family: ${theme.sideNavFont};
       font-size: 1.8rem;
+      color: ${theme.background_light};
     }
   }
 
   .contact-detail {
-    width: 40%;
+    width: 100%;
     margin-right: 15px;
 
     @media (max-width: 850px) {
-      width: auto;
       margin-right: 0;
     }
+
     @media (max-width: 600px) {
-      margin-top: 20px;
+      margin: 30px 0;
     }
   }
 
   .location-detail {
-    width: 40%;
-
-    @media (max-width: 850px) {
-      width: auto;
-    }
+    width: 100%;
   }
 
   .circle {

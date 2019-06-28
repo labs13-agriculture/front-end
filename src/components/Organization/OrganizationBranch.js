@@ -80,9 +80,9 @@ const BranchContainer = styled.div`
   width: 100%;
   border-radius: 3px;
   .branch-info-container {
-    display: flex;
+    /* display: flex;
     justify-content: flex-start;
-    flex-wrap: wrap;
+    flex-wrap: wrap; */
     background: rgb(35, 33, 43);
   }
 `;

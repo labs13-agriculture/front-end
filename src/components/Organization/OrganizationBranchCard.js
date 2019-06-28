@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
-import { Modal, Alert } from "reactstrap";
+import { Modal } from "reactstrap";
 import BranchForm from "../Branch/BranchForm";
 import { deleteBranch, clearBranchAlerts } from "../../actions";
 import { connect } from "react-redux";
@@ -34,8 +33,6 @@ class OrganizationBranchCard extends Component {
   };
 
   render() {
-    const organization = { ...this.props };
-
     return (
       <StyledGlobalClientCard>
         <div className="contentContainer">

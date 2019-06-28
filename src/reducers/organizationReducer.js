@@ -46,8 +46,7 @@ const initialState = {
   currentPage: null,
   totalPages: null,
   updateOrganizationSuccess: false,
-  updateOrganizationFailure: false,
-  error: null
+  updateOrganizationFailure: false
 };
 
 export default (state = initialState, action) => {

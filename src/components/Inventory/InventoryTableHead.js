@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
-import { Button, Alert } from "reactstrap";
+import { Button } from "reactstrap";
 
 import { theme } from "../../config";
 

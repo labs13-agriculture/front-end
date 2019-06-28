@@ -24,40 +24,25 @@ class NewOrganizationForm extends Component {
 
   formSubmit = e => {
     e.preventDefault();
-    //same thing for number of beneficiaries
-    if (isNaN(parseInt(this.state.beneficiaries))) {
-      this.setState({
-        validBeneficiaries: false
-      });
-      return;
+    let validBeneficiaries = true;
+    //If they entered a number of beneficiaries, check if it's valid
+    if (this.state.beneficiaries.length > 0 && isNaN(parseInt(this.state.beneficiaries))) {
+      validBeneficiaries = false;
     }
     let emptyFields = false;
-    console.log("empty fields before map:", emptyFields);
-    Object.keys(this.state).forEach(k => {
-      //false booleans were evaluating to '', making it impossible to submit form
-      if (
-        this.state[k] === "" &&
-        k !== "lead" &&
-        k !== "blankField" &&
-        k !== "validBeneficiaries"
-      ) {
-        console.log(k, this.state[k]);
-        emptyFields = true;
-      }
-    });
-    console.log("empty fields after map:", emptyFields);
-    if (emptyFields) {
-      this.setState({
-        blankField: true
-      });
-      return;
+
+    if(this.state.name === ""){
+      emptyFields = true;
     }
 
     this.setState({
-      blankField: false,
-      validBeneficiaries: true
+      blankField: emptyFields,
+      validBeneficiaries: validBeneficiaries
     });
 
+    if(emptyFields || !validBeneficiaries){
+      return;
+    }
     //Setting up Organization as object backend can expect
     const newOrganization = {
       name: this.state.name,
@@ -124,9 +109,10 @@ class NewOrganizationForm extends Component {
               Cancel
             </Button>
           </FormGroup>
+          {this.state.blankField && <p>Name is required</p>}
+            {!this.state.validBeneficiaries && <p>Beneficiaries must be a number</p>}
           <input type="submit" />
         </Form>
-        {this.state.blankField && <p>All fields are required</p>}
       </ModalDiv>
     );
   }

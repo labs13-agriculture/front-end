@@ -37,20 +37,6 @@ class OrganizationBranchCard extends Component {
 
     return (
       <StyledGlobalClientCard>
-        <Alert
-          color="info"
-          isOpen={this.props.updateSuccess}
-          toggle={this.onDismiss}
-        >
-          {this.props.branch.name} Successfully Updated!
-        </Alert>
-        <Alert
-          color="info"
-          isOpen={this.props.updateFailure}
-          toggle={this.onDismiss}
-        >
-          {this.props.branch.name} Successfully Updated!
-        </Alert>
         <StyledContactContainer>
           <div className="gen-head-container">
             <div className="title-description">

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { Input, Label, Form, FormGroup, Button } from "reactstrap";
-
+import FormStyles from "../../styles/FormStyles";
 import { theme } from "../../config";
 
 class NewOrganizationForm extends Component {
@@ -56,64 +56,68 @@ class NewOrganizationForm extends Component {
 
   render() {
     return (
-      <ModalDiv>
-        <h2>Add an Organization</h2>
-        <Form
-          style={{ display: "flex", flexDirection: "column" }}
-          onSubmit={e => this.formSubmit(e)}
-        >
-          <Label>
-            Name:
-            <Input
-              onChange={e => this.handleChanges(e)}
-              type="text"
-              name="name"
-              value={this.state.name}
-            />
-          </Label>
-          <Label>
-            Number of Beneficiaries:
-            <Input
-              onChange={e => this.handleChanges(e)}
-              type="text"
-              name="beneficiaries"
-              value={this.state.beneficiaries}
-            />
-          </Label>
-          {!this.state.validBeneficiaries && (
-            <p>Please enter a number of beneficiaries</p>
-          )}
-          <Label>
-            Headquarters:
-            <Input
-              onChange={e => this.handleChanges(e)}
-              type="text"
-              name="headquarters"
-              value={this.state.headquarters}
-            />
-          </Label>
+      <FormStyles>
+        <div className="header">
+          <h2>Add an Organization</h2>
+        </div>
+        <ModalDiv>
+          <Form
+            style={{ display: "flex", flexDirection: "column" }}
+            onSubmit={e => this.formSubmit(e)}
+          >
+            <Label>
+              Name:
+              <Input
+                onChange={e => this.handleChanges(e)}
+                type="text"
+                name="name"
+                value={this.state.name}
+              />
+            </Label>
+            <Label>
+              Number of Beneficiaries:
+              <Input
+                onChange={e => this.handleChanges(e)}
+                type="text"
+                name="beneficiaries"
+                value={this.state.beneficiaries}
+              />
+            </Label>
+            {!this.state.validBeneficiaries && (
+              <p>Please enter a number of beneficiaries</p>
+            )}
+            <Label>
+              Headquarters:
+              <Input
+                onChange={e => this.handleChanges(e)}
+                type="text"
+                name="headquarters"
+                value={this.state.headquarters}
+              />
+            </Label>
 
-          <Label>
-            Status:
-            <select onChange={e => this.handleChanges(e)} name="lead">
-              <option value={false}>Active</option>
-              <option value={true}>Lead</option>
-            </select>
-          </Label>
-          <FormGroup>
-            <Button
-              style={{ width: "100px", marginBottom: "1%" }}
-              onClick={this.props.toggleModal}
-              color="warning"
-            >
-              Cancel
-            </Button>
-          </FormGroup>
-          {this.state.blankField && <p>Name is required</p>}
+            <Label>
+              Status:
+              <select onChange={e => this.handleChanges(e)} name="lead">
+                <option value={false}>Active</option>
+                <option value={true}>Lead</option>
+              </select>
+            </Label>
+            <FormGroup>
+              <Button
+                style={{ width: "100px", marginBottom: "1%" }}
+                onClick={this.props.toggleModal}
+                color="warning"
+              >
+                Cancel
+              </Button>
+            </FormGroup>
+            {this.state.blankField && <p>Name is required</p>}
             {!this.state.validBeneficiaries && <p>Beneficiaries must be a number</p>}
-          <input type="submit" />
-        </Form>
-      </ModalDiv>
+            <input type="submit" />
+          </Form>
+        </ModalDiv>
+      </FormStyles>
     );
   }
 }
@@ -123,7 +127,7 @@ export default NewOrganizationForm;
 const ModalDiv = styled.div`
   display: flex;
   flex-direction: column;
-  background: white;
+  background: ${theme.background_light};
   padding: 20px;
   border-radius: 4px;
 

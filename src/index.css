@@ -81,3 +81,14 @@ code {
   height:100%;
 }
 
+#expanded{
+   
+  
+  background:rgb(60,57,75);
+  height:320px;
+  z-index:6;
+  position:absolute;
+  color:white;
+  
+   
+ }

@@ -29,8 +29,10 @@ class SearchUsers extends Component {
     field.focus();
   }
 
-  toggleAddModal = () =>
+  toggleAddModal = () => {
     this.setState({ toggleAddModal: !this.state.toggleAddModal });
+    console.log("toggling")
+  }
 
   handleChanges = e => {
     e.preventDefault();

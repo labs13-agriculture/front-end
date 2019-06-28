@@ -227,19 +227,19 @@ const StyledSearchBar = styled.div`
     &:hover {
       background: ${theme.searchAddBtnHover};
     }
-  }
 
-  .alert {
-    margin-bottom: 0;
-    background: none;
-    border: none;
+    .alert {
+      margin-bottom: 0;
+      background: none;
+      border: none;
 
-    .alert-danger {
-      color: palevioletred;
-    }
+      .alert-danger {
+        color: palevioletred;
+      }
 
-    .alert-success {
-      color: lightgreen;
+      .alert-success {
+        color: lightgreen;
+      }
     }
   }
 `;

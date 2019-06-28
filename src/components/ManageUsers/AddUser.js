@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import { connect } from "react-redux";
 import { addNewSystemUser } from "../../actions";
-import FormStyles from '../../styles/FormStyles';
+import FormStyles from "../../styles/FormStyles";
 import { theme } from "../../config";
 
 class AddUser extends Component {
@@ -32,6 +32,7 @@ class AddUser extends Component {
 
   addNewSystemUser = userDetails => {
     this.props.addNewSystemUser(userDetails);
+    this.props.toggleModal();
   };
 
   render() {
@@ -51,7 +52,7 @@ class AddUser extends Component {
                 placeholder="Username"
                 onChange={this.handleInputChange}
               />
-            </FormGroup >
+            </FormGroup>
             <FormGroup className="addUser-formGroup">
               <Label for="examplePassword">Password</Label>
               <Input
@@ -76,21 +77,26 @@ class AddUser extends Component {
                 <option>admin</option>
               </Input>
             </FormGroup>
-            <FormGroup className="addUser-formGroup-button" styles="margin-bottom: none">
-            <Button
-              className="addUser-submit"
-              style={{ width: "100px" }}
-              onClick={() => this.addNewSystemUser(this.state)}
+            <FormGroup
+              className="addUser-formGroup-button"
+              styles="margin-bottom: none"
             >
-              Submit
-            </Button>
-            <Button
-              style={{ width: "100px"}}
-              color="warning"
-              onClick={this.props.toggleModal}
-            >
-              Cancel
-            </Button>
+              <Button
+                type="button"
+                id="myBtn"
+                className="addUser-submit"
+                style={{ width: "100px" }}
+                onClick={() => this.addNewSystemUser(this.state)}
+              >
+                Submit
+              </Button>
+              <Button
+                style={{ width: "100px" }}
+                color="warning"
+                onClick={this.props.toggleModal}
+              >
+                Cancel
+              </Button>
             </FormGroup>
           </Form>
         </FormStyles>
@@ -117,4 +123,3 @@ export default connect(
 const OuterDiv = styled.div`
   background: ${theme.background_light};
 `;
-

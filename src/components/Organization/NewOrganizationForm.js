@@ -127,7 +127,7 @@ class NewOrganizationForm extends Component {
                 Cancel
               </Button>
             </FormGroup>
-            <input type="submit" />
+            <Input type="submit" className="submit" />
           </Form>
           {this.state.blankField && <p>All fields are required</p>}
         </ModalDiv>

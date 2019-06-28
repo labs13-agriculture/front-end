@@ -91,9 +91,7 @@ const StyledUserResultsVue = styled.div`
   .mini-nav-results {
     font-family: ${theme.generalTextFont};
 
-    ${"" /* padding: 20px 20px 15px 20px; */}
-
-    font-size:50px;
+    font-size: 50px;
     font-weight: 800;
     color: ${theme.activeblue};
   }
@@ -117,8 +115,8 @@ const StyledResultsList = styled.div`
   overflow-y: scroll;
   display: flex;
   flex-direction: column;
-
   justify-content: flex-start;
+
   &::-webkit-scrollbar {
     display: none;
   }
@@ -152,7 +150,6 @@ const StyledResultsList = styled.div`
     h3 {
       text-align: center;
     }
-
     .fas.fa-user-cog {
       font-size: 13rem;
       color: #00000012;

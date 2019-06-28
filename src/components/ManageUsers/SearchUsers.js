@@ -6,7 +6,7 @@ import styled from "styled-components";
 import AddUser from "./AddUser";
 import { Modal, Button, FormGroup, Alert } from "reactstrap";
 import { media } from "../../styles/searchStyles";
-import {theme} from "../../config";
+import { theme } from "../../config";
 
 class SearchUsers extends Component {
   constructor(props) {
@@ -173,8 +173,8 @@ const StyledSearchUsers = styled.div`
   flex-direction: column;
   position: relative;
 
-  .modal{
-    background: ${theme.background_light}
+  .modal {
+    background: ${theme.background_light};
   }
 `;
 
@@ -213,7 +213,7 @@ const StyledSearchBar = styled.div`
     ${media.phone`display:flex;`}
     ${media.phone`justify-content:flex-end;`}
     display:flex;
-    justify-content:flex-end;
+    justify-content: flex-end;
   }
   .search-button {
     padding: 10px 40px;
@@ -225,21 +225,21 @@ const StyledSearchBar = styled.div`
     font-family: ${theme.generalTextFont};
     border: 2px solid ${theme.searchAddBtnBorder};
     &:hover {
-    background: ${theme.searchAddBtnHover};
-   
-  }
-
-  .alert {
-    margin-bottom: 0;
-    background: none;
-    border: none;
-
-    .alert-danger {
-      color: palevioletred;
+      background: ${theme.searchAddBtnHover};
     }
 
-    .alert-success {
-      color: lightgreen;
+    .alert {
+      margin-bottom: 0;
+      background: none;
+      border: none;
+
+      .alert-danger {
+        color: palevioletred;
+      }
+
+      .alert-success {
+        color: lightgreen;
+      }
     }
   }
 `;

@@ -19,7 +19,11 @@ class ViewTransactions extends Component {
         <TransactionHeader id={this.props.id} />
         <StyledTable>
           <tbody>
-            {this.props.transactionDataStart && <div className="spindiv"><Spinner className="spinner" /></div>}
+            {this.props.transactionDataStart && (
+              <div className="spindiv">
+                <Spinner className="spinner" />
+              </div>
+            )}
             {this.props.transactionDataSuccess &&
               this.props.transactionData.map(t => (
                 <TransactionItem
@@ -72,12 +76,12 @@ const TransactionContainer = styled.div`
     width: 100%;
   }
 
-  .spindiv{
-    width: 100%
+  .spindiv {
+    width: 100%;
     text-align: center;
   }
-  .spinner{
-    border: .5em solid lightgray;
+  .spinner {
+    border: 0.5em solid lightgray;
     border-right-color: transparent;
     width: 10rem;
     height: 10rem;

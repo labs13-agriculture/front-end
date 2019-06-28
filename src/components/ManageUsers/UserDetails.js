@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import FormStyles from '../../styles/FormStyles';
-import styled from 'styled-components';
-import { theme } from '../../config';
+import FormStyles from "../../styles/FormStyles";
+import styled from "styled-components";
+import { theme } from "../../config";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import { connect } from "react-redux";
 import { updateSystemUser, deleteSystemUser } from "../../actions";
@@ -11,7 +11,6 @@ class UserDetails extends Component {
     super(props);
 
     this.state = {
-      
       userRoles: []
     };
   }
@@ -35,6 +34,11 @@ class UserDetails extends Component {
 
   addNewSystemUser = userDetails => {
     this.props.addNewSystemUser(userDetails);
+  };
+
+  deleteSystemUser = () => {
+    this.props.deleteSystemUser(this.props.userid);
+    this.props.toggleUpdateModal();
   };
 
   render() {
@@ -90,16 +94,13 @@ class UserDetails extends Component {
                 </Button>
                 <Button
                   color="danger"
-                  onClick={() => this.props.deleteSystemUser(this.props.userid)}
+                  onClick={() => this.deleteSystemUser(this.props.userid)}
                 >
                   DELETE
                 </Button>
-                <Button
-                onClick={this.props.toggleUpdateModal}
-                color="warning"
-              >
-                CANCEL
-              </Button>
+                <Button onClick={this.props.toggleUpdateModal} color="warning">
+                  CANCEL
+                </Button>
               </div>
             </FormGroup>
           </Form>
@@ -127,5 +128,3 @@ export default connect(
 const OuterDiv = styled.div`
   background: ${theme.background_light};
 `;
-
-

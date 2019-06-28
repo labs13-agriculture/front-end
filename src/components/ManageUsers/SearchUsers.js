@@ -133,15 +133,6 @@ class SearchUsers extends Component {
               userid={this.props.userid}
               toggleModal={this.toggleAddModal}
             />
-            <FormGroup>
-              <Button
-                style={{ width: "100px", marginTop: "1%" }}
-                color="warning"
-                onClick={this.toggleAddModal}
-              >
-                Cancel
-              </Button>
-            </FormGroup>
           </Modal>
         </StyledSearchBar>
         <UserResultsList
@@ -181,6 +172,10 @@ const StyledSearchUsers = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
+
+  .modal{
+    background: ${theme.background_light}
+  }
 `;
 
 const StyledSearchBar = styled.div`

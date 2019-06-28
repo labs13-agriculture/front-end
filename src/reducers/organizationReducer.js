@@ -149,7 +149,9 @@ export default (state = initialState, action) => {
         ...state,
         addStart: false,
         addSuccess: true,
-        addFailure: false
+        organizationAdded: true,
+        addFailure: false,
+        organization: action.payload
       };
     case ADD_ORGANIZATION_FAILURE:
       return {

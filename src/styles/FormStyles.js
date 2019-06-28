@@ -31,6 +31,33 @@ const FormStyles = styled.div`
   .formContainer {
     background-color: ${theme.background_light};
   }
+
+  .updateUser-form{
+    width: 90%;
+    padding-top: 5px;
+    margin 0 auto 10px;
+  }
+  
+  .updateUser-buttons{
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-around;
+  }
+
+  .addUser-formGroup{
+    width: 90%;
+    margin: 0 auto 10px;
+    padding-top: 10px;
+  }
+
+  .addUser-formGroup-button{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-around;
+    margin-bottom: none;
+    padding-bottom: 10px;
+  }
 `;
 
 export default FormStyles;

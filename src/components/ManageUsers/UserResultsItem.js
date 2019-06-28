@@ -71,14 +71,8 @@ export default class UserStatsItem extends Component {
             username={this.props.username}
             userRoles={this.props.userRoles}
             userid={this.props.userid}
+            toggleUpdateModal={this.toggleUpdateModal}
           />
-          <Button
-            style={{ width: "100px", marginBottom: "1%" }}
-            onClick={this.toggleUpdateModal}
-            color="warning"
-          >
-            CANCEL
-          </Button>
         </Modal>
       </StyledProductStatsMini>
     );

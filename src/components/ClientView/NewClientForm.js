@@ -353,6 +353,7 @@ const ModalDiv = styled.div`
   }
   form{
     padding: 20px;
+    background:${theme.background_light};
   }
   h2 {
     margin-bottom: 20px;

@@ -111,9 +111,9 @@ const StyledProductStatsMini = styled.div`
 
   &:hover{
     
-    transform:scale(1.0001,1.0001);
+    transform:scale(1.001,1.001);
     background:${theme.manageUserItemHover};
-    box-shadow: 0px 0px 20px rgba(0,0,0,0.3);
+    box-shadow: 0px 0px 10px rgba(0,0,0,.5);
     
     
 

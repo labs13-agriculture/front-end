@@ -49,21 +49,25 @@ class NewClientForm extends Component {
     let emptyFields = false;
 
     //make sure client since is a 4 digit number nubmer (if they choose to enter one)
-    
-    if (this.state.startyear && (this.state.startyear.length != 4 || isNaN(parseInt(this.state.startyear)))) {
+
+    if (
+      this.state.startyear &&
+      (this.state.startyear.length !== 4 ||
+        isNaN(parseInt(this.state.startyear)))
+    ) {
       validYear = false;
     }
-   
-    if(!this.state.phone || !this.state.firstName || !this.state.secondName){
+
+    if (!this.state.phone || !this.state.firstName || !this.state.secondName) {
       emptyFields = true;
     }
 
     this.setState({
       validYear: validYear,
       blankField: emptyFields
-    })
+    });
 
-    if(emptyFields || !validYear){
+    if (emptyFields || !validYear) {
       return;
     }
 
@@ -284,8 +288,6 @@ class NewClientForm extends Component {
           {this.state.blankField && <p>Name and phone are required</p>}
           <Input className="submit" type="submit" />
         </Form>
-
-        
       </ModalDiv>
     );
   }
@@ -337,5 +339,9 @@ const ModalDiv = styled.div`
   .submit:hover {
     background: ${theme.activeblue};
     border: 1px solid ${theme.activeblue};
+  }
+
+  .modal-content {
+    color: ${theme.background_dark};
   }
 `;

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
 import { Modal } from "reactstrap";
-import { theme } from '../../config';
+import { theme } from "../../config";
 
 // Custom Components
 import ClientCardContainer from "../ClientView/ClientCardContainer";
@@ -58,7 +58,7 @@ class ClientSearch extends Component {
     }
 
     return (
-      <div>
+      <SearchContainer>
         <StyledSearchToolContainer>
           <StyledHeader>
             <Header>Find {this.capitalize(this.getType())}</Header>
@@ -67,17 +67,19 @@ class ClientSearch extends Component {
 
           <SearchForm submitSearch={this.submitSearch} />
         </StyledSearchToolContainer>
-       
-        {this.getType() === "farmer" && this.props.farmerSearchSuccess &&
-        
-            <ClientResultsBtn searchType={this.getType()} resultsPageInfo={this.props.farmerPageData}/>
 
-        }
-        {this.getType() === "retailer" && this.props.retailerSearchSuccess &&
-            <ClientResultsBtn searchType={this.getType()} resultsPageInfo={this.props.retailerPageData}/>
-            
-        }
-
+        {this.getType() === "farmer" && this.props.farmerSearchSuccess && (
+          <ClientResultsBtn
+            searchType={this.getType()}
+            resultsPageInfo={this.props.farmerPageData}
+          />
+        )}
+        {this.getType() === "retailer" && this.props.retailerSearchSuccess && (
+          <ClientResultsBtn
+            searchType={this.getType()}
+            resultsPageInfo={this.props.retailerPageData}
+          />
+        )}
 
         <ClientCardContainer type={this.getType()} />
         <Modal isOpen={this.state.modal} toggle={this.toggleModal}>
@@ -87,10 +89,13 @@ class ClientSearch extends Component {
             type={this.getType()}
           />
         </Modal>
-        <Modal isOpen={this.props.help} toggle={() => this.props.needHelp(this.props.help)}>
+        <Modal
+          isOpen={this.props.help}
+          toggle={() => this.props.needHelp(this.props.help)}
+        >
           <ClientSearchHelp />
         </Modal>
-      </div>
+      </SearchContainer>
     );
   }
 }
@@ -105,10 +110,10 @@ const mapStateToProps = state => {
     clientAdded: state.clientData.clientAdded,
     clientDeleted: state.clientData.clientDeleted,
     client: state.clientData.client,
-    farmerPageData:state.clientData.farmerHeaders,
-    retailerPageData:state.clientData.retailerHeaders,
-    farmerSearchSuccess:state.clientData.farmerSearchSuccess,
-    retailerSearchSuccess:state.clientData.retailerSearchSuccess,
+    farmerPageData: state.clientData.farmerHeaders,
+    retailerPageData: state.clientData.retailerHeaders,
+    farmerSearchSuccess: state.clientData.farmerSearchSuccess,
+    retailerSearchSuccess: state.clientData.retailerSearchSuccess,
     help: state.help.needsHelp
   };
 };
@@ -118,6 +123,24 @@ export default connect(
   { searchClients, addClient, clearAdded, needHelp }
 )(ClientSearch);
 
+const SearchContainer = styled.div`
+  #expanded {
+    background: rgba(60, 57, 75);
+    z-index: 9000 !important;
+  }
+
+  .modal-content {
+    padding: 20px;
+
+    background-color: rgba(60, 57, 75) !important;
+    z-index: 9000 !important;
+
+    width: 300px;
+    color: white;
+    border: none;
+    padding: 4px !important;
+  }
+`;
 const Header = styled.h1`
   text-align: center;
   color: white;
@@ -138,7 +161,7 @@ const StyledHeader = styled.div`
   width: 100%;
   button {
     padding: 10px 40px;
-    opacity:.8;
+    opacity: 0.8;
     background: none;
 
     font-size: 1.5rem;
@@ -154,9 +177,8 @@ const StyledHeader = styled.div`
 
     &:hover {
       &:hover {
-    background: ${theme.searchAddBtnHover};
-  }
-     
+        background: ${theme.searchAddBtnHover};
+      }
     }
   }
 `;

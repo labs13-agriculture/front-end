@@ -45,21 +45,28 @@ class NewClientForm extends Component {
     let emptyFields = false;
 
     //make sure client since is a 4 digit number nubmer (if they choose to enter one)
-    if (this.state.startyear && (this.state.startyear.length != 4 || isNaN(parseInt(this.state.startyear)))) {
+    if (
+      this.state.startyear &&
+      (this.state.startyear.length !== 4 ||
+        isNaN(parseInt(this.state.startyear)))
+    ) {
       validYear = false;
     }
-    
 
-    if(this.state.phone==="" || this.state.firstName === "" || this.state.secondName === ""){
+    if (
+      this.state.phone === "" ||
+      this.state.firstName === "" ||
+      this.state.secondName === ""
+    ) {
       emptyFields = true;
     }
 
     this.setState({
       validYear: validYear,
       blankField: emptyFields
-    })
+    });
 
-    if(emptyFields || !validYear){
+    if (emptyFields || !validYear) {
       return;
     }
 
@@ -116,9 +123,9 @@ class NewClientForm extends Component {
     return (
       <ModalDiv>
         <FormStyles>
-        <div className="header">
-          <h2>Add {this.props.type}</h2>
-        </div>
+          <div className="header">
+            <h2>Add {this.props.type}</h2>
+          </div>
         </FormStyles>
         <Form onSubmit={e => this.formSubmit(e)}>
           <div className="form-section">
@@ -271,7 +278,9 @@ class NewClientForm extends Component {
                 name="month"
               >
                 {months.map((m, index) => (
-                  <option key={index} value={index + 1}>{m}</option>
+                  <option key={index} value={index + 1}>
+                    {m}
+                  </option>
                 ))}
               </Input>
               <Input
@@ -280,7 +289,9 @@ class NewClientForm extends Component {
                 name="day"
               >
                 {days.map(m => (
-                  <option key = {m} value={m}>{m}</option>
+                  <option key={m} value={m}>
+                    {m}
+                  </option>
                 ))}
               </Input>
               <Input
@@ -289,7 +300,9 @@ class NewClientForm extends Component {
                 name="year"
               >
                 {years.map(m => (
-                  <option key={m} value={m}>{m}</option>
+                  <option key={m} value={m}>
+                    {m}
+                  </option>
                 ))}
               </Input>
             </Label>
@@ -325,7 +338,6 @@ class NewClientForm extends Component {
           {this.state.blankField && <p>Name and Phone are required</p>}
           <Input className="submit" type="submit" />
         </Form>
-        
       </ModalDiv>
     );
   }
@@ -335,15 +347,15 @@ export default NewClientForm;
 
 const ModalDiv = styled.div`
   background: white;
-  
+
   border-radius: 4px;
 
   label {
     margin: 2px;
   }
-  form{
+  form {
     padding: 20px;
-    background:${theme.background_light};
+    background: ${theme.background_light};
   }
   h2 {
     margin-bottom: 20px;
@@ -371,5 +383,9 @@ const ModalDiv = styled.div`
   .submit:hover {
     background: ${theme.activeblue};
     border: 1px solid ${theme.activeblue};
+  }
+
+  .modal-content {
+    color: ${theme.background_dark};
   }
 `;

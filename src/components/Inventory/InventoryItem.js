@@ -13,7 +13,7 @@ function InventoryItem(props) {
   const [isEditing, setIsEditing] = useState(false);
   // this feels dirty
   const [isActive, setIsActive] = useState(item.active);
-  const [newQty, setNewQty] = useState(0);
+  const [newQty, setNewQty] = useState(item.quantity);
 
   const toggleEditing = event => {
     event.preventDefault();
@@ -75,13 +75,13 @@ function InventoryItem(props) {
       {/* This section contains all the buttons */}
       <td className="actions">
         {isEditing ? (
-          <i class="fas fa-window-close bad" onClick={toggleEditing} />
+          <i className="fas fa-window-close bad" onClick={toggleEditing} />
         ) : (
           <i onClick={toggleEditing} className="fas fa-edit good" />
         )}
 
         {isEditing ? (
-          <i class="fas fa-check-square good" onClick={submitUpdate} />
+          <i className="fas fa-check-square good" onClick={submitUpdate} />
         ) : (
           <i
             className="fas fa-trash delete bad"

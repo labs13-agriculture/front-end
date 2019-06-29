@@ -32,10 +32,9 @@ export default connect(
 
 const StyledContainer = styled.div`
   display: flex;
-  height: 400px;
+  height: 100%;
 
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-direction: column;
   justify-content: space-around;
 `;
 
@@ -46,7 +45,6 @@ const StyledDemos = styled.div`
 
 const StyledInfoView = styled.div`
   width: 100%;
-  background-color: white;
   height: 100%;
   margin-top: 20px;
   overflow-y: scroll;

@@ -51,6 +51,7 @@ export default class GlobalVueContainer extends Component {
 const GVC = styled.div`
   display: flex;
   width: 100%;
+  height: 100vh;
   flex-direction: column;
 
   background: ${theme.globalViewBackground};
@@ -59,7 +60,7 @@ const GVC = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
-  padding-bottom: -20px;
+  padding-bottom: 20px;
 
   @media (max-width: 500px) {
     padding-top: 50px;

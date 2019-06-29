@@ -15,7 +15,6 @@ import NewOrganizationForm from "../Organization/NewOrganizationForm";
 import { Modal } from "reactstrap";
 import OrgResultsBtn from "../Organization/OrgResultsBtn";
 import { theme } from "../../config";
-import OrganizationSearchHelp from "../HelpModals/OrganizationSearchHelp";
 
 class OrganizationSearch extends Component {
   constructor(props) {

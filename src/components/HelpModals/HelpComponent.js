@@ -4,7 +4,15 @@ import ClientSearchHelp from "./ClientSearchHelp";
 import ClientViewHelp from "./ClientViewHelp";
 
 function HelpComponent(props) {
-  console.log(props.history.location.pathName);
+  const currentPath = props.history.location.pathname;
+  console.log(currentPath);
+
+  switch (currentPath) {
+    case "":
+      break;
+    default:
+      break;
+  }
   return <h1>Help Component</h1>;
 }
 

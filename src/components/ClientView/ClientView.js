@@ -78,7 +78,7 @@ const StyledContainer = styled.div`
 
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-between;
 `;
 
 const StyledDemos = styled.div`
@@ -88,7 +88,6 @@ const StyledDemos = styled.div`
 
 const StyledInfoView = styled.div`
   width: 48%;
-  background-color: white;
   height: 90%;
   margin-top: 20px;
   overflow-y: scroll;

@@ -5,7 +5,6 @@ import { withRouter } from "react-router-dom";
 import Header from "./InstallmentHeader";
 import Installment from "./Installment";
 import { Spinner } from "reactstrap";
-
 import { getInstallmentData } from "../../actions";
 
 function InstallmentComponent(props) {
@@ -82,6 +81,9 @@ const StyledTable = styled.table`
   tr {
     &:nth-of-type(even) {
       background-color: lightgrey;
+    }
+    &:nth-of-type(odd) {
+      background: white;
     }
   }
 `;

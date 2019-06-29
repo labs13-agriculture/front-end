@@ -66,6 +66,9 @@ const StyledTable = styled.table`
     &:nth-of-type(even) {
       background-color: lightgrey;
     }
+    &:nth-of-type(odd) {
+      background: white;
+    }
   }
 `;
 

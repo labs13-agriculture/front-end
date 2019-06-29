@@ -167,8 +167,13 @@ export default connect(
 const InnerContainer = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
 
   div {
     width: 45%;
+  }
+
+  .form-group {
+    width: 100%;
   }
 `;

@@ -27,6 +27,7 @@ class ViewTransactions extends Component {
               {this.props.transactionDataSuccess &&
                 this.props.transactionData.map(t => (
                   <TransactionItem
+                    key={t.id}
                     getClientTransaction={this.props.getClientTransaction}
                     clientId={this.props.id}
                     item={t}

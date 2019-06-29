@@ -20,20 +20,21 @@ function InstallmentComponent(props) {
       {/*  Installments Header*/}
       <Header />
       {/* Installments Container */}
-      <StyledTable className="installmentitem-container">
-        <tbody>
-          {props.installmentStart && (
-            <div className="spindiv">
-              <Spinner className="spinner" />
-            </div>
-          )}
-          {/* Installment items */}
-          {props.installments &&
-            props.installments.map(i => {
-              return <Installment key={i.id} installment={i} />;
-            })}
-        </tbody>
-      </StyledTable>
+      {props.installmentStart ? (
+        <div className="spindiv">
+          <Spinner className="spinner" />
+        </div>
+      ) : (
+        <StyledTable className="installmentitem-container">
+          <tbody>
+            {/* Installment items */}
+            {props.installments &&
+              props.installments.map(i => {
+                return <Installment key={i.id} installment={i} />;
+              })}
+          </tbody>
+        </StyledTable>
+      )}
     </InstallmentContainer>
   );
 }
@@ -59,18 +60,6 @@ const InstallmentContainer = styled.div`
   .installmentitem-container {
     width: 100%;
   }
-`;
-
-const StyledTable = styled.table`
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-
-  tr {
-    &:nth-of-type(even) {
-      background-color: lightgrey;
-    }
-  }
 
   .spindiv {
     width: 100%;
@@ -82,5 +71,17 @@ const StyledTable = styled.table`
     width: 10rem;
     height: 10rem;
     margin: auto;
+  }
+`;
+
+const StyledTable = styled.table`
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+
+  tr {
+    &:nth-of-type(even) {
+      background-color: lightgrey;
+    }
   }
 `;

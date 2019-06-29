@@ -76,7 +76,7 @@ export default class GlobalClientCard extends Component {
               <i
                 onMouseOver={this.setCoords}
                 onClick={e => this.toggleModal(e)}
-                class="fas fa-angle-down"
+                className="fas fa-angle-down"
               />
             </div>
 

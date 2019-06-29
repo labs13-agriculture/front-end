@@ -5,14 +5,6 @@ import OrganizationViewDemographics from "./OrganizationViewDemographics.js";
 import OrganizationBranch from "./OrganizationBranch.js";
 
 class OrganizationView extends Component {
-  // constructor(props) {
-  //   super(props);
-  // }
-
-  componentDidMount() {
-    console.log("PROPSPPSPSPSP", this.props);
-  }
-
   render() {
     return (
       <StyledContainer>
@@ -22,7 +14,7 @@ class OrganizationView extends Component {
           <OrganizationViewDemographics id={this.props.match.params.id} />
         </StyledDemos>
         <StyledInfoView>
-          <OrganizationBranch id={this.props.match.params.id}/>
+          <OrganizationBranch id={this.props.match.params.id} />
         </StyledInfoView>
       </StyledContainer>
     );

@@ -30,7 +30,6 @@ function InventoryItem(props) {
 
   const submitUpdate = event => {
     event.preventDefault();
-    console.log("Pretend we updated an item");
     item.active = isActive;
     item.quantity = newQty > 0 ? newQty : item.quantity;
     props.updateItemInInventory(item);

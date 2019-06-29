@@ -15,7 +15,6 @@ import EditOrganizationForm from "./EditOrganizationForm";
 
 function OrganizationViewDemographics(props) {
   const { organization } = props;
-  console.log("ORGANIZATION", organization);
   useEffect(() => {
     props.getOrganizationById(props.id);
   }, []);

@@ -68,7 +68,6 @@ export const updateInstallmentItem = installment => dispatch => {
       }
     )
     .then(res => {
-      console.log("installment_card_data_update", res.data);
       dispatch({ type: UPDATE_INSTALLMENT_SUCCESS, payload: res.data });
     })
 
@@ -92,7 +91,6 @@ export const deleteInstallment = installmentId => dispatch => {
       }
     })
     .then(res => {
-      console.log("installment_card_data_delete", res.data);
       dispatch({ type: DELETE_INSTALLMENT_SUCCESS, payload: res.data });
     })
     .catch(err => {

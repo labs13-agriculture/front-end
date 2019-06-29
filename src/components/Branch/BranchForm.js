@@ -38,7 +38,6 @@ class BranchForm extends Component {
 
   submitForm = e => {
     e.preventDefault();
-    console.log(this.state);
     if (this.props.updating) {
       this.props.updateBranch(this.props.branch.branch_id, this.state);
       this.props.toggleModal();

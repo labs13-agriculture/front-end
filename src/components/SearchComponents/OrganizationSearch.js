@@ -13,9 +13,9 @@ import OrganizationCardContainer from "../Organization/OrganizationCardContainer
 import styled from "styled-components";
 import NewOrganizationForm from "../Organization/NewOrganizationForm";
 import { Modal } from "reactstrap";
-import OrgResultsBtn from '../Organization/OrgResultsBtn';
-import {theme} from "../../config";
-import OrganizationSearchHelp from '../HelpModals/OrganizationSearchHelp';
+import OrgResultsBtn from "../Organization/OrgResultsBtn";
+import { theme } from "../../config";
+import OrganizationSearchHelp from "../HelpModals/OrganizationSearchHelp";
 
 class OrganizationSearch extends Component {
   constructor(props) {
@@ -41,13 +41,10 @@ class OrganizationSearch extends Component {
   };
 
   submitOrganization = newOrganization => {
-    console.log(newOrganization);
     this.props.addOrganization(newOrganization);
   };
 
   render() {
-    console.log("ORGANIZATION", this.props.organizationAdded);
-    console.log("ALL THE PROPS", this.props);
     if (this.props.organizationAdded && this.props.organization) {
       this.props.clearAddedOrgs();
 
@@ -58,7 +55,6 @@ class OrganizationSearch extends Component {
       );
     }
     // `/dashboard/organization/${this.props.organization.id}`
-    console.log("ORGANIZATION DATA", this.props.organizationData);
     return (
       <div>
         <StyledSearchToolContainer>
@@ -76,12 +72,6 @@ class OrganizationSearch extends Component {
             toggleModal={this.toggleModal}
           />
         </Modal>
-        <Modal 
-          isOpen={this.props.help} 
-          toggle={() => this.props.needHelp(this.props.help)}
-        >
-          <OrganizationSearchHelp />
-        </Modal>
       </div>
     );
   }
@@ -95,14 +85,19 @@ const mapStateToProps = state => {
     searchFailure: state.organizationData.searchFailure,
     error: state.organizationData.error,
     searchSuccess: state.organizationData.searchSuccess,
-    help: state.help.needsHelp,
     organizationAdded: state.organizationData.organizationAdded
   };
 };
 
 export default connect(
   mapStateToProps,
-  { searchOrganizations, addOrganization, getAllOrganizations, clearAddedOrgs, needHelp }
+  {
+    searchOrganizations,
+    addOrganization,
+    getAllOrganizations,
+    clearAddedOrgs,
+    needHelp
+  }
 )(OrganizationSearch);
 
 const Header = styled.h1`

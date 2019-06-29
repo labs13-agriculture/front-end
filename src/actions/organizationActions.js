@@ -1,4 +1,4 @@
-  import axios from "axios";
+import axios from "axios";
 import { BASE_URL } from "../config";
 
 export const ADD_ORGANIZATION_START = "ADD_ORGANIZATION_START";
@@ -7,23 +7,15 @@ export const ADD_ORGANIZATION_FAILURE = "ADD_ORGANIZATION_FAILURE";
 
 export const addOrganization = newOrganization => dispatch => {
   dispatch({ type: ADD_ORGANIZATION_START });
-  console.log("attempting to add", newOrganization);
-
   return axios
-    .post(
-      `${BASE_URL}/organizations/new-organization`,
-      newOrganization,
-      {
-        headers: {
-          "Content-Type": "application/json",
+    .post(`${BASE_URL}/organizations/new-organization`, newOrganization, {
+      headers: {
+        "Content-Type": "application/json",
 
-          Authorization: `Bearer ${window.localStorage.getItem("token")}`
-        }
+        Authorization: `Bearer ${window.localStorage.getItem("token")}`
       }
-    )
+    })
     .then(res => {
-      console.log("added new Organization", res.data);
-
       dispatch({ type: ADD_ORGANIZATION_SUCCESS, payload: res.data });
     })
     .catch(err => {
@@ -44,7 +36,6 @@ export const searchOrganizations = query => dispatch => {
   const urlString = `${BASE_URL}/organizations/search?name=${nameSearch}&location=${locationSearch}&lead=${
     query.leads
   }`;
-  console.log(urlString);
 
   return axios
     .get(urlString, {
@@ -54,7 +45,6 @@ export const searchOrganizations = query => dispatch => {
       }
     })
     .then(res => {
-      console.log("ORGANIZATION SEARCH RES", res);
       dispatch({ type: ORGANIZATION_SEARCH_SUCCESS, payload: res });
     })
     .catch(err => {
@@ -91,21 +81,17 @@ export const GET_ALL_ORGANIZATIONS = "GET_ALL_ORGANIZATIONS";
 export const GET_ALL_ORGANIZATIONS_SUCCESS = "GET_ALL_ORGANIZATIONS_SUCCESS";
 export const GET_ALL_ORGANIZATIONS_FAILURE = "GET_ALL_ORGANIZATIONS_FAILURE";
 
-export const getAllOrganizations = (lead) => dispatch => {
+export const getAllOrganizations = lead => dispatch => {
   dispatch({ type: GET_ALL_ORGANIZATIONS });
 
   return axios
-    .get(
-      `${BASE_URL}/organizations/organizations-list?lead=${lead}`,
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${window.localStorage.getItem("token")}`
-        }
+    .get(`${BASE_URL}/organizations/organizations-list?lead=${lead}`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${window.localStorage.getItem("token")}`
       }
-    )
+    })
     .then(res => {
-      console.log("GET ALL ORGS", res);
       dispatch({ type: GET_ALL_ORGANIZATIONS_SUCCESS, payload: res });
     })
     .catch(err => {
@@ -125,13 +111,10 @@ export const deleteOrganization = organizationId => dispatch => {
     .delete(`${BASE_URL}/organizations/organization/${organizationId}`, {
       headers: {
         "Content-Type": "application/json",
-
         Authorization: `Bearer ${window.localStorage.getItem("token")}`
       }
     })
     .then(res => {
-      console.log("DELETE_ORGANIZATION_DATA", res.data);
-
       dispatch({ type: DELETE_ORGANIZATION_SUCCESS, payload: res.data });
     })
     .catch(err => {
@@ -146,7 +129,6 @@ export const UPDATE_ORGANIZATION_FAILURE = "UPDATE_ORGANIZATION_FAILURE";
 
 export const updateOrganization = organization => dispatch => {
   dispatch({ type: UPDATE_ORGANIZATION });
-  console.log("attempting to update", organization);
   return axios
     .put(
       `${BASE_URL}/organizations/update-organization/${organization.id}
@@ -173,7 +155,7 @@ export const GET_NEXT_ORGS_SUCCESS = "GET_NEXT_ORGS_SUCCESS";
 export const GET_NEXT_ORGS_FAILURE = "GET_NEXT_ORGS_FAILURE";
 
 export const getNextOrgPage = nextLink => dispatch => {
-  dispatch({type: GET_NEXT_ORGS_START});
+  dispatch({ type: GET_NEXT_ORGS_START });
   return axios
     .get(nextLink, {
       headers: {
@@ -181,15 +163,14 @@ export const getNextOrgPage = nextLink => dispatch => {
         Authorization: `Bearer ${window.localStorage.getItem("token")}`
       }
     })
-    .then(res =>{
-      console.log(res)
-      dispatch({type: GET_NEXT_ORGS_SUCCESS, payload: res})
+    .then(res => {
+      dispatch({ type: GET_NEXT_ORGS_SUCCESS, payload: res });
     })
-    .catch(err =>{
-      console.log(err)
-      dispatch({type: GET_NEXT_ORGS_FAILURE, payload: err})
+    .catch(err => {
+      console.log(err);
+      dispatch({ type: GET_NEXT_ORGS_FAILURE, payload: err });
     });
-}
+};
 
 export const CLEAR_DELETED_ORGS = "CLEAR_DELETED_ORGS";
 

@@ -16,7 +16,6 @@ export const getBranches = clientId => dispatch => {
       }
     })
     .then(res => {
-      console.log(res);
       dispatch({ type: GET_BRANCHES_SUCCESS, payload: res.data });
     })
     .catch(err => {
@@ -41,7 +40,6 @@ export const addBranch = (clientId, newBranch) => dispatch => {
       }
     })
     .then(res => {
-      console.log(res.data);
       dispatch({ type: ADD_BRANCH_SUCCESS, payload: res.data });
     })
     .catch(err => {
@@ -66,7 +64,6 @@ export const updateBranch = (branchId, newBranch) => dispatch => {
       }
     })
     .then(res => {
-      console.log(res.data);
       dispatch({ type: UPDATE_BRANCH_SUCCESS, payload: res.data });
     })
     .catch(err => {
@@ -81,7 +78,6 @@ export const DELETE_BRANCH_FAILURE = "DELETE_BRANCH_FAILURE";
 
 export const deleteBranch = branchId => dispatch => {
   dispatch({ type: DELETE_BRANCH_START });
-  console.log("BRANCH ID:", branchId);
 
   axios
     .delete(`${BASE_URL}/organizations/contact/${branchId}`, {
@@ -92,7 +88,6 @@ export const deleteBranch = branchId => dispatch => {
       }
     })
     .then(res => {
-      console.log(res);
       dispatch({ type: DELETE_BRANCH_SUCCESS, payload: res.data });
     })
     .catch(err => {
@@ -139,7 +134,6 @@ export const getNextBranchPage = nextLink => dispatch => {
       }
     })
     .then(res => {
-      console.log("RESPONSE", res);
       dispatch({ type: GET_NEXT_BRANCH_SUCCESS, payload: res });
     })
     .catch(err => {

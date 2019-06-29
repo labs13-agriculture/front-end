@@ -31,8 +31,6 @@ function ClientDemographics(props) {
 
   const [modal, setModal] = useState(false);
 
-  console.log("UPDATE CLIENT SUCCESS", props.updateClientSuccess);
-
   const onDismiss = e => {
     props.clearClientUpdated();
   };

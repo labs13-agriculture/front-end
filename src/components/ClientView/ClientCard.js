@@ -45,10 +45,8 @@ export default class GlobalClientCard extends Component {
     //if that distance will fit my fully expanded card, modal displays from bottom, otherwise display from top
     if (innerHeight - y < height * 3) {
       conditionalY = y - height * 2.4;
-      console.log("USE WIDTH", height);
     } else {
       conditionalY = y + height + 9;
-      console.log(conditionalY);
     }
     this.setState({ xcoord: x, ycoord: conditionalY });
   };

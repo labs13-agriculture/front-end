@@ -35,9 +35,22 @@ export default class GlobalClientCard extends Component {
 
   setCoords = (e) => {
     let rect = e.currentTarget.offsetParent.getBoundingClientRect()
+    let innerHeight = window.innerHeight
     let x = rect.x;
-    let y = rect.y +80;
-    this.setState({xcoord:x,ycoord:y,})
+    let y = rect.y;
+    let conditionalY = rect.y;
+
+    if (innerHeight - y < 190){
+        conditionalY = y -190;
+        console.log("USE Y",conditionalY);
+
+
+      }
+    else{
+      conditionalY = y + 90;
+      console.log(conditionalY)
+    }
+    this.setState({xcoord:x,ycoord:conditionalY,})
     
   }
 
@@ -49,12 +62,13 @@ export default class GlobalClientCard extends Component {
     return (
       //loop through keys of card data in props
       //return h3 element with formatted key value pairs
-      
-      <Link 
+      //with router could giv client card ability to push
+      //or slap the class in the index.css 
+      <Link id={this.state.toggleAddModal ? "expanded":''}
         style={{ textDecoration: "none" ,margin:"5px",position:"relative"}}
         to={`/dashboard/${client.type}/${client.id}`}
       >
-        <StyledGlobalClientCard id={this.state.expanded ? "expanded":''}>
+        <StyledGlobalClientCard >
           <StyledContactContainer>
             <div className="identity-icon">
               <div className="circle">
@@ -75,22 +89,22 @@ export default class GlobalClientCard extends Component {
             </div>
           </StyledContactContainer>
           <Modal
-           style={{color: "red",top:this.state.ycoord,left:this.state.xcoord,margin:0}}
+           style={{top:this.state.ycoord,left:this.state.xcoord,margin:0,width:300,borderRaduis:3}}
             isOpen={this.state.toggleAddModal}
             toggle={this.toggleModal}
           >
             <div className="demo">
-              <p>TITLE: {client.title}</p>
-              <p>DOB: {client.dateofbirth}</p>
-              <p>GENDER: {client.gender}</p>
+              <p className="category">TITLE: {client.title}</p>
+              <p className="category">DOB: {client.dateofbirth}</p>
+              <p className="category">GENDER: {client.gender}</p>
             </div>
             <div className="contact">
-            <p>PHONE: {client.phone}</p>
+            <p className="category">PHONE: {client.phone}</p>
             </div>
             <div className="location">
-              <p>ADDRESS: {client.address}</p>
-              <p>REGION: {client.region}</p>
-              <p>COMMUNITY: {client.community}</p>
+              <p className="category">ADDRESS: {client.address}</p>
+              <p className="category">REGION: {client.region}</p>
+              <p className="category">COMMUNITY: {client.community}</p>
             </div>
           </Modal>
         </StyledGlobalClientCard>
@@ -122,7 +136,9 @@ const StyledGlobalClientCard = styled.div`
       cursor:pointer;
       
     }
-  }
+  
+
+  
 
   
 
@@ -143,7 +159,14 @@ const StyledGlobalClientCard = styled.div`
     color:white;
     
   }
-  
+  .category{
+    background: #40e0d0 !important;
+    margin: 5px ;
+    border-radius: 3px ;
+    
+    font-size: 1.3rem ;
+    display: inline-block;
+   }
 
   .circle {
     height: 40px;
@@ -212,7 +235,7 @@ const StyledContactContainer = styled.div`
       right:0;
       padding:5px;
       color:white;
-      z-index:3000
+      
       &:hover{
       color:white;
       background:gray;
@@ -231,4 +254,6 @@ const StyledContactContainer = styled.div`
   .email {
     color: gray;
   }
+
+  
 `;

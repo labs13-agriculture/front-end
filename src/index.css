@@ -84,11 +84,38 @@ code {
 #expanded{
    
   
-  background:rgb(60,57,75);
-  height:320px;
-  z-index:6;
-  position:absolute;
-  color:white;
-  
+  background:rgba(60,57,75);
+  z-index:9000 !important;
    
- }
+}
+
+.modal-content{
+  
+  padding: 20px;
+
+  background-color:rgba(60,57,75) !important;
+  z-index:9000 !important;
+
+  width: 300px;
+  color:white;
+  border:none;
+  padding: 4px !important;
+
+
+   
+    
+  
+  
+
+
+}
+
+
+
+
+
+
+
+.modal-dialog{
+  
+}

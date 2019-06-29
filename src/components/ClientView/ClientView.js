@@ -1,11 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import styled, { css } from "styled-components";
+import { Modal } from "reactstrap";
+import { needHelp } from "../../actions";
 
 // components
 import Demographics from "./Demographics";
 import Transactions from "../Transaction/Transactions";
 import Installments from "../Installment/InstallmentComponent";
+import ClientViewHelp from "../HelpModals/ClientViewHelp";
 
 class ClientView extends Component {
   toggleTransaction = () => {
@@ -34,6 +37,9 @@ class ClientView extends Component {
             <Installments />
           </StyledInfoView>
         </StyledContainer>
+        <Modal isOpen={this.props.help} toggle={() => this.props.needHelp(this.props.help)}>
+          <ClientViewHelp />
+        </Modal>
       </InfoViewContainer>
     );
   }
@@ -45,13 +51,14 @@ const mapStateToProps = state => {
     error: state.clientData.error,
     searchStart: state.clientData.getStart,
     searchSuccess: state.clientData.getSuccess,
-    searchFailure: state.clientData.getFailure
+    searchFailure: state.clientData.getFailure,
+    help: state.help.needsHelp
   };
 };
 
 export default connect(
   mapStateToProps,
-  null
+  { needHelp }
 )(ClientView);
 
 const sizes = {

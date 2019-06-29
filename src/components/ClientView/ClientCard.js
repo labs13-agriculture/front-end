@@ -35,19 +35,23 @@ export default class GlobalClientCard extends Component {
 
   setCoords = (e) => {
     let rect = e.currentTarget.offsetParent.getBoundingClientRect()
-    let innerHeight = window.innerHeight
+    //https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect
+    let innerHeight = window.innerHeight //get the inner height of the window (just viewport)
     let x = rect.x;
     let y = rect.y;
+    let height = rect.height
     let conditionalY = rect.y;
 
-    if (innerHeight - y < 190){
-        conditionalY = y -190;
-        console.log("USE Y",conditionalY);
+    //get distance between the top of the client card and bottom of page
+    //if that distance will fit my fully expanded card, modal displays from bottom, otherwise display from top
+    if (innerHeight - y < height*3){
+        conditionalY = y - height*2.4
+        console.log("USE WIDTH",height);
 
 
       }
     else{
-      conditionalY = y + 90;
+      conditionalY = y + height +9;
       console.log(conditionalY)
     }
     this.setState({xcoord:x,ycoord:conditionalY,})

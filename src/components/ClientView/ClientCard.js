@@ -176,6 +176,7 @@ const StyledGlobalClientCard = styled.div`
 
   h3 {
     margin-bottom: 0px;
+    font-size: 1.75rem;
   }
   font-family: ${theme.experimentalFont};
   

@@ -40,39 +40,28 @@ class NewClientForm extends Component {
 
   formSubmit = e => {
     e.preventDefault();
-    //make sure client since is a nubmer
-    if (isNaN(parseInt(this.state.startyear))) {
-      this.setState({
-        validYear: false
-      });
-      return;
-    }
 
+    let validYear = true;
     let emptyFields = false;
 
-    Object.keys(this.state).forEach(k => {
-      //false booleans were evaluating to '', making it impossible to submit form
-      if (
-        this.state[k] === "" &&
-        k !== "lead" &&
-        k !== "blankField" &&
-        k !== "validYear"
-      ) {
-        emptyFields = true;
-      }
-    });
+    //make sure client since is a 4 digit number nubmer (if they choose to enter one)
+    if (this.state.startyear && (this.state.startyear.length != 4 || isNaN(parseInt(this.state.startyear)))) {
+      validYear = false;
+    }
+    
 
-    if (emptyFields) {
-      this.setState({
-        blankField: true
-      });
-      return;
+    if(this.state.phone==="" || this.state.firstName === "" || this.state.secondName === ""){
+      emptyFields = true;
     }
 
     this.setState({
-      validYear: true,
-      blankField: false
-    });
+      validYear: validYear,
+      blankField: emptyFields
+    })
+
+    if(emptyFields || !validYear){
+      return;
+    }
 
     //Setting up Client as object backend can expect
     const newClient = {
@@ -282,7 +271,7 @@ class NewClientForm extends Component {
                 name="month"
               >
                 {months.map((m, index) => (
-                  <option value={index + 1}>{m}</option>
+                  <option key={index} value={index + 1}>{m}</option>
                 ))}
               </Input>
               <Input
@@ -291,7 +280,7 @@ class NewClientForm extends Component {
                 name="day"
               >
                 {days.map(m => (
-                  <option value={m}>{m}</option>
+                  <option key = {m} value={m}>{m}</option>
                 ))}
               </Input>
               <Input
@@ -300,7 +289,7 @@ class NewClientForm extends Component {
                 name="year"
               >
                 {years.map(m => (
-                  <option value={m}>{m}</option>
+                  <option key={m} value={m}>{m}</option>
                 ))}
               </Input>
             </Label>
@@ -333,9 +322,10 @@ class NewClientForm extends Component {
             </FormGroup>
           </div>
           {!this.state.validYear && <p>Please enter a 4 digit year</p>}
+          {this.state.blankField && <p>Name and Phone are required</p>}
           <Input className="submit" type="submit" />
         </Form>
-        {this.state.blankField && <p>All fields are required</p>}
+        
       </ModalDiv>
     );
   }

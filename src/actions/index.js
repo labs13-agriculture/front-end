@@ -217,3 +217,8 @@ export {
   GET_NEXT_BRANCH_FAILURE,
   getNextBranchPage
 } from "./branchActions";
+
+export{
+  NEED_HELP,
+  needHelp
+} from "./helpAction";

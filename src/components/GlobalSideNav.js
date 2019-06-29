@@ -6,8 +6,10 @@ import "./GSN.css";
 import logo from "../tiemeNdo.svg";
 import { BASE_URL } from "../config";
 import { theme } from "../config";
+import { connect } from 'react-redux';
+import { needHelp } from '../actions';
 
-export default class GlobalSideNav extends Component {
+class GlobalSideNav extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -107,12 +109,31 @@ export default class GlobalSideNav extends Component {
             <span className="navspan">LOG OUT</span>
           </NavLink>
         </StyledDiv>
+        <StyledDiv>
+          <NavLink 
+            style={{textDecoration: "none"}}
+            to="#"
+            onClick={() => this.props.needHelp(this.props.helpStatus)}
+          >
+            <i className="fas fa-question-circle"></i>
+            <span className="navspan">HELP</span>
+          </NavLink>
+        </StyledDiv>
 
         {/* {this.state.names.map(user => <h1>{user.username}</h1>)} */}
       </GSN>
     );
   }
 }
+
+const mapStateToProps = state =>{
+  return({
+    helpStatus: state.help.needsHelp
+  })
+}
+
+
+export default connect(mapStateToProps, { needHelp })(GlobalSideNav);
 
 const GSN = styled.div`
   align-items: left;

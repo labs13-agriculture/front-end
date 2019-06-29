@@ -6,14 +6,16 @@ import {
   searchOrganizations,
   addOrganization,
   getAllOrganizations,
-  clearAddedOrgs
-} from "../../actions/organizationActions";
+  clearAddedOrgs,
+  needHelp
+} from "../../actions";
 import OrganizationCardContainer from "../Organization/OrganizationCardContainer";
 import styled from "styled-components";
 import NewOrganizationForm from "../Organization/NewOrganizationForm";
 import { Modal } from "reactstrap";
-import OrgResultsBtn from "../Organization/OrgResultsBtn";
-import { theme } from "../../config";
+import OrgResultsBtn from '../Organization/OrgResultsBtn';
+import {theme} from "../../config";
+import OrganizationSearchHelp from '../HelpModals/OrganizationSearchHelp';
 
 class OrganizationSearch extends Component {
   constructor(props) {
@@ -74,6 +76,12 @@ class OrganizationSearch extends Component {
             toggleModal={this.toggleModal}
           />
         </Modal>
+        <Modal 
+          isOpen={this.props.help} 
+          toggle={() => this.props.needHelp(this.props.help)}
+        >
+          <OrganizationSearchHelp />
+        </Modal>
       </div>
     );
   }
@@ -87,13 +95,14 @@ const mapStateToProps = state => {
     searchFailure: state.organizationData.searchFailure,
     error: state.organizationData.error,
     searchSuccess: state.organizationData.searchSuccess,
+    help: state.help.needsHelp,
     organizationAdded: state.organizationData.organizationAdded
   };
 };
 
 export default connect(
   mapStateToProps,
-  { searchOrganizations, addOrganization, getAllOrganizations, clearAddedOrgs }
+  { searchOrganizations, addOrganization, getAllOrganizations, clearAddedOrgs, needHelp }
 )(OrganizationSearch);
 
 const Header = styled.h1`

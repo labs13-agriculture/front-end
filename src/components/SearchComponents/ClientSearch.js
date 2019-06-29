@@ -9,9 +9,10 @@ import ClientCardContainer from "../ClientView/ClientCardContainer";
 import SearchForm from "./SearchForm";
 import NewClientForm from "../ClientView/NewClientForm";
 import ClientResultsBtn from "../ClientView/ClientResultsBtn";
+import ClientSearchHelp from "../HelpModals/ClientSearchHelp";
 
 // Actions
-import { searchClients, addClient, clearAdded } from "../../actions";
+import { searchClients, addClient, clearAdded, needHelp } from "../../actions";
 
 class ClientSearch extends Component {
   constructor(props) {
@@ -86,6 +87,9 @@ class ClientSearch extends Component {
             type={this.getType()}
           />
         </Modal>
+        <Modal isOpen={this.props.help} toggle={() => this.props.needHelp(this.props.help)}>
+          <ClientSearchHelp />
+        </Modal>
       </div>
     );
   }
@@ -104,13 +108,14 @@ const mapStateToProps = state => {
     farmerPageData:state.clientData.farmerHeaders,
     retailerPageData:state.clientData.retailerHeaders,
     farmerSearchSuccess:state.clientData.farmerSearchSuccess,
-    retailerSearchSuccess:state.clientData.retailerSearchSuccess
+    retailerSearchSuccess:state.clientData.retailerSearchSuccess,
+    help: state.help.needsHelp
   };
 };
 
 export default connect(
   mapStateToProps,
-  { searchClients, addClient, clearAdded }
+  { searchClients, addClient, clearAdded, needHelp }
 )(ClientSearch);
 
 const Header = styled.h1`

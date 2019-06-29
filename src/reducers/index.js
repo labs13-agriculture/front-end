@@ -7,6 +7,7 @@ import clientReducer from "../reducers/clientReducer";
 import organizationReducer from "../reducers/organizationReducer";
 import inventoryReducer from "../reducers/inventoryReducer";
 import branchReducer from "./branchReducer";
+import helpReducer from './helpReducer';
 
 // import getData from '../reducers/getdata';
 // import registrationR from '../reducers/registerreducer';
@@ -20,7 +21,8 @@ export default combineReducers({
   organizationData: organizationReducer,
   inventory: inventoryReducer,
   clientTransactions: clientTransactions,
-  branchData: branchReducer
+  branchData: branchReducer,
+  help: helpReducer
   // // getData,
   // registrationR,
   // getSentiment

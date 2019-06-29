@@ -82,7 +82,7 @@ export default class GlobalClientCard extends Component {
                 
               </div>
               {/* <i onClick={(e)=>this.toggleContents(e)} class="fas fa-expand"></i> */}
-              <i onMouseEnter={this.setCoords} onClick={(e) => this.toggleModal(e)} class="fas fa-angle-down"></i>
+              <i onMouseOver={this.setCoords} onClick={(e) => this.toggleModal(e)} class="fas fa-angle-down"></i>
             </div>
             
             <div className="head-contact-container">

@@ -100,18 +100,20 @@ export default class GlobalClientCard extends Component {
             isOpen={this.state.toggleAddModal}
             toggle={this.toggleModal}
           >
-            <div className="demo">
-              <p className="category">TITLE: {client.title}</p>
-              <p className="category">DOB: {client.dateofbirth}</p>
-              <p className="category">GENDER: {client.gender}</p>
-            </div>
-            <div className="contact">
-              <p className="category">PHONE: {client.phone}</p>
-            </div>
-            <div className="location">
-              <p className="category">ADDRESS: {client.address}</p>
-              <p className="category">REGION: {client.region}</p>
-              <p className="category">COMMUNITY: {client.community}</p>
+            <div className="info-modal">
+              <div className="demo">
+                <p className="category">TITLE: {client.title}</p>
+                <p className="category">DOB: {client.dateofbirth}</p>
+                <p className="category">GENDER: {client.gender}</p>
+              </div>
+              <div className="contact">
+                <p className="category">PHONE: {client.phone}</p>
+              </div>
+              <div className="location">
+                <p className="category">ADDRESS: {client.address}</p>
+                <p className="category">REGION: {client.region}</p>
+                <p className="category">COMMUNITY: {client.community}</p>
+              </div>
             </div>
           </Modal>
         </StyledGlobalClientCard>
@@ -134,25 +136,13 @@ const StyledGlobalClientCard = styled.div`
   overflow:hidden;
   color: white;
   ${"" /* transition: all 0.15s ease; */}
+
   &:hover{
     .fas.fa-angle-down{
       color:gray;
       cursor:pointer;
       
     }
-  
-
-  
-
-  
-
-   
-   
-   
-   
- 
-    
-    
   } 
   h3 {
     margin-bottom: 0px;

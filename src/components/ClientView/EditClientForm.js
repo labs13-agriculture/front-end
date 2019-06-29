@@ -343,5 +343,6 @@ const ModalDiv = styled.div`
 
   .modal-content {
     color: ${theme.background_dark};
+    border: none;
   }
 `;

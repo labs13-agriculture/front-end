@@ -58,7 +58,7 @@ class ClientSearch extends Component {
     }
 
     return (
-      <SearchContainer>
+      <div>
         <StyledSearchToolContainer>
           <StyledHeader>
             <Header>Find {this.capitalize(this.getType())}</Header>
@@ -95,7 +95,7 @@ class ClientSearch extends Component {
         >
           <ClientSearchHelp />
         </Modal>
-      </SearchContainer>
+      </div>
     );
   }
 }
@@ -123,24 +123,6 @@ export default connect(
   { searchClients, addClient, clearAdded, needHelp }
 )(ClientSearch);
 
-const SearchContainer = styled.div`
-  #expanded {
-    background: rgba(60, 57, 75);
-    z-index: 9000 !important;
-  }
-
-  .modal-content {
-    padding: 20px;
-
-    background-color: rgba(60, 57, 75) !important;
-    z-index: 9000 !important;
-
-    width: 300px;
-    color: white;
-    border: none;
-    padding: 4px !important;
-  }
-`;
 const Header = styled.h1`
   text-align: center;
   color: white;

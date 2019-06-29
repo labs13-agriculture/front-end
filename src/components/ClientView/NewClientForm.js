@@ -384,8 +384,4 @@ const ModalDiv = styled.div`
     background: ${theme.activeblue};
     border: 1px solid ${theme.activeblue};
   }
-
-  .modal-content {
-    color: ${theme.background_dark};
-  }
 `;

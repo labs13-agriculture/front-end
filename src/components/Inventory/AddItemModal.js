@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import styled from "styled-components";
-import { Button, Form, FormGroup, Label, Input } from "reactstrap";
+import { Button, FormGroup, Label, Input, Modal } from "reactstrap";
 import { connect } from "react-redux";
+import StyledForm from "../../styles/FormStyles";
 
 import {
   // For when we get there.
@@ -26,50 +26,40 @@ function AddItemModal(props) {
   };
 
   return (
-    <Modal>
-      <div onClick={props.doModal} className="center">
-        <div onClick={event => event.stopPropagation()} className="content">
-          <Form>
-            <FormGroup>
-              <h1>Add New Item</h1>
-              <Label for="itemName">New Item Name</Label>
-              <Input
-                type="text"
-                name="itemName"
-                placeholder="New Item Name"
-                value={newItem.itemName}
-                onChange={handleInputs}
-              />
-            </FormGroup>
-            <FormGroup>
-              <Label for="quantity">Quantity In Stock</Label>
-              <Input
-                type="quantity"
-                name="quantity"
-                placeholder="Quantity"
-                value={newItem.quantity}
-                onChange={handleInputs}
-              />
-            </FormGroup>
+    <Modal isOpen={props.useModal} toggle={props.doModal}>
+      <StyledForm>
+        <h2 className="header">Add New Item</h2>
+        <div className="addItemForm-content">
+          <FormGroup>
+            <Label for="itemName">New Item Name</Label>
+            <Input
+              type="text"
+              name="itemName"
+              placeholder="New Item Name"
+              value={newItem.itemName}
+              onChange={handleInputs}
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label for="quantity">Quantity In Stock</Label>
+            <Input
+              type="quantity"
+              name="quantity"
+              placeholder="Quantity"
+              value={newItem.quantity}
+              onChange={handleInputs}
+            />
+          </FormGroup>
 
-            <div style={{ width: "100px", marginBottom: "1%" }}>
-              <Button
-                style={{ width: "100px", marginBottom: "1%" }}
-                onClick={submit}
-              >
-                Submit
-              </Button>
-              <Button
-                style={{ width: "100px", marginBottom: "1%" }}
-                color="warning"
-                onClick={props.doModal}
-              >
-                Cancel
-              </Button>
-            </div>
-          </Form>
+          <div className="addItemForm-button-container">
+            <Button onClick={submit}>Submit</Button>
+
+            <Button color="warning" onClick={props.doModal}>
+              Cancel
+            </Button>
+          </div>
         </div>
-      </div>
+      </StyledForm>
     </Modal>
   );
 }
@@ -80,39 +70,3 @@ export default connect(
     addItemToInventory
   }
 )(AddItemModal);
-
-const Modal = styled.div`
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.3);
-
-  .center {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .exit {
-    position: fixed;
-    top: 15px;
-    left: 15px;
-  }
-
-  .content {
-    background: #fefefe;
-    min-width: 350px;
-    width: 50%;
-    padding: 10px;
-
-    border-radius: 5px;
-
-    font-size: 2rem;
-
-    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.4);
-  }
-`;

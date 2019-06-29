@@ -10,7 +10,7 @@ import {
 import { Modal } from "reactstrap";
 import UserDetails from "./UserDetails";
 import { media } from "../../styles/searchStyles";
-import {theme} from "../../config";
+import { theme } from "../../config";
 
 export default class UserStatsItem extends Component {
   constructor(props) {
@@ -51,7 +51,9 @@ export default class UserStatsItem extends Component {
           <DropdownToggle caret color="primary" />
           <DropdownMenu>
             {this.props.userRoles.map(userRole => (
-              <DropdownItem>{userRole.role.name}</DropdownItem>
+              <DropdownItem key={userRole.role.name}>
+                {userRole.role.name}
+              </DropdownItem>
             ))}
           </DropdownMenu>
         </ButtonDropdown>
@@ -61,7 +63,7 @@ export default class UserStatsItem extends Component {
           onClick={this.toggleUpdateModal}
           color="secondary"
         >
-          <i class="fas fa-pencil-alt" />
+          <i className="fas fa-pencil-alt" />
         </button>
         <Modal
           isOpen={this.state.toggleUpdateModal}
@@ -71,14 +73,8 @@ export default class UserStatsItem extends Component {
             username={this.props.username}
             userRoles={this.props.userRoles}
             userid={this.props.userid}
+            toggleUpdateModal={this.toggleUpdateModal}
           />
-          <Button
-            style={{ width: "100px", marginBottom: "1%" }}
-            onClick={this.toggleUpdateModal}
-            color="warning"
-          >
-            CANCEL
-          </Button>
         </Modal>
       </StyledProductStatsMini>
     );

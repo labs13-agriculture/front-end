@@ -4,6 +4,10 @@ import styled from "styled-components";
 import { Label, Form, FormGroup, Input, Button } from "reactstrap";
 import { getInventoryList, addNewTransaction } from "../../actions";
 
+import FormStyles from "../../styles/FormStyles";
+
+import { theme } from "../../config";
+
 class TransactionForm extends Component {
   constructor(props) {
     super(props);
@@ -142,183 +146,187 @@ class TransactionForm extends Component {
       yearArray.push(i);
     }
     return (
-      <Form
-        onSubmit={e => this.submitForm(e)}
-        style={{
-          padding: "20px",
-          display: "flex",
-          flexDirection: "column"
-        }}
-      >
-        <h1>New Transaction</h1>
-
-        <Label>
-          Officer:
-          <Input
-            type="text"
-            name="officer"
-            value={this.state.officer}
-            onChange={e => this.formChange(e)}
-          />
-        </Label>
-
-        <Label>
-          Transaction Date:
-          <div>
-            <Dropdown
-              value={this.state.month}
-              name="month"
-              onChange={this.formChange}
-            >
-              {monthArray.map((month, index) => (
-                <option key={index} value={month}>
-                  {month}
-                </option>
-              ))}
-            </Dropdown>
-            <Dropdown
-              value={this.state.day}
-              name="day"
-              onChange={this.formChange}
-            >
-              {dayArray.map((day, index) => (
-                <option key={index} value={day}>
-                  {day}
-                </option>
-              ))}
-            </Dropdown>
-            <Dropdown
-              value={this.state.year}
-              name="year"
-              onChange={this.formChange}
-            >
-              {yearArray.map((year, index) => (
-                <option key={index} value={year}>
-                  {year}
-                </option>
-              ))}
-            </Dropdown>
-          </div>
-        </Label>
-        <Label>
-          Payment Method:
-          <div style={{ padding: "0 20px" }}>
+      <FormStyles>
+        <div className="header">
+          <h2>New Transaction</h2>
+        </div>
+        <Form
+          onSubmit={e => this.submitForm(e)}
+          style={{
+            padding: "20px",
+            display: "flex",
+            flexDirection: "column",
+            background: `${theme.background_light}`
+          }}
+        >
+          <Label>
+            Officer:
             <Input
-              type="radio"
-              name="payment"
-              value="CREDIT"
-              checked={this.state.payment === "CREDIT"}
-              onChange={this.radioChange}
+              type="text"
+              name="officer"
+              value={this.state.officer}
+              onChange={e => this.formChange(e)}
             />
-            <Label style={{ padding: "0 1%" }} for="CREDIT">
-              Credit
-            </Label>
-          </div>
-          <div style={{ padding: "0 20px" }}>
-            <Input
-              type="radio"
-              color="warning"
-              name="payment"
-              value="CASH"
-              checked={this.state.payment === "CASH"}
-              onChange={this.radioChange}
-            />
-            <Label style={{ padding: "0 1%" }} for="CASH">
-              Cash
-            </Label>
-          </div>
-        </Label>
-        {this.state.items.map((item, index) => (
-          <FormGroup key={index}>
-            <Label>
-              Item {index + 1}:
+          </Label>
+
+          <Label>
+            Transaction Date:
+            <div>
               <Dropdown
-                data-class="itemName"
-                data-item={index}
-                name={`item-${index}`}
-                onChange={e => this.formChange(e)}
-                data-id={index}
+                value={this.state.month}
+                name="month"
+                onChange={this.formChange}
               >
-                <option data-class="itemName" data-item="">
-                  Select item ...
-                </option>
-                {this.props.inventory.map((item, idx) => (
-                  <option className="itemName" key={idx} data-item={item}>
-                    {item.name}
+                {monthArray.map((month, index) => (
+                  <option key={index} value={month}>
+                    {month}
                   </option>
                 ))}
               </Dropdown>
-            </Label>
-            <Label>
-              Quantity:
+              <Dropdown
+                value={this.state.day}
+                name="day"
+                onChange={this.formChange}
+              >
+                {dayArray.map((day, index) => (
+                  <option key={index} value={day}>
+                    {day}
+                  </option>
+                ))}
+              </Dropdown>
+              <Dropdown
+                value={this.state.year}
+                name="year"
+                onChange={this.formChange}
+              >
+                {yearArray.map((year, index) => (
+                  <option key={index} value={year}>
+                    {year}
+                  </option>
+                ))}
+              </Dropdown>
+            </div>
+          </Label>
+          <Label>
+            Payment Method:
+            <div style={{ padding: "0 20px" }}>
               <Input
-                data-id={index}
-                data-class="quantity"
-                type="text"
-                name="quantity"
-                data-qty={index}
-                onChange={e => this.formChange(e)}
+                type="radio"
+                name="payment"
+                value="CREDIT"
+                checked={this.state.payment === "CREDIT"}
+                onChange={this.radioChange}
               />
-            </Label>
-            <Label>
-              Price:
+              <Label style={{ padding: "0 1%" }} for="CREDIT">
+                Credit
+              </Label>
+            </div>
+            <div style={{ padding: "0 20px" }}>
               <Input
-                data-id={index}
-                data-class="unitPrice"
-                type="text"
-                name="unitPrice"
-                data-price={index}
-                onChange={e => this.formChange(e)}
+                type="radio"
+                color="warning"
+                name="payment"
+                value="CASH"
+                checked={this.state.payment === "CASH"}
+                onChange={this.radioChange}
               />
-            </Label>
+              <Label style={{ padding: "0 1%" }} for="CASH">
+                Cash
+              </Label>
+            </div>
+          </Label>
+          {this.state.items.map((item, index) => (
+            <FormGroup key={index}>
+              <Label>
+                Item {index + 1}:
+                <Dropdown
+                  data-class="itemName"
+                  data-item={index}
+                  name={`item-${index}`}
+                  onChange={e => this.formChange(e)}
+                  data-id={index}
+                >
+                  <option data-class="itemName" data-item="">
+                    Select item ...
+                  </option>
+                  {this.props.inventory.map((item, idx) => (
+                    <option className="itemName" key={idx} data-item={item}>
+                      {item.name}
+                    </option>
+                  ))}
+                </Dropdown>
+              </Label>
+              <Label>
+                Quantity:
+                <Input
+                  data-id={index}
+                  data-class="quantity"
+                  type="text"
+                  name="quantity"
+                  data-qty={index}
+                  onChange={e => this.formChange(e)}
+                />
+              </Label>
+              <Label>
+                Price:
+                <Input
+                  data-id={index}
+                  data-class="unitPrice"
+                  type="text"
+                  name="unitPrice"
+                  data-price={index}
+                  onChange={e => this.formChange(e)}
+                />
+              </Label>
+            </FormGroup>
+          ))}
+          <FormGroup
+            style={{
+              padding: "1% 0",
+              display: "flex",
+              // flexDirection: "column",
+              justifyContent: "space-evenly",
+              margin: "0"
+            }}
+          >
+            <Button
+              style={{ width: "100px" }}
+              type="button"
+              onClick={this.addItem}
+            >
+              Add another item
+            </Button>
+
+            <Button
+              style={{ width: "100px" }}
+              color="danger"
+              type="button"
+              onClick={this.removeItem}
+            >
+              Remove item
+            </Button>
+
+            <Button
+              style={{ width: "100px" }}
+              color="warning"
+              onClick={this.props.toggleModal}
+            >
+              Cancel
+            </Button>
           </FormGroup>
-        ))}
-        <FormGroup
-          style={{
-            padding: "1% 0",
-            display: "flex",
-            // flexDirection: "column",
-            justifyContent: "space-evenly",
-            margin: "0"
-          }}
-        >
-          <Button
-            style={{ width: "100px" }}
-            type="button"
-            onClick={this.addItem}
-          >
-            Add another item
-          </Button>
-
-          <Button
-            style={{ width: "100px" }}
-            color="danger"
-            type="button"
-            onClick={this.removeItem}
-          >
-            Remove item
-          </Button>
-
-          <Button
-            style={{ width: "100px" }}
-            color="warning"
-            onClick={this.props.toggleModal}
-          >
-            Cancel
-          </Button>
-        </FormGroup>
-        <Input type="submit" />
-        {this.state.needItems && (
-          <ErrorMessage>
-            Please add at least one item to this transaction
-          </ErrorMessage>
-        )}
-        {this.state.needItemData && (
-          <ErrorMessage>
-            All items must include a name, quantity, and price
-          </ErrorMessage>
-        )}
-      </Form>
+          <Input type="submit" />
+          {this.state.needItems && (
+            <ErrorMessage>
+              Please add at least one item to this transaction
+            </ErrorMessage>
+          )}
+          {this.state.needItemData && (
+            <ErrorMessage>
+              All items must include a name, quantity, and price
+            </ErrorMessage>
+          )}
+        </Form>
+      </FormStyles>
     );
   }
 }

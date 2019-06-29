@@ -124,7 +124,6 @@ const mapStateToProps = state => {
   return {
     organization: state.organizationData.organization,
     organizationDemoError: state.organizationData.error,
-    organizationDemoDataStart: state.organizationData.getStart,
     organizationDeleted: state.organizationData.organizationDeleted,
     updateOrganizationSuccess: state.organizationData.updateOrganizationSuccess,
     updateOrganizationFailure: state.organizationData.updateOrganizationFailure,

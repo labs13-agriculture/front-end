@@ -1,5 +1,7 @@
 import React, { Component } from "react";
+import FormStyles from "../../styles/FormStyles";
 import styled from "styled-components";
+import { theme } from "../../config";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import { connect } from "react-redux";
 import { updateSystemUser, deleteSystemUser } from "../../actions";
@@ -9,7 +11,6 @@ class UserDetails extends Component {
     super(props);
 
     this.state = {
-      
       userRoles: []
     };
   }
@@ -35,70 +36,76 @@ class UserDetails extends Component {
     this.props.addNewSystemUser(userDetails);
   };
 
+  deleteSystemUser = () => {
+    this.props.deleteSystemUser(this.props.userid);
+    this.props.toggleUpdateModal();
+  };
+
   render() {
     return (
-      <StyledUserDetails>
-        {/* <i className="far fa-window-close" onClick={()=>window.history.back()}></i> */}
-        {/* <StyledRegisterDetailsContainer> */}
-        <Form>
-          <FormGroup>
-            <h1>Update User Details</h1>
-            <Label for="username">Username</Label>
-            <Input
-              type="username"
-              name="username"
-              id="text"
-              placeholder={this.props.username}
-              onChange={this.handleInputChange}
-            />
-          </FormGroup>
-          <FormGroup>
-            <Label for="examplePassword">Password</Label>
-            <Input
-              type="password"
-              name="password"
-              id="examplePassword"
-              placeholder="ENTER NEW PASSWORD"
-              onChange={this.handleInputChange}
-            />
-          </FormGroup>
+      <OuterDiv>
+        <FormStyles>
+          <div className="header">
+            <h2>Update User Details</h2>
+          </div>
+          <Form className="updateUser-form">
+            <FormGroup>
+              <Label for="username">Username</Label>
+              <Input
+                type="username"
+                name="username"
+                id="text"
+                placeholder={this.props.username}
+                onChange={this.handleInputChange}
+              />
+            </FormGroup>
+            <FormGroup>
+              <Label for="examplePassword">Password</Label>
+              <Input
+                type="password"
+                name="password"
+                id="examplePassword"
+                placeholder="ENTER NEW PASSWORD"
+                onChange={this.handleInputChange}
+              />
+            </FormGroup>
 
-          <FormGroup>
-            <Label for="exampleSelectMulti">Role</Label>
-            <Input
-              type="select"
-              name="userRoles"
-              id="exampleSelectMulti"
-              multiple
-              onChange={this.handleInputChange}
-            >
-              <option>user</option>
-              <option>admin</option>
-            </Input>
-          </FormGroup>
-          <FormGroup
-            style={{ display: "flex", flexDirection: "column", margin: "0" }}
-          >
-            <Button
-              style={{ width: "100px", marginBottom: "1%" }}
-              onClick={() =>
-                this.props.updateSystemUser(this.state, this.props.userid)
-              }
-            >
-              UPDATE
-            </Button>
-            <Button
-              style={{ width: "100px", marginBottom: "1%" }}
-              color="danger"
-              onClick={() => this.props.deleteSystemUser(this.props.userid)}
-            >
-              DELETE
-            </Button>
-          </FormGroup>
-        </Form>
-
-        {/* </StyledRegisterDetailsContainer> */}
-      </StyledUserDetails>
+            <FormGroup>
+              <Label for="exampleSelectMulti">Role</Label>
+              <Input
+                type="select"
+                name="userRoles"
+                id="exampleSelectMulti"
+                multiple
+                onChange={this.handleInputChange}
+              >
+                <option>user</option>
+                <option>admin</option>
+              </Input>
+            </FormGroup>
+            <FormGroup>
+              <div className="updateUser-buttons">
+                <Button
+                  onClick={() =>
+                    this.props.updateSystemUser(this.state, this.props.userid)
+                  }
+                >
+                  UPDATE
+                </Button>
+                <Button
+                  color="danger"
+                  onClick={() => this.deleteSystemUser(this.props.userid)}
+                >
+                  DELETE
+                </Button>
+                <Button onClick={this.props.toggleUpdateModal} color="warning">
+                  CANCEL
+                </Button>
+              </div>
+            </FormGroup>
+          </Form>
+        </FormStyles>
+      </OuterDiv>
     );
   }
 }
@@ -118,23 +125,6 @@ export default connect(
   { updateSystemUser, deleteSystemUser }
 )(UserDetails);
 
-const StyledUserDetails = styled.div`
-  ${"" /* position:absolute;
-    height:100%;
-    width:100%;
-    background: #00000054;  
-    display:flex;
-    justify-content:center;
-    align-items:center; */}
-
-  .far.fa-window-close {
-    color: white;
-    font-size: 40px;
-    right: 0;
-    position: absolute;
-    top: 0;
-    &:hover {
-      cursor: pointer;
-    }
-  }
+const OuterDiv = styled.div`
+  background: ${theme.background_light};
 `;

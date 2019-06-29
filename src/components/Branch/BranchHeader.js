@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { connect } from "react-redux";
 import { Button, Modal, Alert } from "reactstrap";
 import { theme } from "../../config";
@@ -44,6 +44,22 @@ function BranchHeader(props) {
       >
         Failed To Add
       </Alert>
+      <Alert
+        style={{ marginBottom: "0" }}
+        color="success"
+        isOpen={props.updateSuccess}
+        toggle={onDismiss}
+      >
+        Successfully Updated!
+      </Alert>
+      <Alert
+        style={{ marginBottom: "0" }}
+        color="danger"
+        isOpen={props.updateFailure}
+        toggle={onDismiss}
+      >
+        Successfully Updated!
+      </Alert>
 
       <Modal isOpen={modal} toggle={toggleModal}>
         <BranchForm id={props.id} toggleModal={toggleModal} />
@@ -55,7 +71,9 @@ function BranchHeader(props) {
 export default connect(
   state => ({
     addSuccess: state.branchData.addSuccess,
-    addFailure: state.branchData.addFailure
+    addFailure: state.branchData.addFailure,
+    updateSuccess: state.branchData.updateSuccess,
+    updateFailure: state.branchData.updateFailure
   }),
   { clearBranchAlerts }
 )(BranchHeader);
@@ -99,10 +117,4 @@ const HeaderContainer = styled.div`
       justify-content: space-around;
     }
   }
-`;
-
-const StyledTd = styled.td`
-  padding: 10px 0;
-
-  width: auto;
 `;

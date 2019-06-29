@@ -25,7 +25,6 @@ class SearchForm extends Component {
       location: this.state.location,
       leads: includeLeads
     };
-    console.log("QUERY: ", query);
     this.props.submitSearch(query);
   };
 

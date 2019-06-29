@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import { connect } from "react-redux";
 import { addNewSystemUser } from "../../actions";
+import FormStyles from "../../styles/FormStyles";
+import { theme } from "../../config";
 
 class AddUser extends Component {
   constructor(props) {
@@ -30,56 +32,75 @@ class AddUser extends Component {
 
   addNewSystemUser = userDetails => {
     this.props.addNewSystemUser(userDetails);
+    this.props.toggleModal();
   };
 
   render() {
     return (
-      <StyledUserDetails>
-        <Form>
-          <FormGroup>
-            <h1>Create New User</h1>
-            <Label for="username">Username</Label>
-            <Input
-              type="username"
-              name="username"
-              id="text"
-              placeholder="Username"
-              onChange={this.handleInputChange}
-            />
-          </FormGroup>
-          <FormGroup>
-            <Label for="examplePassword">Password</Label>
-            <Input
-              type="password"
-              name="password"
-              id="examplePassword"
-              placeholder="password"
-              onChange={this.handleInputChange}
-            />
-          </FormGroup>
+      <OuterDiv>
+        <FormStyles className="addUser-formContainer">
+          <div className="header">
+            <h2>Add a User</h2>
+          </div>
+          <Form className="formContainer">
+            <FormGroup className="addUser-formGroup">
+              <Label for="username">Username</Label>
+              <Input
+                type="username"
+                name="username"
+                id="text"
+                placeholder="Username"
+                onChange={this.handleInputChange}
+              />
+            </FormGroup>
+            <FormGroup className="addUser-formGroup">
+              <Label for="examplePassword">Password</Label>
+              <Input
+                type="password"
+                name="password"
+                id="examplePassword"
+                placeholder="password"
+                onChange={this.handleInputChange}
+              />
+            </FormGroup>
 
-          <FormGroup>
-            <Label for="exampleSelectMulti">Role</Label>
-            <Input
-              type="select"
-              name="userRoles"
-              id="exampleSelectMulti"
-              multiple
-              onChange={this.handleInputChange}
+            <FormGroup className="addUser-formGroup">
+              <Label for="exampleSelectMulti">Role</Label>
+              <Input
+                type="select"
+                name="userRoles"
+                id="exampleSelectMulti"
+                multiple
+                onChange={this.handleInputChange}
+              >
+                <option>user</option>
+                <option>admin</option>
+              </Input>
+            </FormGroup>
+            <FormGroup
+              className="addUser-formGroup-button"
+              styles="margin-bottom: none"
             >
-              <option>user</option>
-              <option>admin</option>
-            </Input>
-          </FormGroup>
-
-          <Button
-            style={{ width: "100px" }}
-            onClick={() => this.addNewSystemUser(this.state)}
-          >
-            Submit
-          </Button>
-        </Form>
-      </StyledUserDetails>
+              <Button
+                type="button"
+                id="myBtn"
+                className="addUser-submit"
+                style={{ width: "100px" }}
+                onClick={() => this.addNewSystemUser(this.state)}
+              >
+                Submit
+              </Button>
+              <Button
+                style={{ width: "100px" }}
+                color="warning"
+                onClick={this.props.toggleModal}
+              >
+                Cancel
+              </Button>
+            </FormGroup>
+          </Form>
+        </FormStyles>
+      </OuterDiv>
     );
   }
 }
@@ -99,4 +120,6 @@ export default connect(
   { addNewSystemUser }
 )(AddUser);
 
-const StyledUserDetails = styled.div``;
+const OuterDiv = styled.div`
+  background: ${theme.background_light};
+`;

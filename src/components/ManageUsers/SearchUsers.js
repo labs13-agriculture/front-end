@@ -4,9 +4,9 @@ import { connect } from "react-redux";
 import { userSearchResults, clearUserAlerts } from "../../actions";
 import styled from "styled-components";
 import AddUser from "./AddUser";
-import { Modal, Button, FormGroup, Alert } from "reactstrap";
+import { Modal, Alert } from "reactstrap";
 import { media } from "../../styles/searchStyles";
-import {theme} from "../../config";
+import { theme } from "../../config";
 
 class SearchUsers extends Component {
   constructor(props) {
@@ -135,15 +135,6 @@ class SearchUsers extends Component {
               userid={this.props.userid}
               toggleModal={this.toggleAddModal}
             />
-            <FormGroup>
-              <Button
-                style={{ width: "100px", marginTop: "1%" }}
-                color="warning"
-                onClick={this.toggleAddModal}
-              >
-                Cancel
-              </Button>
-            </FormGroup>
           </Modal>
         </StyledSearchBar>
         <UserResultsList
@@ -183,6 +174,10 @@ const StyledSearchUsers = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
+
+  .modal {
+    background: ${theme.background_light};
+  }
 `;
 
 const StyledSearchBar = styled.div`
@@ -220,7 +215,7 @@ const StyledSearchBar = styled.div`
     ${media.phone`display:flex;`}
     ${media.phone`justify-content:flex-end;`}
     display:flex;
-    justify-content:flex-end;
+    justify-content: flex-end;
   }
   .search-button {
     padding: 10px 40px;
@@ -232,21 +227,21 @@ const StyledSearchBar = styled.div`
     font-family: ${theme.generalTextFont};
     border: 2px solid ${theme.searchAddBtnBorder};
     &:hover {
-    background: ${theme.searchAddBtnHover};
-   
-  }
-
-  .alert {
-    margin-bottom: 0;
-    background: none;
-    border: none;
-
-    .alert-danger {
-      color: palevioletred;
+      background: ${theme.searchAddBtnHover};
     }
 
-    .alert-success {
-      color: lightgreen;
+    .alert {
+      margin-bottom: 0;
+      background: none;
+      border: none;
+
+      .alert-danger {
+        color: palevioletred;
+      }
+
+      .alert-success {
+        color: lightgreen;
+      }
     }
   }
 `;

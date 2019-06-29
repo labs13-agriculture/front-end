@@ -122,6 +122,10 @@ const Container = styled.tr`
     }
   }
 
+  .form-check-input {
+    position: unset;
+  }
+
   .name {
     width: 40%;
   }

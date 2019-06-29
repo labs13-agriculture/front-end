@@ -69,14 +69,14 @@ export default class GlobalSideNav extends Component {
       <GSN>
         <StyledH1 className="title">
           <span className="navspan">TIEME NDO</span>
-          <img className="logo" src={logo} />
+          <img className="logo" alt="logo" src={logo} />
         </StyledH1>
-        <StyledDiv className="hvr-underline-reveal">
+        {/* <StyledDiv className="hvr-underline-reveal">
           <NavLink to="/dashboard" style={{ textDecoration: "none" }}>
             <i className="fas fa-th" />
             <span className="navspan">DASHBOARD</span>
           </NavLink>
-        </StyledDiv>
+        </StyledDiv> */}
         <StyledDiv className="hvr-underline-reveal">
           <NavLink to="/search" style={{ textDecoration: "none" }}>
             <i className="fas fa-database" />

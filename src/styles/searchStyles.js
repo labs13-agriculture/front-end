@@ -1,4 +1,4 @@
-import {theme} from "../config";
+import { theme } from "../config";
 
 import styled, { css } from "styled-components";
 export const sizes = {
@@ -73,7 +73,7 @@ const StyledForm = styled.form`
             border-radius: 0px;
             font-size: 30px;
             font-weight: 600;
-            font-family: ${theme.searchInputFont}
+            font-family: ${theme.searchInputFont};
             color: white;
             caret-color: ${theme.activeblue};
             padding: 16px 0px 10px 40px;
@@ -155,7 +155,7 @@ const StyledForm = styled.form`
       font-family: ${theme.generalButtonFont};
       letter-spacing:1px;
       font-size:1.25rem;
-        ${media.phone`width: 95%;`}
+      ${media.phone`width: 95%;`}
     }
 
 `;

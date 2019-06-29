@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
-import { Modal, Alert } from "reactstrap";
+import { Modal } from "reactstrap";
 import BranchForm from "../Branch/BranchForm";
 import { deleteBranch, clearBranchAlerts } from "../../actions";
 import { connect } from "react-redux";
+import { theme } from "../../config";
 
 class OrganizationBranchCard extends Component {
   constructor(props) {
@@ -33,35 +33,14 @@ class OrganizationBranchCard extends Component {
   };
 
   render() {
-    const organization = { ...this.props };
-
     return (
       <StyledGlobalClientCard>
-        <Alert
-          color="info"
-          isOpen={this.props.updateSuccess}
-          toggle={this.onDismiss}
-        >
-          {this.props.branch.name} Successfully Updated!
-        </Alert>
-        <Alert
-          color="info"
-          isOpen={this.props.updateFailure}
-          toggle={this.onDismiss}
-        >
-          {this.props.branch.name} Successfully Updated!
-        </Alert>
-        <StyledContactContainer>
-          <div className="gen-head-container">
-            <div className="title-description">
-              <span className="branch-info location">
-                {this.props.branch.district}
-              </span>
+        <div className="contentContainer">
+          <div className="header-detail">
+            <div className="circle">
+              <div className="first-name">{this.props.branch.name[0]}</div>
             </div>
-            <div className="header-detail">
-              <div className="circle">
-                <div className="first-name">{this.props.branch.name[0]}</div>
-              </div>
+            <div className="header-content">
               <h3>{this.props.branch.name}</h3>
               <div className="edit-options">
                 <i
@@ -78,47 +57,67 @@ class OrganizationBranchCard extends Component {
             </div>
           </div>
 
-          <div className="location-detail">
-            <div className="gen-style-container">
-              <h3 className="info-container-heading">Address</h3>
-              <h3 className="branch-info location">
-                {this.props.branch.address}
-              </h3>
+          <div className="detail-section">
+            <div className="location-detail">
+              <h2 className="section-header">Branch Location: </h2>
+              <div className="gen-style-container">
+                <h3 className="info-container-heading">
+                  Address:
+                  <span className="data">{this.props.branch.address}</span>
+                </h3>
+              </div>
+
+              <div className="gen-style-container">
+                <h3 className="info-container-heading">
+                  District:
+                  <span className="data">{this.props.branch.district}</span>
+                </h3>
+              </div>
+
+              <div className="gen-style-container">
+                <h3 className="info-container-heading">
+                  Region:
+                  <span className="data">{this.props.branch.region}</span>
+                </h3>
+              </div>
+
+              <div className="gen-style-container">
+                <h3 className="info-container-heading">
+                  Landmark:{" "}
+                  <span className="data">{this.props.branch.landmark}</span>
+                </h3>
+              </div>
             </div>
 
-            <div className="gen-style-container">
-              <h3 className="info-container-heading">Landmark</h3>
-              <h3>{this.props.branch.landmark}</h3>
+            <div className="contact-detail">
+              <h2 className="section-header">Contact Info: </h2>
+              <div className="gen-style-container">
+                <h3 className="info-container-heading">
+                  Position:{" "}
+                  <span className="data">{this.props.branch.position}</span>
+                </h3>
+              </div>
+
+              <div className="gen-style-container">
+                <h3 className="info-container-heading">
+                  Phone: <span className="data">{this.props.branch.phone}</span>
+                </h3>
+              </div>
+
+              <div className="gen-style-container">
+                <h3 className="info-container-heading">
+                  Email: <span className="data">{this.props.branch.email}</span>
+                </h3>
+              </div>
             </div>
           </div>
-
-          <div className="contact-detail">
-            <div className="gen-style-container">
-              <h3 className="info-container-heading">Position</h3>
-              <h3 className="branch-info position">
-                {this.props.branch.position}
-              </h3>
-            </div>
-
-            <div className="gen-style-container">
-              <h3 className="info-container-heading">Phone</h3>
-              <h3 className="branch-info contact">{this.props.branch.phone}</h3>
-            </div>
-            <div className="gen-style-container">
-              <h3 className="info-container-heading">Email</h3>
-              <h3 className="branch-info contact">{this.props.branch.email}</h3>
-            </div>
-          </div>
-        </StyledContactContainer>
+        </div>
         <Modal isOpen={this.state.toggleUpdate} toggle={this.toggleUpdateModal}>
           <BranchForm
             updating={true}
             branch={this.props.branch}
             toggleModal={this.toggleUpdateModal}
           />
-          {/* <button onClick={this.toggleUpdateModal} color="secondary">
-            Cancel
-          </button> */}
         </Modal>
       </StyledGlobalClientCard>
     );
@@ -126,94 +125,118 @@ class OrganizationBranchCard extends Component {
 }
 
 export default connect(
-  state => ({
-    updateSuccess: state.branchData.updateSuccess,
-    updateFailure: state.branchData.updateFailure
-  }),
+  state => ({}),
   { deleteBranch, clearBranchAlerts }
 )(OrganizationBranchCard);
 
 const StyledGlobalClientCard = styled.div`
-  background: white;
-  display: flex;
-  flex-direction: column;
-  ${"" /* overflow-y:scroll; */}
-  margin: 10px;
-
+  color: ${theme.background_light};
+  background: ${theme.navgrey};
+  margin-bottom: 20px;
   border-radius: 3px;
-  ${"" /* box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3); */}
-  background:rgb(60,57,75);
-  width: 260px;
-  color: white;
-  ${"" /* &:hover {
-    cursor: pointer;
-    text-decoration:none;
-  } */}
-  justify-content: flex-start;
-  align-items: flex-start;
+  padding: 20px;
 
-  font-family: "Josefin Sans", sans-serif;
-  .gen-head-container {
-    width: 100%;
+  &:last-child {
+    margin-bottom: 0;
+  }
 
-    background: #40e0d000;
+  .contentContainer {
+    display: flex;
 
-    padding: 20px 30px 18px 30px;
-    width: 100%;
-    border-bottom: 1px solid #ffffff26;
+    @media (max-width: 600px) {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
   }
 
   .header-detail {
     display: flex;
-    justify-content: space-evenly;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
-    .edit-options {
+    text-align: center;
+
+    min-width: 200px;
+    width: 30%;
+
+    @media (max-width: 600px) {
       width: 100%;
-      display: flex;
-      justify-content: center;
+      flex-direction: row;
+      margin-bottom: 30px;
     }
-    .fas {
-      margin: 10px;
-      padding: 10px;
-      background: rgb(35, 33, 43);
-      border-radius: 50%;
-      &:hover {
-        cursor: pointer;
-      }
+
+    h3 {
+      margin-bottom: 15px;
+    }
+  }
+
+  .section-header {
+    border-bottom: 1px solid lightgray;
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+  }
+
+  .detail-section {
+    display: flex;
+    width: 100%;
+
+    @media (max-width: 850px) {
+      flex-direction: column;
+    }
+  }
+
+  .edit-options {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+
+    margin-bottom: 25px;
+
+    @media (max-width: 600px) {
+      margin: 0;
+    }
+
+    i {
+      max-width: 50px;
     }
   }
 
   .gen-style-container {
-    width: 100%;
-    padding: 10px;
-
-    border-bottom: 1px solid #ffffff26;
+    display: inline-flex;
+    /* border-bottom: 1px solid lightgray; */
+    padding: 3px 10px;
   }
-  .location-detail {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    width: 100%;
+
+  .info-container-heading {
+    margin: 0;
+    font-weight: 700;
+    font-size: 1.4rem;
+    color: rgba(200, 200, 200, 0.5);
+    span.data {
+      margin-left: 15px;
+      font-weight: 100;
+      font-family: ${theme.sideNavFont};
+      font-size: 1.8rem;
+      color: ${theme.background_light};
+    }
   }
 
   .contact-detail {
     width: 100%;
-  }
-  .title-description {
-    display: flex;
-    justify-content: center;
-    padding: 10px;
+    margin-right: 15px;
 
-    h3 {
-      border-radius: 20px;
+    @media (max-width: 850px) {
+      margin-right: 0;
+    }
+
+    @media (max-width: 600px) {
+      margin: 30px 0;
     }
   }
 
-  .info-container-heading {
-    font-size: 1.5rem;
-    color: gray;
+  .location-detail {
+    width: 100%;
   }
 
   .circle {
@@ -222,46 +245,17 @@ const StyledGlobalClientCard = styled.div`
     border-radius: 50%;
     color: #40e0d0;
     margin: 15px;
+
     text-align: center;
     background: rgb(35, 33, 43);
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
+    display: inline-block;
 
-    justify-content: center;
-
-    align-items: center;
-    position: relative;
-    text-align: center;
-    background: rgb(35, 33, 43);
     .first-name {
-      height: 60px;
-      width: 20px;
-
-      justify-content: center;
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: -ms-flexbox;
-      display: flex;
       font-size: 3rem;
       color: #40e0d0;
-      position: absolute;
-      align-items: center;
-      position: absolute;
-      top: 2px;
+      position: relative;
+      top: 8px;
+      left: 2px;
     }
-  }
-`;
-
-const StyledContactContainer = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  flex-direction: column;
-  width: 100%;
-
-  .email {
-    color: gray;
   }
 `;

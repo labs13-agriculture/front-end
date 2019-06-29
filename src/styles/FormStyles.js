@@ -23,7 +23,7 @@ const FormStyles = styled.div`
   .header {
     background-color: ${theme.sideNavBackground};
     padding: 15px 20px;
-    border-bottom:4px solid ${theme.activeblue};
+    border-bottom: 4px solid ${theme.activeblue};
   }
 
   h2 {
@@ -33,28 +33,29 @@ const FormStyles = styled.div`
 
   .formContainer {
     background-color: ${theme.background_light};
+    color: ${theme.background_dark};
   }
 
-  .updateUser-form{
+  .updateUser-form {
     width: 90%;
     padding-top: 5px;
-    margin 0 auto 10px;
+    margin: 0 auto 10px;
   }
-  
-  .updateUser-buttons{
+
+  .updateUser-buttons {
     width: 100%;
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-around;
   }
 
-  .addUser-formGroup{
+  .addUser-formGroup {
     width: 90%;
     margin: 0 auto 10px;
     padding-top: 10px;
   }
 
-  .addUser-formGroup-button{
+  .addUser-formGroup-button {
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-around;

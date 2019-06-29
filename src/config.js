@@ -23,6 +23,6 @@ export const theme = {
   generalButtonFont:`Roboto, sans-serif`,
   generalTextFont:`Roboto, sans-serif`,
   sideNavFont:`Josefin Sans, sans-serif`,
-  experimentalFont:`Mandali,sans-serif;`
- 
+  experimentalFont:`Mandali,sans-serif;`,
+  
 };

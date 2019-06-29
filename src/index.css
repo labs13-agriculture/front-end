@@ -82,33 +82,12 @@ code {
 }
 
 #expanded{
-   
-  
+
   background:rgba(60,57,75);
   z-index:9000 !important;
    
 }
 
-.modal-content{
-  
-  padding: 20px;
-
-  background-color:rgba(60,57,75) !important;
-  z-index:9000 !important;
-
-  width: 300px;
-  color:white;
-  border:none;
-  padding: 4px !important;
-
-
-   
-    
-  
-  
-
-
-}
 
 
 
@@ -116,6 +95,4 @@ code {
 
 
 
-.modal-dialog{
-  
-}
+

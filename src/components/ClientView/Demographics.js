@@ -96,7 +96,8 @@ function ClientDemographics(props) {
         <h1>
           {client.firstName} {client.secondName}, {client.type.toLowerCase()}{" "}
           since {client.startyear} <span className="toggleSpan">-</span>{" "}
-          <br className="toggleBreak" /> Amount Owed: ${client.amountOwed}
+          <br className="toggleBreak" /> Amount Owed: $
+          {client.totalOwed.toFixed(2)}
           <br />
           Lead: {client.lead ? "True" : "False"}
         </h1>

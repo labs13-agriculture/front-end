@@ -20,7 +20,6 @@ export const searchClients = (query, type) => dispatch => {
     urlString = `${BASE_URL}/${type}${
       type === "farmer" ? "s/all" : "/retailers"
     }?lead=${query.leads}`;
-    console.log("Searching ALLLL");
   } else {
     // this maps out to something like
     // https://backendurl.com/farmer/search?name=john&location=town&lead=false
@@ -30,7 +29,6 @@ export const searchClients = (query, type) => dispatch => {
     }/search?name=${nameSearch}&location=${locationSearch}&lead=${query.leads}`;
     // could be cleaned up by making the endpoints on backend uniform or using a general client controller
   }
-  console.log(urlString);
 
   if (type === "farmer") {
     dispatch({
@@ -50,7 +48,6 @@ export const searchClients = (query, type) => dispatch => {
           payload: res.data,
           headers: res.headers
         });
-        console.log(res);
       })
       .catch(err => {
         console.log(err);
@@ -174,7 +171,7 @@ export const getClient = (clientId, type) => dispatch => {
       dispatch({ type: GET_CLIENT_SUCCESS, payload: res.data });
     })
     .catch(err => {
-      console.log("get demographics failure", err);
+      console.log(err);
       dispatch({ type: GET_CLIENT_FAILURE, payload: err });
     });
 };
@@ -261,7 +258,6 @@ export const pageClient = (pageString, type) => dispatch => {
           payload: res.data,
           headers: res.headers
         });
-        console.log(res);
       })
       .catch(err => {
         console.log(err);

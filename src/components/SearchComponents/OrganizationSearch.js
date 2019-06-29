@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 import SearchForm from "./SearchForm";
 import { connect } from "react-redux";
 import {
@@ -45,12 +46,18 @@ class OrganizationSearch extends Component {
   };
 
   render() {
-    if (this.props.organizationAdded) {
+    console.log("ORGANIZATION", this.props.organizationAdded);
+    console.log("ALL THE PROPS", this.props);
+    if (this.props.organizationAdded && this.props.organization) {
       this.props.clearAddedOrgs();
-      this.props.history.push(
-        `dashboard/organization/${this.props.organization.id}`
+
+      return (
+        <Redirect
+          to={`/dashboard/organization/${this.props.organization.id}`}
+        />
       );
     }
+    // `/dashboard/organization/${this.props.organization.id}`
     console.log("ORGANIZATION DATA", this.props.organizationData);
     return (
       <div>
@@ -82,12 +89,14 @@ class OrganizationSearch extends Component {
 
 const mapStateToProps = state => {
   return {
+    organization: state.organizationData.organization,
     organizationData: state.organizationData.listData,
     searchStart: state.organizationData.searchStart,
     searchFailure: state.organizationData.searchFailure,
     error: state.organizationData.error,
     searchSuccess: state.organizationData.searchSuccess,
-    help: state.help.needsHelp
+    help: state.help.needsHelp,
+    organizationAdded: state.organizationData.organizationAdded
   };
 };
 

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { connect } from "react-redux";
 import { Button, Modal, Alert } from "reactstrap";
 import { theme } from "../../config";
@@ -117,10 +117,4 @@ const HeaderContainer = styled.div`
       justify-content: space-around;
     }
   }
-`;
-
-const StyledTd = styled.td`
-  padding: 10px 0;
-
-  width: auto;
 `;

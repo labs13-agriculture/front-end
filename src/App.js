@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import Login from "./components/LoginComponent/Login";
 import PrivateRoute from "./components/PrivateRoute";
 import GlobalViewContainer from "./components/GlobalViewContainer";
@@ -39,22 +39,22 @@ class App extends Component {
   }
 }
 
-const sizes = {
-  desktop: 992,
-  tablet: 768,
-  phone: 576
-};
+// const sizes = {
+//   desktop: 992,
+//   tablet: 768,
+//   phone: 576
+// };
 
-const media = Object.keys(sizes).reduce((acc, label) => {
-  acc[label] = (...args) =>
-    css`
-      @media (max-width: ${sizes[label]}px) {
-        ${css(...args)}
-      }
-    `;
+// const media = Object.keys(sizes).reduce((acc, label) => {
+//   acc[label] = (...args) =>
+//     css`
+//       @media (max-width: ${sizes[label]}px) {
+//         ${css(...args)}
+//       }
+//     `;
 
-  return acc;
-}, {});
+//   return acc;
+// }, {});
 
 const StyledApp = styled.div`
   * {

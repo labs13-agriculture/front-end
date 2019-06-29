@@ -46,8 +46,7 @@ const initialState = {
   currentPage: null,
   totalPages: null,
   updateOrganizationSuccess: false,
-  updateOrganizationFailure: false,
-  error: null
+  updateOrganizationFailure: false
 };
 
 export default (state = initialState, action) => {
@@ -149,7 +148,9 @@ export default (state = initialState, action) => {
         ...state,
         addStart: false,
         addSuccess: true,
-        addFailure: false
+        organizationAdded: true,
+        addFailure: false,
+        organization: action.payload
       };
     case ADD_ORGANIZATION_FAILURE:
       return {

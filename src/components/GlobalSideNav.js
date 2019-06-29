@@ -2,12 +2,15 @@ import React, { Component } from "react";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
+import { Modal } from "reactstrap";
+
+import HelpComponent from "./HelpModals/HelpComponent";
+
 import "./GSN.css";
 import logo from "../tiemeNdo.svg";
-import { BASE_URL } from "../config";
-import { theme } from "../config";
-import { connect } from 'react-redux';
-import { needHelp } from '../actions';
+import { BASE_URL, theme } from "../config";
+import { connect } from "react-redux";
+import { needHelp } from "../actions";
 
 class GlobalSideNav extends Component {
   constructor(props) {
@@ -110,30 +113,34 @@ class GlobalSideNav extends Component {
           </NavLink>
         </StyledDiv>
         <StyledDiv>
-          <NavLink 
-            style={{textDecoration: "none"}}
+          <NavLink
+            style={{ textDecoration: "none" }}
             to="#"
-            onClick={() => this.props.needHelp(this.props.helpStatus)}
+            onClick={() => this.props.needHelp(this.props.help)}
           >
-            <i className="fas fa-question-circle"></i>
+            <i className="fas fa-question-circle" />
             <span className="navspan">HELP</span>
           </NavLink>
         </StyledDiv>
 
-        {/* {this.state.names.map(user => <h1>{user.username}</h1>)} */}
+        <Modal isOpen={this.props.help} toggle={this.props.needHelp}>
+          <HelpComponent toggle={this.props.needHelp} />
+        </Modal>
       </GSN>
     );
   }
 }
 
-const mapStateToProps = state =>{
-  return({
-    helpStatus: state.help.needsHelp
-  })
-}
+const mapStateToProps = state => {
+  return {
+    help: state.help.needsHelp
+  };
+};
 
-
-export default connect(mapStateToProps, { needHelp })(GlobalSideNav);
+export default connect(
+  mapStateToProps,
+  { needHelp }
+)(GlobalSideNav);
 
 const GSN = styled.div`
   align-items: left;

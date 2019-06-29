@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import styled from "styled-components";
-import { Button, Form, FormGroup, Label, Input, Modal } from "reactstrap";
+import { Button, FormGroup, Label, Input, Modal } from "reactstrap";
 import { connect } from "react-redux";
 import StyledForm from "../../styles/FormStyles";
-import { theme } from "../../config";
 
 import {
   // For when we get there.

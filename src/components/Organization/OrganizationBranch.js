@@ -2,10 +2,8 @@ import React, { Component } from "react"; // { useState }
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { Spinner } from "reactstrap";
 import BranchHeader from "../Branch/BranchHeader";
 import { getBranches } from "../../actions";
-import Branch from "../Branch/Branch";
 import OrganizationBranchCard from "./OrganizationBranchCard";
 // import { theme } from "../../config";
 // import { StyledTd } from "../../styles/InstallmentStyles";
@@ -57,24 +55,6 @@ const connected = connect(
 )(OrganizationBranch);
 
 export default withRouter(connected);
-
-const StyledTable = styled.table`
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-
-  .spindiv {
-    width: 100%;
-    text-align: center;
-  }
-  .spinner {
-    border: 0.5em solid lightgray;
-    border-right-color: transparent;
-    width: 10rem;
-    height: 10rem;
-    margin: auto;
-  }
-`;
 
 const BranchContainer = styled.div`
   width: 100%;

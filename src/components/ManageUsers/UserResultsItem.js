@@ -10,7 +10,7 @@ import {
 import { Modal } from "reactstrap";
 import UserDetails from "./UserDetails";
 import { media } from "../../styles/searchStyles";
-import {theme} from "../../config";
+import { theme } from "../../config";
 
 export default class UserStatsItem extends Component {
   constructor(props) {
@@ -51,7 +51,9 @@ export default class UserStatsItem extends Component {
           <DropdownToggle caret color="primary" />
           <DropdownMenu>
             {this.props.userRoles.map(userRole => (
-              <DropdownItem>{userRole.role.name}</DropdownItem>
+              <DropdownItem key={userRole.role.name}>
+                {userRole.role.name}
+              </DropdownItem>
             ))}
           </DropdownMenu>
         </ButtonDropdown>
@@ -61,7 +63,7 @@ export default class UserStatsItem extends Component {
           onClick={this.toggleUpdateModal}
           color="secondary"
         >
-          <i class="fas fa-pencil-alt" />
+          <i className="fas fa-pencil-alt" />
         </button>
         <Modal
           isOpen={this.state.toggleUpdateModal}
@@ -89,7 +91,8 @@ const StyledProductStatsMini = styled.div`
   padding: 5px 20px 5px;
   align-items: center;
   background: white;
-  margin: 10px 0px 0px 0px;
+  ${'' /* margin: 10px 0px 0px 0px; */}
+  border-bottom:1px solid ${theme.inputblack};
   background: ${theme.manageUserItemBackground};
 
   /* 0 13px 27px -5px rgba(14, 14, 14, 0),
@@ -98,15 +101,17 @@ const StyledProductStatsMini = styled.div`
 
   color: white;
 
-  font-family: "Josefin Sans", sans-serif;
-
-  font-weight: 800;
+  font-family: ${theme.experimentalFont};
+  font-size:1.4rem;
   transition: all 0.15s ease;
 
   &:hover{
-    ${'' /* background:lightgray; */}
     
+    transform:scale(1.001,1.001);
     background:${theme.manageUserItemHover};
+    box-shadow: 0px 0px 10px rgba(0,0,0,.5);
+    
+    
 
     .pencil-btn{
       
@@ -124,6 +129,8 @@ const StyledProductStatsMini = styled.div`
       border: none;
       visibility: visible;
       z-index: 2;
+
+      
     }
   }
 
@@ -133,10 +140,10 @@ const StyledProductStatsMini = styled.div`
   }
 
   .personnel {
-    width: 200px;
-    height: 20px;
+    width: 280px;
+    
     text-overflow: ellipse;
-    font-weight: 800;
+    
     margin:0xp;
 
   }

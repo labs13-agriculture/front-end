@@ -25,6 +25,7 @@ const CardContainer = styled.div`
     flex-wrap: wrap;
     justify-content: flex-start;
     overflow-y: scroll;
+    align-content: flex-start;
 
     &::-webkit-scrollbar {
       display: none;

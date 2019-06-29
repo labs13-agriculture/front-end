@@ -1,18 +1,21 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 import SearchForm from "./SearchForm";
 import { connect } from "react-redux";
 import {
   searchOrganizations,
   addOrganization,
   getAllOrganizations,
-  clearAddedOrgs
-} from "../../actions/organizationActions";
+  clearAddedOrgs,
+  needHelp
+} from "../../actions";
 import OrganizationCardContainer from "../Organization/OrganizationCardContainer";
 import styled from "styled-components";
 import NewOrganizationForm from "../Organization/NewOrganizationForm";
 import { Modal } from "reactstrap";
 import OrgResultsBtn from '../Organization/OrgResultsBtn';
 import {theme} from "../../config";
+import OrganizationSearchHelp from '../HelpModals/OrganizationSearchHelp';
 
 class OrganizationSearch extends Component {
   constructor(props) {
@@ -43,12 +46,18 @@ class OrganizationSearch extends Component {
   };
 
   render() {
-    if (this.props.organizationAdded) {
+    console.log("ORGANIZATION", this.props.organizationAdded);
+    console.log("ALL THE PROPS", this.props);
+    if (this.props.organizationAdded && this.props.organization) {
       this.props.clearAddedOrgs();
-      this.props.history.push(
-        `dashboard/organization/${this.props.organization.id}`
+
+      return (
+        <Redirect
+          to={`/dashboard/organization/${this.props.organization.id}`}
+        />
       );
     }
+    // `/dashboard/organization/${this.props.organization.id}`
     console.log("ORGANIZATION DATA", this.props.organizationData);
     return (
       <div>
@@ -67,6 +76,12 @@ class OrganizationSearch extends Component {
             toggleModal={this.toggleModal}
           />
         </Modal>
+        <Modal 
+          isOpen={this.props.help} 
+          toggle={() => this.props.needHelp(this.props.help)}
+        >
+          <OrganizationSearchHelp />
+        </Modal>
       </div>
     );
   }
@@ -74,17 +89,20 @@ class OrganizationSearch extends Component {
 
 const mapStateToProps = state => {
   return {
+    organization: state.organizationData.organization,
     organizationData: state.organizationData.listData,
     searchStart: state.organizationData.searchStart,
     searchFailure: state.organizationData.searchFailure,
     error: state.organizationData.error,
-    searchSuccess: state.organizationData.searchSuccess
+    searchSuccess: state.organizationData.searchSuccess,
+    help: state.help.needsHelp,
+    organizationAdded: state.organizationData.organizationAdded
   };
 };
 
 export default connect(
   mapStateToProps,
-  { searchOrganizations, addOrganization, getAllOrganizations, clearAddedOrgs }
+  { searchOrganizations, addOrganization, getAllOrganizations, clearAddedOrgs, needHelp }
 )(OrganizationSearch);
 
 const Header = styled.h1`

@@ -16,7 +16,7 @@ class ClientCardContainer extends Component {
           {this.props.farmerData && this.props.farmerData.length === 0 ? (
             <p>No Clients found</p>
           ) : null}
-
+            
           {/* {this.props.farmerData && this.props.farmerData._embedded && 
             <ClientResultsBtn resultsPageInfo={this.props.farmerData.page} resultsLinkInfo={this.props.farmerData._links}/>} */}
 

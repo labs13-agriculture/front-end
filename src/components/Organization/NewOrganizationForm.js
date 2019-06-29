@@ -114,7 +114,7 @@ class NewOrganizationForm extends Component {
             </FormGroup>
             {this.state.blankField && <p>Name is required</p>}
             {!this.state.validBeneficiaries && <p>Beneficiaries must be a number</p>}
-            <input type="submit" />
+            <Input type="submit" className="submit" />
           </Form>
         </ModalDiv>
       </FormStyles>

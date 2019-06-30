@@ -3,6 +3,9 @@ import { withRouter } from "react-router-dom";
 import ClientSearchHelp from "./ClientSearchHelp";
 import ClientViewHelp from "./ClientViewHelp";
 import OrganizationSearchHelp from "./OrganizationSearchHelp";
+import OrgViewHelp from "./OrgViewHelp";
+import ManageUsersHelp from "./ManageUsersHelp";
+import InventoryHelp from "./InventoryHelp";
 
 function HelpComponent(props) {
   let currentPath = props.history.location.pathname;
@@ -16,21 +19,34 @@ function HelpComponent(props) {
       .join("/");
   }
 
+  let Component = () => <h1>Can Not Find Help Page</h1>;
+
   switch (currentPath.toLowerCase()) {
     case "/search/farmer":
     case "/search/retailer":
-      return <ClientSearchHelp />;
+      Component = ClientSearchHelp;
+      break;
     case "/dashboard/farmer":
     case "/dashboard/retailer":
-      return <ClientViewHelp />;
+      Component = ClientViewHelp;
+      break;
     case "/search/organizations":
-      return <OrganizationSearchHelp />;
-    case "/dashboard/organization/":
+      Component = OrganizationSearchHelp;
+      break;
+    case "/dashboard/organization":
+      Component = OrgViewHelp;
+      break;
     case "/users":
+      Component = ManageUsersHelp;
+      break;
     case "/inventory":
+      Component = InventoryHelp;
+      break;
     default:
-      return <h1>Search Component Default</h1>;
+      break;
   }
+
+  return <Component />;
 }
 
 export default withRouter(HelpComponent);

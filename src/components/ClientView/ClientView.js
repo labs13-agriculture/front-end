@@ -74,8 +74,6 @@ const media = Object.keys(sizes).reduce((acc, label) => {
 
 const StyledContainer = styled.div`
   display: flex;
-  height: 400px;
-
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -88,7 +86,7 @@ const StyledDemos = styled.div`
 
 const StyledInfoView = styled.div`
   width: 48%;
-  height: 90%;
+  height: 50%;
   margin-top: 20px;
   overflow-y: scroll;
 
@@ -104,6 +102,7 @@ const InfoViewContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  height: 100vh;
 
   ${media.tablet`flex-direction: column;`}
 `;

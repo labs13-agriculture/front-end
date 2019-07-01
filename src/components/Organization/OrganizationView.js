@@ -5,14 +5,6 @@ import OrganizationViewDemographics from "./OrganizationViewDemographics.js";
 import OrganizationBranch from "./OrganizationBranch.js";
 
 class OrganizationView extends Component {
-  // constructor(props) {
-  //   super(props);
-  // }
-
-  componentDidMount() {
-    console.log("PROPSPPSPSPSP", this.props);
-  }
-
   render() {
     return (
       <StyledContainer>
@@ -22,7 +14,7 @@ class OrganizationView extends Component {
           <OrganizationViewDemographics id={this.props.match.params.id} />
         </StyledDemos>
         <StyledInfoView>
-          <OrganizationBranch id={this.props.match.params.id}/>
+          <OrganizationBranch id={this.props.match.params.id} />
         </StyledInfoView>
       </StyledContainer>
     );
@@ -40,10 +32,8 @@ export default connect(
 
 const StyledContainer = styled.div`
   display: flex;
-  height: 400px;
-
-  flex-direction: row;
-  flex-wrap: wrap;
+  height: 100%;
+  flex-direction: column;
   justify-content: space-around;
 `;
 
@@ -54,8 +44,8 @@ const StyledDemos = styled.div`
 
 const StyledInfoView = styled.div`
   width: 100%;
-  background-color: white;
   height: 100%;
+  min-height: 275px;
   margin-top: 20px;
   overflow-y: scroll;
 

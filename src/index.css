@@ -8,11 +8,12 @@ html {
 
 /* margin is not part of the box model */
 
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: inherit;
   margin: 0;
   padding: 0;
-
 }
 
 *::-webkit-scrollbar {
@@ -47,17 +48,15 @@ a {
 
 a:hover {
   text-decoration: none;
-  
-
 }
 
-
-
-input:focus, button:focus {
+input:focus,
+button:focus {
   outline: none;
 }
 
-input, button {
+input,
+button {
   padding: 10px;
   border-radius: 3px;
   border: 1px solid lightgray;
@@ -67,7 +66,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Josefin Sans", sans-serif;
-  
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -77,22 +76,15 @@ code {
     monospace;
 }
 
-#root{
-  height:100%;
+#root {
+  height: 100%;
 }
 
-#expanded{
-
-  background:rgba(60,57,75);
-  z-index:9000 !important;
-   
+.modal-content {
+  border: none !important;
 }
 
-
-
-
-
-
-
-
-
+#expanded {
+  background: rgba(60, 57, 75);
+  z-index: 9000 !important;
+}

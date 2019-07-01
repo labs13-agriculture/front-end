@@ -53,10 +53,6 @@ function EditInstallmentForm(props) {
                 onChange={handleInput}
                 value={installment.mode}
               >
-                <option disabled selected>
-                  Select ...
-                </option>
-
                 <option>MTN</option>
                 <option>CASH</option>
                 <option>BANK</option>
@@ -92,7 +88,7 @@ function EditInstallmentForm(props) {
 }
 
 const mapStateToProps = state => {
-  return null;
+  return {};
 };
 
 export default withRouter(

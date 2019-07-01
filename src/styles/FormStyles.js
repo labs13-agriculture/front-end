@@ -19,6 +19,7 @@ export const media = Object.keys(sizes).reduce((acc, label) => {
 
 const FormStyles = styled.div`
   background-color: ${theme.background_light};
+  color: ${theme.background_dark};
 
   .header {
     background-color: ${theme.sideNavBackground};
@@ -76,6 +77,10 @@ const FormStyles = styled.div`
       max-width: 150px;
       width: 45%;
     }
+  }
+
+  .modal-content {
+    color: ${theme.background_dark};
   }
 `;
 

@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { theme } from '../config';
+import { theme } from "../config";
 const sizes = {
   desktop: 992,
   tablet: 768,
@@ -18,27 +18,27 @@ export const media = Object.keys(sizes).reduce((acc, label) => {
 }, {});
 
 const CardContainer = styled.div`
-    height: 425px;
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    overflow-y: scroll;
-    align-content: flex-start;
+  height: 425px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  overflow-y: scroll;
+  align-content: flex-start;
 
-    &::-webkit-scrollbar {
-      display: none;
-    }
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
-    .spinner{
-      color: ${theme.accent};
+  .spinner {
+    color: ${theme.accent};
     width: 10rem;
     height: 10rem;
     margin: auto;
     border: 1em solid ${theme.activeblue};
     border-right-color: transparent;
-    }
+  }
 
   h3 {
     text-decoration: none;

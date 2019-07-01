@@ -13,7 +13,6 @@ class GlobalSideNav extends Component {
   }
 
   navRedirect = path => {
-    console.log(this.props.history);
     this.props.history.replace(path);
   };
 
@@ -36,14 +35,14 @@ const GN = styled.div`
   width: 100%;
   height: 75px;
   align-items: center;
-  margin-top:20px;
+  margin-top: 20px;
   a {
     font-family: ${theme.searchNavFont};
     margin-left: 30px;
     color: ${theme.background_light};
     font-size: 1.4rem;
     letter-spacing: 1px;
-    opacity:.5;
+    opacity: 0.5;
 
     transition: all 0.55s ease;
 
@@ -54,11 +53,11 @@ const GN = styled.div`
     &:hover {
       text-decoration: none;
       color: white;
-      opacity:1;
+      opacity: 1;
     }
 
     &.active {
-      opacity:1;
+      opacity: 1;
     }
     &.active:hover {
       text-decoration: none;
@@ -77,5 +76,4 @@ const GN = styled.div`
       margin-left: -15px;
     }
   }
-  
 `;

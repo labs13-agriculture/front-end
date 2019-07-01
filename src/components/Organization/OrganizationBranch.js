@@ -64,5 +64,6 @@ const BranchContainer = styled.div`
     justify-content: flex-start;
     flex-wrap: wrap; */
     background: rgb(35, 33, 43);
+    height: 100%;
   }
 `;

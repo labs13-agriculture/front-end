@@ -31,23 +31,24 @@ class NewOrganizationForm extends Component {
     e.preventDefault();
     let validBeneficiaries = true;
     //If they entered a number of beneficiaries, check if it's valid
-    if (this.state.beneficiaries.length > 0 && isNaN(parseInt(this.state.beneficiaries))) {
+    if (
+      this.state.beneficiaries.length > 0 &&
+      isNaN(parseInt(this.state.beneficiaries))
+    ) {
       validBeneficiaries = false;
     }
     let emptyFields = false;
 
-    if(this.state.name === ""){
+    if (this.state.name === "") {
       emptyFields = true;
     }
-   
-
 
     this.setState({
       blankField: emptyFields,
       validBeneficiaries: validBeneficiaries
     });
 
-    if(emptyFields || !validBeneficiaries){
+    if (emptyFields || !validBeneficiaries) {
       return;
     }
 
@@ -124,7 +125,9 @@ class NewOrganizationForm extends Component {
               </FormGroup>
             </Label>
             {this.state.blankField && <p>Name is required</p>}
-            {!this.state.validBeneficiaries && <p>Beneficiaries must be a number</p>}
+            {!this.state.validBeneficiaries && (
+              <p>Beneficiaries must be a number</p>
+            )}
             <input type="submit" />
           </Form>
         </ModalDiv>
@@ -134,7 +137,7 @@ class NewOrganizationForm extends Component {
 }
 
 export default connect(
-  () => {},
+  state => ({}),
   { updateOrganization }
 )(NewOrganizationForm);
 

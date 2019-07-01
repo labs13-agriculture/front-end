@@ -92,7 +92,7 @@ const StyledUserResultsVue = styled.div`
   .mini-nav-results {
     font-family: ${theme.generalTextFont};
 
-    font-size: 50px;
+    font-size: 3rem;
     font-weight: 800;
     color: ${theme.activeblue};
   }

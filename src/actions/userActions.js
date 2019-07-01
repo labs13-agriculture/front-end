@@ -46,7 +46,6 @@ export const updateSystemUser = (userDetails, id) => dispatch => {
       dispatch({ type: UPDATE_SYSTEM_USER_SUCCESS, payload: res.data });
     })
     .catch(err => {
-      console.log(err);
       dispatch({ type: UPDATE_SYSTEM_USER_FAILURE, payload: err });
     });
 };
@@ -70,7 +69,6 @@ export const deleteSystemUser = id => dispatch => {
       dispatch({ type: DELETE_SYSTEM_USER_SUCCESS, payload: res.data });
     })
     .catch(err => {
-      console.log(err);
       dispatch({ type: DELETE_SYSTEM_USER_FAILURE, payload: err });
     });
 };
@@ -95,7 +93,6 @@ export const userSearchResults = searchQuery => dispatch => {
       dispatch({ type: USER_SEARCH_SUCCESS, payload: res.data });
     })
     .catch(err => {
-      console.log(err);
       dispatch({ type: USER_SEARCH_FAILURE, payload: err });
     });
 };

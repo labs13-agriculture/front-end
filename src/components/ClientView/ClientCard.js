@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import {theme} from "../../config";
-import { Modal, ModalBody, Button, FormGroup, Alert } from "reactstrap";
+import { theme } from "../../config";
 import ClientDemographics from "./ClientDemographics";
 import ClientCardModal from "./ClientCardModal";
 
@@ -11,10 +10,10 @@ export default class GlobalClientCard extends Component {
     super(props);
     this.state = {
       redirect: false,
-      expanded:false,
+      expanded: false,
       toggleAddModal: false,
-      xcoord:'',
-      ycoord:''
+      xcoord: "",
+      ycoord: ""
     };
   }
 
@@ -24,45 +23,36 @@ export default class GlobalClientCard extends Component {
     });
   };
 
-  toggleContents = (e) =>{
-    
-   
-    this.setState({expanded:!this.state.expanded});
-  }
+  toggleContents = e => {
+    this.setState({ expanded: !this.state.expanded });
+  };
 
-  toggleModal = (e) => {
-  e.preventDefault();
+  toggleModal = e => {
+    e.preventDefault();
 
-  this.setState({ toggleAddModal: !this.state.toggleAddModal });}
+    this.setState({ toggleAddModal: !this.state.toggleAddModal });
+  };
 
-  setCoords = (e) => {
-    let rect = e.currentTarget.offsetParent.getBoundingClientRect()
+  setCoords = e => {
+    let rect = e.currentTarget.offsetParent.getBoundingClientRect();
     //https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect
-    let innerHeight = window.innerHeight //get the inner height of the window (just viewport)
+    let innerHeight = window.innerHeight; //get the inner height of the window (just viewport)
 
     //get dimensions of clientCard
     let x = rect.x;
     let y = rect.y;
-    let height = rect.height 
+    let height = rect.height;
     let conditionalY = rect.y;
 
     //get distance between the top of the client card and bottom of page
     //if that distance will fit my fully expanded card, modal displays from bottom, otherwise display from top
-    if (innerHeight - y < height*3){
-        conditionalY = y - height*2.4
-       
-
-
-      }
-    else{
-      conditionalY = y + height +9;
-      console.log(conditionalY)
+    if (innerHeight - y < height * 3) {
+      conditionalY = y - height * 2.4;
+    } else {
+      conditionalY = y + height + 9;
     }
-    this.setState({xcoord:x,ycoord:conditionalY,})
-    
-  }
-
-  
+    this.setState({ xcoord: x, ycoord: conditionalY });
+  };
 
   render() {
     const { client } = this.props;
@@ -71,24 +61,30 @@ export default class GlobalClientCard extends Component {
       //loop through keys of card data in props
       //return h3 element with formatted key value pairs
       //with router could giv client card ability to push
-      //or slap the class in the index.css 
-      <Link id={this.state.toggleAddModal ? "expanded":''}
-        style={{ textDecoration: "none" ,margin:"5px",position:"relative"}}
+      //or slap the class in the index.css
+      <Link
+        id={this.state.toggleAddModal ? "expanded" : ""}
+        style={{ textDecoration: "none", margin: "5px", position: "relative" }}
         to={`/dashboard/${client.type}/${client.id}`}
       >
-        <StyledGlobalClientCard >
+        <StyledGlobalClientCard>
           <StyledContactContainer>
             <div className="identity-icon">
               <div className="circle">
                 <div className="first-name">
                   {client.firstName ? client.firstName[0].toUpperCase() : "?"}
                 </div>
-                
               </div>
               {/* <i onClick={(e)=>this.toggleContents(e)} class="fas fa-expand"></i> */}
-              <i onClick={(e) => {this.toggleModal(e);this.setCoords(e)}} class="fas fa-angle-down"></i>
+              <i
+                onClick={e => {
+                  this.toggleModal(e);
+                  this.setCoords(e);
+                }}
+                className="fas fa-angle-down"
+              />
             </div>
-            
+
             <div className="head-contact-container">
               <h3>
                 {client.firstName} {client.secondName}
@@ -97,20 +93,28 @@ export default class GlobalClientCard extends Component {
             </div>
           </StyledContactContainer>
           <ClientCardModal
-            style={{top:this.state.ycoord,left:this.state.xcoord,margin:0,padding:0,width:300,borderRaduis:3}}
+            style={{
+              top: this.state.ycoord,
+              left: this.state.xcoord,
+              margin: 0,
+              padding: 0,
+              width: 300,
+              borderRaduis: 3
+            }}
             isOpen={this.state.toggleAddModal}
             toggle={this.toggleModal}
-            children={<ClientDemographics client = {client} to={`/dashboard/${client.type}/${client.id}`}/>}
+            children={
+              <ClientDemographics
+                client={client}
+                to={`/dashboard/${client.type}/${client.id}`}
+              />
+            }
           />
-         
         </StyledGlobalClientCard>
-        
       </Link>
-     
     );
   }
 }
-
 
 const StyledGlobalClientCard = styled.div`
   background: white;
@@ -125,7 +129,9 @@ const StyledGlobalClientCard = styled.div`
   height:80px;
   overflow:hidden;
   color: white;
-  ${'' /* transition: all 0.15s ease; */}
+  ${"" /* transition: all 0.15s ease; */}
+  font-family: ${theme.experimentalFont};
+
   &:hover{
     background:rgba(60, 57, 75, 0.6);
     .fas.fa-angle-down{
@@ -133,52 +139,29 @@ const StyledGlobalClientCard = styled.div`
       cursor:pointer;
       
     }
-  
-
-  
-
-  
-
-   
-   
-   
-   
- 
-    
-    
   } 
 
   #custom{
-  
-  padding: 20px;
+    
+    padding: 20px;
 
-  
-  z-index:9000 !important;
+    
+    z-index:9000 !important;
 
-  width: 300px;
-  color:white;
-  border:none;
-  padding: 4px !important;
+    width: 300px;
+    color:white;
+    border:none;
+    padding: 4px !important;
 
     .modal-content{
       background-color:rgba(60,57,75) !important;
     }
-  } 
-  
-
-
-   
-    
-  
-  
-
-
+  }
 
   h3 {
     margin-bottom: 0px;
     font-size: 1.75rem;
   }
-  font-family: ${theme.experimentalFont};
   
   .demo,.contact,.location{
     color:white;
@@ -190,7 +173,6 @@ const StyledGlobalClientCard = styled.div`
     border-radius: 3px ;
     
     font-size: 1.3rem ;
-    ${'' /* display: inline-block; */}
    }
 
   .circle {
@@ -212,73 +194,55 @@ const StyledGlobalClientCard = styled.div`
     position:relative;
     text-align: center;
     background: ${theme.globalViewBackground};
+
     .first-name {
       height:40px;
       width:20px;
       justify-content: center;
       display: flex;
-    font-size: 2rem;
-    top: -2px;
-    /* font-weight: 800; */
-    color: ${theme.activeblue};
+      font-size: 2rem;
+      top: -2px;
+      /* font-weight: 800; */
+      color: ${theme.activeblue};
       position:absolute;
-    align-items: center;
-    position: absolute;
+      align-items: center;
+      position: absolute;
     
     }
 
     
   }
-  .head-contact-container {
-      
-      
-    }
 
   .demo{
     margin:10px 5px;
   }
-
-  
-  
-
-  
 `;
 
 const StyledContactContainer = styled.div`
   display: flex;
   justify-content: flex-start;
-  
-  
-  .identity-icon{
-   
 
-    
-  }
-  .fas.fa-angle-down{
-      position:absolute;
-      top:0;
-      right:0;
-      padding:5px;
-      color:${theme.manageUserItemBackground};
-      
-      &:hover{
-      color:white;
-      background:${theme.activeblue};
-      }
-      
-  }
+  .fas.fa-angle-down {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 5px;
+    color: ${theme.manageUserItemBackground};
 
-  .contact{
-    .fas.fa-phone-square-alt{
-      color:black;
-      font-size:20px;
+    &:hover {
+      color: white;
+      background: ${theme.activeblue};
     }
   }
-  
+
+  .contact {
+    .fas.fa-phone-square-alt {
+      color: black;
+      font-size: 20px;
+    }
+  }
 
   .email {
     color: gray;
   }
-
-  
 `;

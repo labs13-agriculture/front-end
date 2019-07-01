@@ -34,10 +34,16 @@ class UserDetails extends Component {
 
   addNewSystemUser = userDetails => {
     this.props.addNewSystemUser(userDetails);
+    this.props.toggleUpdateModal();
   };
 
   deleteSystemUser = () => {
     this.props.deleteSystemUser(this.props.userid);
+    this.props.toggleUpdateModal();
+  };
+
+  updateUser = () => {
+    this.props.updateSystemUser(this.state, this.props.userid);
     this.props.toggleUpdateModal();
   };
 
@@ -85,13 +91,7 @@ class UserDetails extends Component {
             </FormGroup>
             <FormGroup>
               <div className="updateUser-buttons">
-                <Button
-                  onClick={() =>
-                    this.props.updateSystemUser(this.state, this.props.userid)
-                  }
-                >
-                  UPDATE
-                </Button>
+                <Button onClick={this.updateUser}>UPDATE</Button>
                 <Button
                   color="danger"
                   onClick={() => this.deleteSystemUser(this.props.userid)}

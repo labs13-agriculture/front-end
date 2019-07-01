@@ -9,7 +9,6 @@ export const addNewTransaction = (transactionDetails, id) => dispatch => {
 
   // const body = JSON.stringify(transactionDetails);
   const body = transactionDetails;
-  console.log("userDetails JSON ", body);
   return axios
     .post(`${BASE_URL}/transaction/add/${id}`, body, {
       headers: {
@@ -19,8 +18,6 @@ export const addNewTransaction = (transactionDetails, id) => dispatch => {
       }
     })
     .then(res => {
-      console.log("add transaction response", res.data);
-
       dispatch({ type: ADD_TRANSACTION_SUCCESS, payload: res.data });
     })
     .catch(err => {
@@ -35,8 +32,6 @@ export const GET_TRANSACTION_FAILURE = "GET_TRANSACTION_FAILURE";
 
 export const getClientTransaction = clientId => dispatch => {
   dispatch({ type: GET_TRANSACTION_START });
-
-  console.log("myclientID", clientId);
   return axios
     .get(`${BASE_URL}/transaction/client/${clientId}`, {
       headers: {
@@ -46,8 +41,6 @@ export const getClientTransaction = clientId => dispatch => {
       }
     })
     .then(res => {
-      console.log("get_transactions_success", res.data);
-
       dispatch({ type: GET_TRANSACTION_SUCCESS, payload: res.data });
     })
     .catch(err => {
@@ -72,8 +65,6 @@ export const deleteClientTransaction = transactionId => dispatch => {
       }
     })
     .then(res => {
-      console.log("delete_transactions_success", res.data);
-
       dispatch({ type: DELETE_TRANSACTION_SUCCESS, payload: res.data });
     })
     .catch(err => {
@@ -102,8 +93,6 @@ export const updateClientTransaction = (
       }
     })
     .then(res => {
-      console.log("update_transactions_success", res.data);
-
       dispatch({ type: UPDATE_TRANSACTION_SUCCESS, payload: res.data });
     })
     .catch(err => {

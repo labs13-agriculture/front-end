@@ -218,7 +218,4 @@ export {
   getNextBranchPage
 } from "./branchActions";
 
-export{
-  NEED_HELP,
-  needHelp
-} from "./helpAction";
+export { NEED_HELP, needHelp } from "./helpAction";

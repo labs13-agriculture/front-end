@@ -53,7 +53,7 @@ class TransactionForm extends Component {
     ) {
       let items = [...this.state.items];
       items[e.target.dataset.id][e.target.dataset.class] = e.target.value;
-      this.setState({ items }, () => console.log(this.state.items));
+      this.setState({ items });
     } else {
       this.setState({
         [e.target.name]: e.target.value

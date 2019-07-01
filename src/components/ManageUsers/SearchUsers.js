@@ -31,8 +31,7 @@ class SearchUsers extends Component {
 
   toggleAddModal = () => {
     this.setState({ toggleAddModal: !this.state.toggleAddModal });
-    console.log("toggling")
-  }
+  };
 
   handleChanges = e => {
     e.preventDefault();

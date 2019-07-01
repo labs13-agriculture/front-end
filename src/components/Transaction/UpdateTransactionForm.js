@@ -21,7 +21,6 @@ class UpdateTransactionForm extends Component {
     const month = parseInt(props.transaction.date.substring(5, 7));
     const day = parseInt(props.transaction.date.substring(8, 10));
     let items = props.transaction.inputs;
-    console.log(items);
     const updatedItems = items.map(item => {
       return {
         quantity: item.quantity,
@@ -43,7 +42,6 @@ class UpdateTransactionForm extends Component {
   }
 
   componentDidMount() {
-    console.log("STATE", this.state);
     this.props.getInventoryList();
   }
 
@@ -71,7 +69,7 @@ class UpdateTransactionForm extends Component {
     ) {
       let items = [...this.state.items];
       items[e.target.dataset.id][e.target.dataset.class] = e.target.value;
-      this.setState({ items }, () => console.log(this.state.items));
+      this.setState({ items });
     } else {
       this.setState({
         [e.target.name]: e.target.value
@@ -144,7 +142,6 @@ class UpdateTransactionForm extends Component {
         (this.state.day > 9 ? this.state.day : "0" + this.state.day),
       inputs: finalItems
     };
-    console.log("******MYTRANSACTION*******", JSON.stringify(transaction));
     this.props.updateClientTransaction(transaction, this.state.transactionId);
 
     this.props.toggleModal();

@@ -1,14 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import styled, { css } from "styled-components";
-import { Modal } from "reactstrap";
 import { needHelp } from "../../actions";
 
 // components
 import Demographics from "./Demographics";
 import Transactions from "../Transaction/Transactions";
 import Installments from "../Installment/InstallmentComponent";
-import ClientViewHelp from "../HelpModals/ClientViewHelp";
 
 class ClientView extends Component {
   toggleTransaction = () => {
@@ -37,9 +35,6 @@ class ClientView extends Component {
             <Installments />
           </StyledInfoView>
         </StyledContainer>
-        <Modal isOpen={this.props.help} toggle={() => this.props.needHelp(this.props.help)}>
-          <ClientViewHelp />
-        </Modal>
       </InfoViewContainer>
     );
   }
@@ -51,8 +46,7 @@ const mapStateToProps = state => {
     error: state.clientData.error,
     searchStart: state.clientData.getStart,
     searchSuccess: state.clientData.getSuccess,
-    searchFailure: state.clientData.getFailure,
-    help: state.help.needsHelp
+    searchFailure: state.clientData.getFailure
   };
 };
 
@@ -80,11 +74,9 @@ const media = Object.keys(sizes).reduce((acc, label) => {
 
 const StyledContainer = styled.div`
   display: flex;
-  height: 400px;
-
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-between;
 `;
 
 const StyledDemos = styled.div`
@@ -94,8 +86,7 @@ const StyledDemos = styled.div`
 
 const StyledInfoView = styled.div`
   width: 48%;
-  background-color: white;
-  height: 90%;
+  height: 50%;
   margin-top: 20px;
   overflow-y: scroll;
 
@@ -111,6 +102,7 @@ const InfoViewContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  height: 100vh;
 
   ${media.tablet`flex-direction: column;`}
 `;

@@ -1,5 +1,5 @@
-import React from 'react';
-import { Modal, ModalBody } from 'reactstrap';
+import React from "react";
+import { Modal, ModalBody } from "reactstrap";
 import styled from "styled-components";
 
 class ClientCardModal extends React.Component {
@@ -21,13 +21,15 @@ class ClientCardModal extends React.Component {
   render() {
     return (
       <CustomModalDiv>
-        
-        <Modal style={this.props.style}  isOpen={this.props.isOpen} toggle={this.props.toggle} className="custom-modal">
-          
-          <ModalBody style={{padding:0,width:300}}>
+        <Modal
+          style={this.props.style}
+          isOpen={this.props.isOpen}
+          toggle={this.props.toggle}
+          className="custom-modal"
+        >
+          <ModalBody style={{ padding: 0, width: 300 }}>
             {this.props.children}
           </ModalBody>
-
         </Modal>
       </CustomModalDiv>
     );
@@ -65,4 +67,4 @@ const CustomModalDiv = styled.div`
 
 }
 
-`
+`;

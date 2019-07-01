@@ -4,25 +4,28 @@ import { needHelp } from "../../actions";
 import { Button } from "reactstrap";
 import HelpModal from "../../styles/HelpModal";
 
-const ClientViewHelp = props => {
+const ManageUsersHelp = props => {
   return (
     <HelpModal>
       <header>
-        <h2>Client View</h2>
+        <h2>Manage Users</h2>
       </header>
       <div className="help-content">
         <p>
-          Here, you can see all data about a specific <strong>client</strong>.
-          as well as manage their <strong>transactions</strong> and{" "}
-          <strong>installments</strong>.
+          This is the users management page.
           <br />
           <br />
-          You can <strong>edit</strong> <i className="fas fa-edit edit" /> data,
-          <strong> delete</strong> <i className="fas fa-trash delete" /> data,
-          or record <strong>new</strong> transactions and installments
+          Add a new user by clicking the <strong>Add</strong> button.
           <br />
           <br />
-          Be aware that deleted data can not be recovered.
+          <strong>Begin typing</strong> to search for existing users.
+          <br />
+          <br />
+          When you've found the user you are looking for <strong>
+            hover
+          </strong>{" "}
+          over their row, then <strong>click the pencil</strong> icon to update
+          their <strong>username, password, or privileges</strong>
         </p>
         <Button color="secondary" onClick={() => props.needHelp(props.status)}>
           Got it
@@ -41,4 +44,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   { needHelp }
-)(ClientViewHelp);
+)(ManageUsersHelp);

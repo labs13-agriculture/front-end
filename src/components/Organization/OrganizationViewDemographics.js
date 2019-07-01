@@ -15,7 +15,6 @@ import EditOrganizationForm from "./EditOrganizationForm";
 
 function OrganizationViewDemographics(props) {
   const { organization } = props;
-  console.log("ORGANIZATION", organization);
   useEffect(() => {
     props.getOrganizationById(props.id);
   }, []);
@@ -86,7 +85,7 @@ function OrganizationViewDemographics(props) {
         </h1>
 
         <div className="actions">
-          <i class="fas fa-edit edit" onClick={toggleModal} />
+          <i className="fas fa-edit edit" onClick={toggleModal} />
           <i className="fas fa-trash delete" onClick={deleteOrg} />
         </div>
       </div>

@@ -1,44 +1,45 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import {theme} from "../../config";
+import { theme } from "../../config";
 import { Link } from "react-router-dom";
-export default class ClientDemographics extends Component{
-    
-
-    render(){
-        const { client } = this.props;
-        return(
-            <StyledDemoContainer>
-                <div className="demo">
-                    <p className="category"><span className="descriptor">Title:</span> {client.title}</p>
-                    {/* <p className="category"><span className="descriptor">DOB:</span>  {client.dateofbirth}</p> */}
-                    <p className="category"><span className="descriptor">Gender:</span>  {client.gender}</p>
-                </div>
-                <div className="contact">
-                <p className="category">
-                    <span className="descriptor">
-                     <i class="fas fa-phone-square"></i> 
-                    </span>
-                     {client.phone}</p>
-                </div>
-                <div className="location">
-                    <p className="category">
-                    <span className="descriptor">
-                    <i class="fas fa-map-marker-alt"></i> 
-                    </span>
-                    {client.address}</p>
-                    {/* <p className="category"><span className="descriptor">Region:</span>  {client.region}</p> */}
-                    {/* <p className="category"><span className="descriptor">Community:</span>  {client.community}</p> */}
-                </div>
-                <Link to={this.props.to} className="more-options-btn">MORE <i class="fas fa-arrow-circle-right"></i></Link>
-                
-            </StyledDemoContainer>
-        )
-
-            
-          
-        
-    }
+export default class ClientDemographics extends Component {
+  render() {
+    const { client } = this.props;
+    return (
+      <StyledDemoContainer>
+        <div className="demo">
+          <p className="category">
+            <span className="descriptor">Title:</span> {client.title}
+          </p>
+          {/* <p className="category"><span className="descriptor">DOB:</span>  {client.dateofbirth}</p> */}
+          <p className="category">
+            <span className="descriptor">Gender:</span> {client.gender}
+          </p>
+        </div>
+        <div className="contact">
+          <p className="category">
+            <span className="descriptor">
+              <i className="fas fa-phone-square" />
+            </span>
+            {client.phone}
+          </p>
+        </div>
+        <div className="location">
+          <p className="category">
+            <span className="descriptor">
+              <i className="fas fa-map-marker-alt" />
+            </span>
+            {client.address}
+          </p>
+          {/* <p className="category"><span className="descriptor">Region:</span>  {client.region}</p> */}
+          {/* <p className="category"><span className="descriptor">Community:</span>  {client.community}</p> */}
+        </div>
+        <Link to={this.props.to} className="more-options-btn">
+          MORE <i className="fas fa-arrow-circle-right" />
+        </Link>
+      </StyledDemoContainer>
+    );
+  }
 }
 
 const StyledDemoContainer = styled.div`
@@ -98,4 +99,4 @@ const StyledDemoContainer = styled.div`
     }
 
 
-`
+`;

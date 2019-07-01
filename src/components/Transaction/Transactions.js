@@ -17,30 +17,31 @@ class ViewTransactions extends Component {
     return (
       <TransactionContainer>
         <TransactionHeader id={this.props.id} />
-        <StyledTable>
-          <tbody>
-            {this.props.transactionDataStart && (
-              <div className="spindiv">
-                <Spinner className="spinner" />
-              </div>
-            )}
-            {this.props.transactionDataSuccess &&
-              this.props.transactionData.map(t => (
-                <TransactionItem
-                  getClientTransaction={this.props.getClientTransaction}
-                  clientId={this.props.id}
-                  item={t}
-                />
-              ))}
-          </tbody>
-        </StyledTable>
+        {this.props.transactionDataStart ? (
+          <div className="spindiv">
+            <Spinner className="spinner" />
+          </div>
+        ) : (
+          <StyledTable>
+            <tbody>
+              {this.props.transactionDataSuccess &&
+                this.props.transactionData.map(t => (
+                  <TransactionItem
+                    key={t.id}
+                    getClientTransaction={this.props.getClientTransaction}
+                    clientId={this.props.id}
+                    item={t}
+                  />
+                ))}
+            </tbody>
+          </StyledTable>
+        )}
       </TransactionContainer>
     );
   }
 }
 
 const mapStateToProps = state => {
-  console.log("transaction map state to props fireing");
   return {
     transactionData: state.clientTransactions.transactionData,
     transactionDataStart: state.clientTransactions.getTransactionStart,
@@ -64,6 +65,9 @@ const StyledTable = styled.table`
   tr {
     &:nth-of-type(even) {
       background-color: lightgrey;
+    }
+    &:nth-of-type(odd) {
+      background: white;
     }
   }
 `;

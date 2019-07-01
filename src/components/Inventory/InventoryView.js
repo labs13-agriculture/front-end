@@ -139,7 +139,6 @@ const ViewContainer = styled.div`
   max-height: 100vh;
   background: #f3f3f3;
   margin: 10px;
-  border-radius: 2px;
   overflow-y: scroll;
 
   &::-webkit-scrollbar {
@@ -159,5 +158,6 @@ const ViewContainer = styled.div`
 
   .inventory-table {
     width: 100%;
+    border-spacing: 0;
   }
 `;

@@ -56,7 +56,7 @@ export default class ViewContainer extends Component {
 }
 
 const StyledViewContainer = styled.div`
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
   padding: 20px;
 `;

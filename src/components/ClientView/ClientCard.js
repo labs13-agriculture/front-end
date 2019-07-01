@@ -65,7 +65,7 @@ export default class GlobalClientCard extends Component {
       //or slap the class in the index.css
       <Link
         id={this.state.toggleAddModal ? "expanded" : ""}
-        style={{ textDecoration: "none", margin: "5px", position: "relative" }}
+        style={{ textDecoration: "none", margin: "5px", position: "relative"}}
         to={`/dashboard/${client.type}/${client.id}`}
       >
         <StyledGlobalClientCard>
@@ -99,7 +99,7 @@ export default class GlobalClientCard extends Component {
               left: this.state.xcoord,
               margin: 0,
               padding: 0,
-              width: 300,
+              width: 295,
               borderRaduis: 3
             }}
             isOpen={this.state.toggleAddModal}

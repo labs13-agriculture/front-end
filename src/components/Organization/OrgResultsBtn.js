@@ -15,10 +15,10 @@ class OrgResultsBtn extends Component {
           <h1>{parseInt(this.props.totalPages)}</h1>
           <h3>Results</h3>
         </div>}
-        {/* start */}
-
+        
         <div className="search-option-container">
           <div className="search-option-btn-cont">
+          
             {/* condition for: do I need a previous button? */}
             {this.props.numResults && parseInt(this.props.currentPage) !== 0 && (
               <button
@@ -30,6 +30,7 @@ class OrgResultsBtn extends Component {
                 <i className="far fa-arrow-alt-circle-left" />
               </button>
             )}
+
             {/* condition for: do I need a next button? */}
             {parseInt(this.props.totalPages) >
               parseInt(this.props.currentPage) + 1 && (
@@ -42,6 +43,8 @@ class OrgResultsBtn extends Component {
                 <i className="far fa-arrow-alt-circle-right" />
               </button>
             )}
+            
+            {/* conditional display for single page results */}
             {(parseInt(this.props.totalPages) === 1 ||
               parseInt(this.props.totalPages) === 0) && (
               <i className="fas fa-book-open" />

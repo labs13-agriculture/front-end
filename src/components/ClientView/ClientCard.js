@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import {theme} from "../../config";
-import { Modal, ModalBody, Button, FormGroup, Alert } from "reactstrap";
+import {media} from "../../styles/searchStyles";
 import ClientDemographics from "./ClientDemographics";
 import ClientCardModal from "./ClientCardModal";
 
@@ -121,11 +121,12 @@ const StyledGlobalClientCard = styled.div`
   border-radius: 3px;
   ${"" /* box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3); */}
   background: ${theme.manageUserItemBackground};
-  width: 300px;
+  
+  ${media.phone`width:100%;`}
   height:80px;
   overflow:hidden;
   color: white;
-  ${'' /* transition: all 0.15s ease; */}
+  
   &:hover{
     background:rgba(60, 57, 75, 0.6);
     .fas.fa-angle-down{
@@ -155,7 +156,7 @@ const StyledGlobalClientCard = styled.div`
   
   z-index:9000 !important;
 
-  width: 300px;
+ 
   color:white;
   border:none;
   padding: 4px !important;

@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { pageClient } from "../../actions";
 import { connect } from "react-redux";
 import { theme } from "../../config";
+import { Spinner } from "reactstrap";
+import {media} from "../../styles/searchStyles";
 
 class ClientResultsBtn extends Component {
   render() {
@@ -56,7 +58,11 @@ class ClientResultsBtn extends Component {
               <i className="fas fa-book-open" />
             )}
           </div>
-          {parseInt(resultsPageInfo.total_pages) >= 1 ? (
+          {this.props.fetchFarmerPageStart || this.props.fetchRetailerPageStart ? 
+
+          <Spinner className="spinner" />:
+
+          parseInt(resultsPageInfo.total_pages) >= 1 ? (
             <div className="results pages">
               <h3>{`Page ${parseInt(resultsPageInfo.number) + 1} of ${
                 resultsPageInfo.total_pages
@@ -80,7 +86,9 @@ const mapStateToProps = state => {
     farmerNextPage: state.clientData.farmerNextPage,
     farmerPrevPage: state.clientData.farmerPrevPage,
     retailerNextPage: state.clientData.retailerNextPage,
-    retailerPrevPage: state.clientData.retailerPrevPage
+    retailerPrevPage: state.clientData.retailerPrevPage,
+    fetchFarmerPageStart:state.clientData.fetchingFarmerPage,
+    fetchRetailerPageStart:state.clientData.fetchingRetailerPage
   };
 };
 
@@ -96,6 +104,8 @@ const StyledClientResultsBtn = styled.div`
   color: white;
   align-items: flex-end;
   margin-bottom: 10px;
+  ${media.phone`margin:20px;`}
+  ${media.phone`justify-content:space-between;`}
 
   h3 {
     font-size: 1.8rem;
@@ -157,5 +167,9 @@ const StyledClientResultsBtn = styled.div`
     color: ${theme.activeblue};
     margin: 5px;
     font-size: 2.3rem;
+  }
+
+  .spinner{
+
   }
 `;

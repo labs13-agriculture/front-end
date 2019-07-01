@@ -175,8 +175,16 @@ const StyledGlobalClientCard = styled.div`
 
 
   h3 {
+    
     margin-bottom: 0px;
     font-size: 1.75rem;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 200px;
+    display: block;
+    overflow: hidden
+    
+  
   }
   font-family: ${theme.experimentalFont};
   

@@ -65,7 +65,13 @@ const StyledDemoContainer = styled.div`
         margin: 15px;
         border-radius: 2px;
         font-weight: 800;
-        text-overflow:ellipsis;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        width: 250px;
+        display: block;
+        overflow: hidden
+        
+    }
 
     }
 

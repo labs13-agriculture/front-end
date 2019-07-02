@@ -8,9 +8,9 @@ You can find the deployed project at [https://tiemendocrm.netlify.com/](https://
 
 |                                       [Chase Garsee](https://github.com/chasegarsee)                                        |                                       [Dustin Bailey](https://github.com/dgbailey)                                        |                                       [Jason Tyzzer](https://github.com/JTyzz)                                        |                                       [Joshua Kersting](https://github.com/KerstingJ)                                        |                                       [Andrew Safran](https://github.com/AWSafran)                                        |
 | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: |
-|                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/chasegarsee)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/dgbailey)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/JTyzz)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/KerstingJ)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/AWSafran)                       |
+|                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/chasegarsee)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/dgbailey)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/JTyzz)                       |                      [<img src="./team/Josh.jpg" width = "200" />](https://github.com/KerstingJ)                       |                      [<img src="./team/Andrew.jpg" width = "200" />](https://github.com/AWSafran)                       |
 |                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/chasegarsee)                 |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/dgbailey)             |           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/JTyzz)            |          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/KerstingJ)           |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/AWSafran)             |
-| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) |
+| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/josh-kersting-86142911b/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/andrew-safran-5a1432114/) |
 
 <br>
 <br>
@@ -19,7 +19,7 @@ You can find the deployed project at [https://tiemendocrm.netlify.com/](https://
 ![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
 ![React](https://img.shields.io/badge/react-v16.7.0--alpha.2-blue.svg)
 ![Java/Spring](https://img.shields.io/badge/Java/Spring-JDK_11-blue.svg)
-[![Netlify Status](https://tiemendocrm.netlify.com/)]
+
 
 ## Project Overview
 
@@ -33,111 +33,77 @@ Tieme Ndo is an organizatino in Ghana, which works with local farmers, retailers
 
 -    Manage Users - Admin users have the ability to create, edit, and delete existing user accounts
 -    Client Search - Users can search for clients by name, location, and lead status for all client types (farmer, retailer, and organization)
+-    Add Client - Users can add a new record for a client if that client does not already exist within the system
 -    Inventory Management - Users can view and update Tieme-Ndo inventory items
--    Client View - 
+-    Client View - Users can view and interact with an individual client's data, including adding, deleting, or editing transactions and instalment payments.
 -    feature five
 
-## 1️⃣ Tech Stack
+## Tech Stack
 
 ### Front end built using:
 
-#### _Front end framework goes here_
+#### _React-Redux_
 
-🚫 Why did you choose this framework?
+-    Components allow reusability rather than repetition
+-    Class components allow for simple creation of complex interactions
+-    Redux Store allows simple access to data from any component
+-    Actions and reducers create easier to manage file and code structure
 
--    point one
--    point two
--    point three
--    point four
+#### _Styled Components_
 
-🚫List the rest of the front end features and libraries in the same format as the framework above.
+-    Simple implementation of CSS within React.js files
+-    Ability to write styles in the same file as a component for readability, or export/import styles for reusability
+-    Nesting selectors for more intuitive writing of styles
 
-#### Front end deployed to `🚫insert service here`
+#### _ReactStrap_
 
-#### [Back end](🚫link to back end repo here) built using:
+-    Clean, professional design for a number of components
+-    Pre-built funcitonality for components such as Modals
+-    Consistent starting point for formatting and styling
 
-#### 🚫 back end framework goes here
+#### Front end deployed to `Netlify`
 
--    point one
--    point two
--    point three
+#### [Back end](https://github.com/labs13-agriculture/Tiemendo-Back-End) built using:
 
-🚫 List the rest of the back end end features and libraries in the same format as the framework above
+#### Java/Spring
+
+-    Strongly-typed Object-Oriented language helps prevent unintended behaviors
+-    Fast and easy creation of RESTful API controllers
+-    Behind-the-scenes configuration to ensure compatibility with other Java libraries
+
+#### PostgreSQL
+
+-    Seamless integration with Spring Data JPA and Heroku backend deployment
 
 # APIs
 
-## 2️⃣ Authentication API here
+## Oauth 2.0
 
-🚫Replace text below with a description of the API
 
-Water's like me. It's laaazy ... Boy, it always looks for the easiest way to do things A little happy sunlight shining through there. Let all these little things happen. Don't fight them. Learn to use them. Even the worst thing we can do here is good.
 
-## 2️⃣ Payment API here
-
-🚫Replace text below with a description of the API
-
-This is the way you take out your flustrations. Get away from those little Christmas tree things we used to make in school. Isn't it fantastic that you can change your mind and create all these happy things? Everything's not great in life, but we can still find beauty in it.
-
-## 3️⃣ Misc API here
-
-🚫Replace text below with a description of the API
-
-You can do anything your heart can imagine. In life you need colors. This is where you take out all your hostilities and frustrations. It's better than kicking the puppy dog around and all that so. I'm sort of a softy, I couldn't shoot Bambi except with a camera. Trees get lonely too, so we'll give him a little friend. We'll lay all these little funky little things in there.
-
-## 3️⃣ Misc API here
-
-🚫Replace text below with a description of the API
-
-When you do it your way you can go anywhere you choose. Let your heart take you to wherever you want to be. If I paint something, I don't want to have to explain what it is. A tree needs to be your friend if you're going to paint him. That's a son of a gun of a cloud. Even the worst thing we can do here is good.
-
-## 3️⃣ Misc API here
-
-🚫Replace text below with a description of the API
-
-Volunteering your time; it pays you and your whole community fantastic dividends. Maybe there's a happy little waterfall happening over here. You can spend all day playing with mountains. We don't have to be committed. We are just playing here. You have freedom here. The only guide is your heart. It's cold, but it's beautiful.
-
-# 3️⃣ Environment Variables
+# Environment Variables
 
 In order for the app to function correctly, the user must set up their own environment variables. There should be a .env file containing the following:
 
-🚫These are just examples, replace them with the specifics for your app
 
-    *  REACT_APP_apiKey - this is your Google API key, which can be generated in the Google Cloud Console
-    *  REACT_APP_authDomain - when you set up your Firebase project, this information will be in the dashboard
-    *  REACT_APP_databaseURL - in the Firebase dashboard
-    *  REACT_APP_projectID - in the Firebase dashboard
-    *  REACT_APP_storageBucket - in the Firebase dashboard
-    *  REACT_APP_messagingSenderId - in the Firebase dashboard
-    *  REACT_APP_stripe_API - this is your public Stripe API key, generated in the Stripe dashboard
-    *  REACT_APP_backendURL - optional for your local development server
-    *  REACT_APP_clientid - this is the Stripe_connect clientID, generated in Stripe_connect settings
-    *  REACT_APP_stripe_plan - this is the ID for a second Stripe subscription plan, generated under Stripe products
 
-# 5️⃣ Content Licenses
+    *  REACT_APP_AUTH_CLIENT_ID - This is the Client ID for the OAuth 2.0 Server
+    * REACT_APP_AUTH_CLIENT_SECRET - This is the Client Secre tfor the Oauth 2.0 Server
 
-🚫For all content - images, icons, etc, use this table to document permission of use. Remove the two placeholders and add you content to this table
+# Content Licenses
 
-| Image Filename | Source / Creator | License                                                                      |
+
+
+| Resource | Source / Creator | License                                                                      |
 | -------------- | ---------------- | ---------------------------------------------------------------------------- |
-| doodles.png    | Nicole Bennett   | [Creative Commons](https://www.toptal.com/designers/subtlepatterns/doodles/) |
-| rings.svg      | Sam Herbert      | [MIT](https://github.com/SamHerbert/SVG-Loaders)                             |
+| FontAwesome   | Fonticons, Inc   | [Creative Commons](https://fontawesome.com/license/free) |
 
-# 4️⃣ Testing
+# Installation Instructions
 
-🚫Document what you used for testing and why
+- Clone this Repository to your local machine
+- Use `yarn install` to install dependencies
+- User `yarn start` to start development server
 
-# 4️⃣ Installation Instructions
-
-🚫explain how to install the required dependencies to get this project up and running with yarn and NPM
-
-## Other Scripts
-
-🚫replace these examples with your own
-
-    * typecheck - runs the TypeScript compiler
-    * build - creates a build of the application
-    * start - starts the production server after a build is created
-    * test - runs tests in **tests** directory \* eject - copy the configuration files and dependencies into the project so you have full control over them
 
 # Contributing
 
@@ -177,4 +143,6 @@ These contribution guidelines have been adapted from [this good-Contributing.md-
 
 ## Documentation
 
-See [Backend Documentation](🚫_link to your backend readme here_) for details on the backend of our project.
+See [Backend Documentation](https://github.com/labs13-agriculture/Tiemendo-Back-End/blob/master2/README.md) for details on the backend of our project.
+
+See [Android Documentation](https://github.com/labs13-agriculture/android/blob/master/README.md) for details on the Android portion of our project.

@@ -25,9 +25,10 @@ class ClientCardModal extends React.Component {
           style={this.props.style}
           isOpen={this.props.isOpen}
           toggle={this.props.toggle}
+          
           className="custom-modal"
         >
-          <ModalBody style={{ padding: 0, width: 300 }}>
+          <ModalBody style={{ padding: 0, width: 295 }}>
             {this.props.children}
           </ModalBody>
         </Modal>

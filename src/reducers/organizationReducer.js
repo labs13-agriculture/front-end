@@ -206,12 +206,14 @@ export default (state = initialState, action) => {
     case GET_NEXT_ORGS_START:
       return {
         ...state,
-        searchStart: true
+        // searchStart: true
+        getNextOrgsStart:true,
       };
     case GET_NEXT_ORGS_SUCCESS:
       return {
         ...state,
         searchStart: false,
+        getNextOrgsStart:false,
         listData: action.payload.data,
         nextPage: action.payload.headers.next,
         prevPage: action.payload.headers.prev,
@@ -222,7 +224,8 @@ export default (state = initialState, action) => {
     case GET_NEXT_ORGS_FAILURE:
       return {
         ...state,
-        searchStart: false,
+        // searchStart: false,
+        getNextOrgsStart:false,
         error: action.payload
       };
     case CLEAR_ORGANIZATION_UPDATED:

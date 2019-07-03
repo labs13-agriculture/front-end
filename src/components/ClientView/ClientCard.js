@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { theme } from "../../config";
+import {theme} from "../../config";
+import {media} from "../../styles/searchStyles";
 import ClientDemographics from "./ClientDemographics";
 import ClientCardModal from "./ClientCardModal";
 
@@ -64,7 +65,7 @@ export default class GlobalClientCard extends Component {
       //or slap the class in the index.css
       <Link
         id={this.state.toggleAddModal ? "expanded" : ""}
-        style={{ textDecoration: "none", margin: "5px", position: "relative" }}
+        style={{ textDecoration: "none", margin: "5px", position: "relative"}}
         to={`/dashboard/${client.type}/${client.id}`}
       >
         <StyledGlobalClientCard>
@@ -98,7 +99,7 @@ export default class GlobalClientCard extends Component {
               left: this.state.xcoord,
               margin: 0,
               padding: 0,
-              width: 300,
+              width: 295,
               borderRaduis: 3
             }}
             isOpen={this.state.toggleAddModal}
@@ -125,7 +126,8 @@ const StyledGlobalClientCard = styled.div`
   border-radius: 3px;
   ${"" /* box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3); */}
   background: ${theme.manageUserItemBackground};
-  width: 300px;
+  
+  ${media.phone`width:100%;`}
   height:80px;
   overflow:hidden;
   color: white;
@@ -148,10 +150,10 @@ const StyledGlobalClientCard = styled.div`
     
     z-index:9000 !important;
 
-    width: 300px;
-    color:white;
-    border:none;
-    padding: 4px !important;
+ 
+  color:white;
+  border:none;
+  padding: 4px !important;
 
     .modal-content{
       background-color:rgba(60,57,75) !important;
@@ -159,8 +161,16 @@ const StyledGlobalClientCard = styled.div`
   }
 
   h3 {
+    
     margin-bottom: 0px;
     font-size: 1.75rem;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 200px;
+    display: block;
+    overflow: hidden
+    
+  
   }
   
   .demo,.contact,.location{

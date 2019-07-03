@@ -63,7 +63,7 @@ class OrganizationSearch extends Component {
           </StyledHeader>
           <SearchForm submitSearch={this.submitSearch} />
         </StyledSearchToolContainer>
-        <OrgResultsBtn />
+        {this.props.searchSuccess && <OrgResultsBtn />}
         <OrganizationCardContainer />
         <Modal isOpen={this.state.modal} toggle={this.toggleModal}>
           <NewOrganizationForm

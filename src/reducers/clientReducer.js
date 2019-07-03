@@ -224,7 +224,8 @@ export default (state = initialState, action) => {
     case FARMER_PAGE_SUCCESS:
       return {
         ...state,
-        fetchFarmerPageStart: false,
+        fetchingFarmerPage: false,
+        
         fetchFarmerPageSuccess: true,
         farmerListData: action.payload,
         farmerNextPage: action.headers.next,
@@ -253,7 +254,7 @@ export default (state = initialState, action) => {
     case RETAILER_PAGE_SUCCESS:
       return {
         ...state,
-        fetchRetailerPageStart: false,
+        fetchingRetailerPage: true,
         fetchRetailerPageSuccess: true,
         retailerListData: action.payload,
         retailerNextPage: action.headers.next,

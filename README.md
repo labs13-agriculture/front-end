@@ -92,7 +92,7 @@ In order for the app to function correctly, the user must set up their own envir
 
 - Clone this Repository to your local machine
 - Use `yarn install` to install dependencies
-- User `yarn start` to start development server
+- Use `yarn start` to start development server
 
 # Contributing
 
